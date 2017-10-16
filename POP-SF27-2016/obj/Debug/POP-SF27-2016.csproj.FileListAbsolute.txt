@@ -1,0 +1,6 @@
+c:\users\temp.ftn.009\documents\visual studio 2015\Projects\POP-SF27-2016\POP-SF27-2016\bin\Debug\POP-SF27-2016.exe.config
+c:\users\temp.ftn.009\documents\visual studio 2015\Projects\POP-SF27-2016\POP-SF27-2016\bin\Debug\POP-SF27-2016.exe
+c:\users\temp.ftn.009\documents\visual studio 2015\Projects\POP-SF27-2016\POP-SF27-2016\bin\Debug\POP-SF27-2016.pdb
+c:\users\temp.ftn.009\documents\visual studio 2015\Projects\POP-SF27-2016\POP-SF27-2016\obj\Debug\POP-SF27-2016.csprojResolveAssemblyReference.cache
+c:\users\temp.ftn.009\documents\visual studio 2015\Projects\POP-SF27-2016\POP-SF27-2016\obj\Debug\POP-SF27-2016.exe
+c:\users\temp.ftn.009\documents\visual studio 2015\Projects\POP-SF27-2016\POP-SF27-2016\obj\Debug\POP-SF27-2016.pdb
