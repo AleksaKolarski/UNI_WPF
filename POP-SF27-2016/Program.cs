@@ -9,6 +9,7 @@ namespace POP_SF27_2016
 {
     class Program
     {
+        static List<Namestaj> Namestaj { get; set; } = new List<Namestaj>();
         static void Main(string[] args)
         {
             var s1 = new Salon()
@@ -39,6 +40,8 @@ namespace POP_SF27_2016
                 KolicinaUMagacinu = 12
             };
 
+            Namestaj.Add(n1);
+
             Console.WriteLine($"Dobrodosli u salon {s1.Naziv}");
             IspisGlavnogMenija();
         }
@@ -58,6 +61,9 @@ namespace POP_SF27_2016
 
             switch (izbor)
             {
+                case 0:
+                    Environment.Exit(0);
+                    break;
                 case 1:
                     IspisiMeniNamestaja();
                     break;
@@ -88,14 +94,24 @@ namespace POP_SF27_2016
             switch (izbor)
             {
                 case 0:
-                    // vrati se nazad
+                    IspisGlavnogMenija();
                     break;
                 case 1:
-
+                    IzlistajNamstaj();
                     break;
                 default:
                     break;
             }
+        }
+
+        private static void IzlistajNamstaj()
+        {
+            Console.WriteLine("====Izlistavanje namestaja====");
+            for( int i = 0; i < Namestaj.Count; ++i)
+            {
+                Console.WriteLine($"{i + 1}. {Namestaj[i].Naziv}, cena: {Namestaj[i].JedinicnaCena}");
+            }
+            IspisiMeniNamestaja();
         }
     }
 }
