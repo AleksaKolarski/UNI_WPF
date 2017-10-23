@@ -107,6 +107,8 @@ namespace POP_SF27_2016
                 case 2:
                     DodajNoviNamestaj();
                     break;
+                case 3:
+                    IzmeniPostojeciNamestaj();
                 default:
                     break;
             }
@@ -135,6 +137,7 @@ namespace POP_SF27_2016
             Console.WriteLine("Unesite kolicinu namestaja: ");
             novi.KolicinaUMagacinu = int.Parse(Console.ReadLine());
             Console.WriteLine("Unesite tip namestaja: ");
+            /*
             string tipTmp = Console.ReadLine();
             for(int i = 0; i < TipNamestaja.Count; ++i)
             {
@@ -143,7 +146,24 @@ namespace POP_SF27_2016
                     novi.TipNamestaja = TipNamestaja[i];
                 }
             }
-            //novi.TipNamestaja = TipNamestaja.SingleOrDefault(x => x.Naziv == Console.ReadLine());
+            */
+            novi.TipNamestaja = TipNamestaja.SingleOrDefault(x => x.Naziv == Console.ReadLine());
+        }
+
+        private static void IzmeniPostojeciNamestaj()
+        {
+            Console.WriteLine("Unesite ime namestaja kojeg ocete da izmenite: ");
+            Namestaj namestajTmp = Namestaj.SingleOrDefault(x => x.Naziv == Console.ReadLine());
+            Console.WriteLine("Unesite novo ime: ");
+            namestajTmp.Naziv = Console.ReadLine();
+            Console.WriteLine("Unesite novu sifru: ");
+            namestajTmp.Sifra = Console.ReadLine();
+            Console.WriteLine("Unesite novu cenu: ");
+            namestajTmp.JedinicnaCena = double.Parse(Console.ReadLine());
+            Console.WriteLine("Unesite novu kolicinu: ");
+            namestajTmp.KolicinaUMagacinu = int.Parse(Console.ReadLine());
+            Console.WriteLine("Unesite novi tip: ");
+            namestajTmp.TipNamestaja = TipNamestaja.SingleOrDefault(x => x.Naziv == Console.ReadLine());
         }
     }
 }
