@@ -43,6 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Akcija.cs" />
+    <Compile Include="Model\DodatnaUsluga.cs" />
+    <Compile Include="Model\Korisnik.cs" />
+    <Compile Include="Model\Namestaj.cs" />
+    <Compile Include="Model\ProdajaNamestaja.cs" />
+    <Compile Include="Model\Salon.cs" />
+    <Compile Include="Model\TipNamestaja.cs" />
     <Compile Include="Tests\klasa.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -51,9 +58,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

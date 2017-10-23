@@ -24,7 +24,7 @@ namespace POP_SF27_2016.Model
 
         public int MaticniBroj { get; set; }
 
-        public int ZiroRacun { get; set; }
+        public string ZiroRacun { get; set; }
 
         public bool Obrisan { get; set; }
     }
