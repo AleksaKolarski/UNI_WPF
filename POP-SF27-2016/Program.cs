@@ -10,6 +10,10 @@ namespace POP_SF27_2016
     class Program
     {
         static List<Namestaj> Namestaj { get; set; } = new List<Namestaj>();
+        static List<TipNamestaja> TipNamestaja { get; set; } = new List<TipNamestaja>();
+
+
+
         static void Main(string[] args)
         {
             var s1 = new Salon()
@@ -40,6 +44,7 @@ namespace POP_SF27_2016
                 KolicinaUMagacinu = 12
             };
 
+            TipNamestaja.Add(tn1);
             Namestaj.Add(n1);
 
             Console.WriteLine($"Dobrodosli u salon {s1.Naziv}");
@@ -97,14 +102,17 @@ namespace POP_SF27_2016
                     IspisGlavnogMenija();
                     break;
                 case 1:
-                    IzlistajNamstaj();
+                    IzlistajNamestaj();
+                    break;
+                case 2:
+                    DodajNoviNamestaj();
                     break;
                 default:
                     break;
             }
         }
 
-        private static void IzlistajNamstaj()
+        private static void IzlistajNamestaj()
         {
             Console.WriteLine("====Izlistavanje namestaja====");
             for( int i = 0; i < Namestaj.Count; ++i)
@@ -112,6 +120,30 @@ namespace POP_SF27_2016
                 Console.WriteLine($"{i + 1}. {Namestaj[i].Naziv}, cena: {Namestaj[i].JedinicnaCena}");
             }
             IspisiMeniNamestaja();
+        }
+
+        private static void DodajNoviNamestaj()
+        {
+            Namestaj novi = new Namestaj();
+            novi.Id = Namestaj.Count + 1;
+            Console.WriteLine("Unesite naziv namestaja: ");
+            novi.Naziv = Console.ReadLine();
+            Console.WriteLine("Unesite sifru namestaja: ");
+            novi.Sifra = Console.ReadLine();
+            Console.WriteLine("Unesite jedinicnu cenu namestaja: ");
+            novi.JedinicnaCena = double.Parse(Console.ReadLine());
+            Console.WriteLine("Unesite kolicinu namestaja: ");
+            novi.KolicinaUMagacinu = int.Parse(Console.ReadLine());
+            Console.WriteLine("Unesite tip namestaja: ");
+            string tipTmp = Console.ReadLine();
+            for(int i = 0; i < TipNamestaja.Count; ++i)
+            {
+                if (TipNamestaja[i].Naziv == tipTmp)
+                {
+                    novi.TipNamestaja = TipNamestaja[i];
+                }
+            }
+            //novi.TipNamestaja = TipNamestaja.SingleOrDefault(x => x.Naziv == Console.ReadLine());
         }
     }
 }
