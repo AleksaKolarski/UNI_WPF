@@ -109,6 +109,10 @@ namespace POP_SF27_2016
                     break;
                 case 3:
                     IzmeniPostojeciNamestaj();
+                    break;
+                case 4:
+                    ObrisiPostojeciNamestaj();
+                    break;
                 default:
                     break;
             }
@@ -119,7 +123,10 @@ namespace POP_SF27_2016
             Console.WriteLine("====Izlistavanje namestaja====");
             for( int i = 0; i < Namestaj.Count; ++i)
             {
-                Console.WriteLine($"{i + 1}. {Namestaj[i].Naziv}, cena: {Namestaj[i].JedinicnaCena}");
+                if (Namestaj[i].Obrisan == false)
+                {
+                    Console.WriteLine($"{i + 1}. {Namestaj[i].Naziv}, cena: {Namestaj[i].JedinicnaCena}");
+                }
             }
             IspisiMeniNamestaja();
         }
@@ -127,7 +134,6 @@ namespace POP_SF27_2016
         private static void DodajNoviNamestaj()
         {
             Namestaj novi = new Namestaj();
-            novi.Id = Namestaj.Count + 1;
             Console.WriteLine("Unesite naziv namestaja: ");
             novi.Naziv = Console.ReadLine();
             Console.WriteLine("Unesite sifru namestaja: ");
@@ -147,13 +153,29 @@ namespace POP_SF27_2016
                 }
             }
             */
-            novi.TipNamestaja = TipNamestaja.SingleOrDefault(x => x.Naziv == Console.ReadLine());
+            string unosTmp = Console.ReadLine();
+            novi.TipNamestaja = TipNamestaja.SingleOrDefault(x => x.Naziv == unosTmp);
+            if (novi.TipNamestaja == null)
+            {
+                Console.WriteLine("Greska, tip je null");
+                Environment.Exit(1);
+
+            }
+            novi.Id = novi.GetHashCode();
+            Namestaj.Add(novi);
+            IspisiMeniNamestaja();
         }
 
         private static void IzmeniPostojeciNamestaj()
         {
             Console.WriteLine("Unesite ime namestaja kojeg ocete da izmenite: ");
-            Namestaj namestajTmp = Namestaj.SingleOrDefault(x => x.Naziv == Console.ReadLine());
+            string unosTmp = Console.ReadLine();
+            Namestaj namestajTmp = Namestaj.SingleOrDefault(x => x.Naziv == unosTmp);
+            if(namestajTmp == null)
+            {
+                Console.WriteLine("Greska, namestaj je null");
+                Environment.Exit(1);
+            }
             Console.WriteLine("Unesite novo ime: ");
             namestajTmp.Naziv = Console.ReadLine();
             Console.WriteLine("Unesite novu sifru: ");
@@ -163,7 +185,23 @@ namespace POP_SF27_2016
             Console.WriteLine("Unesite novu kolicinu: ");
             namestajTmp.KolicinaUMagacinu = int.Parse(Console.ReadLine());
             Console.WriteLine("Unesite novi tip: ");
-            namestajTmp.TipNamestaja = TipNamestaja.SingleOrDefault(x => x.Naziv == Console.ReadLine());
+            unosTmp = Console.ReadLine();
+            namestajTmp.TipNamestaja = TipNamestaja.SingleOrDefault(x => x.Naziv == unosTmp);
+            IspisiMeniNamestaja();
+        }
+
+        private static void ObrisiPostojeciNamestaj()
+        {
+            Console.WriteLine("Unesite ime namestaja kojeg zelite da obrisete: ");
+            string unosTmp = Console.ReadLine();
+            Namestaj namestajTmp = Namestaj.SingleOrDefault(x => x.Naziv == unosTmp);
+            if (namestajTmp == null)
+            {
+                Console.WriteLine("Greska, namestaj je null!");
+                Environment.Exit(0);
+            }
+            namestajTmp.Obrisan = true;
+            IspisiMeniNamestaja();
         }
     }
 }
