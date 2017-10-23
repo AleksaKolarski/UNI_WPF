@@ -216,40 +216,47 @@ namespace POP_SF27_2016
             int izbor = 0;
             do
             {
-                Console.WriteLine("====Meni tipa namestaja====");
-                Console.WriteLine("1. Izlistaj tipove namestaja");
-                Console.WriteLine("2. Dodaj novi tip namestaja");
-                Console.WriteLine("3. Izmeni postojeci tip namestaja");
-                Console.WriteLine("4. Obrisi postojeci");
-                Console.WriteLine("0. Povratak na glavni meni");
-                izbor = int.Parse(Console.ReadLine());
-            } while (izbor < 0 || izbor > 4);
+                do
+                {
+                    Console.WriteLine("====Meni tipa namestaja====");
+                    Console.WriteLine("1. Izlistaj tipove namestaja");
+                    Console.WriteLine("2. Dodaj novi tip namestaja");
+                    Console.WriteLine("3. Izmeni postojeci tip namestaja");
+                    Console.WriteLine("4. Obrisi postojeci");
+                    Console.WriteLine("0. Povratak na glavni meni");
+                    izbor = int.Parse(Console.ReadLine());
+                } while (izbor < 0 || izbor > 4);
 
-            switch (izbor)
-            {
-                case 0:
-                    IspisGlavnogMenija();
-                    break;
-                case 1:
-                    IzlistajTipNamestaja();
-                    break;
-                case 2:
-                    DodajNoviNamestaj();
-                    break;
-                case 3:
-                    IzmeniPostojeciNamestaj();
-                    break;
-                case 4:
-                    ObrisiPostojeciNamestaj();
-                    break;
-                default:
-                    break;
-            }
+                switch (izbor)
+                {
+                    case 1:
+                        IzlistajTipNamestaja();
+                        break;
+                    case 2:
+                        // Dodaj novi tip
+                        break;
+                    case 3:
+                        // Izmeni postojeci tip
+                        break;
+                    case 4:
+                        // Obrisi postojeci tip
+                        break;
+                    default:
+                        break;
+                }
+            } while (izbor != 0);
         }
 
         private static void IzlistajTipNamestaja()
         {
-            
+            Console.WriteLine("====Izlistavanje tipa namestaja====");
+            for (int i = 0; i < TipNamestaja.Count; ++i)
+            {
+                if (TipNamestaja[i].Obrisan == false)
+                {
+                    Console.WriteLine($"{i + 1}. {TipNamestaja[i].Naziv}");
+                }
+            }
         }
     }
 }
