@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace POP_SF27_2016
 {
@@ -11,8 +9,6 @@ namespace POP_SF27_2016
     {
         static List<Namestaj> Namestaj { get; set; } = new List<Namestaj>();
         static List<TipNamestaja> TipNamestaja { get; set; } = new List<TipNamestaja>();
-
-
 
         static void Main(string[] args)
         {
@@ -33,6 +29,16 @@ namespace POP_SF27_2016
                 Id = 1,
                 Naziv = "Sofa"
             };
+            var tn2 = new TipNamestaja()
+            {
+                Id = 2,
+                Naziv = "Polica"
+            };
+            var tn3 = new TipNamestaja()
+            {
+                Id = 3,
+                Naziv = "Regal"
+            };
 
             var n1 = new Namestaj()
             {
@@ -45,6 +51,8 @@ namespace POP_SF27_2016
             };
 
             TipNamestaja.Add(tn1);
+            TipNamestaja.Add(tn2);
+            TipNamestaja.Add(tn3);
             Namestaj.Add(n1);
 
             Console.WriteLine($"Dobrodosli u salon {s1.Naziv}");
