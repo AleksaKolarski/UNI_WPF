@@ -64,66 +64,69 @@ namespace POP_SF27_2016
             int izbor = 0;
             do
             {
-                Console.WriteLine("====Glavni meni====");
-                Console.WriteLine("1. Rad sa namestajem");
-                Console.WriteLine("2. Rad sa tipom namestaja");
-                Console.WriteLine("0. Izlaz iz programa");
-                // Zavrsiti listing za ostale entitete
-                izbor = int.Parse(Console.ReadLine());
-            } while (izbor < 0 || izbor > 2);
+                do
+                {
+                    Console.WriteLine("====Glavni meni====");
+                    Console.WriteLine("1. Rad sa namestajem");
+                    Console.WriteLine("2. Rad sa tipom namestaja");
+                    Console.WriteLine("0. Izlaz iz programa");
+                    // Zavrsiti listing za ostale entitete
+                    izbor = int.Parse(Console.ReadLine());
+                } while (izbor < 0 || izbor > 2);
 
-            switch (izbor)
-            {
-                case 0:
-                    Environment.Exit(0);
-                    break;
-                case 1:
-                    IspisiMeniNamestaja();
-                    break;
-                case 2:
-                    // rad sa tipom namestaja
-                    break;
-                default:
+                switch (izbor)
+                {
+                    case 0:
+                        Environment.Exit(0);
+                        break;
+                    case 1:
+                        IspisiMeniNamestaja();
+                        break;
+                    case 2:
+                        IspisiMeniTipNamestaja();
+                        break;
+                    default:
 
-                    break;
-            }
+                        break;
+                }
+            } while (izbor != 0);
         }
 
         private static void IspisiMeniNamestaja()
         {
             int izbor = 0;
-
             do
             {
-                Console.WriteLine("====Meni namestaja====");
-                Console.WriteLine("1. Izlistaj namestaj");
-                Console.WriteLine("2. Dodaj novi namestaj");
-                Console.WriteLine("3. Izmeni postojeci namestaj");
-                Console.WriteLine("4. Obrisi postojeci");
-                Console.WriteLine("0. Povratak na glavni meni");
-                izbor = int.Parse(Console.ReadLine());
-            } while (izbor < 0 || izbor > 4);
+                do
+                {
+                    Console.WriteLine("====Meni namestaja====");
+                    Console.WriteLine("1. Izlistaj namestaj");
+                    Console.WriteLine("2. Dodaj novi namestaj");
+                    Console.WriteLine("3. Izmeni postojeci namestaj");
+                    Console.WriteLine("4. Obrisi postojeci");
+                    Console.WriteLine("0. Povratak na glavni meni");
+                    izbor = int.Parse(Console.ReadLine());
+                } while (izbor < 0 || izbor > 4);
 
-            switch (izbor)
-            {
-                case 0:
-                    IspisGlavnogMenija();
-                    break;
-                case 1:
-                    IzlistajNamestaj();
-                    break;
-                case 2:
-                    DodajNoviNamestaj();
-                    break;
-                case 3:
-                    IzmeniPostojeciNamestaj();
-                    break;
-                case 4:
-                    ObrisiPostojeciNamestaj();
-                    break;
-                default:
-                    break;
-            }
+                switch (izbor)
+                {  
+                    case 1:
+                        IzlistajNamestaj();
+                        break;
+                    case 2:
+                        DodajNoviNamestaj();
+                        break;
+                    case 3:
+                        IzmeniPostojeciNamestaj();
+                        break;
+                    case 4:
+                        ObrisiPostojeciNamestaj();
+                        break;
+                    default:
+                        break;
+                }
+            } while (izbor != 0);
+            return;
         }
 
         private static void IzlistajNamestaj()
@@ -136,7 +139,6 @@ namespace POP_SF27_2016
                     Console.WriteLine($"{i + 1}. {Namestaj[i].Naziv}, cena: {Namestaj[i].JedinicnaCena}");
                 }
             }
-            IspisiMeniNamestaja();
         }
 
         private static void DodajNoviNamestaj()
@@ -171,7 +173,6 @@ namespace POP_SF27_2016
             }
             novi.Id = novi.GetHashCode();
             Namestaj.Add(novi);
-            IspisiMeniNamestaja();
         }
 
         private static void IzmeniPostojeciNamestaj()
@@ -195,7 +196,6 @@ namespace POP_SF27_2016
             Console.WriteLine("Unesite novi tip: ");
             unosTmp = Console.ReadLine();
             namestajTmp.TipNamestaja = TipNamestaja.SingleOrDefault(x => x.Naziv == unosTmp);
-            IspisiMeniNamestaja();
         }
 
         private static void ObrisiPostojeciNamestaj()
@@ -209,7 +209,47 @@ namespace POP_SF27_2016
                 Environment.Exit(0);
             }
             namestajTmp.Obrisan = true;
-            IspisiMeniNamestaja();
+        }
+
+        private static void IspisiMeniTipNamestaja()
+        {
+            int izbor = 0;
+            do
+            {
+                Console.WriteLine("====Meni tipa namestaja====");
+                Console.WriteLine("1. Izlistaj tipove namestaja");
+                Console.WriteLine("2. Dodaj novi tip namestaja");
+                Console.WriteLine("3. Izmeni postojeci tip namestaja");
+                Console.WriteLine("4. Obrisi postojeci");
+                Console.WriteLine("0. Povratak na glavni meni");
+                izbor = int.Parse(Console.ReadLine());
+            } while (izbor < 0 || izbor > 4);
+
+            switch (izbor)
+            {
+                case 0:
+                    IspisGlavnogMenija();
+                    break;
+                case 1:
+                    IzlistajTipNamestaja();
+                    break;
+                case 2:
+                    DodajNoviNamestaj();
+                    break;
+                case 3:
+                    IzmeniPostojeciNamestaj();
+                    break;
+                case 4:
+                    ObrisiPostojeciNamestaj();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private static void IzlistajTipNamestaja()
+        {
+            
         }
     }
 }
