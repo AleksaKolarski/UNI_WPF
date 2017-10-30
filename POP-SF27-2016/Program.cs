@@ -1,4 +1,5 @@
 ﻿using POP_SF27_2016.Model;
+using POP_SF27_2016.util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,6 +55,8 @@ namespace POP_SF27_2016
             TipNamestaja.Add(tn2);
             TipNamestaja.Add(tn3);
             Namestaj.Add(n1);
+
+            GenericSerializer.Serialize<Namestaj>("namestaj.xml", Namestaj);
 
             Console.WriteLine($"Dobrodosli u salon {s1.Naziv}");
             IspisGlavnogMenija();
@@ -233,10 +236,10 @@ namespace POP_SF27_2016
                         IzlistajTipNamestaja();
                         break;
                     case 2:
-                        // Dodaj novi tip
+                        DodajNoviTipNamestaja();
                         break;
                     case 3:
-                        // Izmeni postojeci tip
+                        IzmeniPostojeciTipNamestaja();
                         break;
                     case 4:
                         // Obrisi postojeci tip
@@ -257,6 +260,28 @@ namespace POP_SF27_2016
                     Console.WriteLine($"{i + 1}. {TipNamestaja[i].Naziv}");
                 }
             }
+        }
+
+        private static void DodajNoviTipNamestaja()
+        {
+            TipNamestaja noviTip = new TipNamestaja();
+            Console.WriteLine("Unesite naziv tipa namestaja: ");
+            noviTip.Naziv = Console.ReadLine();
+            TipNamestaja.Add(noviTip);
+        }
+
+        private static void IzmeniPostojeciTipNamestaja()
+        {
+            Console.WriteLine("Unesite ime tipa namestaja kojeg ocete da izmenite: ");
+            string unosTmp = Console.ReadLine();
+            TipNamestaja tipTmp = TipNamestaja.SingleOrDefault(x => x.Naziv == unosTmp);
+            if (tipTmp == null)
+            {
+                Console.WriteLine("Greska, tip namestaja je null");
+                Environment.Exit(1);
+            }
+            Console.WriteLine("Unesite novo ime: ");
+            tipTmp.Naziv = Console.ReadLine();
         }
     }
 }
