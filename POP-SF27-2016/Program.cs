@@ -7,6 +7,7 @@ namespace POP_SF27_2016
 {
     class Program
     {
+
         //static List<Namestaj> Namestaj { get; set; } = new List<Namestaj>(); // obicna lista ako ocemo sami da upisujemo i ucitavamo u fajl
         static List<Namestaj> namestaj = Projekat.Instance.Namestaj; // Ucita se u listu namestaja iz fajla, pozivamo na pocetku
         // Projekat.Instance.Namestaj = namestaja; // Upisuje u fajl listu namestaja, pozivamo posle svake promene
