@@ -1,5 +1,4 @@
 ﻿using POP_SF27_2016.Model;
-using POP_SF27_2016.util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +7,17 @@ namespace POP_SF27_2016
 {
     class Program
     {
-        static List<Namestaj> Namestaj { get; set; } = new List<Namestaj>();
-        static List<TipNamestaja> TipNamestaja { get; set; } = new List<TipNamestaja>();
+        //static List<Namestaj> Namestaj { get; set; } = new List<Namestaj>(); // obicna lista ako ocemo sami da upisujemo i ucitavamo u fajl
+        static List<Namestaj> namestaj = Projekat.Instance.Namestaj; // Ucita se u listu namestaja iz fajla, pozivamo na pocetku
+        // Projekat.Instance.Namestaj = namestaja; // Upisuje u fajl listu namestaja, pozivamo posle svake promene
+        // onda se koristi namestaj kao obicna lista
+
+        //static List<TipNamestaja> TipNamestaja { get; set; } = new List<TipNamestaja>();
+        static List<TipNamestaja> tipNamestaja = Projekat.Instance.TipNamestaja;
+        // Projekat.Instance.TipNamestaja = tipNamestaja;
 
         static void Main(string[] args)
         {
-            // var listaNamestaja = Projekat.Instance.Namestaj; // Ucita se u listu namestaja iz fajla, pozivamo na pocetku
-            // Projekat.Instance.Namestaj = listaNamestaja; // Upisuje se u fajl lista namestaja, pozivamo posle svake promene
-            // onda se koristi listaNamestaja kao obicna lista
-
             var s1 = new Salon()
             {
                 Id = 1,
@@ -30,6 +31,7 @@ namespace POP_SF27_2016
                 AdresaSajta = "www.ftn.com"
             };
 
+            /*
             var tn1 = new TipNamestaja(){
                 Id = 1,
                 Naziv = "Sofa"
@@ -44,7 +46,9 @@ namespace POP_SF27_2016
                 Id = 3,
                 Naziv = "Regal"
             };
+            */
 
+            /*
             var n1 = new Namestaj()
             {
                 Id = 1,
@@ -54,13 +58,17 @@ namespace POP_SF27_2016
                 TipNamestaja = tn1,
                 KolicinaUMagacinu = 12
             };
+            */
+            /*
+            tipNamestaja.Add(tn1);
+            tipNamestaja.Add(tn2);
+            tipNamestaja.Add(tn3);
+            listaNamestaja.Add(n1);
+            */
 
-            TipNamestaja.Add(tn1);
-            TipNamestaja.Add(tn2);
-            TipNamestaja.Add(tn3);
-            Namestaj.Add(n1);
-
-            GenericSerializer.Serialize<Namestaj>("namestaj.xml", Namestaj);
+            //Projekat.Instance.TipNamestaja = tipNamestaja;
+            //Projekat.Instance.Namestaj = listaNamestaja;
+            //GenericSerializer.Serialize<Namestaj>("namestaj.xml", Namestaj);
 
             Console.WriteLine($"Dobrodosli u salon {s1.Naziv}");
             IspisGlavnogMenija();
@@ -139,11 +147,11 @@ namespace POP_SF27_2016
         private static void IzlistajNamestaj()
         {
             Console.WriteLine("====Izlistavanje namestaja====");
-            for( int i = 0; i < Namestaj.Count; ++i)
+            for( int i = 0; i < namestaj.Count; ++i)
             {
-                if (Namestaj[i].Obrisan == false)
+                if (namestaj[i].Obrisan == false)
                 {
-                    Console.WriteLine($"{i + 1}. {Namestaj[i].Naziv}, cena: {Namestaj[i].JedinicnaCena}");
+                    Console.WriteLine($"{i + 1}. {namestaj[i].Naziv}, cena: {namestaj[i].JedinicnaCena}");
                 }
             }
         }
@@ -171,7 +179,7 @@ namespace POP_SF27_2016
             }
             */
             string unosTmp = Console.ReadLine();
-            novi.TipNamestaja = TipNamestaja.SingleOrDefault(x => x.Naziv == unosTmp);
+            novi.TipNamestaja = tipNamestaja.SingleOrDefault(x => x.Naziv == unosTmp);
             if (novi.TipNamestaja == null)
             {
                 Console.WriteLine("Greska, tip je null");
@@ -179,14 +187,15 @@ namespace POP_SF27_2016
 
             }
             novi.Id = novi.GetHashCode();
-            Namestaj.Add(novi);
+            namestaj.Add(novi);
+            Projekat.Instance.Namestaj = namestaj;
         }
 
         private static void IzmeniPostojeciNamestaj()
         {
             Console.WriteLine("Unesite ime namestaja kojeg ocete da izmenite: ");
             string unosTmp = Console.ReadLine();
-            Namestaj namestajTmp = Namestaj.SingleOrDefault(x => x.Naziv == unosTmp);
+            Namestaj namestajTmp = namestaj.SingleOrDefault(x => x.Naziv == unosTmp);
             if(namestajTmp == null)
             {
                 Console.WriteLine("Greska, namestaj je null");
@@ -202,20 +211,22 @@ namespace POP_SF27_2016
             namestajTmp.KolicinaUMagacinu = int.Parse(Console.ReadLine());
             Console.WriteLine("Unesite novi tip: ");
             unosTmp = Console.ReadLine();
-            namestajTmp.TipNamestaja = TipNamestaja.SingleOrDefault(x => x.Naziv == unosTmp);
+            namestajTmp.TipNamestaja = tipNamestaja.SingleOrDefault(x => x.Naziv == unosTmp);
+            Projekat.Instance.Namestaj = namestaj;
         }
 
         private static void ObrisiPostojeciNamestaj()
         {
             Console.WriteLine("Unesite ime namestaja kojeg zelite da obrisete: ");
             string unosTmp = Console.ReadLine();
-            Namestaj namestajTmp = Namestaj.SingleOrDefault(x => x.Naziv == unosTmp);
+            Namestaj namestajTmp = namestaj.SingleOrDefault(x => x.Naziv == unosTmp);
             if (namestajTmp == null)
             {
                 Console.WriteLine("Greska, namestaj je null!");
                 Environment.Exit(0);
             }
             namestajTmp.Obrisan = true;
+            Projekat.Instance.Namestaj = namestaj;
         }
 
         private static void IspisiMeniTipNamestaja()
@@ -257,11 +268,11 @@ namespace POP_SF27_2016
         private static void IzlistajTipNamestaja()
         {
             Console.WriteLine("====Izlistavanje tipa namestaja====");
-            for (int i = 0; i < TipNamestaja.Count; ++i)
+            for (int i = 0; i < tipNamestaja.Count; ++i)
             {
-                if (TipNamestaja[i].Obrisan == false)
+                if (tipNamestaja[i].Obrisan == false)
                 {
-                    Console.WriteLine($"{i + 1}. {TipNamestaja[i].Naziv}");
+                    Console.WriteLine($"{i + 1}. {tipNamestaja[i].Naziv}");
                 }
             }
         }
@@ -271,14 +282,15 @@ namespace POP_SF27_2016
             TipNamestaja noviTip = new TipNamestaja();
             Console.WriteLine("Unesite naziv tipa namestaja: ");
             noviTip.Naziv = Console.ReadLine();
-            TipNamestaja.Add(noviTip);
+            tipNamestaja.Add(noviTip);
+            Projekat.Instance.TipNamestaja = tipNamestaja;
         }
 
         private static void IzmeniPostojeciTipNamestaja()
         {
             Console.WriteLine("Unesite ime tipa namestaja kojeg ocete da izmenite: ");
             string unosTmp = Console.ReadLine();
-            TipNamestaja tipTmp = TipNamestaja.SingleOrDefault(x => x.Naziv == unosTmp);
+            TipNamestaja tipTmp = tipNamestaja.SingleOrDefault(x => x.Naziv == unosTmp);
             if (tipTmp == null)
             {
                 Console.WriteLine("Greska, tip namestaja je null");
@@ -286,20 +298,21 @@ namespace POP_SF27_2016
             }
             Console.WriteLine("Unesite novo ime: ");
             tipTmp.Naziv = Console.ReadLine();
+            Projekat.Instance.TipNamestaja = tipNamestaja;
         }
 
         private static void ObrisiPostojeciTipNamestaja()
         {
             Console.WriteLine("Unesite ime tipa namestaja koji zelite da obrisete: ");
             string unosTmp = Console.ReadLine();
-            TipNamestaja tipTmp = TipNamestaja.SingleOrDefault(x => x.Naziv == unosTmp);
+            TipNamestaja tipTmp = tipNamestaja.SingleOrDefault(x => x.Naziv == unosTmp);
             if (tipTmp == null)
             {
                 Console.WriteLine("Greska, tip namestaja je null!");
                 Environment.Exit(0);
             }
             tipTmp.Obrisan = true;
+            Projekat.Instance.TipNamestaja = tipNamestaja;
         }
-
     }
 }

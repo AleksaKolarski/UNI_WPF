@@ -13,4 +13,17 @@
     </TipNamestaja>
     <Obrisan>false</Obrisan>
   </Namestaj>
+  <Namestaj>
+    <Id>16347077</Id>
+    <Naziv>SuperSofa2</Naziv>
+    <Sifra>231</Sifra>
+    <JedinicnaCena>123</JedinicnaCena>
+    <KolicinaUMagacinu>123</KolicinaUMagacinu>
+    <TipNamestaja>
+      <Id>3</Id>
+      <Naziv>Regal</Naziv>
+      <Obrisan>false</Obrisan>
+    </TipNamestaja>
+    <Obrisan>true</Obrisan>
+  </Namestaj>
 </ArrayOfNamestaj>
