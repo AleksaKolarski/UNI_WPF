@@ -13,6 +13,10 @@ namespace POP_SF27_2016
 
         static void Main(string[] args)
         {
+            // var listaNamestaja = Projekat.Instance.Namestaj; // Ucita se u listu namestaja iz fajla, pozivamo na pocetku
+            // Projekat.Instance.Namestaj = listaNamestaja; // Upisuje se u fajl lista namestaja, pozivamo posle svake promene
+            // onda se koristi listaNamestaja kao obicna lista
+
             var s1 = new Salon()
             {
                 Id = 1,
@@ -242,7 +246,7 @@ namespace POP_SF27_2016
                         IzmeniPostojeciTipNamestaja();
                         break;
                     case 4:
-                        // Obrisi postojeci tip
+                        ObrisiPostojeciTipNamestaja();
                         break;
                     default:
                         break;
@@ -283,5 +287,19 @@ namespace POP_SF27_2016
             Console.WriteLine("Unesite novo ime: ");
             tipTmp.Naziv = Console.ReadLine();
         }
+
+        private static void ObrisiPostojeciTipNamestaja()
+        {
+            Console.WriteLine("Unesite ime tipa namestaja koji zelite da obrisete: ");
+            string unosTmp = Console.ReadLine();
+            TipNamestaja tipTmp = TipNamestaja.SingleOrDefault(x => x.Naziv == unosTmp);
+            if (tipTmp == null)
+            {
+                Console.WriteLine("Greska, tip namestaja je null!");
+                Environment.Exit(0);
+            }
+            tipTmp.Obrisan = true;
+        }
+
     }
 }

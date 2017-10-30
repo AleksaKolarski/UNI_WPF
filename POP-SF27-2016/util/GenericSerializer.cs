@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace POP_SF27_2016.util
 {
-    class GenericSerializer
+    public class GenericSerializer
     {
         public static void Serialize<T>(string fileName, List<T> listToSerialize) where T : class
         {
