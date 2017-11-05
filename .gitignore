@@ -1,0 +1,4 @@
+# Basic gitignore for Visual Studio
+.vs/
+bin/
+obj/

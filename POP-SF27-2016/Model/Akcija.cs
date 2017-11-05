@@ -8,7 +8,6 @@ namespace POP_SF27_2016.Model
 {
     class Akcija
     {
-
         public int Id { get; set; }
         public DateTime DatumPocetka { get; set; }
         public DateTime DatumKraja { get; set; }

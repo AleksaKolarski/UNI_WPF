@@ -20,7 +20,7 @@ namespace POP_SF27_2016.Model
         public string KorisnickoIme { get; set; }
         public string Lozinka { get; set; }
         public TipKorisnika TipKorisnika { get; set; }
+
         public bool Obrisan { get; set; }
-        
     }
 }
