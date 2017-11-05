@@ -21,8 +21,8 @@ namespace POP_SF27_2016.Model
 
         private static List<TipNamestaja> TipNamestajaList
         {
-            get => GenericSerializer.DeSerialize<TipNamestaja>("tip_namestaja.xml");
-            set => GenericSerializer.Serialize<TipNamestaja>("tip_namestaja.xml", value);
+            get => GenericSerializer.DeSerializeList<TipNamestaja>("tip_namestaja.xml");
+            set => GenericSerializer.SerializeList<TipNamestaja>("tip_namestaja.xml", value);
         }
 
         

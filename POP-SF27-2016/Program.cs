@@ -36,6 +36,9 @@ namespace POP_SF27_2016
                     Console.WriteLine("====Glavni meni====");
                     Console.WriteLine("1. Rad sa namestajem");
                     Console.WriteLine("2. Rad sa tipom namestaja");
+                    Console.WriteLine("#3. Rad sa prodajama");
+                    Console.WriteLine("#4. Rad sa akcijama");
+                    Console.WriteLine("#5. Rad sa korisnicima");
                     Console.WriteLine("0. Izlaz iz programa");
                     // Zavrsiti listing za ostale entitete
                     izbor = int.Parse(Console.ReadLine());

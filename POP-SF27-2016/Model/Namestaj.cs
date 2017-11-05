@@ -24,13 +24,13 @@ namespace POP_SF27_2016.Model
 
         private static List<Namestaj> NamestajList
         {
-            get => GenericSerializer.DeSerialize<Namestaj>("namestaj.xml");
-            set => GenericSerializer.Serialize<Namestaj>("namestaj.xml", value);
+            get => GenericSerializer.DeSerializeList<Namestaj>("namestaj.xml");
+            set => GenericSerializer.SerializeList<Namestaj>("namestaj.xml", value);
         }
 
 
         /* ==== Methods ==== */
-        public static Namestaj getNamestajById(int id)
+        public static Namestaj getById(int id)
         {
             foreach (Namestaj item in namestaj)
             {

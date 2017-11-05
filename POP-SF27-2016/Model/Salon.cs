@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POP_SF27_2016.util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace POP_SF27_2016.Model
 {
     public class Salon
     {
+        /* ==== Properties ==== */
         public int Id { get; set; }
         public string Naziv { get; set; }
         public string Adresa { get; set; }
