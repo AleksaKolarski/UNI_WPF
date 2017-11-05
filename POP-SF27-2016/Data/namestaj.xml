@@ -6,11 +6,7 @@
     <Sifra>sifra12</Sifra>
     <JedinicnaCena>1099</JedinicnaCena>
     <KolicinaUMagacinu>12</KolicinaUMagacinu>
-    <TipNamestaja>
-      <Id>1</Id>
-      <Naziv>Sofa</Naziv>
-      <Obrisan>false</Obrisan>
-    </TipNamestaja>
+    <TipNamestajaId>1</TipNamestajaId>
     <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
@@ -19,11 +15,7 @@
     <Sifra>231</Sifra>
     <JedinicnaCena>123</JedinicnaCena>
     <KolicinaUMagacinu>123</KolicinaUMagacinu>
-    <TipNamestaja>
-      <Id>3</Id>
-      <Naziv>Regal</Naziv>
-      <Obrisan>false</Obrisan>
-    </TipNamestaja>
+    <TipNamestajaId>1</TipNamestajaId>
     <Obrisan>true</Obrisan>
   </Namestaj>
 </ArrayOfNamestaj>
