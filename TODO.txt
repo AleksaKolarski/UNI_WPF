@@ -1,3 +1,5 @@
 Zavrsiti sve entitete
 Reference ka entitetima zameniti sa ID brojevima
 Login
+
+// pogledaj sta je singleton

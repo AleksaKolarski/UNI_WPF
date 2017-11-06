@@ -24,12 +24,12 @@ namespace POP_SF27_2016_WPF.UI
         private Namestaj namestaj;
         private Operacija operacija;
 
-        public NamestajWindow(Namestaj namestaj, Operacija operacija)
+        public NamestajWindow(int namestajId, Operacija operacija)
         {
             InitializeComponent();
 
             // ovo nece biti tako
-            this.namestaj = namestaj;
+            this.namestaj.Id = namestajId;
             this.operacija = operacija;
 
             this.tbNaziv.Text = namestaj.Naziv;
@@ -41,10 +41,10 @@ namespace POP_SF27_2016_WPF.UI
             {
                 case Operacija.DODAVANJE:
                     // ovde bre nista ne valja
-                    Namestaj.Add(namestaj);
+                    Namestaj.Add(new Namestaj(tbNaziv.Text, "sifra12", 123, 12, 2));
                     break;
                 case Operacija.IZMENA:
-                    Namestaj.Edit(namestaj, tbNaziv.Text);
+                    Namestaj.Edit(Namestaj.GetById(this.namestaj.Id), this.namestaj);
                     break;
                 default:
                     break;

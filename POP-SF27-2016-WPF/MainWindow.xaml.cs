@@ -37,12 +37,9 @@ namespace POP_SF27_2016_WPF
 
         private void DodajNamestaj(object sender, RoutedEventArgs e)
         {
-            var noviNamestaj = new Namestaj()
-            {
-                Naziv = ""
-            };
+            var noviNamestaj = new Namestaj();
             
-            var NamestajProzor = new NamestajWindow(noviNamestaj, NamestajWindow.Operacija.DODAVANJE);
+            var NamestajProzor = new NamestajWindow(noviNamestaj.Id, NamestajWindow.Operacija.DODAVANJE);
             NamestajProzor.Show();
             OsveziPrikaz();
         }
@@ -50,7 +47,7 @@ namespace POP_SF27_2016_WPF
         private void IzmeniNamestaj(object sender, RoutedEventArgs e)
         {
             var izabraniNamestaj = (Namestaj)lbNamestaj.SelectedItem;
-            var NamestajProzor = new NamestajWindow(izabraniNamestaj, NamestajWindow.Operacija.IZMENA);
+            var NamestajProzor = new NamestajWindow(izabraniNamestaj.Id, NamestajWindow.Operacija.IZMENA);
             NamestajProzor.Show();
             OsveziPrikaz();
         }

@@ -9,6 +9,7 @@ namespace POP_SF27_2016.Model
 {
     public class Namestaj
     {
+        // Napravi mapu umesto liste mozda
         #region Fields
         private static List<Namestaj> namestaj = NamestajList;
         #endregion
@@ -30,8 +31,29 @@ namespace POP_SF27_2016.Model
         }
         #endregion
 
+        #region Constructors
+        public Namestaj()
+        {
+            this.Naziv = "";
+            this.Sifra = "";
+            this.JedinicnaCena = 0;
+            this.KolicinaUMagacinu = 0;
+            this.TipNamestajaId = 0;
+            this.Id = this.GetHashCode();
+        }
+        public Namestaj(string naziv, string sifra, double jedinicnaCena, int kolicinaUMagacinu, int tipNamestajaId)
+        {
+            this.Naziv = naziv;
+            this.Sifra = sifra;
+            this.JedinicnaCena = jedinicnaCena;
+            this.KolicinaUMagacinu = kolicinaUMagacinu;
+            this.TipNamestajaId = tipNamestajaId;
+            this.Id = this.GetHashCode();
+        }
+        #endregion
+
         #region Methods
-        public static Namestaj getById(int id)
+        public static Namestaj GetById(int id)
         {
             foreach (Namestaj item in namestaj)
             {
@@ -49,15 +71,20 @@ namespace POP_SF27_2016.Model
             NamestajList = namestaj;
         }
 
-        public static void Edit(Namestaj stari, string naziv)
+        public static void Edit(Namestaj stari, Namestaj novi)
         {
-            stari.Naziv = naziv;
+            stari.Naziv = novi.Naziv;
+            stari.Sifra = novi.Sifra;
+            stari.JedinicnaCena = novi.JedinicnaCena;
+            stari.KolicinaUMagacinu = novi.KolicinaUMagacinu;
+            stari.TipNamestajaId = novi.TipNamestajaId;
+
             NamestajList = namestaj;
         }
 
         public override string ToString()
         {
-            return $"{Naziv}, {JedinicnaCena}, {TipNamestaja.getById(TipNamestajaId).Naziv}";
+            return $"{Naziv}, {JedinicnaCena}, {((TipNamestajaId == 0) ? "NULL":TipNamestaja.getById(TipNamestajaId).Naziv)}";
         }
         #endregion
     }
