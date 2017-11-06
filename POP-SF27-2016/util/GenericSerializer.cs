@@ -10,7 +10,7 @@ namespace POP_SF27_2016.util
 {
     public class GenericSerializer
     {
-        public static void Serialize<T>(string fileName, List<T> listToSerialize) where T : class
+        public static void SerializeList<T>(string fileName, List<T> listToSerialize) where T : class
         {
             try
             {
@@ -27,7 +27,7 @@ namespace POP_SF27_2016.util
             }
         }
 
-        public static List<T> DeSerialize<T>(string fileName) where T : class
+        public static List<T> DeSerializeList<T>(string fileName) where T : class
         {
             try
             {

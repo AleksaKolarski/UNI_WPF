@@ -49,7 +49,6 @@
     <Compile Include="Model\Korisnik.cs" />
     <Compile Include="Model\Namestaj.cs" />
     <Compile Include="Model\ProdajaNamestaja.cs" />
-    <Compile Include="Model\Projekat.cs" />
     <Compile Include="Model\Salon.cs" />
     <Compile Include="Model\TipNamestaja.cs" />
     <Compile Include="Program.cs" />
