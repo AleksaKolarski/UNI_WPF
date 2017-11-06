@@ -15,7 +15,24 @@
     <Sifra>231</Sifra>
     <JedinicnaCena>123</JedinicnaCena>
     <KolicinaUMagacinu>123</KolicinaUMagacinu>
-    <TipNamestajaId>1</TipNamestajaId>
+    <TipNamestajaId>2</TipNamestajaId>
     <Obrisan>true</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Id>1</Id>
+    <Naziv>SuperSofa3</Naziv>
+    <Sifra>sifra13</Sifra>
+    <JedinicnaCena>5000</JedinicnaCena>
+    <KolicinaUMagacinu>3</KolicinaUMagacinu>
+    <TipNamestajaId>3</TipNamestajaId>
+    <Obrisan>false</Obrisan>
+  </Namestaj>
+  <Namestaj>
+    <Id>0</Id>
+    <Naziv>Bla</Naziv>
+    <JedinicnaCena>0</JedinicnaCena>
+    <KolicinaUMagacinu>0</KolicinaUMagacinu>
+    <TipNamestajaId>0</TipNamestajaId>
+    <Obrisan>false</Obrisan>
   </Namestaj>
 </ArrayOfNamestaj>

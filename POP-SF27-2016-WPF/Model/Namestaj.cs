@@ -23,7 +23,7 @@ namespace POP_SF27_2016.Model
 
         public bool Obrisan { get; set; }
 
-        private static List<Namestaj> NamestajList
+        public static List<Namestaj> NamestajList
         {
             get => GenericSerializer.DeSerializeList<Namestaj>("namestaj.xml");
             set => GenericSerializer.SerializeList<Namestaj>("namestaj.xml", value);
@@ -41,6 +41,23 @@ namespace POP_SF27_2016.Model
                 }
             }
             return null;
+        }
+
+        public static void Add(Namestaj novi)
+        {
+            namestaj.Add(novi);
+            NamestajList = namestaj;
+        }
+
+        public static void Edit(Namestaj stari, string naziv)
+        {
+            stari.Naziv = naziv;
+            NamestajList = namestaj;
+        }
+
+        public override string ToString()
+        {
+            return $"{Naziv}, {JedinicnaCena}, {TipNamestaja.getById(TipNamestajaId).Naziv}";
         }
         #endregion
     }

@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POP-SF27-2016", "POP-SF27-2016\POP-SF27-2016.csproj", "{2465E104-2446-474C-AB94-D1FB67C03856}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POP-SF27-2016-WPF", "POP-SF27-2016-WPF\POP-SF27-2016-WPF.csproj", "{A2986E90-4B17-4119-B86E-C37FE558D98D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{2465E104-2446-474C-AB94-D1FB67C03856}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2465E104-2446-474C-AB94-D1FB67C03856}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2465E104-2446-474C-AB94-D1FB67C03856}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2986E90-4B17-4119-B86E-C37FE558D98D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2986E90-4B17-4119-B86E-C37FE558D98D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2986E90-4B17-4119-B86E-C37FE558D98D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2986E90-4B17-4119-B86E-C37FE558D98D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F75AAEB4-C4F4-4EE1-AA13-912BB4E8B338}
 	EndGlobalSection
 EndGlobal
