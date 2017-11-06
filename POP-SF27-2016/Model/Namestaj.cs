@@ -9,10 +9,11 @@ namespace POP_SF27_2016.Model
 {
     public class Namestaj
     {
-        /* ==== Fields ==== */
+        #region Fields
         private static List<Namestaj> namestaj = NamestajList;
+        #endregion
 
-        /* ==== Properties ==== */
+        #region Properties
         public int Id { get; set; }
         public string Naziv { get; set; }
         public string Sifra { get; set; }
@@ -27,9 +28,10 @@ namespace POP_SF27_2016.Model
             get => GenericSerializer.DeSerializeList<Namestaj>("namestaj.xml");
             set => GenericSerializer.SerializeList<Namestaj>("namestaj.xml", value);
         }
+        #endregion
 
 
-        /* ==== Methods ==== */
+        #region Methods
         public static Namestaj getById(int id)
         {
             foreach (Namestaj item in namestaj)
@@ -167,5 +169,6 @@ namespace POP_SF27_2016.Model
             namestajTmp.Obrisan = true;
             NamestajList = namestaj;
         }
+        #endregion
     }
 }
