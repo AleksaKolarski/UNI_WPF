@@ -66,16 +66,9 @@ namespace POP_SF27_2016.Model
             return null;
         }
 
-        public static TipNamestaja GetByName(string naziv)
+        public override string ToString()
         {
-            foreach (TipNamestaja tip in TipNamestajaList)
-            {
-                if (tip.Naziv == naziv)
-                {
-                    return tip;
-                }
-            }
-            return null;
+            return $"{Id}, {Naziv}";
         }
         #endregion
     }

@@ -45,18 +45,6 @@ namespace POP_SF27_2016.Model
         #endregion
 
         #region Methods
-        public static Namestaj GetById(string id)
-        {
-            foreach (Namestaj item in NamestajList)
-            {
-                if (item.Id == id)
-                {
-                    return item;
-                }
-            }
-            return null;
-        }
-
         public static void Add(Namestaj namestajToAdd)
         {
             /* Kada predjemo na rad sa bazom podataka ovde se nece ucitavati 
@@ -69,6 +57,18 @@ namespace POP_SF27_2016.Model
         public static void Remove(Namestaj namestajToRemove)
         {
             namestajToRemove.Obrisan = true;
+        }
+
+        public static Namestaj GetById(string id)
+        {
+            foreach (Namestaj item in NamestajList)
+            {
+                if (item.Id == id)
+                {
+                    return item;
+                }
+            }
+            return null;
         }
 
         public override string ToString()
