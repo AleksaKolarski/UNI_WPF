@@ -1,0 +1,3 @@
+Zavrsiti sve entitete
+Login
+gui
