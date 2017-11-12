@@ -48,12 +48,7 @@ namespace POP_SF27_2016.Model
 
         public static void Remove(TipNamestaja tipNamestajaToRemove)
         {
-            /* Kada predjemo na rad sa bazom podataka ovde se nece ucitavati 
-             * cela lista vec ce se samo slati komanda za brisanje ovog 
-             * jednog clana. */
-            List<TipNamestaja> tempList = TipNamestajaList;
-            tempList.Remove(tipNamestajaToRemove);
-            TipNamestajaList = tempList;
+            tipNamestajaToRemove.Obrisan = true;
         }
 
         public static TipNamestaja GetById(string id)

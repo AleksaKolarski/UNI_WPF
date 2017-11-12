@@ -9,7 +9,6 @@ namespace POP_SF27_2016.Model
 {
     public class Namestaj
     {
-        // Napravi mapu umesto liste mozda
         #region Fields
         //private static List<Namestaj> namestaj = NamestajList;
         #endregion
@@ -69,12 +68,7 @@ namespace POP_SF27_2016.Model
         
         public static void Remove(Namestaj namestajToRemove)
         {
-            /* Kada predjemo na rad sa bazom podataka ovde se nece ucitavati 
-             * cela lista vec ce se samo slati komanda za brisanje ovog 
-             * jednog clana. */
-            List<Namestaj> tempList = NamestajList;
-            tempList.Remove(namestajToRemove);
-            NamestajList = tempList;
+            namestajToRemove.Obrisan = true;
         }
 
         public override string ToString()
