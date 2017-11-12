@@ -31,7 +31,7 @@ namespace POP_SF27_2016.Model
         public Akcija() { }
         public Akcija(DateTime datumPocetka, DateTime datumKraja, List<string> namestajIdList, List<double> popustList)
         {
-            this.Id = datumPocetka.ToString() + "|" + datumKraja.ToString() + "|" + (DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond);
+            this.Id = datumPocetka.ToString() + datumKraja.ToString() + DateTime.Now.Ticks;
             this.DatumPocetka = datumPocetka;
             this.DatumKraja = datumKraja;
             this.NamestajIdList = namestajIdList;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfAkcija xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Akcija>
-    <Id>01.1.0001. 00:00:00|01.1.0001. 00:00:00|63646117196486</Id>
+    <Id>01.1.0001. 00:00:0001.1.0001. 00:00:0063646119295069</Id>
     <DatumPocetka>0001-01-01T00:00:00</DatumPocetka>
     <DatumKraja>0001-01-01T00:00:00</DatumKraja>
     <NamestajIdList>

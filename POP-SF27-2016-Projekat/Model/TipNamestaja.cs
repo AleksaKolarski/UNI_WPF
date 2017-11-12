@@ -19,7 +19,7 @@ namespace POP_SF27_2016.Model
 
         public bool Obrisan { get; set; }
 
-        private static List<TipNamestaja> TipNamestajaList
+        public static List<TipNamestaja> TipNamestajaList
         {
             get => GenericSerializer.DeSerializeList<TipNamestaja>("tip_namestaja.xml");
             set => GenericSerializer.SerializeList<TipNamestaja>("tip_namestaja.xml", value);
@@ -30,7 +30,7 @@ namespace POP_SF27_2016.Model
         public TipNamestaja() { }
         public TipNamestaja(string naziv)
         {
-            this.Id = naziv + '|' + (DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond);
+            this.Id = naziv + '|' + DateTime.Now.Ticks;
             this.Naziv = Naziv;
             this.Obrisan = false;
         }

@@ -34,7 +34,7 @@ namespace POP_SF27_2016.Model
         private Salon() { }
         public Salon(string naziv, string adresa, string telefon, string email, string adresaSajta, int pIB, int maticniBroj, string ziroRacun)
         {
-            //this.Id = naziv + adresa + telefon + email + adresaSajta + PIB + maticniBroj + ziroRacun + '|' + (DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond);
+            //this.Id = naziv + adresa + telefon + email + adresaSajta + PIB + maticniBroj + ziroRacun + '|' + DateTime.Now.Ticks;
             this.Naziv = naziv;
             this.Adresa = adresa;
             this.Telefon = telefon;

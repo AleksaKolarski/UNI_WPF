@@ -34,7 +34,7 @@ namespace POP_SF27_2016.Model
         public Namestaj() { }
         public Namestaj(string naziv, string sifra, double jedinicnaCena, int kolicinaUMagacinu, string tipNamestajaId)
         {
-            this.Id = naziv + sifra + jedinicnaCena + kolicinaUMagacinu + tipNamestajaId + '|' + (DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond);
+            this.Id = naziv + sifra + jedinicnaCena + kolicinaUMagacinu + tipNamestajaId + '|' + DateTime.Now.Ticks;
             this.Naziv = naziv;
             this.Sifra = sifra;
             this.JedinicnaCena = jedinicnaCena;

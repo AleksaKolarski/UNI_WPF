@@ -22,8 +22,7 @@ namespace POP_SF27_2016_Projekat
         {
             InitializeComponent();
 
-
-
+            
         }
     }
 }
