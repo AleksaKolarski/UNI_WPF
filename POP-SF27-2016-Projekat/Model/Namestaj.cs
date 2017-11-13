@@ -9,10 +9,6 @@ namespace POP_SF27_2016.Model
 {
     public class Namestaj
     {
-        #region Fields
-        //private static List<Namestaj> namestaj = NamestajList;
-        #endregion
-
         #region Properties
         public string Id { get; set; }
         public string Naziv { get; set; }
@@ -34,7 +30,7 @@ namespace POP_SF27_2016.Model
         public Namestaj() { }
         public Namestaj(string naziv, string sifra, double jedinicnaCena, int kolicinaUMagacinu, string tipNamestajaId)
         {
-            this.Id = naziv + sifra + jedinicnaCena + kolicinaUMagacinu + tipNamestajaId + '|' + DateTime.Now.Ticks;
+            this.Id = naziv + sifra + jedinicnaCena + kolicinaUMagacinu + tipNamestajaId + DateTime.Now.Ticks + NamestajList.Count;
             this.Naziv = naziv;
             this.Sifra = sifra;
             this.JedinicnaCena = jedinicnaCena;

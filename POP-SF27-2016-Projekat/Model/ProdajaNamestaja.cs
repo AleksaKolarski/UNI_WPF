@@ -31,7 +31,7 @@ namespace POP_SF27_2016.Model
         public ProdajaNamestaja() { }
         public ProdajaNamestaja(List<string> prodatNamestajList, List<int> brojNamestajaList, DateTime datumProdaje, string kupac, string brojRacuna, List<string> dodatnaUslugaIDList)
         {
-            this.Id = datumProdaje.ToString() + kupac + brojRacuna + DateTime.Now.Ticks;
+            this.Id = datumProdaje.ToString() + kupac + brojRacuna + DateTime.Now.Ticks + ProdajaNamestajaList.Count;
             this.ProdatNamestajIDList = prodatNamestajList;
             this.BrojNamestajaList = brojNamestajaList;
             this.DatumProdaje = datumProdaje;

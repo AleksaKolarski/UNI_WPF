@@ -9,10 +9,6 @@ namespace POP_SF27_2016.Model
 {
     public class TipNamestaja
     {
-        #region Fields
-        //private static List<TipNamestaja> tipNamestaja = TipNamestajaList;
-        #endregion
-
         #region Properties
         public string Id { get; set; }
         public string Naziv { get; set; }
@@ -30,7 +26,7 @@ namespace POP_SF27_2016.Model
         public TipNamestaja() { }
         public TipNamestaja(string naziv)
         {
-            this.Id = naziv + '|' + DateTime.Now.Ticks;
+            this.Id = naziv + DateTime.Now.Ticks + TipNamestajaList.Count;
             this.Naziv = Naziv;
             this.Obrisan = false;
         }

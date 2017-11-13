@@ -27,7 +27,7 @@ namespace POP_SF27_2016.Model
         public DodatnaUsluga() { }
         public DodatnaUsluga(string naziv, double cena)
         {
-            this.Id = naziv + cena + DateTime.Now.Ticks;
+            this.Id = naziv + cena + DateTime.Now.Ticks + DodatnaUslugaList.Count;
             this.Naziv = naziv;
             this.Cena = cena;
             this.Obrisan = false;
