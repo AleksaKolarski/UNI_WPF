@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace POP_SF27_2016.util
+namespace POP_SF27_2016_Projekat.Utils
 {
     public class GenericSerializer
     {

@@ -1,11 +1,12 @@
-﻿using POP_SF27_2016.util;
+﻿using POP_SF27_2016_Projekat.Utils;
+using POP_SF27_2016_Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace POP_SF27_2016.Model
+namespace POP_SF27_2016_Projekat.Model
 {
     public class Korisnik
     {
@@ -36,6 +37,39 @@ namespace POP_SF27_2016.Model
             this.KorisnickoIme = korisnickoIme;
             this.Lozinka = lozinka;
             this.TipKorisnikaId = tipKorisnikaId;
+        }
+        #endregion
+
+        #region Methods
+        public static void Add(Korisnik korisnikToAdd)
+        {
+            /* Kada predjemo na rad sa bazom podataka ovde se nece ucitavati 
+             * cela lista vec ce se samo slati komanda za dodavanje novog. */
+            List<Korisnik> tempList = KorisnikList;
+            tempList.Add(korisnikToAdd);
+            KorisnikList = tempList;
+        }
+
+        public static void Remove(Korisnik korisnikToRemove)
+        {
+            korisnikToRemove.Obrisan = true;
+        }
+
+        public static Korisnik GetById(string id)
+        {
+            foreach (Korisnik item in KorisnikList)
+            {
+                if (item.Id == id)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
+        public override string ToString()
+        {
+            return $"{Id}, {Ime}, {Prezime}, {KorisnickoIme}, {Lozinka}, {TipKorisnika.GetById(TipKorisnikaId).Naziv}";
         }
         #endregion
     }
