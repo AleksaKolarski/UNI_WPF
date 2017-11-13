@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfTipKorisnika xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TipKorisnika>
+    <Id>AdministratorTrueTrueTrueTrueTrueTrueTrueTrue636461702975042026</Id>
+    <Naziv>Administrator</Naziv>
+    <Dozvole>
+      <dozvolaAkcija>true</dozvolaAkcija>
+      <dozvolaDodatnaUsluga>true</dozvolaDodatnaUsluga>
+      <dozvolaKorisnik>true</dozvolaKorisnik>
+      <dozvolaNamestaj>true</dozvolaNamestaj>
+      <dozvolaProdajaNamestaja>true</dozvolaProdajaNamestaja>
+      <dozvolaSalon>true</dozvolaSalon>
+      <dozvolaTipKorisnika>true</dozvolaTipKorisnika>
+      <dozvolaTipNamestaja>true</dozvolaTipNamestaja>
+    </Dozvole>
+    <Obrisan>false</Obrisan>
+  </TipKorisnika>
+  <TipKorisnika>
+    <Id>ProdavacFalseFalseFalseFalseTrueFalseFalseFalse6364617076423289791</Id>
+    <Naziv>Prodavac</Naziv>
+    <Dozvole>
+      <dozvolaAkcija>false</dozvolaAkcija>
+      <dozvolaDodatnaUsluga>false</dozvolaDodatnaUsluga>
+      <dozvolaKorisnik>false</dozvolaKorisnik>
+      <dozvolaNamestaj>false</dozvolaNamestaj>
+      <dozvolaProdajaNamestaja>true</dozvolaProdajaNamestaja>
+      <dozvolaSalon>false</dozvolaSalon>
+      <dozvolaTipKorisnika>false</dozvolaTipKorisnika>
+      <dozvolaTipNamestaja>false</dozvolaTipNamestaja>
+    </Dozvole>
+    <Obrisan>false</Obrisan>
+  </TipKorisnika>
+</ArrayOfTipKorisnika>
