@@ -25,6 +25,9 @@ namespace POP_SF27_2016_Projekat.Model
             get => GenericSerializer.DeSerializeList<Korisnik>("korisnik.xml");
             set => GenericSerializer.SerializeList<Korisnik>("korisnik.xml", value);
         }
+        
+        /* !!!! Proveriti kako funkcionise set propertijima od Trenutni. Zavrsi login!  !!!! */
+        public static Korisnik Trenutni { get; private set; } = null;
         #endregion
 
         #region Constructors
@@ -65,6 +68,24 @@ namespace POP_SF27_2016_Projekat.Model
                 }
             }
             return null;
+        }
+
+        public static bool Login(string username, string password)
+        {
+            foreach (Korisnik korisnik in KorisnikList)
+            {
+                if(korisnik.KorisnickoIme == username && korisnik.Lozinka == password)
+                {
+                    Trenutni = korisnik;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static void Logout()
+        {
+            Trenutni = null;
         }
 
         public override string ToString()
