@@ -1,3 +1,2 @@
-Zavrsiti sve entitete
-Login
+predji na propfull ( full propertiji )
 gui

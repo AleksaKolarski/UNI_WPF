@@ -60,6 +60,7 @@
     <Compile Include="GUI\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Dozvole.cs" />
     <Compile Include="Model\TipKorisnika.cs" />
     <Compile Include="Utils\GenericSerializer.cs" />
     <Compile Include="App.xaml.cs">

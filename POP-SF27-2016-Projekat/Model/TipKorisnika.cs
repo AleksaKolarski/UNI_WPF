@@ -5,37 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public struct Dozvole_s
-{
-    public bool dozvolaAkcija; // Dozvola za upravljanje akcijama
-    public bool dozvolaDodatnaUsluga; // Dozvola za upravljanje dodatnim uslugama
-    public bool dozvolaKorisnik; // Dozvola za upravljanje korisnicima
-    public bool dozvolaNamestaj; // Dozvola za upravljanje namestajem
-    public bool dozvolaProdajaNamestaja; // Dozvola za upravljanje prodajama
-    public bool dozvolaSalon; // Dozvola za upravljanje informacijama o salonu
-    public bool dozvolaTipKorisnika; // Dozvola za upravljanjem tipovima korisnika
-    public bool dozvolaTipNamestaja; // Dozvola za upravljanjem tipovima namestaja
-    
-    public void Init()
-    {
-        this.dozvolaAkcija = false;
-        this.dozvolaDodatnaUsluga = false;
-        this.dozvolaKorisnik = false;
-        this.dozvolaNamestaj = false;
-        this.dozvolaProdajaNamestaja = false;
-        this.dozvolaSalon = false;
-        this.dozvolaTipKorisnika = false;
-        this.dozvolaTipNamestaja = false;
-    }
-    public override string ToString()
-    {
-        return dozvolaAkcija.ToString() + dozvolaDodatnaUsluga.ToString() 
-            + dozvolaKorisnik.ToString() + dozvolaNamestaj.ToString() 
-            + dozvolaProdajaNamestaja.ToString() + dozvolaSalon.ToString() 
-            + dozvolaTipKorisnika.ToString() + dozvolaTipNamestaja.ToString();
-    }
-
-}
 
 namespace POP_SF27_2016_Projekat.Model
 {
@@ -44,7 +13,7 @@ namespace POP_SF27_2016_Projekat.Model
         #region Properties
         public string Id { get; set; }
         public string Naziv { get; set; }
-        public Dozvole_s Dozvole { get; set; }
+        public Dozvole Dozvole { get; set; }
 
         public bool Obrisan { get; set; }
 
@@ -57,7 +26,7 @@ namespace POP_SF27_2016_Projekat.Model
 
         #region Constructors
         public TipKorisnika() {}
-        public TipKorisnika(string naziv, Dozvole_s dozvole)
+        public TipKorisnika(string naziv, Dozvole dozvole)
         {
             this.Id = naziv + dozvole.ToString() + DateTime.Now.Ticks + TipKorisnikaList.Count;
             this.Naziv = naziv;

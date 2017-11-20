@@ -10,6 +10,5 @@ namespace POP_SF27_2016_Projekat
 {
     public partial class App : Application
     {
-
     }
 }
