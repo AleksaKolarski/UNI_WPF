@@ -6,7 +6,7 @@
     <Prezime>prezime1</Prezime>
     <KorisnickoIme>username1</KorisnickoIme>
     <Lozinka>password1</Lozinka>
-    <TipKorisnikaId>AdministratorTrueTrueTrueTrueTrueTrueTrueTrue636461702975042026</TipKorisnikaId>
+    <TipKorisnikaId>AdministratorRead, Add, Edit, DeleteRead, Add, Edit, DeleteRead, Add, Edit, DeleteRead, Add, Edit, DeleteRead, Add, Edit, DeleteRead, EditRead, Add, Edit, DeleteRead, Add, Edit, Delete6364677396459825840</TipKorisnikaId>
     <Obrisan>false</Obrisan>
   </Korisnik>
   <Korisnik>
@@ -15,7 +15,7 @@
     <Prezime>prezime2</Prezime>
     <KorisnickoIme>username2</KorisnickoIme>
     <Lozinka>password2</Lozinka>
-    <TipKorisnikaId>ProdavacFalseFalseFalseFalseTrueFalseFalseFalse6364617076423289791</TipKorisnikaId>
+    <TipKorisnikaId>ProdavacReadReadReadReadReadReadReadRead6364677396463426050</TipKorisnikaId>
     <Obrisan>false</Obrisan>
   </Korisnik>
 </ArrayOfKorisnik>

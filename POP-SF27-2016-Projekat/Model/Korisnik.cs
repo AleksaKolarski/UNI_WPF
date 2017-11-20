@@ -26,7 +26,6 @@ namespace POP_SF27_2016_Projekat.Model
             set => GenericSerializer.SerializeList<Korisnik>("korisnik.xml", value);
         }
         
-        /* !!!! Proveriti kako funkcionise set propertijima od Trenutni. Zavrsi login!  !!!! */
         public static Korisnik Trenutni { get; private set; } = null;
         #endregion
 

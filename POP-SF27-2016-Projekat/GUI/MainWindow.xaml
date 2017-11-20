@@ -1,0 +1,42 @@
+﻿<Window x:Class="POP_SF27_2016_Projekat.GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF27_2016_Projekat.GUI"
+        mc:Ignorable="d"
+        Title="Salon" Height="450" Width="700">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Button Name="btnProdaja" Content="Prodaja" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="0" Grid.Row="0" Click="btnProdaja_Click"/>
+
+        <!-- Namestaj se deli na tri dugmeta za rad sa namestajem, rad sa tipom namestaja i rad sa akcijama -->
+        <Button Name="btnNamestaj" Content="Namestaj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="0" Grid.Row="1" Click="btnNamestaj_Click"/>
+        <Button Name="btnRadSaNamestajem" Content="Rad sa namestajem" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Grid.Column="1" Grid.Row="1" Width="130" Height="24" Visibility="Hidden"/>
+        <Button Name="btnRadSaTipomNamestaja" Content="Rad sa tipom namestaja" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Column="1" Grid.Row="1" Width="130" Height="24" Visibility="Hidden"/>
+        <Button Name="btnRadSaAkcijama" Content="Akcije" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,0" Grid.Column="1" Grid.Row="1" Width="130" Height="23" Visibility="Hidden"/>
+
+        <Button Name="btnDodatneUsluge" Content="Dodatne usluge" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="0" Grid.Row="2" Click="btnDodatneUsluge_Click"/>
+
+        <!-- Korisnici se deli na dva dugmeta za rad sa korisnicima i rad sa tipom korisnika -->
+        <Button Name="btnKorisnici" Content="Korisnici" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="0" Grid.Row="3" Click="btnKorisnici_Click"/>
+        <Button Name="btnRadSaKorisnicima" Content="Rad sa korisnicima" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Grid.Column="1" Grid.Row="3" Width="130" Height="24" Visibility="Hidden"/>
+        <Button Name="btnRadSaTipomKorisnika" Content="Rad sa tipom tipovima korisnika" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Column="1" Grid.Row="3" Width="130" Height="24" Visibility="Hidden"/>
+
+        <Button Name="btnSalon" Content="Salon" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="0" Grid.Row="4" Click="btnSalon_Click"/>
+
+        <Button Name="btnLogout" Content="Logout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="0" Grid.Row="5" Click="btnLogout_Click"/>
+    </Grid>
+</Window>

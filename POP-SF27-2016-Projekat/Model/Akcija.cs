@@ -1,20 +1,20 @@
 ﻿using POP_SF27_2016_Projekat.Utils;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace POP_SF27_2016_Projekat.Model
 {
+    //public class Akcija : INotifyPropertyChanged
     public class Akcija
     {
         #region Properties
         public string Id { get; set; }
         public DateTime DatumPocetka { get; set; }
         public DateTime DatumKraja { get; set; }
-        /* Dictionary ne moze da se serializuje direktno u xml bez pretvaranja u listu objekata sa po dva clana */
-        //public Dictionary<string, double> Popusti { get; set; } // Key je Namestaj.Id, Value je popust
         public List<string> NamestajIdList { get; set; }
         public List<double> PopustList { get; set; }
 

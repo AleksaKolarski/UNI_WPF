@@ -21,46 +21,24 @@ namespace POP_SF27_2016_Projekat.GUI
         {
             InitializeComponent();
 
-            /*
-            Dozvole dozvole1 = new Dozvole();
-            dozvole1.Akcija |= Dozvola.Read | Dozvola.Add | Dozvola.Edit | Dozvola.Delete;
-            dozvole1.DodatnaUsluga |= Dozvola.Read | Dozvola.Add | Dozvola.Edit | Dozvola.Delete;
-            dozvole1.Korisnik |= Dozvola.Read | Dozvola.Add | Dozvola.Edit | Dozvola.Delete;
-            dozvole1.Namestaj |= Dozvola.Read | Dozvola.Add | Dozvola.Edit | Dozvola.Delete;
-            dozvole1.ProdajaNamestaja |= Dozvola.Read;
-            dozvole1.Salon |= Dozvola.Read | Dozvola.Edit;
-            dozvole1.TipKorisnika |= Dozvola.Read | Dozvola.Add | Dozvola.Edit | Dozvola.Delete;
-            dozvole1.TipNamestaja |= Dozvola.Read | Dozvola.Add | Dozvola.Edit | Dozvola.Delete;
-            TipKorisnika tip1 = new TipKorisnika("Administrator", dozvole1);
+            tbWelcome.Text = "Welcome to\n" + Salon.SalonProperty.Naziv;
 
-            Dozvole dozvole2 = new Dozvole();
-            dozvole2.Akcija = Dozvola.Read;
-            dozvole2.DodatnaUsluga = Dozvola.Read;
-            dozvole2.Korisnik = Dozvola.Read;
-            dozvole2.Namestaj = Dozvola.Read;
-            dozvole2.ProdajaNamestaja |= Dozvola.Read | Dozvola.Add;
-            dozvole2.Salon = Dozvola.Read;
-            dozvole2.TipKorisnika = Dozvola.Read;
-            dozvole2.TipNamestaja = Dozvola.Read;
-            TipKorisnika tip2 = new TipKorisnika("Prodavac", dozvole2);
 
-            Dozvole dozvole3 = new Dozvole();
-            dozvole3.Akcija |= Dozvola.Read | Dozvola.Add | Dozvola.Edit | Dozvola.Delete;
-            dozvole3.DodatnaUsluga |= Dozvola.Read | Dozvola.Add | Dozvola.Edit | Dozvola.Delete;
-            dozvole3.Korisnik = Dozvola.Read;
-            dozvole3.Namestaj |= Dozvola.Read | Dozvola.Add | Dozvola.Edit | Dozvola.Delete;
-            dozvole3.ProdajaNamestaja |= Dozvola.Read;
-            dozvole3.Salon |= Dozvola.Read;
-            dozvole3.TipKorisnika |= Dozvola.Read;
-            dozvole3.TipNamestaja |= Dozvola.Read | Dozvola.Add | Dozvola.Edit | Dozvola.Delete;
-            TipKorisnika tip3 = new TipKorisnika("Moderator", dozvole1);
+        }
 
-            List<TipKorisnika> lista = new List<TipKorisnika>();
-            lista.Add(tip1);
-            lista.Add(tip2);
-            lista.Add(tip3);
-            TipKorisnika.TipKorisnikaList = lista;
-            */
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            Korisnik.Login(tbUsername.Text, pbPassword.Password);
+            if(Korisnik.Trenutni != null)
+            {
+                this.tbUsername.Text = "";
+                this.pbPassword.Password = "";
+                this.Hide(); // Sakrijemo Login prozor dok je glavni otvoren
+                var mainProzor = new MainWindow();
+                mainProzor.ShowDialog(); // Cekamo da se zatvori mainProzor
+                Korisnik.Logout(); // Za svaki slucaj kad god se vratimo u ovaj prozor izlogovati korisnika
+                this.Show(); // Prikazemo opet login prozor koji bi trebao da bude ociscen
+            }
         }
     }
 }
