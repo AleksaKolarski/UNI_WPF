@@ -69,10 +69,16 @@
     <Compile Include="GUI\UcDodatnaUsluga.xaml.cs">
       <DependentUpon>UcDodatnaUsluga.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\UcKorisnici\UcRadSaNamestajem.xaml.cs">
+    <Compile Include="GUI\UcKorisnici\UcRadSaKorisnikom.xaml.cs">
+      <DependentUpon>UcRadSaKorisnikom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\UcKorisnici\UcRadSaTipomKorisnika.xaml.cs">
+      <DependentUpon>UcRadSaTipomKorisnika.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\UcNamestaj\UcRadSaNamestajem.xaml.cs">
       <DependentUpon>UcRadSaNamestajem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\UcKorisnici\UcRadSaTipomNamestaja.xaml.cs">
+    <Compile Include="GUI\UcNamestaj\UcRadSaTipomNamestaja.xaml.cs">
       <DependentUpon>UcRadSaTipomNamestaja.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\UcProdaja.xaml.cs">
@@ -160,11 +166,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUI\UcKorisnici\UcRadSaNamestajem.xaml">
+    <Page Include="GUI\UcKorisnici\UcRadSaKorisnikom.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUI\UcKorisnici\UcRadSaTipomNamestaja.xaml">
+    <Page Include="GUI\UcKorisnici\UcRadSaTipomKorisnika.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\UcNamestaj\UcRadSaNamestajem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\UcNamestaj\UcRadSaTipomNamestaja.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -177,8 +191,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GUI\UcNamestaj\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
