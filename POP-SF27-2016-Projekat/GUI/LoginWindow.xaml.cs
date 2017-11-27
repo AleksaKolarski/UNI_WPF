@@ -11,10 +11,22 @@ namespace POP_SF27_2016_Projekat.GUI
             InitializeComponent();
 
             tbWelcome.Text = "Welcome to\n" + Salon.SalonProperty.Naziv;
-
-
+            tbUsername.Focus();
+            tbUsername.Text = "username1";
+            pbPassword.Password = "password1";
+            this.KeyDown += LoginEnterKeyDown; // Izvrsi metod na okidanje KeyDown eventa
         }
 
+        /* Kada pritisnemo Enter na tastaturi simuliramo pritiskanje Login dugmeta */
+        private void LoginEnterKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if(e.Key == System.Windows.Input.Key.Enter)
+            {
+                btnLogin_Click(this, null);
+            }
+        }
+
+        /* Na pritiskanje Login dugmeta */
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             Korisnik.Login(tbUsername.Text, pbPassword.Password);

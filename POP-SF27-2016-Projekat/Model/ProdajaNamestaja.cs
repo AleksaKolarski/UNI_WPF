@@ -95,7 +95,7 @@ namespace POP_SF27_2016_Projekat.Model
             {
                 cena += DodatnaUsluga.GetById(DodatnaUslugaIDList[i]).Cena;
             }
-            cena *= PDV;
+            cena = cena + cena * PDV/100;
             return cena;
         }
 

@@ -63,6 +63,24 @@
     <Compile Include="GUI\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\UcAkcija.xaml.cs">
+      <DependentUpon>UcAkcija.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\UcDodatnaUsluga.xaml.cs">
+      <DependentUpon>UcDodatnaUsluga.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\UcKorisnici\UcRadSaNamestajem.xaml.cs">
+      <DependentUpon>UcRadSaNamestajem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\UcKorisnici\UcRadSaTipomNamestaja.xaml.cs">
+      <DependentUpon>UcRadSaTipomNamestaja.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\UcProdaja.xaml.cs">
+      <DependentUpon>UcProdaja.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\UcSalon.xaml.cs">
+      <DependentUpon>UcSalon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model\Dozvole.cs" />
     <Compile Include="Model\TipKorisnika.cs" />
     <Compile Include="Utils\GenericSerializer.cs" />
@@ -134,6 +152,33 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\UcAkcija.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\UcDodatnaUsluga.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\UcKorisnici\UcRadSaNamestajem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\UcKorisnici\UcRadSaTipomNamestaja.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\UcProdaja.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\UcSalon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GUI\UcNamestaj\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
