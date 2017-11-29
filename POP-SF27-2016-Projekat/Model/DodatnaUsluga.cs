@@ -1,25 +1,62 @@
-﻿using POP_SF27_2016_Projekat.Utils;
+﻿using static POP_SF27_2016_Projekat.Utils.GenericSerializer;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace POP_SF27_2016_Projekat.Model
 {
-    public class DodatnaUsluga
+    public class DodatnaUsluga : INotifyPropertyChanged
     {
+        #region Fields
+        private int id;
+        private string naziv;
+        private double cena;
+        #endregion
         #region Properties
-        public string Id { get; set; }
-        public string Naziv { get; set; }
-        public double Cena { get; set; }
+        public int Id {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+                OnPropertyChanged("Id");
+            }
+        }
+        public string Naziv {
+            get
+            {
+                return naziv;
+            }
+            set
+            {
+                naziv = value;
+                OnPropertyChanged("Naziv");
+            }
+        }
+        public double Cena {
+            get
+            {
+                return cena;
+            }
+            set
+            {
+                cena = value;
+                OnPropertyChanged("Cena");
+            }
+        }
 
         public bool Obrisan { get; set; }
 
-        public static List<DodatnaUsluga> DodatnaUslugaList
+        public static ObservableCollection<DodatnaUsluga> DodatnaUslugaCollection
         {
-            get => GenericSerializer.DeSerializeList<DodatnaUsluga>("dodatna_usluga.xml");
-            set => GenericSerializer.SerializeList<DodatnaUsluga>("dodatna_usluga.xml", value);
+            get => DeSerializeObservableCollection<DodatnaUsluga>("dodatna_usluga.xml");
+            set => SerializeObservableCollection<DodatnaUsluga>("dodatna_usluga.xml", value);
         }
         #endregion
 
@@ -27,7 +64,7 @@ namespace POP_SF27_2016_Projekat.Model
         public DodatnaUsluga() { }
         public DodatnaUsluga(string naziv, double cena)
         {
-            this.Id = naziv + cena + DateTime.Now.Ticks + DodatnaUslugaList.Count;
+            this.Id = DodatnaUslugaCollection.Count();
             this.Naziv = naziv;
             this.Cena = cena;
             this.Obrisan = false;
@@ -35,11 +72,11 @@ namespace POP_SF27_2016_Projekat.Model
         #endregion
 
         #region Methods
-        public static DodatnaUsluga GetById(string id)
+        public static DodatnaUsluga GetById(int id)
         {
-            if (id != null)
+            if (id >= 0)
             {
-                foreach (DodatnaUsluga dodatnaUsluga in DodatnaUslugaList)
+                foreach (DodatnaUsluga dodatnaUsluga in DodatnaUslugaCollection)
                 {
                     if (dodatnaUsluga.Id == id)
                     {
@@ -54,9 +91,9 @@ namespace POP_SF27_2016_Projekat.Model
         {
             /* Kada predjemo na rad sa bazom podataka ovde se nece ucitavati 
              * cela lista vec ce se samo slati komanda za dodavanje novog. */
-            List<DodatnaUsluga> tempList = DodatnaUslugaList;
+            ObservableCollection<DodatnaUsluga> tempList = DodatnaUslugaCollection;
             tempList.Add(dodatnaUslugaToAdd);
-            DodatnaUslugaList = tempList;
+            DodatnaUslugaCollection = tempList;
         }
 
         public static void Remove(DodatnaUsluga dodatnaUslugaToRemove)
@@ -67,6 +104,14 @@ namespace POP_SF27_2016_Projekat.Model
         public override string ToString()
         {
             return $"{Id}, {Naziv}, {Cena}";
+        }
+        #endregion
+
+        #region DataBinding
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
         #endregion
     }

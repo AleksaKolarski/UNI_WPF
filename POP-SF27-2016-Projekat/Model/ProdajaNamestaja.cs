@@ -16,7 +16,7 @@ namespace POP_SF27_2016_Projekat.Model
         public DateTime DatumProdaje { get; set; }
         public string Kupac { get; set; }
         public string BrojRacuna { get; set; }
-        public List<string> DodatnaUslugaIDList { get; set; }
+        public List<int> DodatnaUslugaIDList { get; set; }
         public const double PDV = 20.0;
         // konacnu cenu cemo racunati u runtime-u
 
@@ -29,7 +29,7 @@ namespace POP_SF27_2016_Projekat.Model
 
         #region Constructors
         public ProdajaNamestaja() { }
-        public ProdajaNamestaja(List<string> prodatNamestajList, List<int> brojNamestajaList, DateTime datumProdaje, string kupac, string brojRacuna, List<string> dodatnaUslugaIDList)
+        public ProdajaNamestaja(List<string> prodatNamestajList, List<int> brojNamestajaList, DateTime datumProdaje, string kupac, string brojRacuna, List<int> dodatnaUslugaIDList)
         {
             this.Id = datumProdaje.ToString() + kupac + brojRacuna + DateTime.Now.Ticks + ProdajaNamestajaList.Count;
             this.ProdatNamestajIDList = prodatNamestajList;

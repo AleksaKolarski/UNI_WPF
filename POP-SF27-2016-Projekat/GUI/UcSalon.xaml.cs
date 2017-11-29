@@ -34,7 +34,7 @@ namespace POP_SF27_2016_Projekat.GUI
             bool tmpDozvola = !((TipKorisnika.GetById(Korisnik.Trenutni.TipKorisnikaId).Dozvole.Salon & Dozvola.Edit) == Dozvola.Edit);
             tbNaziv.IsReadOnly = tmpDozvola;
             tbAdresa.IsReadOnly = tmpDozvola;
-            tbAdresa.IsReadOnly = tmpDozvola;
+            tbTelefon.IsReadOnly = tmpDozvola;
             tbEmail.IsReadOnly = tmpDozvola;
             tbAdresaSajta.IsReadOnly = tmpDozvola;
             tbPIB.IsReadOnly = tmpDozvola;
