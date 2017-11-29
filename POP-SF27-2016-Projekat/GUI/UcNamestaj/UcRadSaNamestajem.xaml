@@ -48,7 +48,7 @@
                 <Label Content="Id:" Grid.Column="1" Grid.Row="1"/>
                 <Label Content="Naziv:" Grid.Column="1" Grid.Row="2"/>
                 <Label Content="Sifra:" Grid.Column="1" Grid.Row="3"/>
-                <Label Content="Jedinicna Cena:" Grid.Column="1" Grid.Row="4"/>
+                <Label Content="Jedinicna cena:" Grid.Column="1" Grid.Row="4"/>
                 <Label Content="Kolicina u magacinu:" Grid.Column="1" Grid.Row="5"/>
                 <Label Content="Tip:" Grid.Column="1" Grid.Row="6"/>
 
