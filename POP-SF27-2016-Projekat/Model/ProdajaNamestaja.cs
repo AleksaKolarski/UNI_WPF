@@ -73,7 +73,7 @@ namespace POP_SF27_2016_Projekat.Model
             {
                 string tmpNamestajId = ProdatNamestajIDList[i];
                 cena += Namestaj.GetById(ProdatNamestajIDList[i]).JedinicnaCena * BrojNamestajaList[i];
-                foreach(Akcija akcija in Akcija.AkcijaList)
+                foreach(Akcija akcija in Akcija.AkcijaCollection)
                 {
                     if (akcija.Obrisan == false)
                     {

@@ -8,8 +8,8 @@
         Title="Salon" Height="450" Width="700">
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -27,8 +27,8 @@
 
         <!-- Namestaj se deli na tri dugmeta za rad sa namestajem i rad sa tipom namestaja-->
         <Button Name="btnNamestaj" Content="Namestaj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Click="btnNamestaj_Click"/>
-        <Button Name="btnRadSaNamestajem" Content="Rad sa namestajem" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="1" Grid.Row="1" Visibility="Hidden" Panel.ZIndex="1"/>
-        <Button Name="btnRadSaTipomNamestaja" Content="Rad sa tipom namestaja" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="1" Grid.Row="2" Visibility="Hidden" Panel.ZIndex="1"/>
+        <Button Name="btnRadSaNamestajem" Content="Rad sa namestajem" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="1" Grid.Row="1" Visibility="Hidden" Panel.ZIndex="1" Click="btnRadSaNamestajem_Click"/>
+        <Button Name="btnRadSaTipomNamestaja" Content="Rad sa tipom namestaja" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="1" Grid.Row="2" Visibility="Hidden" Panel.ZIndex="1" Click="btnRadSaTipomNamestaja_Click"/>
         
         <Button Name="btnAkcije" Content="Akcije" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="0" Grid.Row="3" Click="btnAkcije_Click"/>
 
@@ -36,14 +36,15 @@
 
         <!-- Korisnici se deli na dva dugmeta za rad sa korisnicima i rad sa tipom korisnika -->
         <Button Name="btnKorisnici" Content="Korisnici" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="0" Grid.Row="5" Grid.RowSpan="2" Click="btnKorisnici_Click"/>
-        <Button Name="btnRadSaKorisnicima" Content="Rad sa korisnicima" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="1" Grid.Row="5" Visibility="Hidden" Panel.ZIndex="1"/>
-        <Button Name="btnRadSaTipomKorisnika" Content="Rad sa tipom tipovima korisnika" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="1" Grid.Row="6" Visibility="Hidden" Panel.ZIndex="1"/>
+        <Button Name="btnRadSaKorisnicima" Content="Rad sa korisnicima" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="1" Grid.Row="5" Visibility="Hidden" Panel.ZIndex="1" Click="btnRadSaKorisnicima_Click"/>
+        <Button Name="btnRadSaTipomKorisnika" Content="Rad sa tipom tipovima korisnika" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="1" Grid.Row="6" Visibility="Hidden" Panel.ZIndex="1" Click="btnRadSaTipomKorisnika_Click"/>
 
         <Button Name="btnSalon" Content="Salon" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="0" Grid.Row="7" Click="btnSalon_Click"/>
 
         <Button Name="btnLogout" Content="Logout" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,0" Grid.Column="0" Grid.Row="8" Click="btnLogout_Click"/>
-
-        <UserControl Name="MainArea" Grid.Column="1" Grid.Row="0" Grid.RowSpan="9"/>
         
+        <GroupBox Name="gbMainArea" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.RowSpan="9">
+            <UserControl Name="MainArea" Grid.Column="1" Grid.Row="0" Grid.RowSpan="9"/>
+        </GroupBox>
     </Grid>
 </Window>

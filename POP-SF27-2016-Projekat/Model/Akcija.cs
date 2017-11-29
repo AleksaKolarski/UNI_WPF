@@ -1,6 +1,7 @@
-﻿using POP_SF27_2016_Projekat.Utils;
+﻿using static POP_SF27_2016_Projekat.Utils.GenericSerializer;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -8,11 +9,10 @@ using System.Threading.Tasks;
 
 namespace POP_SF27_2016_Projekat.Model
 {
-    //public class Akcija : INotifyPropertyChanged
-    public class Akcija
+    public class Akcija : INotifyPropertyChanged
     {
         #region Properties
-        public string Id { get; set; }
+        public int Id { get; set; }
         public DateTime DatumPocetka { get; set; }
         public DateTime DatumKraja { get; set; }
         public List<string> NamestajIdList { get; set; }
@@ -20,10 +20,10 @@ namespace POP_SF27_2016_Projekat.Model
 
         public bool Obrisan { get; set; }
 
-        public static List<Akcija> AkcijaList
+        public static ObservableCollection<Akcija> AkcijaCollection
         {
-            get => GenericSerializer.DeSerializeList<Akcija>("akcija.xml");
-            set => GenericSerializer.SerializeList<Akcija>("akcija.xml", value);
+            get => DeSerializeObservableCollection<Akcija>("akcija.xml");
+            set => SerializeObservableCollection<Akcija>("akcija.xml", value);
         }
         #endregion
 
@@ -31,7 +31,7 @@ namespace POP_SF27_2016_Projekat.Model
         public Akcija() { }
         public Akcija(DateTime datumPocetka, DateTime datumKraja, List<string> namestajIdList, List<double> popustList)
         {
-            this.Id = datumPocetka.ToString() + datumKraja.ToString() + DateTime.Now.Ticks + AkcijaList.Count;
+            this.Id = AkcijaCollection.Count();
             this.DatumPocetka = datumPocetka;
             this.DatumKraja = datumKraja;
             this.NamestajIdList = namestajIdList;
@@ -41,11 +41,11 @@ namespace POP_SF27_2016_Projekat.Model
         #endregion
 
         #region Methods
-        public static Akcija GetById(string id)
+        public static Akcija GetById(int id)
         {
-            if (id != null)
+            if (id >= 0)
             {
-                foreach (Akcija akcija in AkcijaList)
+                foreach (Akcija akcija in AkcijaCollection)
                 {
                     if (akcija.Id == id)
                     {
@@ -60,9 +60,9 @@ namespace POP_SF27_2016_Projekat.Model
         {
             /* Kada predjemo na rad sa bazom podataka ovde se nece ucitavati 
              * cela lista vec ce se samo slati komanda za dodavanje novog. */
-            List<Akcija> tempList = AkcijaList;
+            ObservableCollection<Akcija> tempList = AkcijaCollection;
             tempList.Add(akcijaToAdd);
-            AkcijaList = tempList;
+            AkcijaCollection = tempList;
         }
 
         public static void Remove(Akcija akcijaToRemove)
@@ -73,6 +73,14 @@ namespace POP_SF27_2016_Projekat.Model
         public override string ToString()
         {
             return $"{Id}, {DatumPocetka}, {DatumKraja}";
+        }
+        #endregion
+
+        #region Data binding
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
         #endregion
     }

@@ -33,13 +33,13 @@
         <Label Name="lbMaticniBroj" Content="Maticni Broj:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 0, 0" Grid.Column="0" Grid.Row="7"/>
         <Label Name="lbZiroRacun" Content="Ziro Racun:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 0, 0" Grid.Column="0" Grid.Row="8"/>
 
-        <TextBox Name="tbNaziv" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="1"/>
-        <TextBox Name="tbAdresa" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="2"/>
-        <TextBox Name="tbTelefon" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="3"/>
-        <TextBox Name="tbEmail" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="4"/>
-        <TextBox Name="tbAdresaSajta" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="5"/>
-        <TextBox Name="tbPIB" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="6"/>
-        <TextBox Name="tbMaticniBroj" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="7"/>
-        <TextBox Name="tbZiroRacun" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="8"/>
+        <TextBox Name="tbNaziv" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="1" MinWidth="130"/>
+        <TextBox Name="tbAdresa" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="2" MinWidth="130"/>
+        <TextBox Name="tbTelefon" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="3" MinWidth="130"/>
+        <TextBox Name="tbEmail" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="4" MinWidth="130"/>
+        <TextBox Name="tbAdresaSajta" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="5" MinWidth="130"/>
+        <TextBox Name="tbPIB" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="6" MinWidth="130"/>
+        <TextBox Name="tbMaticniBroj" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="7" MinWidth="130"/>
+        <TextBox Name="tbZiroRacun" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="8" MinWidth="130"/>
     </Grid>
 </UserControl>
