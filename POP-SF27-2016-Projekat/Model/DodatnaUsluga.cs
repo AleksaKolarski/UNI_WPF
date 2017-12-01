@@ -15,7 +15,9 @@ namespace POP_SF27_2016_Projekat.Model
         private int id;
         private string naziv;
         private double cena;
+        private bool obrisan;
         #endregion
+
         #region Properties
         public int Id {
             get
@@ -51,13 +53,26 @@ namespace POP_SF27_2016_Projekat.Model
             }
         }
 
-        public bool Obrisan { get; set; }
+        public bool Obrisan
+        {
+            get
+            {
+                return obrisan;
+            }
+            set
+            {
+                obrisan = value;
+                OnPropertyChanged("Obrisan");
+            }
+        }
 
+        
         public static ObservableCollection<DodatnaUsluga> DodatnaUslugaCollection
         {
             get => DeSerializeObservableCollection<DodatnaUsluga>("dodatna_usluga.xml");
             set => SerializeObservableCollection<DodatnaUsluga>("dodatna_usluga.xml", value);
         }
+        
         #endregion
 
         #region Constructors

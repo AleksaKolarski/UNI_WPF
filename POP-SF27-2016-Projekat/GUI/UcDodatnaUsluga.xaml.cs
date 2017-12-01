@@ -14,62 +14,95 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
+using System.ComponentModel;
+using POP_SF27_2016_Projekat.GUI.DodavanjePromena;
 
 namespace POP_SF27_2016_Projekat.GUI
 {
-    /// <summary>
-    /// Interaction logic for UcDodatnaUsluga.xaml
-    /// </summary>
     public partial class UcDodatnaUsluga : UserControl
     {
-        public DodatnaUsluga IzabranaUsluga { get; set; }
+        public static ObservableCollection<DodatnaUsluga> dodatnaUslugaCollection;
+        ICollectionView view;
 
         public UcDodatnaUsluga()
         {
             InitializeComponent();
 
+            dodatnaUslugaCollection = DodatnaUsluga.DodatnaUslugaCollection;
 
-            // Inicijalizacija Grid-a
+            InitializeDataGrid();
+        }
 
-            ObservableCollection<DodatnaUsluga> dodatneUsluge = DodatnaUsluga.DodatnaUslugaCollection;
-            ObservableCollection<DodatnaUsluga> filteredDodatneUsluge = new ObservableCollection<DodatnaUsluga>();
+        private void InitializeDataGrid()
+        {
+            dgDodatnaUsluga.AutoGenerateColumns = false;
 
-            foreach(DodatnaUsluga dodatnaUsluga in dodatneUsluge)
-            {
-                if(dodatnaUsluga.Obrisan == false)
-                {
-                    filteredDodatneUsluge.Add(dodatnaUsluga);
-                }
-            }
-
-            DataGridTextColumn column1 = new DataGridTextColumn
+            dgDodatnaUsluga.Columns.Add(new DataGridTextColumn
             {
                 Header = "Id",
                 Width = new DataGridLength(1, DataGridLengthUnitType.Star),
                 Binding = new Binding("Id")
-            };
+            });
 
-            DataGridTextColumn column2 = new DataGridTextColumn
+            dgDodatnaUsluga.Columns.Add(new DataGridTextColumn
             {
                 Header = "Naziv",
                 Width = new DataGridLength(1, DataGridLengthUnitType.Star),
                 Binding = new Binding("Naziv")
-            };
+            });
 
-            DataGridTextColumn column3 = new DataGridTextColumn
+            dgDodatnaUsluga.Columns.Add(new DataGridTextColumn
             {
                 Header = "Cena",
                 Width = new DataGridLength(1, DataGridLengthUnitType.Star),
                 Binding = new Binding("Cena")
-            };
+            });
 
-            dgDodatnaUsluga.Columns.Add(column1);
-            dgDodatnaUsluga.Columns.Add(column2);
-            dgDodatnaUsluga.Columns.Add(column3);
-
+            view = CollectionViewSource.GetDefaultView(dodatnaUslugaCollection);
+            view.Filter = HideDeletedFilter;
+            dgDodatnaUsluga.ItemsSource = view;
             dgDodatnaUsluga.IsSynchronizedWithCurrentItem = true;
-            dgDodatnaUsluga.DataContext = this;
-            dgDodatnaUsluga.ItemsSource = filteredDodatneUsluge;
+
+            dgDodatnaUsluga.AllowDrop = false;
+            dgDodatnaUsluga.CanUserAddRows = false;
+            dgDodatnaUsluga.CanUserDeleteRows = false;
+            dgDodatnaUsluga.CanUserReorderColumns = false;
+            dgDodatnaUsluga.CanUserResizeColumns = false;
+            dgDodatnaUsluga.CanUserResizeRows = false;
+            dgDodatnaUsluga.SelectionMode = DataGridSelectionMode.Single;
+            dgDodatnaUsluga.IsReadOnly = true;
+        }
+
+        private bool HideDeletedFilter(object obj)
+        {
+            return !((DodatnaUsluga)obj).Obrisan;   // nemoj prikazati ako je obrisan
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            //dodatnaUslugaCollection.Add(new DodatnaUsluga("naziv", 350.0));
+            DpDodatnaUsluga dpDodatnaUsluga = new DpDodatnaUsluga();
+            dpDodatnaUsluga.ShowDialog(); // Cekamo da se zatvori mainProzor
+            /* ovo dole radi u odnosu na povratnu vrednost dijaloga da ne bi deo ispisivanja u fajl bio u malom prozoru a deo u delete dugmetu, isto tako za edit */
+            //DodatnaUsluga.DodatnaUslugaCollection = dodatnaUslugaCollection;    // ispisi u fajl
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            DpDodatnaUsluga dpDodatnaUsluga = new DpDodatnaUsluga((DodatnaUsluga)view.CurrentItem);
+            dpDodatnaUsluga.ShowDialog(); // Cekamo da se zatvori mainProzor
+            //DodatnaUsluga.DodatnaUslugaCollection = dodatnaUslugaCollection;  // ispisi u fajl
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if(view.CurrentItem is DodatnaUsluga tmp)    // kastujemo obj u DodatnaUsluga
+            {
+                tmp.Obrisan = true;
+                view.Refresh();
+                DodatnaUsluga.DodatnaUslugaCollection = dodatnaUslugaCollection;    // ispisi u fajl
+            }
         }
     }
 }
