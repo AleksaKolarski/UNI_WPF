@@ -29,6 +29,26 @@ namespace POP_SF27_2016_Projekat.GUI
 
             Akcija.AkcijaCollectionProperty = akcije;
             */
+            /*
+            ObservableCollection<UredjeniParRacun> obs1 = new ObservableCollection<UredjeniParRacun>();
+            obs1.Add(new UredjeniParRacun(0, 3));
+            obs1.Add(new UredjeniParRacun(1, 1));
+            ObservableCollection<int> obsD1 = new ObservableCollection<int>();
+
+            ObservableCollection<UredjeniParRacun> obs2 = new ObservableCollection<UredjeniParRacun>();
+            obs2.Add(new UredjeniParRacun(1, 3));
+            obs2.Add(new UredjeniParRacun(2, 4));
+            obs2.Add(new UredjeniParRacun(0, 1));
+            ObservableCollection<int> obsD2 = new ObservableCollection<int>();
+            obsD2.Add(1);
+            obsD2.Add(0);
+
+            ObservableCollection<ProdajaNamestaja> prodaja = new ObservableCollection<ProdajaNamestaja>();
+            prodaja.Add(new ProdajaNamestaja(obs1, new DateTime(), "Neko Nekic", "123-123-123", obsD1));
+            prodaja.Add(new ProdajaNamestaja(obs2, new DateTime(), "Pera Peric", "321-321-321", obsD2));
+
+            ProdajaNamestaja.ProdajaNamestajaCollectionProperty = prodaja;
+            */
 
             DodatnaUsluga.Init();
             TipKorisnika.Init();
@@ -36,6 +56,7 @@ namespace POP_SF27_2016_Projekat.GUI
             TipNamestaja.Init();
             Namestaj.Init();
             Akcija.Init();
+            ProdajaNamestaja.Init();
 
             tbWelcome.Text = "Welcome to\n" + Salon.SalonProperty.Naziv;
             tbUsername.Focus();

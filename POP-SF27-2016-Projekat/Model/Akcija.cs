@@ -95,7 +95,7 @@ namespace POP_SF27_2016_Projekat.Model
         public Akcija() { }
         public Akcija(DateTime? datumPocetka, DateTime? datumKraja, ObservableCollection<UredjeniPar> lista)
         {
-            this.Id = 0;
+            this.Id = akcijaCollection.Count;
             this.DatumPocetka = datumPocetka;
             this.DatumKraja = datumKraja;
             this.Lista = lista;

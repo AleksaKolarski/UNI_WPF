@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfProdajaNamestaja xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ProdajaNamestaja>
+    <Id>0</Id>
+    <ListUredjeniPar>
+      <UredjeniParRacun>
+        <namestajId>0</namestajId>
+        <brojNamestaja>3</brojNamestaja>
+        <NamestajId>0</NamestajId>
+        <BrojNamestaja>3</BrojNamestaja>
+      </UredjeniParRacun>
+      <UredjeniParRacun>
+        <namestajId>1</namestajId>
+        <brojNamestaja>1</brojNamestaja>
+        <NamestajId>1</NamestajId>
+        <BrojNamestaja>1</BrojNamestaja>
+      </UredjeniParRacun>
+    </ListUredjeniPar>
+    <DatumProdaje>0001-01-01T00:00:00</DatumProdaje>
+    <Kupac>Neko Nekic</Kupac>
+    <BrojRacuna>123-123-123</BrojRacuna>
+    <ListDodatnaUslugaId />
+  </ProdajaNamestaja>
+  <ProdajaNamestaja>
+    <Id>1</Id>
+    <ListUredjeniPar>
+      <UredjeniParRacun>
+        <namestajId>1</namestajId>
+        <brojNamestaja>3</brojNamestaja>
+        <NamestajId>1</NamestajId>
+        <BrojNamestaja>3</BrojNamestaja>
+      </UredjeniParRacun>
+      <UredjeniParRacun>
+        <namestajId>2</namestajId>
+        <brojNamestaja>4</brojNamestaja>
+        <NamestajId>2</NamestajId>
+        <BrojNamestaja>4</BrojNamestaja>
+      </UredjeniParRacun>
+      <UredjeniParRacun>
+        <namestajId>0</namestajId>
+        <brojNamestaja>1</brojNamestaja>
+        <NamestajId>0</NamestajId>
+        <BrojNamestaja>1</BrojNamestaja>
+      </UredjeniParRacun>
+    </ListUredjeniPar>
+    <DatumProdaje>0001-01-01T00:00:00</DatumProdaje>
+    <Kupac>Pera Peric</Kupac>
+    <BrojRacuna>321-321-321</BrojRacuna>
+    <ListDodatnaUslugaId>
+      <int>1</int>
+      <int>0</int>
+    </ListDodatnaUslugaId>
+  </ProdajaNamestaja>
+</ArrayOfProdajaNamestaja>
