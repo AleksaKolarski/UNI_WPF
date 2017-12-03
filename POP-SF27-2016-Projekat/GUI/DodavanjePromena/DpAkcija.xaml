@@ -1,0 +1,46 @@
+﻿<Window x:Class="POP_SF27_2016_Projekat.GUI.DodavanjePromena.DpAkcija"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF27_2016_Projekat.GUI.DodavanjePromena"
+        mc:Ignorable="d"
+        Title="DpAkcija" Height="450" Width="450">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Name="tblock" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="0"/>
+        
+        <DatePicker Name="dpStart" Margin="5, 0, 0, 0" Grid.Column="1" Grid.Row="1" FirstDayOfWeek="Monday" SelectedDate="{Binding ElementName=tmp, Path=dpStart.SelectedDate}"/>
+        <DatePicker Name="dpEnd" Margin="5, 0, 0, 0" Grid.Column="2" Grid.Row="1" FirstDayOfWeek="Monday" SelectedDate="{Binding ElementName=tmp, Path=dpEnd.SelectedDate}"/>
+        
+        <Button Name="btnAddNamestaj" Content="Add" Width="40" Height="20" Grid.Column="4" Grid.Row="3" Click="btnAdd_Click"/>
+        <Button Name="btnEditNamestaj" Content="Edit" Width="40" Height="20" Grid.Column="4" Grid.Row="4" Click="btnEdit_Click"/>
+        <Button Name="btnDeleteNamestaj" Content="Delete" Width="40" Height="20" Grid.Column="4" Grid.Row="5" Click="btnDelete_Click"/>
+        
+        <DataGrid Name="dgNamestaj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="5" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" SelectionMode="Single" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Namestaj" Binding="{Binding NamestajId}" Width="*"/>
+                <DataGridTextColumn Header="Popust" Binding="{Binding Popust}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <Button Name="btnOk" Content="Ok" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="7" Width="60" Click="btnOk_Click"/>
+        <Button Name="btnCancel" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2"  Grid.Row="7"  Width="60" Click="btnCancel_Click"/>
+    </Grid>
+</Window>

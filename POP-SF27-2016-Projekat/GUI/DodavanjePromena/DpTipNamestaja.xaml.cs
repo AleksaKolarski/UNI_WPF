@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 
 namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 {
-    public partial class DpDodatnaUsluga : Window
+    public partial class DpTipNamestaja : Window
     {
         private enum Operacija
         {
@@ -26,51 +26,42 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 
         private Operacija operacija;
 
-        public DpDodatnaUsluga()
+        public DpTipNamestaja()
         {
             InitializeComponent();
-            tblock.Text = "Nova dodatna usluga:";
+            tblock.Text = "Nov tip namestaja:";
             operacija = Operacija.DODAVANJE;
         }
 
-        DodatnaUsluga tmp;
-        public DpDodatnaUsluga(DodatnaUsluga dodatnaUsluga)
+        TipNamestaja tmp;
+        public DpTipNamestaja(TipNamestaja tipNamestaja)
         {
             InitializeComponent();
-            if(dodatnaUsluga == null)
+            if(tipNamestaja == null)
             {
                 Close();
+                return;
             }
-            tmp = dodatnaUsluga;
-            tblock.Text = "Izmena dodatne usluge:";
+            tmp = tipNamestaja;
+            tblock.Text = "Izmena namestaja:";
             tbNaziv.Text = tmp.Naziv;
-            tbCena.Text = tmp.Cena.ToString();
-
             operacija = Operacija.IZMENA;
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            if(tbNaziv.Text != "")
+            if (tbNaziv.Text != "")
             {
-                double cena;
-                if (double.TryParse(tbCena.Text, out cena))
+                if (operacija == Operacija.DODAVANJE)
                 {
-                    if (operacija == Operacija.DODAVANJE)
-                    {
-                        DodatnaUsluga.Add(new DodatnaUsluga(tbNaziv.Text, double.Parse(tbCena.Text)));
-                    }
-                    else if (operacija == Operacija.IZMENA)
-                    {
-                        DodatnaUsluga.Edit(tmp, tbNaziv.Text, double.Parse(tbCena.Text));
-                    }
-                    Close();
-                    return;
+                    TipNamestaja.Add(new TipNamestaja(tbNaziv.Text));
                 }
-                else
+                else if (operacija == Operacija.IZMENA)
                 {
-                    tbCena.Focus();
+                    TipNamestaja.Edit(tmp, tbNaziv.Text);
                 }
+                Close();
+                return;
             }
             else
             {

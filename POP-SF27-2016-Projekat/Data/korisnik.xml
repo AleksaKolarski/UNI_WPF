@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfKorisnik xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Korisnik>
-    <Id>ime1prezime1username1password1AdministratorTrueTrueTrueTrueTrueTrueTrueTrue636461702975042026636461727237139739</Id>
+    <Id>0</Id>
     <Ime>ime1</Ime>
     <Prezime>prezime1</Prezime>
     <KorisnickoIme>username1</KorisnickoIme>
     <Lozinka>password1</Lozinka>
-    <TipKorisnikaId>AdministratorRead, Add, Edit, DeleteRead, Add, Edit, DeleteRead, Add, Edit, DeleteRead, Add, Edit, DeleteRead, Add, Edit, DeleteRead, EditRead, Add, Edit, DeleteRead, Add, Edit, Delete6364677396459825840</TipKorisnikaId>
+    <TipKorisnikaId>0</TipKorisnikaId>
     <Obrisan>false</Obrisan>
   </Korisnik>
   <Korisnik>
-    <Id>ime2prezime2username2password2ProdavacFalseFalseFalseFalseTrueFalseFalseFalse63646170764232897916364617287915086431</Id>
+    <Id>1</Id>
     <Ime>ime2</Ime>
     <Prezime>prezime2</Prezime>
     <KorisnickoIme>username2</KorisnickoIme>
     <Lozinka>password2</Lozinka>
-    <TipKorisnikaId>ProdavacReadReadReadReadReadReadReadRead6364677396463426050</TipKorisnikaId>
+    <TipKorisnikaId>1</TipKorisnikaId>
     <Obrisan>false</Obrisan>
   </Korisnik>
 </ArrayOfKorisnik>

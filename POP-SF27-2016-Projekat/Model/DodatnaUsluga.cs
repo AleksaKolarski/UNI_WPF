@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace POP_SF27_2016_Projekat.Model
 {
@@ -16,6 +17,7 @@ namespace POP_SF27_2016_Projekat.Model
         private string naziv;
         private double cena;
         private bool obrisan;
+        public static ObservableCollection<DodatnaUsluga> dodatnaUslugaCollection;
         #endregion
 
         #region Properties
@@ -52,7 +54,6 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("Cena");
             }
         }
-
         public bool Obrisan
         {
             get
@@ -66,8 +67,7 @@ namespace POP_SF27_2016_Projekat.Model
             }
         }
 
-        
-        public static ObservableCollection<DodatnaUsluga> DodatnaUslugaCollection
+        public static ObservableCollection<DodatnaUsluga> DodatnaUslugaCollectionProperty
         {
             get => DeSerializeObservableCollection<DodatnaUsluga>("dodatna_usluga.xml");
             set => SerializeObservableCollection<DodatnaUsluga>("dodatna_usluga.xml", value);
@@ -79,7 +79,7 @@ namespace POP_SF27_2016_Projekat.Model
         public DodatnaUsluga() { }
         public DodatnaUsluga(string naziv, double cena)
         {
-            this.Id = DodatnaUslugaCollection.Count();
+            this.Id = DodatnaUslugaCollectionProperty.Count();
             this.Naziv = naziv;
             this.Cena = cena;
             this.Obrisan = false;
@@ -87,11 +87,16 @@ namespace POP_SF27_2016_Projekat.Model
         #endregion
 
         #region Methods
+        public static void Init()
+        {
+            dodatnaUslugaCollection = DodatnaUslugaCollectionProperty;
+        }
+
         public static DodatnaUsluga GetById(int id)
         {
             if (id >= 0)
             {
-                foreach (DodatnaUsluga dodatnaUsluga in DodatnaUslugaCollection)
+                foreach (DodatnaUsluga dodatnaUsluga in dodatnaUslugaCollection)
                 {
                     if (dodatnaUsluga.Id == id)
                     {
@@ -106,14 +111,33 @@ namespace POP_SF27_2016_Projekat.Model
         {
             /* Kada predjemo na rad sa bazom podataka ovde se nece ucitavati 
              * cela lista vec ce se samo slati komanda za dodavanje novog. */
-            ObservableCollection<DodatnaUsluga> tempList = DodatnaUslugaCollection;
-            tempList.Add(dodatnaUslugaToAdd);
-            DodatnaUslugaCollection = tempList;
+            if(dodatnaUslugaToAdd == null)
+            {
+                return;
+            }
+            dodatnaUslugaCollection.Add(dodatnaUslugaToAdd);
+            //DodatnaUslugaCollection = dodatnaUslugaCollection;
+        }
+
+        public static void Edit(DodatnaUsluga dodatnaUslugaToEdit, string naziv, double cena)
+        {
+            if(dodatnaUslugaToEdit == null)
+            {
+                return;
+            }
+            dodatnaUslugaToEdit.Naziv = naziv;
+            dodatnaUslugaToEdit.Cena = cena;
+            //DodatnaUslugaCollection = dodatnaUslugaCollection;
         }
 
         public static void Remove(DodatnaUsluga dodatnaUslugaToRemove)
         {
+            if(dodatnaUslugaToRemove == null)
+            {
+                return;
+            }
             dodatnaUslugaToRemove.Obrisan = true;
+            //DodatnaUslugaCollection = dodatnaUslugaCollection;
         }
 
         public override string ToString()

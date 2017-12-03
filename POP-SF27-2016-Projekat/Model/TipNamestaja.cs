@@ -1,24 +1,65 @@
-﻿using POP_SF27_2016_Projekat.Utils;
+﻿using static POP_SF27_2016_Projekat.Utils.GenericSerializer;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace POP_SF27_2016_Projekat.Model
 { 
-    public class TipNamestaja
+    public class TipNamestaja : INotifyPropertyChanged
     {
+        #region Fields
+        private int id;
+        private string naziv;
+        private bool obrisan;
+        public static ObservableCollection<TipNamestaja> tipNamestajaCollection;
+        #endregion
+
         #region Properties
-        public string Id { get; set; }
-        public string Naziv { get; set; }
-
-        public bool Obrisan { get; set; }
-
-        public static List<TipNamestaja> TipNamestajaList
+        public int Id
         {
-            get => GenericSerializer.DeSerializeList<TipNamestaja>("tip_namestaja.xml");
-            set => GenericSerializer.SerializeList<TipNamestaja>("tip_namestaja.xml", value);
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+                OnPropertyChanged("Id");
+            }
+        }
+        public string Naziv
+        {
+            get
+            {
+                return naziv;
+            }
+            set
+            {
+                naziv = value;
+                OnPropertyChanged("Naziv");
+            }
+        }
+        public bool Obrisan
+        {
+            get
+            {
+                return obrisan;
+            }
+            set
+            {
+                obrisan = value;
+                OnPropertyChanged("Obrisan");
+            }
+        }
+
+        public static ObservableCollection<TipNamestaja> TipNamestajaCollectionProperty
+        {
+            get => DeSerializeObservableCollection<TipNamestaja>("tip_namestaja.xml");
+            set => SerializeObservableCollection<TipNamestaja>("tip_namestaja.xml", value);
         }
         #endregion
 
@@ -26,45 +67,70 @@ namespace POP_SF27_2016_Projekat.Model
         public TipNamestaja() { }
         public TipNamestaja(string naziv)
         {
-            this.Id = naziv + DateTime.Now.Ticks + TipNamestajaList.Count;
-            this.Naziv = Naziv;
+            this.Id = tipNamestajaCollection.Count;
+            this.Naziv = naziv;
             this.Obrisan = false;
         }
         #endregion
 
         #region Methods
-        public static void Add(TipNamestaja tipNamestajaToAdd)
+        public static void Init()
         {
-            /* Kada predjemo na rad sa bazom podataka ovde se nece ucitavati 
-             * cela lista vec ce se samo slati komanda za dodavanje novog. */
-            List<TipNamestaja> tempList = TipNamestajaList;
-            tempList.Add(tipNamestajaToAdd);
-            TipNamestajaList = tempList;
+            tipNamestajaCollection = TipNamestajaCollectionProperty;
         }
 
-        public static void Remove(TipNamestaja tipNamestajaToRemove)
+        public static TipNamestaja GetById(int id)
         {
-            tipNamestajaToRemove.Obrisan = true;
-        }
-
-        public static TipNamestaja GetById(string id)
-        {
-            if (id != null)
+            foreach (TipNamestaja tip in tipNamestajaCollection)
             {
-                foreach (TipNamestaja tip in TipNamestajaList)
+                if (tip.Id == id)
                 {
-                    if (tip.Id == id)
-                    {
-                        return tip;
-                    }
+                    return tip;
                 }
             }
             return null;
         }
 
+        public static void Add(TipNamestaja tipNamestajaToAdd)
+        {
+            /* Kada predjemo na rad sa bazom podataka ovde se nece ucitavati 
+             * cela lista vec ce se samo slati komanda za dodavanje novog. */
+            if(tipNamestajaToAdd == null)
+            {
+                return;
+            }
+            tipNamestajaCollection.Add(tipNamestajaToAdd);
+        }
+
+        public static void Edit(TipNamestaja tipNamestajaToEdit, string naziv)
+        {
+            if (tipNamestajaToEdit == null)
+            {
+                return;
+            }
+            tipNamestajaToEdit.Naziv = naziv;
+        }
+
+        public static void Remove(TipNamestaja tipNamestajaToRemove)
+        {
+            if (tipNamestajaToRemove == null)
+            {
+                return;
+            }
+            tipNamestajaToRemove.Obrisan = true;
+        }
+
         public override string ToString()
         {
-            return $"{Id}, {Naziv}";
+            return $"{Naziv}";
+        }
+        #endregion
+
+        #region DataBinding
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
         #endregion
     }

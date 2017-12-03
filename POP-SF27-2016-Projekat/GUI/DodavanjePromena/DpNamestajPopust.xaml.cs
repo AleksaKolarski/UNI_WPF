@@ -1,7 +1,6 @@
 ﻿using POP_SF27_2016_Projekat.Model;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +15,7 @@ using System.Windows.Shapes;
 
 namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 {
-    public partial class DpDodatnaUsluga : Window
+    public partial class DpNamestajPopust : Window
     {
         private enum Operacija
         {
@@ -26,55 +25,56 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 
         private Operacija operacija;
 
-        public DpDodatnaUsluga()
+        Akcija akcija;
+        public DpNamestajPopust(Akcija akcijaT)
         {
             InitializeComponent();
-            tblock.Text = "Nova dodatna usluga:";
+            tblock.Text = "Nov popust za namestaj:";
             operacija = Operacija.DODAVANJE;
+            cbNamestaj.ItemsSource = Namestaj.namestajCollection;
+            akcija = akcijaT;
         }
 
-        DodatnaUsluga tmp;
-        public DpDodatnaUsluga(DodatnaUsluga dodatnaUsluga)
+        UredjeniPar tmp;
+        public DpNamestajPopust(UredjeniPar par, Akcija akcijaT)
         {
             InitializeComponent();
-            if(dodatnaUsluga == null)
+            if (par == null)
             {
-                Close();
+                return;
             }
-            tmp = dodatnaUsluga;
-            tblock.Text = "Izmena dodatne usluge:";
-            tbNaziv.Text = tmp.Naziv;
-            tbCena.Text = tmp.Cena.ToString();
-
+            tmp = par;
+            tblock.Text = "Izmena popusta za namestaj:";
+            tbPopust.Text = tmp.Popust.ToString();
+            cbNamestaj.ItemsSource = Namestaj.namestajCollection;
             operacija = Operacija.IZMENA;
+            akcija = akcijaT;
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            if(tbNaziv.Text != "")
+            double popust;
+            if (double.TryParse(tbPopust.Text, out popust))
             {
-                double cena;
-                if (double.TryParse(tbCena.Text, out cena))
+                if (cbNamestaj.SelectedItem != null)
                 {
                     if (operacija == Operacija.DODAVANJE)
                     {
-                        DodatnaUsluga.Add(new DodatnaUsluga(tbNaziv.Text, double.Parse(tbCena.Text)));
+                        akcija.Lista.Add(new UredjeniPar(((Namestaj)cbNamestaj.SelectedItem).Id, double.Parse(tbPopust.Text)));
                     }
                     else if (operacija == Operacija.IZMENA)
                     {
-                        DodatnaUsluga.Edit(tmp, tbNaziv.Text, double.Parse(tbCena.Text));
+                        tmp.NamestajId = ((Namestaj)cbNamestaj.SelectedItem).Id;
+                        tmp.Popust = double.Parse(tbPopust.Text);
                     }
                     Close();
                     return;
                 }
-                else
-                {
-                    tbCena.Focus();
-                }
+                cbNamestaj.Focus();
             }
             else
             {
-                tbNaziv.Focus();
+                tbPopust.Focus();
             }
         }
 

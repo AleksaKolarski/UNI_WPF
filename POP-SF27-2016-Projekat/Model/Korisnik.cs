@@ -1,29 +1,118 @@
-﻿using POP_SF27_2016_Projekat.Utils;
+﻿using static POP_SF27_2016_Projekat.Utils.GenericSerializer;
 using POP_SF27_2016_Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace POP_SF27_2016_Projekat.Model
 {
-    public class Korisnik
+    public class Korisnik : INotifyPropertyChanged
     {
+        #region Fields
+        private int id;
+        private string ime;
+        private string prezime;
+        private string korisnickoIme;
+        private string lozinka;
+        private int tipKorisnikaId;
+        private bool obrisan;
+        public static ObservableCollection<Korisnik> korisnikCollection;
+        #endregion
+
         #region Properties
-        public string Id { get; set; }
-        public string Ime { get; set; }
-        public string Prezime { get; set; }
-        public string KorisnickoIme { get; set; }
-        public string Lozinka { get; set; }
-        public string TipKorisnikaId { get; set; }
-
-        public bool Obrisan { get; set; }
-
-        public static List<Korisnik> KorisnikList
+        public int Id
         {
-            get => GenericSerializer.DeSerializeList<Korisnik>("korisnik.xml");
-            set => GenericSerializer.SerializeList<Korisnik>("korisnik.xml", value);
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+                OnPropertyChanged("Id");
+            }
+        }
+        public string Ime
+        {
+            get
+            {
+                return ime;
+            }
+            set
+            {
+                ime = value;
+                OnPropertyChanged("Ime");
+            }
+        }
+        public string Prezime
+        {
+            get
+            {
+                return prezime;
+            }
+            set
+            {
+                prezime = value;
+                OnPropertyChanged("Prezime");
+            }
+        }
+        public string KorisnickoIme
+        {
+            get
+            {
+                return korisnickoIme;
+            }
+            set
+            {
+                korisnickoIme = value;
+                OnPropertyChanged("KorisnickoIme");
+            }
+        }
+        public string Lozinka
+        {
+            get
+            {
+                return lozinka;
+            }
+            set
+            {
+                lozinka = value;
+                OnPropertyChanged("Lozinka");
+            }
+        }
+        public int TipKorisnikaId
+        {
+            get
+            {
+                return tipKorisnikaId;
+            }
+            set
+            {
+                tipKorisnikaId = value;
+                OnPropertyChanged("TipKorisnikaId");
+            }
+        }
+        public bool Obrisan
+        {
+            get
+            {
+                return obrisan;
+            }
+            set
+            {
+                obrisan = value;
+                OnPropertyChanged("Obrisan");
+            }
+        }
+
+        public static ObservableCollection<Korisnik> KorisnikCollectionProperty
+        {
+            get => DeSerializeObservableCollection<Korisnik>("korisnik.xml");
+            set => SerializeObservableCollection<Korisnik>("korisnik.xml", value);
         }
         
         public static Korisnik Trenutni { get; private set; } = null;
@@ -31,9 +120,9 @@ namespace POP_SF27_2016_Projekat.Model
 
         #region Constructors
         public Korisnik() { }
-        public Korisnik(string ime, string prezime, string korisnickoIme, string lozinka, string tipKorisnikaId)
+        public Korisnik(string ime, string prezime, string korisnickoIme, string lozinka, int tipKorisnikaId)
         {
-            this.Id = ime + prezime + korisnickoIme + lozinka + tipKorisnikaId + DateTime.Now.Ticks + KorisnikList.Count;
+            this.Id = korisnikCollection.Count;
             this.Ime = ime;
             this.Prezime = prezime;
             this.KorisnickoIme = korisnickoIme;
@@ -43,23 +132,14 @@ namespace POP_SF27_2016_Projekat.Model
         #endregion
 
         #region Methods
-        public static void Add(Korisnik korisnikToAdd)
+        public static void Init()
         {
-            /* Kada predjemo na rad sa bazom podataka ovde se nece ucitavati 
-             * cela lista vec ce se samo slati komanda za dodavanje novog. */
-            List<Korisnik> tempList = KorisnikList;
-            tempList.Add(korisnikToAdd);
-            KorisnikList = tempList;
+            korisnikCollection = KorisnikCollectionProperty;
         }
 
-        public static void Remove(Korisnik korisnikToRemove)
+        public static Korisnik GetById(int id)
         {
-            korisnikToRemove.Obrisan = true;
-        }
-
-        public static Korisnik GetById(string id)
-        {
-            foreach (Korisnik item in KorisnikList)
+            foreach (Korisnik item in korisnikCollection)
             {
                 if (item.Id == id)
                 {
@@ -69,11 +149,46 @@ namespace POP_SF27_2016_Projekat.Model
             return null;
         }
 
+        public static void Add(Korisnik korisnikToAdd)
+        {
+            /* Kada predjemo na rad sa bazom podataka ovde se nece ucitavati 
+             * cela lista vec ce se samo slati komanda za dodavanje novog. */
+            if (korisnikToAdd == null)
+            {
+                return;
+            }
+            //List<Korisnik> tempList = KorisnikList;
+            korisnikCollection.Add(korisnikToAdd);
+            //KorisnikList = tempList;
+        }
+
+        public static void Edit(Korisnik korisnikToEdit, string ime, string prezime, string korisnickoIme, string lozinka, int tipKorisnikaId)
+        {
+            if (korisnikToEdit == null)
+            {
+                return;
+            }
+            korisnikToEdit.Ime = ime;
+            korisnikToEdit.Prezime = prezime;
+            korisnikToEdit.KorisnickoIme = korisnickoIme;
+            korisnikToEdit.Lozinka = lozinka;
+            korisnikToEdit.TipKorisnikaId = tipKorisnikaId;
+        }
+
+        public static void Remove(Korisnik korisnikToRemove)
+        {
+            if(korisnikToRemove == null)
+            {
+                return;
+            }
+            korisnikToRemove.Obrisan = true;
+        }
+
         public static bool Login(string username, string password)
         {
-            foreach (Korisnik korisnik in KorisnikList)
+            foreach (Korisnik korisnik in korisnikCollection)
             {
-                if(korisnik.KorisnickoIme == username && korisnik.Lozinka == password)
+                if(korisnik.KorisnickoIme == username && korisnik.Lozinka == password && korisnik.Obrisan == false)
                 {
                     Trenutni = korisnik;
                     return true;
@@ -90,6 +205,14 @@ namespace POP_SF27_2016_Projekat.Model
         public override string ToString()
         {
             return $"{Id}, {Ime}, {Prezime}, {KorisnickoIme}, {Lozinka}, {TipKorisnika.GetById(TipKorisnikaId).Naziv}";
+        }
+        #endregion
+
+        #region DataBinding
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
         #endregion
     }

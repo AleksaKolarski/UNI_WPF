@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,17 +19,114 @@ namespace POP_SF27_2016_Projekat.Model
     }
     #endregion
 
-    public class Dozvole
+    public class Dozvole : INotifyPropertyChanged
     {
+        private Dozvola akcija; // Dozvola za upravljanje akcijama
+        private Dozvola dodatnaUsluga; // Dozvola za upravljanje dodatnim uslugama
+        private Dozvola korisnik; // Dozvola za upravljanje korisnicima
+        private Dozvola namestaj; // Dozvola za upravljanje namestajem
+        private Dozvola prodajaNamestaja; // Dozvola za upravljanje prodajama
+        private Dozvola salon; // Dozvola za upravljanje informacijama o salonu
+        private Dozvola tipKorisnika; // Dozvola za upravljanjem tipovima korisnika
+        private Dozvola tipNamestaja; // Dozvola za upravljanjem tipovima namestaja
+
         #region Properties
-        public Dozvola Akcija; // Dozvola za upravljanje akcijama
-        public Dozvola DodatnaUsluga; // Dozvola za upravljanje dodatnim uslugama
-        public Dozvola Korisnik; // Dozvola za upravljanje korisnicima
-        public Dozvola Namestaj; // Dozvola za upravljanje namestajem
-        public Dozvola ProdajaNamestaja; // Dozvola za upravljanje prodajama
-        public Dozvola Salon; // Dozvola za upravljanje informacijama o salonu
-        public Dozvola TipKorisnika; // Dozvola za upravljanjem tipovima korisnika
-        public Dozvola TipNamestaja; // Dozvola za upravljanjem tipovima namestaja
+        public Dozvola Akcija
+        {
+            get
+            {
+                return akcija;
+            }
+            set
+            {
+                akcija = value;
+                OnPropertyChanged("Akcija");
+            }
+        }
+        public Dozvola DodatnaUsluga
+        {
+            get
+            {
+                return dodatnaUsluga;
+            }
+            set
+            {
+                dodatnaUsluga = value;
+                OnPropertyChanged("DodatnaUsluga");
+            }
+        }
+        public Dozvola Korisnik
+        {
+            get
+            {
+                return korisnik;
+            }
+            set
+            {
+                korisnik = value;
+                OnPropertyChanged("Korisnik");
+            }
+        }
+        public Dozvola Namestaj
+        {
+            get
+            {
+                return namestaj;
+            }
+            set
+            {
+                namestaj = value;
+                OnPropertyChanged("Namestaj");
+            }
+        }
+        public Dozvola ProdajaNamestaja
+        {
+            get
+            {
+                return prodajaNamestaja;
+            }
+            set
+            {
+                prodajaNamestaja = value;
+                OnPropertyChanged("ProdajaNamestaja");
+            }
+        }
+        public Dozvola Salon
+        {
+            get
+            {
+                return salon;
+            }
+            set
+            {
+                salon = value;
+                OnPropertyChanged("Salon");
+            }
+        }
+        public Dozvola TipKorisnika
+        {
+            get
+            {
+                return tipKorisnika;
+            }
+            set
+            {
+                tipKorisnika = value;
+                OnPropertyChanged("TipKorisnika");
+            }
+        }
+        public Dozvola TipNamestaja
+        {
+            get
+            {
+                return tipNamestaja;
+            }
+            set
+            {
+                tipNamestaja = value;
+                OnPropertyChanged("TipNamestaja");
+            }
+        }
         #endregion
 
         #region Constructors
@@ -52,6 +150,14 @@ namespace POP_SF27_2016_Projekat.Model
                 + Korisnik.ToString() + Namestaj.ToString()
                 + TipNamestaja.ToString() + Salon.ToString()
                 + TipKorisnika.ToString() + TipNamestaja.ToString();
+        }
+        #endregion
+
+        #region DataBinding
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
         #endregion
     }

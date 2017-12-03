@@ -11,7 +11,7 @@ namespace POP_SF27_2016_Projekat.Model
     {
         #region Properties
         public string Id { get; set; }
-        public List<string> ProdatNamestajIDList { get; set; }
+        public List<int> ProdatNamestajIDList { get; set; }
         public List<int> BrojNamestajaList { get; set; }
         public DateTime DatumProdaje { get; set; }
         public string Kupac { get; set; }
@@ -29,7 +29,7 @@ namespace POP_SF27_2016_Projekat.Model
 
         #region Constructors
         public ProdajaNamestaja() { }
-        public ProdajaNamestaja(List<string> prodatNamestajList, List<int> brojNamestajaList, DateTime datumProdaje, string kupac, string brojRacuna, List<int> dodatnaUslugaIDList)
+        public ProdajaNamestaja(List<int> prodatNamestajList, List<int> brojNamestajaList, DateTime datumProdaje, string kupac, string brojRacuna, List<int> dodatnaUslugaIDList)
         {
             this.Id = datumProdaje.ToString() + kupac + brojRacuna + DateTime.Now.Ticks + ProdajaNamestajaList.Count;
             this.ProdatNamestajIDList = prodatNamestajList;
@@ -71,15 +71,16 @@ namespace POP_SF27_2016_Projekat.Model
             double cena = 0;
             for (int i = 0; i < ProdatNamestajIDList.Count; ++i)
             {
-                string tmpNamestajId = ProdatNamestajIDList[i];
+                int tmpNamestajId = ProdatNamestajIDList[i];
                 cena += Namestaj.GetById(ProdatNamestajIDList[i]).JedinicnaCena * BrojNamestajaList[i];
-                foreach(Akcija akcija in Akcija.AkcijaCollection)
+                foreach(Akcija akcija in Akcija.akcijaCollection)
                 {
                     if (akcija.Obrisan == false)
                     {
                         DateTime tempDateTime = new DateTime();
                         if (tempDateTime > akcija.DatumPocetka && tempDateTime < akcija.DatumKraja)
                         {
+                            /*
                             for (int j = 0; j < akcija.NamestajIdList.Count; ++j)
                             {
                                 if (akcija.NamestajIdList[j] == tmpNamestajId)
@@ -87,6 +88,7 @@ namespace POP_SF27_2016_Projekat.Model
                                     cena -= akcija.PopustList[j];
                                 }
                             }
+                            */
                         }
                     }
                 }

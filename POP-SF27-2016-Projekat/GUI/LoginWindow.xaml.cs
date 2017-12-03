@@ -1,5 +1,7 @@
 ﻿using POP_SF27_2016_Projekat.Model;
+using System.Collections.ObjectModel;
 using System.Windows;
+using System;
 
 
 namespace POP_SF27_2016_Projekat.GUI
@@ -9,6 +11,31 @@ namespace POP_SF27_2016_Projekat.GUI
         public LoginWindow()
         {
             InitializeComponent();
+
+            /*
+            ObservableCollection<UredjeniPar> obs1 = new ObservableCollection<UredjeniPar>();
+            obs1.Add(new UredjeniPar(0, 20));
+            obs1.Add(new UredjeniPar(1, 30));
+            Akcija akcija1 = new Akcija(new DateTime(), new DateTime(), obs1);
+
+            ObservableCollection<UredjeniPar> obs2 = new ObservableCollection<UredjeniPar>();
+            obs2.Add(new UredjeniPar(1, 40));
+            obs2.Add(new UredjeniPar(2, 50));
+            Akcija akcija2 = new Akcija(new DateTime(), new DateTime(), obs2);
+
+            ObservableCollection<Akcija> akcije = new ObservableCollection<Akcija>();
+            akcije.Add(akcija1);
+            akcije.Add(akcija2);
+
+            Akcija.AkcijaCollectionProperty = akcije;
+            */
+
+            DodatnaUsluga.Init();
+            TipKorisnika.Init();
+            Korisnik.Init();
+            TipNamestaja.Init();
+            Namestaj.Init();
+            Akcija.Init();
 
             tbWelcome.Text = "Welcome to\n" + Salon.SalonProperty.Naziv;
             tbUsername.Focus();
@@ -39,6 +66,7 @@ namespace POP_SF27_2016_Projekat.GUI
                 mainProzor.ShowDialog(); // Cekamo da se zatvori mainProzor
                 Korisnik.Logout(); // Za svaki slucaj kad god se vratimo u ovaj prozor izlogovati korisnika
                 this.Show(); // Prikazemo opet login prozor koji bi trebao da bude ociscen
+                this.Activate(); // Nekad prozor ode u pozadinu
             }
         }
     }

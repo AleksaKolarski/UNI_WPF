@@ -59,8 +59,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GUI\DodavanjePromena\DpAkcija.xaml.cs">
+      <DependentUpon>DpAkcija.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\DodavanjePromena\DpDodatnaUsluga.xaml.cs">
       <DependentUpon>DpDodatnaUsluga.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\DodavanjePromena\DpKorisnik.xaml.cs">
+      <DependentUpon>DpKorisnik.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\DodavanjePromena\DpNamestaj.xaml.cs">
+      <DependentUpon>DpNamestaj.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\DodavanjePromena\DpNamestajPopust.xaml.cs">
+      <DependentUpon>DpNamestajPopust.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\DodavanjePromena\DpTipKorisnika.xaml.cs">
+      <DependentUpon>DpTipKorisnika.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\DodavanjePromena\DpTipNamestaja.xaml.cs">
+      <DependentUpon>DpTipNamestaja.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -156,7 +174,31 @@
     <Resource Include="Data\korisnik.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="GUI\DodavanjePromena\DpAkcija.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\DodavanjePromena\DpDodatnaUsluga.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\DodavanjePromena\DpKorisnik.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\DodavanjePromena\DpNamestaj.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\DodavanjePromena\DpNamestajPopust.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\DodavanjePromena\DpTipKorisnika.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\DodavanjePromena\DpTipNamestaja.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

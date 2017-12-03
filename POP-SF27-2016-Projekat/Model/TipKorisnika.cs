@@ -1,26 +1,78 @@
-﻿using POP_SF27_2016_Projekat.Utils;
+﻿using static POP_SF27_2016_Projekat.Utils.GenericSerializer;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.ComponentModel;
 
 namespace POP_SF27_2016_Projekat.Model
 {
-    public class TipKorisnika
+    public class TipKorisnika : INotifyPropertyChanged
     {
+        #region Fields
+        private int id;
+        private string naziv;
+        private Dozvole dozvole;
+        private bool obrisan;
+        public static ObservableCollection<TipKorisnika> tipKorisnikaCollection;
+        #endregion
+
         #region Properties
-        public string Id { get; set; }
-        public string Naziv { get; set; }
-        public Dozvole Dozvole { get; set; }
-
-        public bool Obrisan { get; set; }
-
-        public static List<TipKorisnika> TipKorisnikaList
+        public int Id
         {
-            get => GenericSerializer.DeSerializeList<TipKorisnika>("tip_korisnika.xml");
-            set => GenericSerializer.SerializeList<TipKorisnika>("tip_korisnika.xml", value);
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+                OnPropertyChanged("Id");
+            }
+        }
+        public string Naziv
+        {
+            get
+            {
+                return naziv;
+            }
+            set
+            {
+                naziv = value;
+                OnPropertyChanged("Naziv");
+            }
+        }
+        public Dozvole Dozvole
+        {
+            get
+            {
+                return dozvole;
+            }
+            set
+            {
+                dozvole = value;
+                OnPropertyChanged("Dozvole");
+            }
+        }
+        public bool Obrisan
+        {
+            get
+            {
+                return obrisan;
+            }
+            set
+            {
+                obrisan = value;
+                OnPropertyChanged("Obrisan");
+            }
+        }
+
+        public static ObservableCollection<TipKorisnika> TipKorisnikaCollectionProperty
+        {
+            get => DeSerializeObservableCollection<TipKorisnika>("tip_korisnika.xml");
+            set => SerializeObservableCollection<TipKorisnika>("tip_korisnika.xml", value);
         }
         #endregion
 
@@ -28,30 +80,22 @@ namespace POP_SF27_2016_Projekat.Model
         public TipKorisnika() {}
         public TipKorisnika(string naziv, Dozvole dozvole)
         {
-            this.Id = naziv + dozvole.ToString() + DateTime.Now.Ticks + TipKorisnikaList.Count;
+            this.Id = tipKorisnikaCollection.Count;
             this.Naziv = naziv;
             this.Dozvole = dozvole;
+            this.Obrisan = false;
         }
         #endregion
 
         #region Methods
-        public static void Add(TipKorisnika tipKorisnikaToAdd)
+        public static void Init()
         {
-            /* Kada predjemo na rad sa bazom podataka ovde se nece ucitavati 
-             * cela lista vec ce se samo slati komanda za dodavanje novog. */
-            List<TipKorisnika> tempList = TipKorisnikaList;
-            tempList.Add(tipKorisnikaToAdd);
-            TipKorisnikaList = tempList;
+            tipKorisnikaCollection = TipKorisnikaCollectionProperty;
         }
 
-        public static void Remove(TipKorisnika tipKorisnikaToRemove)
+        public static TipKorisnika GetById(int id)
         {
-            tipKorisnikaToRemove.Obrisan = true;
-        }
-
-        public static TipKorisnika GetById(string id)
-        {
-            foreach (TipKorisnika item in TipKorisnikaList)
+            foreach (TipKorisnika item in tipKorisnikaCollection)
             {
                 if (item.Id == id)
                 {
@@ -61,9 +105,49 @@ namespace POP_SF27_2016_Projekat.Model
             return null;
         }
 
+        public static void Add(TipKorisnika tipKorisnikaToAdd)
+        {
+            /* Kada predjemo na rad sa bazom podataka ovde se nece ucitavati 
+             * cela lista vec ce se samo slati komanda za dodavanje novog. */
+            if(tipKorisnikaToAdd == null)
+            {
+                return;
+            }
+            tipKorisnikaCollection.Add(tipKorisnikaToAdd);
+        }
+
+        public static void Edit(TipKorisnika tipKorisnikaToEdit, string naziv, Dozvole dozvole)
+        {
+            if(tipKorisnikaToEdit == null)
+            {
+                return;
+            }
+            tipKorisnikaToEdit.Naziv = naziv;
+            tipKorisnikaToEdit.Dozvole = dozvole;
+            //TipKorisnikaCollectionProperty = tipKorisnikaCollection;
+        }
+
+        public static void Remove(TipKorisnika tipKorisnikaToRemove)
+        {
+            if(tipKorisnikaToRemove == null)
+            {
+                return;
+            }
+            tipKorisnikaToRemove.Obrisan = true;
+            //TipKorisnikaCollectionProperty = tipKorisnikaCollection;
+        }
+
         public override string ToString()
         {
-            return $"{Id}, {Naziv}, {Dozvole.ToString()}";
+            return $"{Naziv}";
+        }
+        #endregion
+
+        #region DataBinding
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
         #endregion
     }

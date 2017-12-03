@@ -34,6 +34,7 @@ namespace POP_SF27_2016_Projekat.GUI
 
             this.Title = $"Salon namestaja: {Salon.SalonProperty.Naziv} | Ulogovani ste kao: {Korisnik.Trenutni.Ime} {Korisnik.Trenutni.Prezime}";
 
+
             /* Inicijalizacija prozora */
             ucProdaja = new UcProdaja();
             ucRadSaNamestajem = new UcRadSaNamestajem();

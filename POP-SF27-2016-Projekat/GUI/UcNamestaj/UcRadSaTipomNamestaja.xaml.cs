@@ -1,5 +1,8 @@
-﻿using System;
+﻿using POP_SF27_2016_Projekat.GUI.DodavanjePromena;
+using POP_SF27_2016_Projekat.Model;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,14 +18,44 @@ using System.Windows.Shapes;
 
 namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
 {
-    /// <summary>
-    /// Interaction logic for UcRadSaTipomNamestaja.xaml
-    /// </summary>
     public partial class UcRadSaTipomNamestaja : UserControl
     {
+        ICollectionView view;
+
         public UcRadSaTipomNamestaja()
         {
             InitializeComponent();
+
+            view = CollectionViewSource.GetDefaultView(TipNamestaja.tipNamestajaCollection);
+            view.Filter = HideDeletedFilter;
+            dgTipNamestaja.ItemsSource = view;
+            dgTipNamestaja.IsSynchronizedWithCurrentItem = true;
+        }
+
+        private bool HideDeletedFilter(object obj)
+        {
+            return !((TipNamestaja)obj).Obrisan;   // nemoj prikazati ako je obrisan
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            DpTipNamestaja dpTipNamestaja = new DpTipNamestaja();
+            dpTipNamestaja.ShowDialog(); // Cekamo da se zatvori prozor za dodavanje
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            DpTipNamestaja dpTipNamestaja = new DpTipNamestaja((TipNamestaja)view.CurrentItem);
+            dpTipNamestaja.ShowDialog(); // Cekamo da se zatvori prozor za menjanje
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (view.CurrentItem is TipNamestaja tmp)    // kastujemo obj u DodatnaUsluga
+            {
+                TipNamestaja.Remove(tmp);
+                view.Refresh();
+            }
         }
     }
 }

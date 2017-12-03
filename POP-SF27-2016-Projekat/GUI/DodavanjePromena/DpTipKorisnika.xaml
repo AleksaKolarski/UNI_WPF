@@ -1,0 +1,97 @@
+﻿<Window x:Class="POP_SF27_2016_Projekat.GUI.DodavanjePromena.DpTipKorisnika"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF27_2016_Projekat.GUI.DodavanjePromena"
+        mc:Ignorable="d"
+        Title="DpTipKorisnika" Height="350" Width="290">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Name="tblock" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="0"/>
+
+        <Label Content="Naziv:" Margin="5, 0, 0, 0" Grid.Column="0" Grid.Row="1"/>
+        <TextBox Name="tbNaziv" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="1" Width="150"/>
+
+        <Label Content="Dozvole:" Margin="5, 0, 0, 0" Grid.Column="0" Grid.Row="2"/>
+        <Border BorderBrush="Black" BorderThickness="1"  Grid.ColumnSpan="4" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="3" Grid.RowSpan="8" VerticalAlignment="Stretch"/>
+        <Label Content="Read" HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="2"/>
+        <Label Content="Add" HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="2"/>
+        <Label Content="Edit" HorizontalContentAlignment="Center" Grid.Column="3" Grid.Row="2"/>
+        <Label Content="Delete" HorizontalContentAlignment="Center" Grid.Column="4" Grid.Row="2"/>
+
+        <Label Content="Akcija:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0, 0, 0, 0" Margin="0, 0, 7, 0" Grid.Column="0" Grid.Row="3"/>
+        <Label Content="Dodatna usluga:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0, 0, 0, 0" Margin="0, 0, 7, 0" Grid.Column="0" Grid.Row="4"/>
+        <Label Content="Korisnik:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0, 0, 0, 0" Margin="0, 0, 7, 0" Grid.Column="0" Grid.Row="5"/>
+        <Label Content="Namestaj:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0, 0, 0, 0" Margin="0, 0, 7, 0" Grid.Column="0" Grid.Row="6"/>
+        <Label Content="Prodaja:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0, 0, 0, 0" Margin="0, 0, 7, 0" Grid.Column="0" Grid.Row="7"/>
+        <Label Content="Salon:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0, 0, 0, 0" Margin="0, 0, 7, 0" Grid.Column="0" Grid.Row="8"/>
+        <Label Content="Tip korisnika:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0, 0, 0, 0" Margin="0, 0, 7, 0" Grid.Column="0" Grid.Row="9"/>
+        <Label Content="Tip namestaja:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0, 0, 0, 0" Margin="0, 0, 7, 0" Grid.Column="0" Grid.Row="10"/>
+
+        <CheckBox Name="cbAkcijaRead" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3"/>
+        <CheckBox Name="cbAkcijaAdd" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="3"/>
+        <CheckBox Name="cbAkcijaEdit" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="3"/>
+        <CheckBox Name="cbAkcijaDelete" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Grid.Row="3"/>
+
+        <CheckBox Name="cbDodatnaUslugaRead" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="4"/>
+        <CheckBox Name="cbDodatnaUslugaAdd" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="4"/>
+        <CheckBox Name="cbDodatnaUslugaEdit" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="4"/>
+        <CheckBox Name="cbDodatnaUslugaDelete" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Grid.Row="4"/>
+
+        <CheckBox Name="cbKorisnikRead" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="5"/>
+        <CheckBox Name="cbKorisnikAdd" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="5"/>
+        <CheckBox Name="cbKorisnikEdit" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="5"/>
+        <CheckBox Name="cbKorisnikDelete" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Grid.Row="5"/>
+        
+        <CheckBox Name="cbNamestajRead" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="6"/>
+        <CheckBox Name="cbNamestajAdd" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="6"/>
+        <CheckBox Name="cbNamestajEdit" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="6"/>
+        <CheckBox Name="cbNamestajDelete" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Grid.Row="6"/>
+        
+        <CheckBox Name="cbProdajaRead" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="7"/>
+        <CheckBox Name="cbProdajaAdd" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="7"/>
+        <CheckBox Name="cbProdajaEdit" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="7"/>
+        <CheckBox Name="cbProdajaDelete" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Grid.Row="7"/>
+        
+        <CheckBox Name="cbSalonRead" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="8"/>
+        <CheckBox Name="cbSalonAdd" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="8"/>
+        <CheckBox Name="cbSalonEdit" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="8"/>
+        <CheckBox Name="cbSalonDelete" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Grid.Row="8"/>
+        
+        <CheckBox Name="cbTipKorisnikaRead" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="9"/>
+        <CheckBox Name="cbTipKorisnikaAdd" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="9"/>
+        <CheckBox Name="cbTipKorisnikaEdit" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="9"/>
+        <CheckBox Name="cbTipKorisnikaDelete" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Grid.Row="9"/>
+
+        <CheckBox Name="cbTipNamestajaRead" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="10"/>
+        <CheckBox Name="cbTipNamestajaAdd" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="10"/>
+        <CheckBox Name="cbTipNamestajaEdit" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="10"/>
+        <CheckBox Name="cbTipNamestajaDelete" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Grid.Row="10"/>
+
+        <Button Name="btnOk" Content="Ok" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1"  Grid.ColumnSpan="2" Grid.Row="11" Width="60" Click="btnOk_Click"/>
+        <Button Name="btnCancel" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.ColumnSpan="2"  Grid.Row="11"  Width="60" Click="btnCancel_Click"/>
+    </Grid>
+</Window>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfTipKorisnika xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <TipKorisnika>
-    <Id>AdministratorRead, Add, Edit, DeleteRead, Add, Edit, DeleteRead, Add, Edit, DeleteRead, Add, Edit, DeleteRead, Add, Edit, DeleteRead, EditRead, Add, Edit, DeleteRead, Add, Edit, Delete6364677396459825840</Id>
+    <Id>0</Id>
     <Naziv>Administrator</Naziv>
     <Dozvole>
       <Akcija>Read Add Edit Delete</Akcija>
@@ -16,7 +16,7 @@
     <Obrisan>false</Obrisan>
   </TipKorisnika>
   <TipKorisnika>
-    <Id>ProdavacReadReadReadReadReadReadReadRead6364677396463426050</Id>
+    <Id>1</Id>
     <Naziv>Prodavac</Naziv>
     <Dozvole>
       <Akcija>Read</Akcija>
@@ -31,7 +31,7 @@
     <Obrisan>false</Obrisan>
   </TipKorisnika>
   <TipKorisnika>
-    <Id>ModeratorRead, Add, Edit, DeleteRead, Add, Edit, DeleteRead, Add, Edit, DeleteRead, Add, Edit, DeleteRead, Add, Edit, DeleteRead, EditRead, Add, Edit, DeleteRead, Add, Edit, Delete6364677396463526050</Id>
+    <Id>2</Id>
     <Naziv>Moderator</Naziv>
     <Dozvole>
       <Akcija>Read Add Edit Delete</Akcija>

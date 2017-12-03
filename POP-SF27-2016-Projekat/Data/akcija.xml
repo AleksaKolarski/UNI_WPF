@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfAkcija xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Akcija>
-    <Id>01.1.0001. 00:00:0001.1.0001. 00:00:0063646119295069</Id>
+    <Id>0</Id>
     <DatumPocetka>0001-01-01T00:00:00</DatumPocetka>
     <DatumKraja>0001-01-01T00:00:00</DatumKraja>
-    <NamestajIdList>
-      <string>1</string>
-      <string>Sofa5Sifra5555553|63646109839419</string>
-    </NamestajIdList>
-    <PopustList>
-      <double>20</double>
-      <double>15</double>
-    </PopustList>
+    <Lista>
+      <UredjeniPar>
+        <NamestajId>0</NamestajId>
+        <Popust>20</Popust>
+      </UredjeniPar>
+      <UredjeniPar>
+        <NamestajId>1</NamestajId>
+        <Popust>30</Popust>
+      </UredjeniPar>
+    </Lista>
+    <Obrisan>false</Obrisan>
+  </Akcija>
+  <Akcija>
+    <Id>0</Id>
+    <DatumPocetka>0001-01-01T00:00:00</DatumPocetka>
+    <DatumKraja>0001-01-01T00:00:00</DatumKraja>
+    <Lista>
+      <UredjeniPar>
+        <NamestajId>1</NamestajId>
+        <Popust>40</Popust>
+      </UredjeniPar>
+      <UredjeniPar>
+        <NamestajId>2</NamestajId>
+        <Popust>50</Popust>
+      </UredjeniPar>
+    </Lista>
     <Obrisan>false</Obrisan>
   </Akcija>
 </ArrayOfAkcija>

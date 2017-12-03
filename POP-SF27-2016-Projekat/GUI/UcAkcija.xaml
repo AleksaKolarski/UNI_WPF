@@ -19,13 +19,17 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
-        
-        <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="5">
-            
+
+        <DataGrid Name="dgAkcija" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="5" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" SelectionMode="Single" IsReadOnly="True" GotFocus="dgAkcija_GotFocus">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"/>
+                <DataGridTextColumn Header="Datum pocetka" Binding="{Binding DatumPocetka}" Width="*"/>
+                <DataGridTextColumn Header="Datum kraja" Binding="{Binding DatumKraja}" Width="*"/>
+            </DataGrid.Columns>
         </DataGrid>
-        <Button Name="btnAddAkcija" Content="Add" Width="40" Height="20" Grid.Column="1" Grid.Row="1"/>
-        <Button Name="btnEditAkcija" Content="Edit" Width="40" Height="20" Grid.Column="1" Grid.Row="2"/>
-        <Button Name="btnDeleteAkcija" Content="Delete" Width="40" Height="20" Grid.Column="1" Grid.Row="3"/>
+        <Button Name="btnAddAkcija" Content="Add" Width="40" Height="20" Grid.Column="1" Grid.Row="1" Click="btnAdd_Click"/>
+        <Button Name="btnEditAkcija" Content="Edit" Width="40" Height="20" Grid.Column="1" Grid.Row="2" Click="btnEdit_Click"/>
+        <Button Name="btnDeleteAkcija" Content="Delete" Width="40" Height="20" Grid.Column="1" Grid.Row="3" Click="btnDelete_Click"/>
 
         <GroupBox Name="gbDetails" Header="Details" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1">
             <Grid>
@@ -43,13 +47,12 @@
                     <ColumnDefinition Width="50"/>
                 </Grid.ColumnDefinitions>
 
-                <DatePicker Name="dpStart" Margin="5, 0, 0, 0" Grid.Column="0" Grid.Row="0" FirstDayOfWeek="Monday" />
-                <DatePicker Name="dpEnd" Margin="5, 0, 0, 0" Grid.Column="1" Grid.Row="0" FirstDayOfWeek="Monday"/>
-                <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="4">
-
+                <DataGrid Name="dgNamestaj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="4" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" SelectionMode="Single" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Namestaj" Binding="{Binding NamestajId}" Width="*"/>
+                        <DataGridTextColumn Header="Popust" Binding="{Binding Popust}" Width="*"/>
+                    </DataGrid.Columns>
                 </DataGrid>
-                <Button Name="btnAddNamestaj" Content="Add" Width="40" Height="20" Grid.Column="4" Grid.Row="2"/>
-                <Button Name="btnDeleteNamestaj" Content="Delete" Width="40" Height="20" Grid.Column="4" Grid.Row="3"/>
             </Grid>
         </GroupBox>
     </Grid>
