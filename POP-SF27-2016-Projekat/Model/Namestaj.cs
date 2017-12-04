@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace POP_SF27_2016_Projekat.Model
 {
@@ -18,6 +19,7 @@ namespace POP_SF27_2016_Projekat.Model
         private double jedinicnaCena;
         private int kolicinaUMagacinu;
         private int tipNamestajaId;
+        private TipNamestaja tipNamestaja;
         private bool obrisan;
         public static ObservableCollection<Namestaj> namestajCollection;
         #endregion
@@ -95,6 +97,20 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("TipNamestajaId");
             }
         }
+        [XmlIgnore]
+        public TipNamestaja TipNamestaja
+        {
+            get
+            {
+                return TipNamestaja.GetById(TipNamestajaId);
+            }
+            set
+            {
+                tipNamestaja = value;
+                TipNamestajaId = tipNamestaja.Id;
+                OnPropertyChanged("TipNamestaja");
+            }
+        }
         public bool Obrisan
         {
             get
@@ -117,14 +133,15 @@ namespace POP_SF27_2016_Projekat.Model
 
         #region Constructors
         public Namestaj() { }
-        public Namestaj(string naziv, string sifra, double jedinicnaCena, int kolicinaUMagacinu, int tipNamestajaId)
+        public Namestaj(string naziv, string sifra, double jedinicnaCena, int kolicinaUMagacinu, TipNamestaja tipNamestaja)
         {
             this.Id = namestajCollection.Count;
             this.Naziv = naziv;
             this.Sifra = sifra;
             this.JedinicnaCena = jedinicnaCena;
             this.KolicinaUMagacinu = kolicinaUMagacinu;
-            this.TipNamestajaId = tipNamestajaId;
+            this.TipNamestajaId = tipNamestaja.Id;
+            this.TipNamestaja = tipNamestaja;
             this.Obrisan = false;
         }
         #endregion
@@ -160,7 +177,7 @@ namespace POP_SF27_2016_Projekat.Model
             //NamestajList = tempList;
         }
 
-        public static void Edit(Namestaj namestajToEdit, string naziv, string sifra, double jedinicnaCena, int kolicinaUMagacinu, int tipNamestajaId)
+        public static void Edit(Namestaj namestajToEdit, string naziv, string sifra, double jedinicnaCena, int kolicinaUMagacinu, TipNamestaja tipNamestaja)
         {
             if (namestajToEdit == null)
             {
@@ -170,7 +187,8 @@ namespace POP_SF27_2016_Projekat.Model
             namestajToEdit.Sifra = sifra;
             namestajToEdit.JedinicnaCena = jedinicnaCena;
             namestajToEdit.KolicinaUMagacinu = kolicinaUMagacinu;
-            namestajToEdit.TipNamestajaId = tipNamestajaId;
+            namestajToEdit.TipNamestajaId = tipNamestaja.Id;
+            namestajToEdit.TipNamestaja = tipNamestaja;
         }
 
         public static void Remove(Namestaj namestajToRemove)

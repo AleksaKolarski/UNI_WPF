@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Xml.Serialization;
 
 namespace POP_SF27_2016_Projekat.Model
 {
@@ -94,6 +95,14 @@ namespace POP_SF27_2016_Projekat.Model
             {
                 tipKorisnikaId = value;
                 OnPropertyChanged("TipKorisnikaId");
+            }
+        }
+        [XmlIgnore]
+        public TipKorisnika TipKorisnika
+        {
+            get
+            {
+                return TipKorisnika.GetById(tipKorisnikaId);
             }
         }
         public bool Obrisan

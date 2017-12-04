@@ -27,7 +27,7 @@
                 <DataGridTextColumn Header="Prezime" Binding="{Binding Prezime}" Width="*"/>
                 <DataGridTextColumn Header="Korisnicko ime" Binding="{Binding KorisnickoIme}" Width="*"/>
                 <DataGridTextColumn Header="Lozinka" Binding="{Binding Lozinka}" Width="*"/>
-                <DataGridTextColumn Header="Tip korisnika" Binding="{Binding TipKorisnikaId}" Width="*"/>
+                <DataGridTextColumn Header="Tip korisnika" Binding="{Binding Path=TipKorisnika.Naziv}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Name="btnAdd" Content="Add" Width="40" Height="20" Grid.Column="1" Grid.Row="1" Click="btnAdd_Click"/>
@@ -64,7 +64,7 @@
                 <Label Name="lbPrezime" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Left" Content="{Binding ElementName=dgKorisnik, Path=SelectedItem.Prezime}"/>
                 <Label Name="lbKorisnickoIme" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Left" Content="{Binding ElementName=dgKorisnik, Path=SelectedItem.KorisnickoIme}"/>
                 <Label Name="lbLozinka" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Left" Content="{Binding ElementName=dgKorisnik, Path=SelectedItem.Lozinka}"/>
-                <Label Name="lbTipKorisnika" Grid.Column="2" Grid.Row="6" HorizontalAlignment="Left" Content="{Binding ElementName=dgKorisnik, Path=SelectedItem.TipKorisnika}"/>
+                <Label Name="lbTipKorisnika" Grid.Column="2" Grid.Row="6" HorizontalAlignment="Left" Content="{Binding ElementName=dgKorisnik, Path=SelectedItem.TipKorisnika.Naziv}"/>
             </Grid>
         </GroupBox>
     </Grid>

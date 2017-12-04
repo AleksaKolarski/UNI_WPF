@@ -92,7 +92,10 @@ namespace POP_SF27_2016_Projekat.Model
         #endregion
 
         #region Constructors
-        public Akcija() { }
+        public Akcija()
+        {
+            this.Lista = new ObservableCollection<UredjeniPar>();
+        }
         public Akcija(DateTime? datumPocetka, DateTime? datumKraja, ObservableCollection<UredjeniPar> lista)
         {
             this.Id = akcijaCollection.Count;
@@ -177,6 +180,7 @@ namespace POP_SF27_2016_Projekat.Model
     {
         #region Fields
         private int namestajId;
+        private Namestaj namestaj;
         private double popust;
         #endregion
 
@@ -191,6 +195,14 @@ namespace POP_SF27_2016_Projekat.Model
             {
                 namestajId = value;
                 OnPropertyChanged("NamestajId");
+            }
+        }
+        [XmlIgnore]
+        public Namestaj Namestaj
+        {
+            get
+            {
+                return Namestaj.GetById(NamestajId);
             }
         }
         public double Popust

@@ -47,7 +47,8 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             tbSifra.Text = tmp.Sifra;
             tbJedinicnaCena.Text = tmp.JedinicnaCena.ToString();
             tbKolicinaUMagacinu.Text = tmp.KolicinaUMagacinu.ToString();
-            cbTip.ItemsSource = TipNamestaja.tipNamestajaCollection;
+            //cbTip.ItemsSource = TipNamestaja.tipNamestajaCollection;
+            cbTip.SelectedItem = tmp.TipNamestaja;
             operacija = Operacija.IZMENA;
         }
 
@@ -67,11 +68,11 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
                             {
                                 if (operacija == Operacija.DODAVANJE)
                                 {
-                                    Namestaj.Add(new Namestaj(tbNaziv.Text, tbSifra.Text, jedinicnaCena, kolicinaUMagacinu, ((TipNamestaja)cbTip.SelectedItem).Id));
+                                    Namestaj.Add(new Namestaj(tbNaziv.Text, tbSifra.Text, jedinicnaCena, kolicinaUMagacinu, (TipNamestaja)cbTip.SelectedItem));
                                 }
                                 else if (operacija == Operacija.IZMENA)
                                 {
-                                    Namestaj.Edit(tmp, tbNaziv.Text, tbSifra.Text, jedinicnaCena, kolicinaUMagacinu, ((TipNamestaja)cbTip.SelectedItem).Id);
+                                    Namestaj.Edit(tmp, tbNaziv.Text, tbSifra.Text, jedinicnaCena, kolicinaUMagacinu, (TipNamestaja)cbTip.SelectedItem);
                                 }
                                 Close();
                                 return;

@@ -35,7 +35,7 @@
         
         <DataGrid Name="dgNamestaj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="5" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" SelectionMode="Single" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Namestaj" Binding="{Binding NamestajId}" Width="*"/>
+                <DataGridTextColumn Header="Namestaj" Binding="{Binding Path=Namestaj.Naziv}" Width="*"/>
                 <DataGridTextColumn Header="Popust" Binding="{Binding Popust}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
