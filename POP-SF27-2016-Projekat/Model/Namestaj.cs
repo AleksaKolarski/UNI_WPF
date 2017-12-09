@@ -202,7 +202,7 @@ namespace POP_SF27_2016_Projekat.Model
 
         public override string ToString()
         {
-            return $"{Id}, {Naziv}, {Sifra}, {JedinicnaCena}, {KolicinaUMagacinu}, {TipNamestaja.GetById(TipNamestajaId).Naziv}";
+            return $"{Id}, {Naziv}, {Sifra}, {JedinicnaCena}, {KolicinaUMagacinu}, {TipNamestaja.Naziv}";
         }
         #endregion
 

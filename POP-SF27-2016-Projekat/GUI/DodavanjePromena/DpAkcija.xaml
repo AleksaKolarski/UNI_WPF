@@ -18,6 +18,7 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="80"/>
             <ColumnDefinition Width="80"/>
@@ -25,22 +26,25 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Name="tblock" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="0"/>
-        
-        <DatePicker Name="dpStart" Margin="5, 0, 0, 0" Grid.Column="1" Grid.Row="1" FirstDayOfWeek="Monday" SelectedDate="{Binding ElementName=tmp, Path=dpStart.SelectedDate}"/>
-        <DatePicker Name="dpEnd" Margin="5, 0, 0, 0" Grid.Column="2" Grid.Row="1" FirstDayOfWeek="Monday" SelectedDate="{Binding ElementName=tmp, Path=dpEnd.SelectedDate}"/>
+
+        <Label Content="Naziv:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" Grid.Column="0" Grid.Row="1"/>
+        <TextBox Name="tbNaziv" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Width="140" Text="{Binding Naziv}"/>
+
+        <DatePicker Name="dpStart" Margin="-30, 0, 0, 0" Grid.Column="2" Grid.Row="1" FirstDayOfWeek="Monday" SelectedDate="{Binding DatumPocetka, StringFormat=dd/MM/yyyy}"/>
+        <DatePicker Name="dpEnd" Margin="0, 0, -30, 0" Grid.Column="3" Grid.Row="1" FirstDayOfWeek="Monday" SelectedDate="{Binding DatumKraja, StringFormat=dd/MM/yyyy}"/>
         
         <Button Name="btnAddNamestaj" Content="Add" Width="40" Height="20" Grid.Column="4" Grid.Row="3" Click="btnAdd_Click"/>
         <Button Name="btnEditNamestaj" Content="Edit" Width="40" Height="20" Grid.Column="4" Grid.Row="4" Click="btnEdit_Click"/>
         <Button Name="btnDeleteNamestaj" Content="Delete" Width="40" Height="20" Grid.Column="4" Grid.Row="5" Click="btnDelete_Click"/>
-        
-        <DataGrid Name="dgNamestaj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Grid.RowSpan="5" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" SelectionMode="Single" IsReadOnly="True">
+
+        <DataGrid Name="dgNamestaj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="5" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" SelectionMode="Single" IsReadOnly="True" HeadersVisibility="Column">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Namestaj" Binding="{Binding Path=Namestaj.Naziv}" Width="*"/>
+                <DataGridTextColumn Header="Namestaj" Binding="{Binding Namestaj.Naziv}" Width="*"/>
                 <DataGridTextColumn Header="Popust" Binding="{Binding Popust}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         
-        <Button Name="btnOk" Content="Ok" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="7" Width="60" Click="btnOk_Click"/>
-        <Button Name="btnCancel" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2"  Grid.Row="7"  Width="60" Click="btnCancel_Click"/>
+        <Button Name="btnOk" Content="Ok" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="7" Width="60" Click="btnOk_Click"/>
+        <Button Name="btnCancel" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3"  Grid.Row="7"  Width="60" Click="btnCancel_Click"/>
     </Grid>
 </Window>

@@ -30,7 +30,6 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             InitializeComponent();
             tblock.Text = "Nov namestaj:";
             operacija = Operacija.DODAVANJE;
-            cbTip.ItemsSource = TipNamestaja.tipNamestajaCollection;
         }
 
         Namestaj tmp;
@@ -47,8 +46,8 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             tbSifra.Text = tmp.Sifra;
             tbJedinicnaCena.Text = tmp.JedinicnaCena.ToString();
             tbKolicinaUMagacinu.Text = tmp.KolicinaUMagacinu.ToString();
-            //cbTip.ItemsSource = TipNamestaja.tipNamestajaCollection;
             cbTip.SelectedItem = tmp.TipNamestaja;
+
             operacija = Operacija.IZMENA;
         }
 

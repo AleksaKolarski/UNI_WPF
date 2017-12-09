@@ -34,6 +34,8 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             tblock.Text = "Nova akcija:";
             operacija = Operacija.DODAVANJE;
             tmp = new Akcija();
+            tmp.DatumPocetka = DateTime.Now;
+            tmp.DatumKraja = DateTime.Now.AddDays(1);
             InitTabela();
         }
 
@@ -57,29 +59,44 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
         {
             dgNamestaj.ItemsSource = tmp.lista;
             dgNamestaj.IsSynchronizedWithCurrentItem = true;
+
+            dpStart.DataContext = tmp;
+            dpEnd.DataContext = tmp;
+            tbNaziv.DataContext = tmp;
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            if (dgNamestaj.Items.Count != 0)
+            if (tbNaziv.Text != "")
             {
-                if (dpStart != null && dpEnd != null)
+                if (dgNamestaj.Items.Count != 0)
                 {
-                    if (operacija == Operacija.DODAVANJE)
+                    if (dpStart != null && dpEnd != null)
                     {
-                        Akcija.Add(new Akcija(dpStart.SelectedDate, dpEnd.SelectedDate, tmp.Lista));
+                        if (operacija == Operacija.DODAVANJE)
+                        {
+                            Akcija.Add(new Akcija(tbNaziv.Text, dpStart.SelectedDate, dpEnd.SelectedDate, tmp.Lista));
+                        }
+                        else if (operacija == Operacija.IZMENA)
+                        {
+                            Akcija.Edit(tmp, tbNaziv.Text, dpStart.SelectedDate, dpEnd.SelectedDate, tmp.Lista);
+                        }
+                        Close();
+                        return;
                     }
-                    else if (operacija == Operacija.IZMENA)
+                    else
                     {
-                        Akcija.Edit(tmp, dpStart.SelectedDate, dpEnd.SelectedDate, tmp.Lista);
+                        dpStart.Focus();
                     }
-                    Close();
-                    return;
                 }
                 else
                 {
-                    dpStart.Focus();
+                    btnAddNamestaj.Focus();
                 }
+            }
+            else
+            {
+                tbNaziv.Focus();
             }
         }
 

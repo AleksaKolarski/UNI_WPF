@@ -32,7 +32,6 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             InitializeComponent();
             tblock.Text = "Nov popust za namestaj:";
             operacija = Operacija.DODAVANJE;
-            cbNamestaj.ItemsSource = Namestaj.namestajCollection;
             akcija = akcijaT;
         }
 
@@ -47,9 +46,9 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             tmp = par;
             tblock.Text = "Izmena popusta za namestaj:";
             tbPopust.Text = tmp.Popust.ToString();
-            cbNamestaj.ItemsSource = Namestaj.namestajCollection;
             operacija = Operacija.IZMENA;
             akcija = akcijaT;
+            cbNamestaj.SelectedItem = par.Namestaj;
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
@@ -61,11 +60,11 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
                 {
                     if (operacija == Operacija.DODAVANJE)
                     {
-                        akcija.Lista.Add(new UredjeniPar(((Namestaj)cbNamestaj.SelectedItem).Id, double.Parse(tbPopust.Text)));
+                        akcija.Lista.Add(new UredjeniPar((Namestaj)cbNamestaj.SelectedItem, double.Parse(tbPopust.Text)));
                     }
                     else if (operacija == Operacija.IZMENA)
                     {
-                        tmp.NamestajId = ((Namestaj)cbNamestaj.SelectedItem).Id;
+                        tmp.Namestaj = (Namestaj)cbNamestaj.SelectedItem;
                         tmp.Popust = double.Parse(tbPopust.Text);
                     }
                     Close();

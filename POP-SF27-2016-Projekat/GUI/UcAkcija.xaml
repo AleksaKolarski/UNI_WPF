@@ -20,9 +20,10 @@
             <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
 
-        <DataGrid Name="dgAkcija" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="5" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" SelectionMode="Single" IsReadOnly="True" GotFocus="dgAkcija_GotFocus">
+        <DataGrid Name="dgAkcija" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="5" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" SelectionMode="Single" IsReadOnly="True" HeadersVisibility="Column" GotFocus="dgAkcija_GotFocus">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"/>
+                <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
                 <DataGridTextColumn Header="Datum pocetka" Binding="{Binding DatumPocetka}" Width="*"/>
                 <DataGridTextColumn Header="Datum kraja" Binding="{Binding DatumKraja}" Width="*"/>
             </DataGrid.Columns>
@@ -47,7 +48,7 @@
                     <ColumnDefinition Width="50"/>
                 </Grid.ColumnDefinitions>
 
-                <DataGrid Name="dgNamestaj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="4" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" SelectionMode="Single" IsReadOnly="True">
+                <DataGrid Name="dgNamestaj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Grid.RowSpan="4" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" SelectionMode="Single" IsReadOnly="True" HeadersVisibility="Column">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Namestaj" Binding="{Binding Namestaj.Naziv}" Width="*"/>
                         <DataGridTextColumn Header="Popust" Binding="{Binding Popust}" Width="*"/>

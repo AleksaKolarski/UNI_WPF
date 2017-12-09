@@ -30,7 +30,6 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             InitializeComponent();
             tblock.Text = "Nov korisnik:";
             operacija = Operacija.DODAVANJE;
-            cbTip.ItemsSource = TipKorisnika.tipKorisnikaCollection;
         }
 
         Korisnik tmp;
@@ -47,6 +46,7 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             tbPrezime.Text = tmp.Prezime;
             tbKorisnickoIme.Text = tmp.KorisnickoIme;
             tbLozinka.Text = tmp.Lozinka;
+            cbTip.SelectedItem = tmp.TipKorisnika;
 
             operacija = Operacija.IZMENA;
         }
@@ -65,11 +65,11 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
                             {
                                 if(operacija == Operacija.DODAVANJE)
                                 {
-                                    Korisnik.Add(new Korisnik(tbIme.Text, tbPrezime.Text, tbKorisnickoIme.Text, tbLozinka.Text, ((TipKorisnika)cbTip.SelectedItem).Id));
+                                    Korisnik.Add(new Korisnik(tbIme.Text, tbPrezime.Text, tbKorisnickoIme.Text, tbLozinka.Text, (TipKorisnika)cbTip.SelectedItem));
                                 }
                                 else if(operacija == Operacija.IZMENA)
                                 {
-                                    Korisnik.Edit(tmp, tbIme.Text, tbPrezime.Text, tbKorisnickoIme.Text, tbLozinka.Text, ((TipKorisnika)cbTip.SelectedItem).Id);
+                                    Korisnik.Edit(tmp, tbIme.Text, tbPrezime.Text, tbKorisnickoIme.Text, tbLozinka.Text, (TipKorisnika)cbTip.SelectedItem);
                                 }
                                 Close();
                                 return;

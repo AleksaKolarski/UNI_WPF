@@ -20,6 +20,7 @@ namespace POP_SF27_2016_Projekat.Model
         private string korisnickoIme;
         private string lozinka;
         private int tipKorisnikaId;
+        private TipKorisnika tipKorisnika;
         private bool obrisan;
         public static ObservableCollection<Korisnik> korisnikCollection;
         #endregion
@@ -104,6 +105,12 @@ namespace POP_SF27_2016_Projekat.Model
             {
                 return TipKorisnika.GetById(tipKorisnikaId);
             }
+            set
+            {
+                tipKorisnika = value;
+                TipKorisnikaId = tipKorisnika.Id;
+                OnPropertyChanged("TipKorisnika");
+            }
         }
         public bool Obrisan
         {
@@ -129,14 +136,16 @@ namespace POP_SF27_2016_Projekat.Model
 
         #region Constructors
         public Korisnik() { }
-        public Korisnik(string ime, string prezime, string korisnickoIme, string lozinka, int tipKorisnikaId)
+        public Korisnik(string ime, string prezime, string korisnickoIme, string lozinka, TipKorisnika tipKorisnika)
         {
             this.Id = korisnikCollection.Count;
             this.Ime = ime;
             this.Prezime = prezime;
             this.KorisnickoIme = korisnickoIme;
             this.Lozinka = lozinka;
-            this.TipKorisnikaId = tipKorisnikaId;
+            this.TipKorisnikaId = tipKorisnika.Id;
+            this.TipKorisnika = tipKorisnika;
+            this.Obrisan = false;
         }
         #endregion
 
@@ -171,7 +180,7 @@ namespace POP_SF27_2016_Projekat.Model
             //KorisnikList = tempList;
         }
 
-        public static void Edit(Korisnik korisnikToEdit, string ime, string prezime, string korisnickoIme, string lozinka, int tipKorisnikaId)
+        public static void Edit(Korisnik korisnikToEdit, string ime, string prezime, string korisnickoIme, string lozinka, TipKorisnika tipKorisnika)
         {
             if (korisnikToEdit == null)
             {
@@ -181,7 +190,8 @@ namespace POP_SF27_2016_Projekat.Model
             korisnikToEdit.Prezime = prezime;
             korisnikToEdit.KorisnickoIme = korisnickoIme;
             korisnikToEdit.Lozinka = lozinka;
-            korisnikToEdit.TipKorisnikaId = tipKorisnikaId;
+            korisnikToEdit.TipKorisnikaId = tipKorisnika.Id;
+            korisnikToEdit.TipKorisnika = tipKorisnika;
         }
 
         public static void Remove(Korisnik korisnikToRemove)
@@ -213,7 +223,7 @@ namespace POP_SF27_2016_Projekat.Model
 
         public override string ToString()
         {
-            return $"{Id}, {Ime}, {Prezime}, {KorisnickoIme}, {Lozinka}, {TipKorisnika.GetById(TipKorisnikaId).Naziv}";
+            return $"{Id}, {Ime}, {Prezime}, {KorisnickoIme}, {Lozinka}, {TipKorisnika.Naziv}";
         }
         #endregion
 

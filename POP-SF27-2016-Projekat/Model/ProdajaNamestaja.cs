@@ -218,8 +218,8 @@ namespace POP_SF27_2016_Projekat.Model
     public class UredjeniParRacun : INotifyPropertyChanged
     {
         #region Fields
-        public int namestajId;
-        public int brojNamestaja;
+        private int namestajId;
+        private int brojNamestaja;
         #endregion
 
         #region Property

@@ -30,8 +30,6 @@ namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
             view.Filter = HideDeletedFilter;
             dgNamestaj.ItemsSource = view;
             dgNamestaj.IsSynchronizedWithCurrentItem = true;
-
-            
         }
 
         private bool HideDeletedFilter(object obj)

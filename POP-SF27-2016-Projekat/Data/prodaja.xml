@@ -4,14 +4,10 @@
     <Id>0</Id>
     <ListUredjeniPar>
       <UredjeniParRacun>
-        <namestajId>0</namestajId>
-        <brojNamestaja>3</brojNamestaja>
         <NamestajId>0</NamestajId>
         <BrojNamestaja>3</BrojNamestaja>
       </UredjeniParRacun>
       <UredjeniParRacun>
-        <namestajId>1</namestajId>
-        <brojNamestaja>1</brojNamestaja>
         <NamestajId>1</NamestajId>
         <BrojNamestaja>1</BrojNamestaja>
       </UredjeniParRacun>
@@ -25,20 +21,14 @@
     <Id>1</Id>
     <ListUredjeniPar>
       <UredjeniParRacun>
-        <namestajId>1</namestajId>
-        <brojNamestaja>3</brojNamestaja>
         <NamestajId>1</NamestajId>
         <BrojNamestaja>3</BrojNamestaja>
       </UredjeniParRacun>
       <UredjeniParRacun>
-        <namestajId>2</namestajId>
-        <brojNamestaja>4</brojNamestaja>
         <NamestajId>2</NamestajId>
         <BrojNamestaja>4</BrojNamestaja>
       </UredjeniParRacun>
       <UredjeniParRacun>
-        <namestajId>0</namestajId>
-        <brojNamestaja>1</brojNamestaja>
         <NamestajId>0</NamestajId>
         <BrojNamestaja>1</BrojNamestaja>
       </UredjeniParRacun>

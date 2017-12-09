@@ -2,8 +2,9 @@
 <ArrayOfAkcija xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Akcija>
     <Id>0</Id>
-    <DatumPocetka>0001-01-01T00:00:00</DatumPocetka>
-    <DatumKraja>0001-01-01T00:00:00</DatumKraja>
+	<Naziv>Akcija1</Naziv>
+    <DatumPocetka>2017-01-12T00:00:00</DatumPocetka>
+    <DatumKraja>2018-01-02T00:00:00</DatumKraja>
     <Lista>
       <UredjeniPar>
         <NamestajId>0</NamestajId>
@@ -17,9 +18,10 @@
     <Obrisan>false</Obrisan>
   </Akcija>
   <Akcija>
-    <Id>0</Id>
-    <DatumPocetka>0001-01-01T00:00:00</DatumPocetka>
-    <DatumKraja>0001-01-01T00:00:00</DatumKraja>
+    <Id>1</Id>
+	<Naziv>Akcija2</Naziv>
+    <DatumPocetka>2018-01-01T00:00:00</DatumPocetka>
+    <DatumKraja>2018-03-01T00:00:00</DatumKraja>
     <Lista>
       <UredjeniPar>
         <NamestajId>1</NamestajId>

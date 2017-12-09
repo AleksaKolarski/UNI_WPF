@@ -14,6 +14,7 @@ namespace POP_SF27_2016_Projekat.Model
     {
         #region Fields
         private int id;
+        private string naziv;
         private DateTime? datumPocetka;
         private DateTime? datumKraja;
         [XmlIgnore]
@@ -33,6 +34,18 @@ namespace POP_SF27_2016_Projekat.Model
             {
                 id = value;
                 OnPropertyChanged("Id");
+            }
+        }
+        public string Naziv
+        {
+            get
+            {
+                return naziv;
+            }
+            set
+            {
+                naziv = value;
+                OnPropertyChanged("Naziv");
             }
         }
         public DateTime? DatumPocetka
@@ -96,9 +109,10 @@ namespace POP_SF27_2016_Projekat.Model
         {
             this.Lista = new ObservableCollection<UredjeniPar>();
         }
-        public Akcija(DateTime? datumPocetka, DateTime? datumKraja, ObservableCollection<UredjeniPar> lista)
+        public Akcija(string naziv, DateTime? datumPocetka, DateTime? datumKraja, ObservableCollection<UredjeniPar> lista)
         {
             this.Id = akcijaCollection.Count;
+            this.Naziv = naziv;
             this.DatumPocetka = datumPocetka;
             this.DatumKraja = datumKraja;
             this.Lista = lista;
@@ -140,12 +154,13 @@ namespace POP_SF27_2016_Projekat.Model
             //AkcijaCollection = tempList;
         }
 
-        public static void Edit(Akcija akcijaToEdit, DateTime? datumPocetka, DateTime? datumKraja, ObservableCollection<UredjeniPar> lista)
+        public static void Edit(Akcija akcijaToEdit, string naziv, DateTime? datumPocetka, DateTime? datumKraja, ObservableCollection<UredjeniPar> lista)
         {
             if (akcijaToEdit == null)
             {
                 return;
             }
+            akcijaToEdit.Naziv = naziv;
             akcijaToEdit.DatumPocetka = datumPocetka;
             akcijaToEdit.DatumKraja = datumKraja;
             akcijaToEdit.Lista = lista;
@@ -204,6 +219,12 @@ namespace POP_SF27_2016_Projekat.Model
             {
                 return Namestaj.GetById(NamestajId);
             }
+            set
+            {
+                namestaj = value;
+                namestajId = namestaj.Id;
+                OnPropertyChanged("Namestaj");
+            }
         }
         public double Popust
         {
@@ -221,9 +242,10 @@ namespace POP_SF27_2016_Projekat.Model
 
         #region Constructors
         public UredjeniPar(){}
-        public UredjeniPar(int namestajId, double popust)
+        public UredjeniPar(Namestaj namestaj, double popust)
         {
-            this.NamestajId = namestajId;
+            this.NamestajId = namestaj.Id;
+            this.Namestaj = namestaj;
             this.Popust = popust;
         }
         #endregion
