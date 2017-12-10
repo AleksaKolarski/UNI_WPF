@@ -141,6 +141,36 @@ namespace POP_SF27_2016_Projekat.Model
             return null;
         }
 
+        public static Akcija GetByNamestaj(Namestaj namestaj)
+        {
+            foreach(Akcija akcija in akcijaCollection)
+            {
+                foreach(UredjeniPar uredjeniPar in akcija.Lista)
+                {
+                    if(uredjeniPar.Namestaj.Id == namestaj.Id)
+                    {
+                        return akcija;
+                    }
+                }
+            }
+            return null;
+        }
+        
+        public static double GetPopustByNamestaj(Namestaj namestaj)
+        {
+            foreach (Akcija akcija in akcijaCollection)
+            {
+                foreach (UredjeniPar uredjeniPar in akcija.Lista)
+                {
+                    if (uredjeniPar.Namestaj.Id == namestaj.Id)
+                    {
+                        return uredjeniPar.Popust;
+                    }
+                }
+            }
+            return 0;
+        }
+
         public static void Add(Akcija akcijaToAdd)
         {
             /* Kada predjemo na rad sa bazom podataka ovde se nece ucitavati 

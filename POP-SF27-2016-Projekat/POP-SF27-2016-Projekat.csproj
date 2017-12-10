@@ -74,6 +74,9 @@
     <Compile Include="GUI\DodavanjePromena\DpNamestajPopust.xaml.cs">
       <DependentUpon>DpNamestajPopust.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\DodavanjePromena\DpProdaja.xaml.cs">
+      <DependentUpon>DpProdaja.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\DodavanjePromena\DpTipKorisnika.xaml.cs">
       <DependentUpon>DpTipKorisnika.xaml</DependentUpon>
     </Compile>
@@ -191,6 +194,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\DodavanjePromena\DpNamestajPopust.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\DodavanjePromena\DpProdaja.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

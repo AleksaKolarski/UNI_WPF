@@ -22,7 +22,7 @@ namespace POP_SF27_2016_Projekat.Model
         [XmlIgnore]
         public ObservableCollection<int> listDodatnaUslugaId;
         [XmlIgnore]
-        public const double PDV = 20.0;
+        public double pdv = 20.0;
         public static ObservableCollection<ProdajaNamestaja> prodajaNamestajaCollection;
         #endregion
 
@@ -112,6 +112,36 @@ namespace POP_SF27_2016_Projekat.Model
                 return collection;
             }
         }
+        [XmlIgnore]
+        public double PDV
+        {
+            get
+            {
+                return pdv;
+            }
+            set
+            {
+                pdv = value;
+                OnPropertyChanged("PDV");
+            }
+        }
+        [XmlIgnore]
+        public double UkupnaCena
+        {
+            get
+            {
+                double cena = 0;
+                foreach(DodatnaUsluga dodatnaUsluga in ListDodatnaUsluga)
+                {
+                    cena += dodatnaUsluga.Cena;
+                }
+                foreach(UredjeniParRacun uredjeniPar in ListUredjeniPar)
+                {
+                    cena += uredjeniPar.UkupnaCena;
+                }
+                return cena * (100 + PDV)/100;
+            }
+        }
 
         public static ObservableCollection<ProdajaNamestaja> ProdajaNamestajaCollectionProperty
         {
@@ -121,7 +151,11 @@ namespace POP_SF27_2016_Projekat.Model
         #endregion
 
         #region Constructors
-        public ProdajaNamestaja() { }
+        public ProdajaNamestaja()
+        {
+            ListUredjeniPar = new ObservableCollection<UredjeniParRacun>();
+            listDodatnaUslugaId = new ObservableCollection<int>();
+        }
         public ProdajaNamestaja(ObservableCollection<UredjeniParRacun> listUredjeniPar, DateTime? datumProdaje, string kupac, string brojRacuna, ObservableCollection<int> listDodatnaUslugaId)
         {
             this.Id = prodajaNamestajaCollection.Count;
@@ -219,6 +253,7 @@ namespace POP_SF27_2016_Projekat.Model
     {
         #region Fields
         private int namestajId;
+        private Namestaj namestaj;
         private int brojNamestaja;
         #endregion
 
@@ -235,6 +270,20 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("NamestajId");
             }
         }
+        [XmlIgnore]
+        public Namestaj Namestaj
+        {
+            get
+            {
+                return Namestaj.GetById(namestajId);
+            }
+            set
+            {
+                namestaj = value;
+                NamestajId = namestaj.Id;
+                OnPropertyChanged("Namestaj");
+            }
+        }
         public int BrojNamestaja
         {
             get
@@ -247,13 +296,31 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("BrojNamestaja");
             }
         }
+        [XmlIgnore]
+        public double Cena
+        {
+            get
+            {
+                return Namestaj.JedinicnaCena * BrojNamestaja;
+            }
+        }
+        [XmlIgnore]
         public double UkupnaCena
         {
             get
             {
-                return Namestaj.GetById(NamestajId).JedinicnaCena * BrojNamestaja;
+                return Namestaj.JedinicnaCena * BrojNamestaja * (1.0 - (Akcija.GetPopustByNamestaj(Namestaj))/100);
             }
         }
+        [XmlIgnore]
+        public double Popust
+        {
+            get
+            {
+                return Akcija.GetPopustByNamestaj(Namestaj);
+            }
+        }
+
         #endregion
 
         #region Constructors

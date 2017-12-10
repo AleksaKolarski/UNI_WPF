@@ -1,4 +1,5 @@
-﻿using POP_SF27_2016_Projekat.Model;
+﻿using POP_SF27_2016_Projekat.GUI.DodavanjePromena;
+using POP_SF27_2016_Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,7 +28,7 @@ namespace POP_SF27_2016_Projekat.GUI
         {
             InitializeComponent();
 
-            view = CollectionViewSource.GetDefaultView(Model.ProdajaNamestaja.prodajaNamestajaCollection);
+            view = CollectionViewSource.GetDefaultView(ProdajaNamestaja.prodajaNamestajaCollection);
             dgProdaja.ItemsSource = view;
             dgProdaja.IsSynchronizedWithCurrentItem = true;
         }
@@ -39,6 +40,14 @@ namespace POP_SF27_2016_Projekat.GUI
             dgNamestaj.ItemsSource = viewNamestaj;
             viewDodatnaUsluga = CollectionViewSource.GetDefaultView(((ProdajaNamestaja)dgProdaja.CurrentItem).ListDodatnaUsluga);
             dgDodatneUsluge.ItemsSource = viewDodatnaUsluga;
+            tbPDV.DataContext = (ProdajaNamestaja)dgProdaja.CurrentItem;
+            tbUkupnaCena.DataContext = (ProdajaNamestaja)dgProdaja.CurrentItem;
+        }
+
+        private void btnAddAkcija_Click(object sender, RoutedEventArgs e)
+        {
+            DpProdaja dpProdaja = new DpProdaja();
+            dpProdaja.ShowDialog();
         }
     }
 }
