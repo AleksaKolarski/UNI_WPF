@@ -15,7 +15,7 @@ namespace POP_SF27_2016_Projekat.Model
         #region Fields
         private int id;
         private string naziv;
-        private string sifra;
+        private string sifra; // prva dva slova naziva, id, prva dva slova naziva tipa
         private double jedinicnaCena;
         private int kolicinaUMagacinu;
         private int tipNamestajaId;

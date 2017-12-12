@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace POP_SF27_2016_Projekat.Model
 { 
@@ -131,6 +132,18 @@ namespace POP_SF27_2016_Projekat.Model
         protected void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        #endregion
+
+        #region Baze podataka
+        public static ObservableCollection<TipNamestaja> GetAll()
+        {
+            var tipoviNamestaja = new ObservableCollection<TipNamestaja>();
+
+            using (var sc = new SqlConnection())
+            {
+
+            }
         }
         #endregion
     }
