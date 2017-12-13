@@ -45,7 +45,7 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             }
             tmp = par;
             tblock.Text = "Izmena popusta za namestaj:";
-            tbPopust.Text = tmp.Popust.ToString();
+            tbPopust.DataContext = par;
             operacija = Operacija.IZMENA;
             akcija = akcijaT;
             cbNamestaj.SelectedItem = par.Namestaj;

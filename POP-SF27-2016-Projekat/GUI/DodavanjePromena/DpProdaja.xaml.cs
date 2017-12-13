@@ -32,12 +32,14 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 
         private void btnAddNamestaj_Click(object sender, RoutedEventArgs e)
         {
-
+            DpProdajaNamestaj dpProdajaNamestaj = new DpProdajaNamestaj(prodaja);
+            dpProdajaNamestaj.ShowDialog(); // Cekamo da se zatvori prozor za menjanje
         }
 
         private void btnEditNamestaj_Click(object sender, RoutedEventArgs e)
         {
-
+            DpProdajaNamestaj dpProdajaNamestaj = new DpProdajaNamestaj((UredjeniParRacun)dgNamestaj.SelectedItem, prodaja);
+            dpProdajaNamestaj.ShowDialog(); // Cekamo da se zatvori prozor za menjanje
         }
 
         private void btnDeleteNamestaj_Click(object sender, RoutedEventArgs e)

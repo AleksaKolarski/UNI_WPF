@@ -22,11 +22,11 @@
 
         <TextBlock Name="tblock" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0"/>
         
-        <Label Content="Popust:" Margin="10, 0, 0, 0" Grid.Column="0" Grid.Row="1"/>
-        <Label Content="Namestaj:" Margin="10, 0, 0, 0" Grid.Column="0" Grid.Row="2"/>
+        <Label Content="Namestaj:" Margin="10, 0, 0, 0" Grid.Column="0" Grid.Row="1"/>
+        <Label Content="Popust:" Margin="10, 0, 0, 0" Grid.Column="0" Grid.Row="2"/>
         
-        <TextBox Name="tbPopust" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Width="150"/>
-        <ComboBox Name="cbNamestaj" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Width="150" Margin="0, 3, 3, 3" ItemsSource="{Binding Source={x:Static s:Namestaj.namestajCollection}}" DisplayMemberPath="Naziv"/>
+        <ComboBox Name="cbNamestaj" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Width="150" Margin="0, 3, 3, 3" ItemsSource="{Binding Source={x:Static s:Namestaj.namestajCollection}}" DisplayMemberPath="Naziv"/>
+        <TextBox Name="tbPopust" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Width="150" Text="{Binding Popust}"/>
         
         <Button Name="btnOk" Content="Ok" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3" Width="60" Click="btnOk_Click"/>
         <Button Name="btnCancel" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2"  Grid.Row="3"  Width="60" Click="btnCancel_Click"/>

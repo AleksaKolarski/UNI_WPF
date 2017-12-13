@@ -136,6 +136,7 @@ namespace POP_SF27_2016_Projekat.Model
         #endregion
 
         #region Baze podataka
+        /*
         public static ObservableCollection<TipNamestaja> GetAll()
         {
             var tipoviNamestaja = new ObservableCollection<TipNamestaja>();
@@ -145,6 +146,7 @@ namespace POP_SF27_2016_Projekat.Model
 
             }
         }
+        */
         #endregion
     }
 }

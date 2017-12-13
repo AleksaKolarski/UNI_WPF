@@ -324,7 +324,10 @@ namespace POP_SF27_2016_Projekat.Model
         #endregion
 
         #region Constructors
-        public UredjeniParRacun() { }
+        public UredjeniParRacun()
+        {
+            //brojNamestaja = 0;
+        }
         public UredjeniParRacun(int namestajId, int brojNamestaja)
         {
             this.NamestajId = namestajId;
@@ -333,6 +336,14 @@ namespace POP_SF27_2016_Projekat.Model
         #endregion
 
         #region Methods
+        public UredjeniParRacun Copy()
+        {
+            UredjeniParRacun tmp = new UredjeniParRacun();
+            tmp.NamestajId = this.NamestajId;
+            tmp.BrojNamestaja = this.BrojNamestaja;
+            return tmp;
+        }
+
         public override string ToString()
         {
             return $"{NamestajId}, {BrojNamestaja}";
