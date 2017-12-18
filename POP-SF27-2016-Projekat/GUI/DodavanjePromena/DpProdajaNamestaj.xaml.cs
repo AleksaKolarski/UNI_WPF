@@ -38,6 +38,7 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 
             this.prodaja = prodaja;
 
+            cbNamestaj.DataContext = uredjeniParCopy;
             tbKolicina.DataContext = uredjeniParCopy;
         }
         public DpProdajaNamestaj(UredjeniParRacun uredjeniPar, ProdajaNamestaja prodaja)
@@ -47,13 +48,34 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             operacija = Operacija.IZMENA;
 
             this.uredjeniParReal = uredjeniPar;
-            this.uredjeniParCopy = uredjeniPar.Copy();
+
+            this.uredjeniParCopy = new UredjeniParRacun();
+            this.uredjeniParCopy.Copy(uredjeniPar);
+
             cbNamestaj.SelectedItem = uredjeniParCopy.Namestaj;
 
             this.prodaja = prodaja;
 
             cbNamestaj.DataContext = uredjeniParCopy;
             tbKolicina.DataContext = uredjeniParCopy;
+        }
+
+        private void btnOk_Click(object sender, RoutedEventArgs e)
+        {
+            if(operacija == Operacija.DODAVANJE)
+            {
+                prodaja.ListUredjeniPar.Add(uredjeniParCopy);
+            }
+            else if(operacija == Operacija.IZMENA)
+            {
+                uredjeniParReal.Copy(uredjeniParCopy);
+            }
+            Close();
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

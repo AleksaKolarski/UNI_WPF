@@ -33,9 +33,11 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 
             tblock.Text = "Nova akcija:";
             operacija = Operacija.DODAVANJE;
-            tmp = new Akcija();
-            tmp.DatumPocetka = DateTime.Now;
-            tmp.DatumKraja = DateTime.Now.AddDays(1);
+            tmp = new Akcija
+            {
+                DatumPocetka = DateTime.Now,
+                DatumKraja = DateTime.Now.AddDays(1)
+            };
             InitTabela();
         }
 

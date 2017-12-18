@@ -38,13 +38,19 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 
         private void btnEditNamestaj_Click(object sender, RoutedEventArgs e)
         {
-            DpProdajaNamestaj dpProdajaNamestaj = new DpProdajaNamestaj((UredjeniParRacun)dgNamestaj.SelectedItem, prodaja);
-            dpProdajaNamestaj.ShowDialog(); // Cekamo da se zatvori prozor za menjanje
+            if (dgNamestaj.SelectedItem != null)
+            {
+                DpProdajaNamestaj dpProdajaNamestaj = new DpProdajaNamestaj((UredjeniParRacun)dgNamestaj.SelectedItem, prodaja);
+                dpProdajaNamestaj.ShowDialog(); // Cekamo da se zatvori prozor za menjanje
+            }
         }
 
         private void btnDeleteNamestaj_Click(object sender, RoutedEventArgs e)
         {
-
+            if (dgNamestaj.SelectedItem != null)
+            {
+                prodaja.ListUredjeniPar.Remove((UredjeniParRacun)dgNamestaj.SelectedItem);
+            }
         }
 
         private void btnAddUsluga_Click(object sender, RoutedEventArgs e)
@@ -54,7 +60,20 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 
         private void btnDeleteUsluga_Click(object sender, RoutedEventArgs e)
         {
+            if (dgDodatneUsluge.SelectedItem != null)
+            {
+                prodaja.ListDodatnaUsluga.Remove((DodatnaUsluga)dgDodatneUsluge.SelectedItem);
+            }
+        }
 
+        private void btnPotvrda_Click(object sender, RoutedEventArgs e)
+        {
+            if (prodaja.ListUredjeniPar.Count > 0)
+            {
+                prodaja.DatumProdaje = DateTime.Now;
+                ProdajaNamestaja.prodajaNamestajaCollection.Add(prodaja);
+                Close();
+            }
         }
     }
 }

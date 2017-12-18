@@ -268,6 +268,7 @@ namespace POP_SF27_2016_Projekat.Model
             {
                 namestajId = value;
                 OnPropertyChanged("NamestajId");
+                OnPropertyChanged("Popust");
             }
         }
         [XmlIgnore]
@@ -282,6 +283,10 @@ namespace POP_SF27_2016_Projekat.Model
                 namestaj = value;
                 NamestajId = namestaj.Id;
                 OnPropertyChanged("Namestaj");
+                OnPropertyChanged("Popust");
+                /* Ovo dole ce svejedno biti pozvano kad se setuje BrojNamestaja jer se uvek oba propertija setuju u paru */
+                //OnPropertyChanged("Cena");
+                //OnPropertyChanged("UkupnaCena");
             }
         }
         public int BrojNamestaja
@@ -294,6 +299,8 @@ namespace POP_SF27_2016_Projekat.Model
             {
                 brojNamestaja = value;
                 OnPropertyChanged("BrojNamestaja");
+                OnPropertyChanged("Cena");
+                OnPropertyChanged("UkupnaCena");
             }
         }
         [XmlIgnore]
@@ -336,12 +343,10 @@ namespace POP_SF27_2016_Projekat.Model
         #endregion
 
         #region Methods
-        public UredjeniParRacun Copy()
+        public void Copy(UredjeniParRacun source)
         {
-            UredjeniParRacun tmp = new UredjeniParRacun();
-            tmp.NamestajId = this.NamestajId;
-            tmp.BrojNamestaja = this.BrojNamestaja;
-            return tmp;
+            this.Namestaj = source.Namestaj;
+            this.BrojNamestaja = source.BrojNamestaja;
         }
 
         public override string ToString()

@@ -55,6 +55,6 @@
         <TextBlock Name="tbPDV" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Column="1" Grid.Row="9" Text="{Binding PDV}"/>
         <TextBlock Text="Ukupna cena:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Column="2" Grid.Row="9"/>
         <TextBlock Name="tbUkupnaCena" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Column="3" Grid.Row="9" Text="{Binding UkupnaCena}"/>
-        <Button Name="btnPotvrda" Content="Potvrdi" Width="50" Height="20" Margin="-10, 0, 0, 0" Grid.Column="4" Grid.Row="9"/>
+        <Button Name="btnPotvrda" Content="Potvrdi" Width="50" Height="20" Margin="-10, 0, 0, 0" Grid.Column="4" Grid.Row="9" Click="btnPotvrda_Click"/>
     </Grid>
 </Window>
