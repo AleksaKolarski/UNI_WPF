@@ -1,4 +1,5 @@
 ﻿<UserControl x:Class="POP_SF27_2016_Projekat.GUI.UcSalon"
+             xmlns:s="clr-namespace:POP_SF27_2016_Projekat.Model"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +7,7 @@
              xmlns:local="clr-namespace:POP_SF27_2016_Projekat.GUI"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" HorizontalAlignment="Left" VerticalAlignment="Center">
-    <Grid>
+    <Grid Visibility="{Binding Source={x:Static s:Korisnik.Trenutni}, Path=TipKorisnika.Dozvole.SalonRead}">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="1*"/>
@@ -33,13 +34,13 @@
         <Label Name="lbMaticniBroj" Content="Maticni Broj:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 0, 0" Grid.Column="0" Grid.Row="7"/>
         <Label Name="lbZiroRacun" Content="Ziro Racun:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 0, 0" Grid.Column="0" Grid.Row="8"/>
 
-        <TextBox Name="tbNaziv" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="1" MinWidth="130"/>
-        <TextBox Name="tbAdresa" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="2" MinWidth="130"/>
-        <TextBox Name="tbTelefon" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="3" MinWidth="130"/>
-        <TextBox Name="tbEmail" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="4" MinWidth="130"/>
-        <TextBox Name="tbAdresaSajta" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="5" MinWidth="130"/>
-        <TextBox Name="tbPIB" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="6" MinWidth="130"/>
-        <TextBox Name="tbMaticniBroj" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="7" MinWidth="130"/>
-        <TextBox Name="tbZiroRacun" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="8" MinWidth="130"/>
+        <TextBox Name="tbNaziv" Text="{Binding Naziv}" IsReadOnly="{Binding Source={x:Static s:Korisnik.Trenutni}, Path=TipKorisnika.Dozvole.SalonEdit}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="1" MinWidth="130"/>
+        <TextBox Name="tbAdresa" Text="{Binding Adresa}" IsReadOnly="{Binding Source={x:Static s:Korisnik.Trenutni}, Path=TipKorisnika.Dozvole.SalonEdit}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="2" MinWidth="130"/>
+        <TextBox Name="tbTelefon" Text="{Binding Telefon}" IsReadOnly="{Binding Source={x:Static s:Korisnik.Trenutni}, Path=TipKorisnika.Dozvole.SalonEdit}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="3" MinWidth="130"/>
+        <TextBox Name="tbEmail" Text="{Binding Email}" IsReadOnly="{Binding Source={x:Static s:Korisnik.Trenutni}, Path=TipKorisnika.Dozvole.SalonEdit}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="4" MinWidth="130"/>
+        <TextBox Name="tbAdresaSajta" Text="{Binding AdresaSajta}" IsReadOnly="{Binding Source={x:Static s:Korisnik.Trenutni}, Path=TipKorisnika.Dozvole.SalonEdit}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="5" MinWidth="130"/>
+        <TextBox Name="tbPIB" Text="{Binding PIB}" IsReadOnly="{Binding Source={x:Static s:Korisnik.Trenutni}, Path=TipKorisnika.Dozvole.SalonEdit}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="6" MinWidth="130"/>
+        <TextBox Name="tbMaticniBroj" Text="{Binding MaticniBroj}" IsReadOnly="{Binding Source={x:Static s:Korisnik.Trenutni}, Path=TipKorisnika.Dozvole.SalonEdit}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="7" MinWidth="130"/>
+        <TextBox Name="tbZiroRacun" Text="{Binding ZiroRacun}" IsReadOnly="{Binding Source={x:Static s:Korisnik.Trenutni}, Path=TipKorisnika.Dozvole.SalonEdit}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="8" MinWidth="130"/>
     </Grid>
 </UserControl>

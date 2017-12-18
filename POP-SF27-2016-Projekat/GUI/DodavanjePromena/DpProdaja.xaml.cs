@@ -28,6 +28,8 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             dgDodatneUsluge.ItemsSource = prodaja.ListDodatnaUsluga;
             tbPDV.DataContext = prodaja;
             tbUkupnaCena.DataContext = prodaja;
+            tbKupac.DataContext = prodaja;
+            tbRacun.DataContext = prodaja;
         }
 
         private void btnAddNamestaj_Click(object sender, RoutedEventArgs e)
@@ -55,7 +57,8 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 
         private void btnAddUsluga_Click(object sender, RoutedEventArgs e)
         {
-
+            DpProdajaDodatnaUsluga dpProdajaDodatnaUsluga = new DpProdajaDodatnaUsluga(prodaja);
+            dpProdajaDodatnaUsluga.ShowDialog();
         }
 
         private void btnDeleteUsluga_Click(object sender, RoutedEventArgs e)
@@ -68,11 +71,14 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 
         private void btnPotvrda_Click(object sender, RoutedEventArgs e)
         {
-            if (prodaja.ListUredjeniPar.Count > 0)
+            if (!string.IsNullOrEmpty(prodaja.Kupac) && !string.IsNullOrEmpty(prodaja.BrojRacuna))
             {
-                prodaja.DatumProdaje = DateTime.Now;
-                ProdajaNamestaja.prodajaNamestajaCollection.Add(prodaja);
-                Close();
+                if (prodaja.ListUredjeniPar.Count > 0)
+                {
+                    prodaja.DatumProdaje = DateTime.Now;
+                    ProdajaNamestaja.prodajaNamestajaCollection.Add(prodaja);
+                    Close();
+                }
             }
         }
     }

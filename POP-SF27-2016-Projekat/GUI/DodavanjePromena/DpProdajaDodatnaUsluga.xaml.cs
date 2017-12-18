@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POP_SF27_2016_Projekat.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,9 +17,29 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 {
     public partial class DpProdajaDodatnaUsluga : Window
     {
-        public DpProdajaDodatnaUsluga()
+        DodatnaUsluga dodatnaUsluga;
+        ProdajaNamestaja prodaja;
+        public DpProdajaDodatnaUsluga(ProdajaNamestaja prodaja)
         {
             InitializeComponent();
+            tblock.Text = "Dodatna usluga:";
+            this.prodaja = prodaja;
+            this.dodatnaUsluga = new DodatnaUsluga();
+            cbDodatnaUsluga.DataContext = dodatnaUsluga;
+        }
+
+        private void btnOk_Click(object sender, RoutedEventArgs e)
+        {
+            if(cbDodatnaUsluga.SelectedItem != null)
+            {
+                prodaja.ListDodatnaUsluga.Add(dodatnaUsluga);
+                Close();
+            }
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -4,6 +4,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Xml.Serialization;
 
 namespace POP_SF27_2016_Projekat.Model
 {
@@ -91,6 +94,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("ProdajaNamestaja");
             }
         }
+        #region SalonDozvole
         public Dozvola Salon
         {
             get
@@ -103,6 +107,94 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("Salon");
             }
         }
+        [XmlIgnore]
+        public Visibility SalonRead
+        {
+            get
+            {
+                if((salon & Dozvola.Read) == Dozvola.Read)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Hidden;
+                }
+            }
+            set
+            {
+                if (value == Visibility.Visible)
+                {
+                    salon = salon | Dozvola.Read;
+                }
+                else
+                {
+                    salon = salon & ~Dozvola.Read;
+                }
+                OnPropertyChanged("SalonRead");
+            }
+        }
+        [XmlIgnore]
+        public Boolean SalonAdd
+        {
+            get
+            {
+                return (salon & Dozvola.Add) == Dozvola.Add;
+            }
+            set
+            {
+                if (value == true)
+                {
+                    salon = salon | Dozvola.Add;
+                }
+                else
+                {
+                    salon = salon & ~Dozvola.Add;
+                }
+                OnPropertyChanged("SalonAdd");
+            }
+        }
+        [XmlIgnore]
+        public Boolean SalonEdit
+        {
+            get
+            {
+                return (salon & Dozvola.Edit) == Dozvola.Edit;
+            }
+            set
+            {
+                if(value == true)
+                {
+                    salon = salon | Dozvola.Edit;
+                }
+                else
+                {
+                    salon = salon & ~Dozvola.Edit;
+                }
+                OnPropertyChanged("SalonEdit");
+            }
+        }
+        [XmlIgnore]
+        public Boolean SalonDelete
+        {
+            get
+            {
+                return (salon & Dozvola.Delete) == Dozvola.Delete;
+            }
+            set
+            {
+                if (value == true)
+                {
+                    salon = salon | Dozvola.Delete;
+                }
+                else
+                {
+                    salon = salon & ~Dozvola.Delete;
+                }
+                OnPropertyChanged("SalonDelete");
+            }
+        }
+        #endregion
         public Dozvola TipKorisnika
         {
             get

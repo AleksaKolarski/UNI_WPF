@@ -21,25 +21,14 @@ namespace POP_SF27_2016_Projekat.GUI
         public UcSalon()
         {
             InitializeComponent();
-            Salon tmpSalon = Salon.SalonProperty;
-            tbNaziv.Text = tmpSalon.Naziv;
-            tbAdresa.Text = tmpSalon.Adresa;
-            tbTelefon.Text = tmpSalon.Telefon;
-            tbEmail.Text = tmpSalon.Email;
-            tbAdresaSajta.Text = tmpSalon.AdresaSajta;
-            tbPIB.Text = tmpSalon.PIB.ToString();
-            tbMaticniBroj.Text = tmpSalon.MaticniBroj.ToString();
-            tbZiroRacun.Text = tmpSalon.ZiroRacun;
-
-            bool tmpDozvola = !((TipKorisnika.GetById(Korisnik.Trenutni.TipKorisnikaId).Dozvole.Salon & Dozvola.Edit) == Dozvola.Edit);
-            tbNaziv.IsReadOnly = tmpDozvola;
-            tbAdresa.IsReadOnly = tmpDozvola;
-            tbTelefon.IsReadOnly = tmpDozvola;
-            tbEmail.IsReadOnly = tmpDozvola;
-            tbAdresaSajta.IsReadOnly = tmpDozvola;
-            tbPIB.IsReadOnly = tmpDozvola;
-            tbMaticniBroj.IsReadOnly = tmpDozvola;
-            tbZiroRacun.IsReadOnly = tmpDozvola;
+            tbNaziv.DataContext = Salon.salon;
+            tbAdresa.DataContext = Salon.salon;
+            tbTelefon.DataContext = Salon.salon;
+            tbEmail.DataContext = Salon.salon;
+            tbAdresaSajta.DataContext = Salon.salon;
+            tbPIB.DataContext = Salon.salon;
+            tbMaticniBroj.DataContext = Salon.salon;
+            tbZiroRacun.DataContext = Salon.salon;
         }
     }
 }

@@ -22,6 +22,8 @@ namespace POP_SF27_2016_Projekat.Model
         [XmlIgnore]
         public ObservableCollection<int> listDodatnaUslugaId;
         [XmlIgnore]
+        public ObservableCollection<DodatnaUsluga> listDodatnaUsluga;
+        [XmlIgnore]
         public double pdv = 20.0;
         public static ObservableCollection<ProdajaNamestaja> prodajaNamestajaCollection;
         #endregion
