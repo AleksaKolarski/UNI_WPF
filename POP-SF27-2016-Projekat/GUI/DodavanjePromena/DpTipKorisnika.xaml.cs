@@ -22,31 +22,38 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             DODAVANJE,
             IZMENA
         }
-
         private Operacija operacija;
+
+        TipKorisnika tipKorisnikaCopy;
+        TipKorisnika tipKorisnikaReal;
 
         public DpTipKorisnika()
         {
             InitializeComponent();
             tblock.Text = "Nov tip korisnika:";
 
-            InitDozvoleField(new Dozvole());
+            tipKorisnikaCopy = new TipKorisnika();
+
+            InitFields();
+
             operacija = Operacija.DODAVANJE;
         }
 
-        TipKorisnika tmp;
         public DpTipKorisnika(TipKorisnika tipKorisnika)
         {
             InitializeComponent();
             if (tipKorisnika == null)
             {
                 Close();
+                return;
             }
-            tmp = tipKorisnika;
             tblock.Text = "Izmena dodatne usluge:";
-            tbNaziv.Text = tmp.Naziv;
 
-            InitDozvoleField(tmp.Dozvole);
+            tipKorisnikaReal = tipKorisnika;
+            tipKorisnikaCopy = new TipKorisnika();
+            tipKorisnikaCopy.Copy(tipKorisnika);
+
+            InitFields();
 
             operacija = Operacija.IZMENA;
         }
@@ -57,11 +64,12 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             {
                 if (operacija == Operacija.DODAVANJE)
                 {
-                    TipKorisnika.Add(new TipKorisnika(tbNaziv.Text, GetDozvoleField()));
+                    TipKorisnika.Add(tipKorisnikaCopy);
                 }
                 else if (operacija == Operacija.IZMENA)
                 {
-                    TipKorisnika.Edit(tmp, tbNaziv.Text, GetDozvoleField());
+                    //TipKorisnika.Edit(tmp, tbNaziv.Text, GetDozvoleField());
+                    tipKorisnikaReal.Copy(tipKorisnikaCopy);
                 }
                 Close();
             }
@@ -76,61 +84,49 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             Close();
         }
 
-        private void InitDozvoleField(Dozvole dozvole)
+        private void InitFields()
         {
-            cbAkcijaAdd.IsChecked = (dozvole.Akcija & Dozvola.Add) == Dozvola.Add;
-            cbAkcijaRead.IsChecked = (dozvole.Akcija & Dozvola.Read) == Dozvola.Read;
-            cbAkcijaEdit.IsChecked = (dozvole.Akcija & Dozvola.Edit) == Dozvola.Edit;
-            cbAkcijaDelete.IsChecked = (dozvole.Akcija & Dozvola.Delete) == Dozvola.Delete;
+            tbNaziv.DataContext = tipKorisnikaCopy;
 
-            cbDodatnaUslugaAdd.IsChecked = (dozvole.DodatnaUsluga & Dozvola.Add) == Dozvola.Add;
-            cbDodatnaUslugaRead.IsChecked = (dozvole.DodatnaUsluga & Dozvola.Read) == Dozvola.Read;
-            cbDodatnaUslugaEdit.IsChecked = (dozvole.DodatnaUsluga & Dozvola.Edit) == Dozvola.Edit;
-            cbDodatnaUslugaDelete.IsChecked = (dozvole.DodatnaUsluga & Dozvola.Delete) == Dozvola.Delete;
+            cbAkcijaRead.DataContext = tipKorisnikaCopy.Dozvole;
+            cbAkcijaAdd.DataContext = tipKorisnikaCopy.Dozvole;
+            cbAkcijaEdit.DataContext = tipKorisnikaCopy.Dozvole;
+            cbAkcijaDelete.DataContext = tipKorisnikaCopy.Dozvole;
 
-            cbKorisnikAdd.IsChecked = (dozvole.Korisnik & Dozvola.Add) == Dozvola.Add;
-            cbKorisnikRead.IsChecked = (dozvole.Korisnik & Dozvola.Read) == Dozvola.Read;
-            cbKorisnikEdit.IsChecked = (dozvole.Korisnik & Dozvola.Edit) == Dozvola.Edit;
-            cbKorisnikDelete.IsChecked = (dozvole.Korisnik & Dozvola.Delete) == Dozvola.Delete;
+            cbDodatnaUslugaRead.DataContext = tipKorisnikaCopy.Dozvole;
+            cbDodatnaUslugaAdd.DataContext = tipKorisnikaCopy.Dozvole;
+            cbDodatnaUslugaEdit.DataContext = tipKorisnikaCopy.Dozvole;
+            cbDodatnaUslugaDelete.DataContext = tipKorisnikaCopy.Dozvole;
 
-            cbNamestajAdd.IsChecked = (dozvole.Namestaj & Dozvola.Add) == Dozvola.Add;
-            cbNamestajRead.IsChecked = (dozvole.Namestaj & Dozvola.Read) == Dozvola.Read;
-            cbNamestajEdit.IsChecked = (dozvole.Namestaj & Dozvola.Edit) == Dozvola.Edit;
-            cbNamestajDelete.IsChecked = (dozvole.Namestaj & Dozvola.Delete) == Dozvola.Delete;
+            cbKorisnikRead.DataContext = tipKorisnikaCopy.Dozvole;
+            cbKorisnikAdd.DataContext = tipKorisnikaCopy.Dozvole;
+            cbKorisnikEdit.DataContext = tipKorisnikaCopy.Dozvole;
+            cbKorisnikDelete.DataContext = tipKorisnikaCopy.Dozvole;
 
-            cbProdajaAdd.IsChecked = (dozvole.ProdajaNamestaja & Dozvola.Add) == Dozvola.Add;
-            cbProdajaRead.IsChecked = (dozvole.ProdajaNamestaja & Dozvola.Read) == Dozvola.Read;
-            cbProdajaEdit.IsChecked = (dozvole.ProdajaNamestaja & Dozvola.Edit) == Dozvola.Edit;
-            cbProdajaDelete.IsChecked = (dozvole.ProdajaNamestaja & Dozvola.Delete) == Dozvola.Delete;
+            cbNamestajRead.DataContext = tipKorisnikaCopy.Dozvole;
+            cbNamestajAdd.DataContext = tipKorisnikaCopy.Dozvole;
+            cbNamestajEdit.DataContext = tipKorisnikaCopy.Dozvole;
+            cbNamestajDelete.DataContext = tipKorisnikaCopy.Dozvole;
 
-            cbSalonAdd.IsChecked = (dozvole.Salon & Dozvola.Add) == Dozvola.Add;
-            cbSalonRead.IsChecked = (dozvole.Salon & Dozvola.Read) == Dozvola.Read;
-            cbSalonEdit.IsChecked = (dozvole.Salon & Dozvola.Edit) == Dozvola.Edit;
-            cbSalonDelete.IsChecked = (dozvole.Salon & Dozvola.Delete) == Dozvola.Delete;
+            cbProdajaRead.DataContext = tipKorisnikaCopy.Dozvole;
+            cbProdajaAdd.DataContext = tipKorisnikaCopy.Dozvole;
+            cbProdajaEdit.DataContext = tipKorisnikaCopy.Dozvole;
+            cbProdajaDelete.DataContext = tipKorisnikaCopy.Dozvole;
 
-            cbTipKorisnikaAdd.IsChecked = (dozvole.TipKorisnika & Dozvola.Add) == Dozvola.Add;
-            cbTipKorisnikaRead.IsChecked = (dozvole.TipKorisnika & Dozvola.Read) == Dozvola.Read;
-            cbTipKorisnikaEdit.IsChecked = (dozvole.TipKorisnika & Dozvola.Edit) == Dozvola.Edit;
-            cbTipKorisnikaDelete.IsChecked = (dozvole.TipKorisnika & Dozvola.Delete) == Dozvola.Delete;
+            cbSalonRead.DataContext = tipKorisnikaCopy.Dozvole;
+            cbSalonAdd.DataContext = tipKorisnikaCopy.Dozvole;
+            cbSalonEdit.DataContext = tipKorisnikaCopy.Dozvole;
+            cbSalonDelete.DataContext = tipKorisnikaCopy.Dozvole;
 
-            cbTipNamestajaAdd.IsChecked = (dozvole.TipNamestaja & Dozvola.Add) == Dozvola.Add;
-            cbTipNamestajaRead.IsChecked = (dozvole.TipNamestaja & Dozvola.Read) == Dozvola.Read;
-            cbTipNamestajaEdit.IsChecked = (dozvole.TipNamestaja & Dozvola.Edit) == Dozvola.Edit;
-            cbTipNamestajaDelete.IsChecked = (dozvole.TipNamestaja & Dozvola.Delete) == Dozvola.Delete;
-        }
+            cbTipKorisnikaRead.DataContext = tipKorisnikaCopy.Dozvole;
+            cbTipKorisnikaAdd.DataContext = tipKorisnikaCopy.Dozvole;
+            cbTipKorisnikaEdit.DataContext = tipKorisnikaCopy.Dozvole;
+            cbTipKorisnikaDelete.DataContext = tipKorisnikaCopy.Dozvole;
 
-        private Dozvole GetDozvoleField()
-        {
-            Dozvole dozvole = new Dozvole();
-            dozvole.Akcija = ((cbAkcijaAdd.IsChecked == true)? Dozvola.Add: Dozvola.None) | ((cbAkcijaRead.IsChecked == true) ? Dozvola.Read : Dozvola.None) | ((cbAkcijaEdit.IsChecked == true) ? Dozvola.Edit : Dozvola.None) | ((cbAkcijaDelete.IsChecked == true) ? Dozvola.Delete : Dozvola.None);
-            dozvole.DodatnaUsluga = ((cbDodatnaUslugaAdd.IsChecked == true) ? Dozvola.Add : Dozvola.None) | ((cbDodatnaUslugaRead.IsChecked == true) ? Dozvola.Read : Dozvola.None) | ((cbDodatnaUslugaEdit.IsChecked == true) ? Dozvola.Edit : Dozvola.None) | ((cbDodatnaUslugaDelete.IsChecked == true) ? Dozvola.Delete : Dozvola.None);
-            dozvole.Korisnik = ((cbKorisnikAdd.IsChecked == true) ? Dozvola.Add : Dozvola.None) | ((cbKorisnikRead.IsChecked == true) ? Dozvola.Read : Dozvola.None) | ((cbKorisnikEdit.IsChecked == true) ? Dozvola.Edit : Dozvola.None) | ((cbKorisnikDelete.IsChecked == true) ? Dozvola.Delete : Dozvola.None);
-            dozvole.Namestaj = ((cbNamestajAdd.IsChecked == true) ? Dozvola.Add : Dozvola.None) | ((cbNamestajRead.IsChecked == true) ? Dozvola.Read : Dozvola.None) | ((cbNamestajEdit.IsChecked == true) ? Dozvola.Edit : Dozvola.None) | ((cbNamestajDelete.IsChecked == true) ? Dozvola.Delete : Dozvola.None);
-            dozvole.ProdajaNamestaja = ((cbProdajaAdd.IsChecked == true) ? Dozvola.Add : Dozvola.None) | ((cbProdajaRead.IsChecked == true) ? Dozvola.Read : Dozvola.None) | ((cbProdajaEdit.IsChecked == true) ? Dozvola.Edit : Dozvola.None) | ((cbProdajaDelete.IsChecked == true) ? Dozvola.Delete : Dozvola.None);
-            dozvole.Salon = ((cbSalonAdd.IsChecked == true) ? Dozvola.Add : Dozvola.None) | ((cbSalonRead.IsChecked == true) ? Dozvola.Read : Dozvola.None) | ((cbSalonEdit.IsChecked == true) ? Dozvola.Edit : Dozvola.None) | ((cbSalonDelete.IsChecked == true) ? Dozvola.Delete : Dozvola.None);
-            dozvole.TipKorisnika = ((cbTipKorisnikaAdd.IsChecked == true) ? Dozvola.Add : Dozvola.None) | ((cbTipKorisnikaRead.IsChecked == true) ? Dozvola.Read : Dozvola.None) | ((cbTipKorisnikaEdit.IsChecked == true) ? Dozvola.Edit : Dozvola.None) | ((cbTipKorisnikaDelete.IsChecked == true) ? Dozvola.Delete : Dozvola.None);
-            dozvole.TipNamestaja = ((cbTipNamestajaAdd.IsChecked == true) ? Dozvola.Add : Dozvola.None) | ((cbTipNamestajaRead.IsChecked == true) ? Dozvola.Read : Dozvola.None) | ((cbTipNamestajaEdit.IsChecked == true) ? Dozvola.Edit : Dozvola.None) | ((cbTipNamestajaDelete.IsChecked == true) ? Dozvola.Delete : Dozvola.None);
-            return dozvole;
+            cbTipNamestajaRead.DataContext = tipKorisnikaCopy.Dozvole;
+            cbTipNamestajaAdd.DataContext = tipKorisnikaCopy.Dozvole;
+            cbTipNamestajaEdit.DataContext = tipKorisnikaCopy.Dozvole;
+            cbTipNamestajaDelete.DataContext = tipKorisnikaCopy.Dozvole;
         }
     }
 }

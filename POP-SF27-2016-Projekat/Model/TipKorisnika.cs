@@ -77,7 +77,10 @@ namespace POP_SF27_2016_Projekat.Model
         #endregion
 
         #region Constructors
-        public TipKorisnika() {}
+        public TipKorisnika()
+        {
+            this.Dozvole = new Dozvole();
+        }
         public TipKorisnika(string naziv, Dozvole dozvole)
         {
             this.Id = tipKorisnikaCollection.Count;
@@ -124,7 +127,6 @@ namespace POP_SF27_2016_Projekat.Model
             }
             tipKorisnikaToEdit.Naziv = naziv;
             tipKorisnikaToEdit.Dozvole = dozvole;
-            //TipKorisnikaCollectionProperty = tipKorisnikaCollection;
         }
 
         public static void Remove(TipKorisnika tipKorisnikaToRemove)
@@ -134,7 +136,12 @@ namespace POP_SF27_2016_Projekat.Model
                 return;
             }
             tipKorisnikaToRemove.Obrisan = true;
-            //TipKorisnikaCollectionProperty = tipKorisnikaCollection;
+        }
+
+        public void Copy(TipKorisnika source)
+        {
+            this.Naziv = source.Naziv;
+            this.Dozvole.Copy(source.Dozvole);
         }
 
         public override string ToString()

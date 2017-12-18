@@ -21,6 +21,7 @@ namespace POP_SF27_2016_Projekat.GUI
         public UcSalon()
         {
             InitializeComponent();
+
             tbNaziv.DataContext = Salon.salon;
             tbAdresa.DataContext = Salon.salon;
             tbTelefon.DataContext = Salon.salon;

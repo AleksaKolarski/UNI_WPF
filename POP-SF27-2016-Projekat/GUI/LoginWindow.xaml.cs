@@ -89,6 +89,8 @@ namespace POP_SF27_2016_Projekat.GUI
                 Korisnik.Logout(); // Za svaki slucaj kad god se vratimo u ovaj prozor izlogovati korisnika
                 this.Show(); // Prikazemo opet login prozor koji bi trebao da bude ociscen
                 this.Activate(); // Nekad prozor ode u pozadinu
+                this.Topmost = true;  // important
+                this.Topmost = false; // important
                 this.Focus(); // Nece vala
             }
         }

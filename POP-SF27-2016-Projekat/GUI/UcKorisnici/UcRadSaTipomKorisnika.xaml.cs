@@ -29,7 +29,9 @@ namespace POP_SF27_2016_Projekat.GUI.UcKorisnici
             view = CollectionViewSource.GetDefaultView(TipKorisnika.tipKorisnikaCollection);
             view.Filter = HideDeletedFilter;
             dgTipKorisnika.ItemsSource = view;
-            dgTipKorisnika.IsSynchronizedWithCurrentItem = true;
+            btnAdd.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
+            btnEdit.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
+            btnDelete.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
         }
 
         private bool HideDeletedFilter(object obj)
@@ -45,15 +47,18 @@ namespace POP_SF27_2016_Projekat.GUI.UcKorisnici
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            DpTipKorisnika dpTipKorisnika = new DpTipKorisnika((TipKorisnika)view.CurrentItem);
-            dpTipKorisnika.ShowDialog(); // Cekamo da se zatvori prozor za menjanje
+            if (dgTipKorisnika.SelectedItem != null)
+            {
+                DpTipKorisnika dpTipKorisnika = new DpTipKorisnika((TipKorisnika)dgTipKorisnika.SelectedItem);
+                dpTipKorisnika.ShowDialog(); // Cekamo da se zatvori prozor za menjanje
+            }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (view.CurrentItem is TipKorisnika tmp)    // kastujemo obj u DodatnaUsluga
+            if (dgTipKorisnika.SelectedItem != null)
             {
-                TipKorisnika.Remove(tmp);
+                TipKorisnika.Remove((TipKorisnika)dgTipKorisnika.SelectedItem);
                 view.Refresh();
             }
         }
