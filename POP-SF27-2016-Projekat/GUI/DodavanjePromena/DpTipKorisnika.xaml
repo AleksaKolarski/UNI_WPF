@@ -51,42 +51,42 @@
         <Label Content="Tip korisnika:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0, 0, 0, 0" Margin="0, 0, 7, 0" Grid.Column="0" Grid.Row="9"/>
         <Label Content="Tip namestaja:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0, 0, 0, 0" Margin="0, 0, 7, 0" Grid.Column="0" Grid.Row="10"/>
 
-        <CheckBox Name="cbAkcijaRead" IsChecked="{Binding AkcijaReadBool}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3"/>
+        <CheckBox Name="cbAkcijaRead" IsChecked="{Binding AkcijaRead}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="3"/>
         <CheckBox Name="cbAkcijaAdd" IsChecked="{Binding AkcijaAdd}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="3"/>
         <CheckBox Name="cbAkcijaEdit" IsChecked="{Binding AkcijaEdit}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="3"/>
         <CheckBox Name="cbAkcijaDelete" IsChecked="{Binding AkcijaDelete}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Grid.Row="3"/>
 
-        <CheckBox Name="cbDodatnaUslugaRead" IsChecked="{Binding DodatnaUslugaReadBool}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="4"/>
+        <CheckBox Name="cbDodatnaUslugaRead" IsChecked="{Binding DodatnaUslugaRead}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="4"/>
         <CheckBox Name="cbDodatnaUslugaAdd" IsChecked="{Binding DodatnaUslugaAdd}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="4"/>
         <CheckBox Name="cbDodatnaUslugaEdit" IsChecked="{Binding DodatnaUslugaEdit}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="4"/>
         <CheckBox Name="cbDodatnaUslugaDelete" IsChecked="{Binding DodatnaUslugaDelete}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Grid.Row="4"/>
 
-        <CheckBox Name="cbKorisnikRead" IsChecked="{Binding KorisnikReadBool}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="5"/>
+        <CheckBox Name="cbKorisnikRead" IsChecked="{Binding KorisnikRead}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="5"/>
         <CheckBox Name="cbKorisnikAdd" IsChecked="{Binding KorisnikAdd}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="5"/>
         <CheckBox Name="cbKorisnikEdit" IsChecked="{Binding KorisnikEdit}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="5"/>
         <CheckBox Name="cbKorisnikDelete" IsChecked="{Binding KorisnikDelete}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Grid.Row="5"/>
 
-        <CheckBox Name="cbNamestajRead" IsChecked="{Binding NamestajReadBool}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="6"/>
+        <CheckBox Name="cbNamestajRead" IsChecked="{Binding NamestajRead}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="6"/>
         <CheckBox Name="cbNamestajAdd" IsChecked="{Binding NamestajAdd}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="6"/>
         <CheckBox Name="cbNamestajEdit" IsChecked="{Binding NamestajEdit}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="6"/>
         <CheckBox Name="cbNamestajDelete" IsChecked="{Binding NamestajDelete}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Grid.Row="6"/>
 
-        <CheckBox Name="cbProdajaRead" IsChecked="{Binding ProdajaNamestajaReadBool}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="7"/>
+        <CheckBox Name="cbProdajaRead" IsChecked="{Binding ProdajaNamestajaRead}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="7"/>
         <CheckBox Name="cbProdajaAdd" IsChecked="{Binding ProdajaNamestajaAdd}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="7"/>
         <CheckBox Name="cbProdajaEdit" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="7"/>
         <CheckBox Name="cbProdajaDelete" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Grid.Row="7"/>
 
-        <CheckBox Name="cbSalonRead" IsChecked="{Binding SalonReadBool}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="8"/>
+        <CheckBox Name="cbSalonRead" IsChecked="{Binding SalonRead}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="8"/>
         <CheckBox Name="cbSalonAdd" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="8"/>
         <CheckBox Name="cbSalonEdit" IsChecked="{Binding SalonEdit}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="8"/>
         <CheckBox Name="cbSalonDelete" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Grid.Row="8"/>
 
-        <CheckBox Name="cbTipKorisnikaRead" IsChecked="{Binding TipKorisnikaReadBool}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="9"/>
+        <CheckBox Name="cbTipKorisnikaRead" IsChecked="{Binding TipKorisnikaRead}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="9"/>
         <CheckBox Name="cbTipKorisnikaAdd" IsChecked="{Binding TipKorisnikaAdd}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="9"/>
         <CheckBox Name="cbTipKorisnikaEdit" IsChecked="{Binding TipKorisnikaEdit}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="9"/>
         <CheckBox Name="cbTipKorisnikaDelete" IsChecked="{Binding TipKorisnikaDelete}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Grid.Row="9"/>
 
-        <CheckBox Name="cbTipNamestajaRead" IsChecked="{Binding TipNamestajaReadBool}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="10"/>
+        <CheckBox Name="cbTipNamestajaRead" IsChecked="{Binding TipNamestajaRead}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="10"/>
         <CheckBox Name="cbTipNamestajaAdd" IsChecked="{Binding TipNamestajaAdd}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="10"/>
         <CheckBox Name="cbTipNamestajaEdit" IsChecked="{Binding TipNamestajaEdit}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="10"/>
         <CheckBox Name="cbTipNamestajaDelete" IsChecked="{Binding TipNamestajaDelete}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Grid.Row="10"/>

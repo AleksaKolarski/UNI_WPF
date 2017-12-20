@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:POP_SF27_2016_Projekat.GUI"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" HorizontalAlignment="Left" VerticalAlignment="Center">
-    <Grid Visibility="{Binding Source={x:Static s:Korisnik.Trenutni}, Path=TipKorisnika.Dozvole.SalonRead}">
+    <Grid Visibility="{Binding Source={x:Static s:Korisnik.Trenutni}, Path=TipKorisnika.Dozvole.SalonReadVisibility}">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="1*"/>

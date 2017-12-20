@@ -120,7 +120,6 @@
     <Compile Include="GUI\UcSalon.xaml.cs">
       <DependentUpon>UcSalon.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\Aplikacija.cs" />
     <Compile Include="Model\Dozvole.cs" />
     <Compile Include="Model\TipKorisnika.cs" />
     <Compile Include="Utils\GenericSerializer.cs" />

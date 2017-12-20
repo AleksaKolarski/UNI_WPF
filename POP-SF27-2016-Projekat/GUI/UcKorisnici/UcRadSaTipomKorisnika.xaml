@@ -1,4 +1,5 @@
 ﻿<UserControl x:Class="POP_SF27_2016_Projekat.GUI.UcKorisnici.UcRadSaTipomKorisnika"
+             xmlns:s="clr-namespace:POP_SF27_2016_Projekat.Model"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +7,7 @@
              xmlns:local="clr-namespace:POP_SF27_2016_Projekat.GUI.UcKorisnici"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="400">
-    <Grid>
+    <Grid Visibility="{Binding Source={x:Static s:Korisnik.Trenutni}, Path=TipKorisnika.Dozvole.TipKorisnikaReadVisibility}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="25"/>

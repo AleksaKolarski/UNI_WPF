@@ -51,7 +51,7 @@ namespace POP_SF27_2016_Projekat.Model
             }
         }
         [XmlIgnore]
-        public Visibility AkcijaRead
+        public Visibility AkcijaReadVisibility
         {
             get
             {
@@ -64,21 +64,9 @@ namespace POP_SF27_2016_Projekat.Model
                     return Visibility.Hidden;
                 }
             }
-            set
-            {
-                if (value == Visibility.Visible)
-                {
-                    Akcija = akcija | Dozvola.Read;
-                }
-                else
-                {
-                    Akcija = akcija & ~Dozvola.Read;
-                }
-                OnPropertyChanged("AkcijaRead");
-            }
         }
         [XmlIgnore]
-        public Boolean AkcijaReadBool
+        public Boolean AkcijaRead
         {
             get
             {
@@ -173,7 +161,7 @@ namespace POP_SF27_2016_Projekat.Model
             }
         }
         [XmlIgnore]
-        public Visibility DodatnaUslugaRead
+        public Visibility DodatnaUslugaReadVisibility
         {
             get
             {
@@ -186,21 +174,9 @@ namespace POP_SF27_2016_Projekat.Model
                     return Visibility.Hidden;
                 }
             }
-            set
-            {
-                if (value == Visibility.Visible)
-                {
-                    DodatnaUsluga = dodatnaUsluga | Dozvola.Read;
-                }
-                else
-                {
-                    DodatnaUsluga = dodatnaUsluga & ~Dozvola.Read;
-                }
-                OnPropertyChanged("DodatnaUslugaRead");
-            }
         }
         [XmlIgnore]
-        public Boolean DodatnaUslugaReadBool
+        public Boolean DodatnaUslugaRead
         {
             get
             {
@@ -295,7 +271,7 @@ namespace POP_SF27_2016_Projekat.Model
             }
         }
         [XmlIgnore]
-        public Visibility KorisnikRead
+        public Visibility KorisnikReadVisibility
         {
             get
             {
@@ -308,21 +284,9 @@ namespace POP_SF27_2016_Projekat.Model
                     return Visibility.Hidden;
                 }
             }
-            set
-            {
-                if (value == Visibility.Visible)
-                {
-                    Korisnik = korisnik | Dozvola.Read;
-                }
-                else
-                {
-                    Korisnik = korisnik & ~Dozvola.Read;
-                }
-                OnPropertyChanged("KorisnikRead");
-            }
         }
         [XmlIgnore]
-        public Boolean KorisnikReadBool
+        public Boolean KorisnikRead
         {
             get
             {
@@ -417,7 +381,7 @@ namespace POP_SF27_2016_Projekat.Model
             }
         }
         [XmlIgnore]
-        public Visibility NamestajRead
+        public Visibility NamestajReadVisibility
         {
             get
             {
@@ -430,21 +394,9 @@ namespace POP_SF27_2016_Projekat.Model
                     return Visibility.Hidden;
                 }
             }
-            set
-            {
-                if (value == Visibility.Visible)
-                {
-                    Namestaj = namestaj | Dozvola.Read;
-                }
-                else
-                {
-                    Namestaj = namestaj & ~Dozvola.Read;
-                }
-                OnPropertyChanged("NamestajRead");
-            }
         }
         [XmlIgnore]
-        public Boolean NamestajReadBool
+        public Boolean NamestajRead
         {
             get
             {
@@ -539,7 +491,7 @@ namespace POP_SF27_2016_Projekat.Model
             }
         }
         [XmlIgnore]
-        public Visibility ProdajaNamestajaRead
+        public Visibility ProdajaNamestajaReadVisibility
         {
             get
             {
@@ -552,21 +504,9 @@ namespace POP_SF27_2016_Projekat.Model
                     return Visibility.Hidden;
                 }
             }
-            set
-            {
-                if (value == Visibility.Visible)
-                {
-                    ProdajaNamestaja = prodajaNamestaja | Dozvola.Read;
-                }
-                else
-                {
-                    ProdajaNamestaja = prodajaNamestaja & ~Dozvola.Read;
-                }
-                OnPropertyChanged("ProdajaNamestajaRead");
-            }
         }
         [XmlIgnore]
-        public Boolean ProdajaNamestajaReadBool
+        public Boolean ProdajaNamestajaRead
         {
             get
             {
@@ -621,7 +561,7 @@ namespace POP_SF27_2016_Projekat.Model
             }
         }
         [XmlIgnore]
-        public Visibility SalonRead
+        public Visibility SalonReadVisibility
         {
             get
             {
@@ -634,21 +574,9 @@ namespace POP_SF27_2016_Projekat.Model
                     return Visibility.Hidden;
                 }
             }
-            set
-            {
-                if (value == Visibility.Visible)
-                {
-                    Salon = salon | Dozvola.Read;
-                }
-                else
-                {
-                    Salon = salon & ~Dozvola.Read;
-                }
-                OnPropertyChanged("SalonRead");
-            }
         }
         [XmlIgnore]
-        public Boolean SalonReadBool
+        public Boolean SalonRead
         {
             get
             {
@@ -712,7 +640,7 @@ namespace POP_SF27_2016_Projekat.Model
             }
         }
         [XmlIgnore]
-        public Visibility TipKorisnikaRead
+        public Visibility TipKorisnikaReadVisibility
         {
             get
             {
@@ -725,21 +653,9 @@ namespace POP_SF27_2016_Projekat.Model
                     return Visibility.Hidden;
                 }
             }
-            set
-            {
-                if (value == Visibility.Visible)
-                {
-                    TipKorisnika = tipKorisnika | Dozvola.Read;
-                }
-                else
-                {
-                    TipKorisnika = tipKorisnika & ~Dozvola.Read;
-                }
-                OnPropertyChanged("TipKorisnikaRead");
-            }
         }
         [XmlIgnore]
-        public Boolean TipKorisnikaReadBool
+        public Boolean TipKorisnikaRead
         {
             get
             {
@@ -750,12 +666,16 @@ namespace POP_SF27_2016_Projekat.Model
                 if (value)
                 {
                     TipKorisnika = tipKorisnika | Dozvola.Read;
+                    //TipKorisnikaReadVisibility = Visibility.Visible;
                 }
                 else
                 {
                     TipKorisnika = tipKorisnika & ~Dozvola.Read;
+                    //TipKorisnikaReadVisibility = Visibility.Hidden;
                 }
-                OnPropertyChanged("SalonRead");
+                OnPropertyChanged("TipKorisnikaRead");
+                OnPropertyChanged("TipKorisnikaReadVisibility");
+
             }
         }
         [XmlIgnore]
@@ -834,7 +754,7 @@ namespace POP_SF27_2016_Projekat.Model
             }
         }
         [XmlIgnore]
-        public Visibility TipNamestajaRead
+        public Visibility TipNamestajaReadVisibility
         {
             get
             {
@@ -847,21 +767,9 @@ namespace POP_SF27_2016_Projekat.Model
                     return Visibility.Hidden;
                 }
             }
-            set
-            {
-                if (value == Visibility.Visible)
-                {
-                    TipNamestaja = tipNamestaja | Dozvola.Read;
-                }
-                else
-                {
-                    TipNamestaja = tipNamestaja & ~Dozvola.Read;
-                }
-                OnPropertyChanged("TipNamestajaRead");
-            }
         }
         [XmlIgnore]
-        public Boolean TipNamestajaReadBool
+        public Boolean TipNamestajaRead
         {
             get
             {
@@ -960,15 +868,42 @@ namespace POP_SF27_2016_Projekat.Model
         #region Methods
         public void Copy(Dozvole source)
         {
-            this.Akcija = source.Akcija;
-            this.DodatnaUsluga = source.DodatnaUsluga;
-            this.Korisnik = source.Korisnik;
-            this.Namestaj = source.Namestaj;
-            this.ProdajaNamestaja = source.ProdajaNamestaja;
-            this.Salon = source.Salon;
-            this.TipKorisnika = source.TipKorisnika;
-            this.TipNamestaja = source.TipNamestaja;
-    }
+            this.AkcijaRead = source.AkcijaRead;
+            this.AkcijaAdd = source.AkcijaAdd;
+            this.AkcijaEdit = source.AkcijaEdit;
+            this.AkcijaDelete = source.AkcijaDelete;
+
+            this.DodatnaUslugaRead = source.DodatnaUslugaRead;
+            this.DodatnaUslugaAdd = source.DodatnaUslugaAdd;
+            this.DodatnaUslugaEdit = source.DodatnaUslugaEdit;
+            this.DodatnaUslugaDelete = source.DodatnaUslugaDelete;
+
+            this.KorisnikRead = source.KorisnikRead;
+            this.KorisnikAdd = source.KorisnikAdd;
+            this.KorisnikEdit = source.KorisnikEdit;
+            this.KorisnikDelete = source.KorisnikDelete;
+
+            this.NamestajRead = source.NamestajRead;
+            this.NamestajAdd = source.NamestajAdd;
+            this.NamestajEdit = source.NamestajEdit;
+            this.NamestajDelete = source.NamestajDelete;
+
+            this.ProdajaNamestajaRead = source.ProdajaNamestajaRead;
+            this.ProdajaNamestajaAdd = source.ProdajaNamestajaAdd;
+
+            this.SalonRead = source.SalonRead;
+            this.SalonEdit = source.SalonEdit;
+
+            this.TipKorisnikaRead = source.TipKorisnikaRead;
+            this.TipKorisnikaAdd = source.TipKorisnikaAdd;
+            this.TipKorisnikaEdit = source.TipKorisnikaEdit;
+            this.TipKorisnikaDelete = source.TipKorisnikaDelete;
+
+            this.TipNamestajaRead = source.TipNamestajaRead;
+            this.TipNamestajaAdd = source.TipNamestajaAdd;
+            this.TipNamestajaEdit = source.TipNamestajaEdit;
+            this.TipNamestajaDelete = source.TipNamestajaDelete;
+        }
 
         public override string ToString()
         {
