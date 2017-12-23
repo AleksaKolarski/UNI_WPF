@@ -20,7 +20,6 @@ namespace POP_SF27_2016_Projekat.Model
         private string korisnickoIme;
         private string lozinka;
         private int tipKorisnikaId;
-        private TipKorisnika tipKorisnika;
         private bool obrisan;
         public static ObservableCollection<Korisnik> korisnikCollection;
         #endregion
@@ -107,8 +106,7 @@ namespace POP_SF27_2016_Projekat.Model
             }
             set
             {
-                tipKorisnika = value;
-                TipKorisnikaId = tipKorisnika.Id;
+                TipKorisnikaId = value.Id;
                 OnPropertyChanged("TipKorisnika");
             }
         }
@@ -135,7 +133,7 @@ namespace POP_SF27_2016_Projekat.Model
         #endregion
 
         #region Constructors
-        public Korisnik() { }
+        public Korisnik() {}
         public Korisnik(string ime, string prezime, string korisnickoIme, string lozinka, TipKorisnika tipKorisnika)
         {
             this.Id = korisnikCollection.Count;
@@ -175,9 +173,7 @@ namespace POP_SF27_2016_Projekat.Model
             {
                 return;
             }
-            //List<Korisnik> tempList = KorisnikList;
             korisnikCollection.Add(korisnikToAdd);
-            //KorisnikList = tempList;
         }
 
         public static void Edit(Korisnik korisnikToEdit, string ime, string prezime, string korisnickoIme, string lozinka, TipKorisnika tipKorisnika)
@@ -190,7 +186,6 @@ namespace POP_SF27_2016_Projekat.Model
             korisnikToEdit.Prezime = prezime;
             korisnikToEdit.KorisnickoIme = korisnickoIme;
             korisnikToEdit.Lozinka = lozinka;
-            korisnikToEdit.TipKorisnikaId = tipKorisnika.Id;
             korisnikToEdit.TipKorisnika = tipKorisnika;
         }
 
@@ -201,6 +196,17 @@ namespace POP_SF27_2016_Projekat.Model
                 return;
             }
             korisnikToRemove.Obrisan = true;
+        }
+
+        public void Copy(Korisnik source)
+        {
+            this.Id = source.Id;
+            this.Ime = String.Copy(source.Ime);
+            this.Prezime = String.Copy(source.Prezime);
+            this.KorisnickoIme = String.Copy(source.KorisnickoIme);
+            this.Lozinka = String.Copy(source.Lozinka);
+            this.TipKorisnika = source.TipKorisnika;
+            this.Obrisan = source.Obrisan;
         }
 
         public static bool Login(string username, string password)

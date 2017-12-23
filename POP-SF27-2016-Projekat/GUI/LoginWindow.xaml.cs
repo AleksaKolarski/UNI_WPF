@@ -92,6 +92,7 @@ namespace POP_SF27_2016_Projekat.GUI
                 this.Topmost = true;  // important
                 this.Topmost = false; // important
                 this.Focus(); // Nece vala
+                tbUsername.Focus();
             }
         }
     }

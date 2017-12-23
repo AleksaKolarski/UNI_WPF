@@ -1,7 +1,6 @@
 ﻿using POP_SF27_2016_Projekat.Model;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,45 +22,48 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             DODAVANJE,
             IZMENA
         }
-
         private Operacija operacija;
+
+        private TipNamestaja tipNamestajaCopy;
+        private TipNamestaja tipNamestajaReal;
 
         public DpTipNamestaja()
         {
             InitializeComponent();
             tblock.Text = "Nov tip namestaja:";
             operacija = Operacija.DODAVANJE;
+
+            tipNamestajaCopy = new TipNamestaja("");
+
+            tbNaziv.DataContext = tipNamestajaCopy;
         }
 
-        TipNamestaja tmp;
         public DpTipNamestaja(TipNamestaja tipNamestaja)
         {
             InitializeComponent();
-            if(tipNamestaja == null)
-            {
-                Close();
-                return;
-            }
-            tmp = tipNamestaja;
             tblock.Text = "Izmena namestaja:";
-            tbNaziv.Text = tmp.Naziv;
             operacija = Operacija.IZMENA;
+
+            tipNamestajaReal = tipNamestaja;
+            tipNamestajaCopy = new TipNamestaja();
+            tipNamestajaCopy.Copy(tipNamestaja);
+
+            tbNaziv.DataContext = tipNamestajaCopy;
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            if (tbNaziv.Text != "")
+            if (tipNamestajaCopy.Naziv != "")
             {
                 if (operacija == Operacija.DODAVANJE)
                 {
-                    TipNamestaja.Add(new TipNamestaja(tbNaziv.Text));
+                    TipNamestaja.Add(tipNamestajaCopy);
                 }
                 else if (operacija == Operacija.IZMENA)
                 {
-                    TipNamestaja.Edit(tmp, tbNaziv.Text);
+                    tipNamestajaReal.Copy(tipNamestajaCopy);
                 }
                 Close();
-                return;
             }
             else
             {

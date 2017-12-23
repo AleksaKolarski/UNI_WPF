@@ -19,7 +19,6 @@ namespace POP_SF27_2016_Projekat.Model
         private double jedinicnaCena;
         private int kolicinaUMagacinu;
         private int tipNamestajaId;
-        private TipNamestaja tipNamestaja;
         private bool obrisan;
         public static ObservableCollection<Namestaj> namestajCollection;
         #endregion
@@ -106,8 +105,7 @@ namespace POP_SF27_2016_Projekat.Model
             }
             set
             {
-                tipNamestaja = value;
-                TipNamestajaId = tipNamestaja.Id;
+                TipNamestajaId = value.Id;
                 OnPropertyChanged("TipNamestaja");
             }
         }
@@ -132,7 +130,7 @@ namespace POP_SF27_2016_Projekat.Model
         #endregion
 
         #region Constructors
-        public Namestaj() { }
+        public Namestaj() {}
         public Namestaj(string naziv, string sifra, double jedinicnaCena, int kolicinaUMagacinu, TipNamestaja tipNamestaja)
         {
             this.Id = namestajCollection.Count;
@@ -168,13 +166,11 @@ namespace POP_SF27_2016_Projekat.Model
         {
             /* Kada predjemo na rad sa bazom podataka ovde se nece ucitavati 
              * cela lista vec ce se samo slati komanda za dodavanje novog. */
-            //List<Namestaj> tempList = NamestajList;
             if(namestajToAdd == null)
             {
                 return;
             }
             namestajCollection.Add(namestajToAdd);
-            //NamestajList = tempList;
         }
 
         public static void Edit(Namestaj namestajToEdit, string naziv, string sifra, double jedinicnaCena, int kolicinaUMagacinu, TipNamestaja tipNamestaja)
@@ -187,7 +183,6 @@ namespace POP_SF27_2016_Projekat.Model
             namestajToEdit.Sifra = sifra;
             namestajToEdit.JedinicnaCena = jedinicnaCena;
             namestajToEdit.KolicinaUMagacinu = kolicinaUMagacinu;
-            namestajToEdit.TipNamestajaId = tipNamestaja.Id;
             namestajToEdit.TipNamestaja = tipNamestaja;
         }
 
@@ -198,6 +193,17 @@ namespace POP_SF27_2016_Projekat.Model
                 return;
             }
             namestajToRemove.Obrisan = true;
+        }
+
+        public void Copy(Namestaj source)
+        {
+            this.Id = source.Id;
+            this.Naziv = source.Naziv;
+            this.Sifra = source.Sifra;
+            this.JedinicnaCena = source.JedinicnaCena;
+            this.KolicinaUMagacinu = source.KolicinaUMagacinu;
+            this.TipNamestaja = source.TipNamestaja;
+            this.Obrisan = source.Obrisan;
         }
 
         public override string ToString()

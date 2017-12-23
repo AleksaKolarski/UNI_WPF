@@ -3,6 +3,7 @@ using POP_SF27_2016_Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,10 @@ namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
             view = CollectionViewSource.GetDefaultView(TipNamestaja.tipNamestajaCollection);
             view.Filter = HideDeletedFilter;
             dgTipNamestaja.ItemsSource = view;
-            dgTipNamestaja.IsSynchronizedWithCurrentItem = true;
+
+            btnAdd.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
+            btnEdit.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
+            btnDelete.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
         }
 
         private bool HideDeletedFilter(object obj)
@@ -45,15 +49,18 @@ namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            DpTipNamestaja dpTipNamestaja = new DpTipNamestaja((TipNamestaja)view.CurrentItem);
-            dpTipNamestaja.ShowDialog(); // Cekamo da se zatvori prozor za menjanje
+            if (dgTipNamestaja.SelectedItem != null)
+            {
+                DpTipNamestaja dpTipNamestaja = new DpTipNamestaja((TipNamestaja)dgTipNamestaja.SelectedItem);
+                dpTipNamestaja.ShowDialog(); // Cekamo da se zatvori prozor za menjanje
+            }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (view.CurrentItem is TipNamestaja tmp)    // kastujemo obj u DodatnaUsluga
+            if (dgTipNamestaja.SelectedItem != null)    // kastujemo obj u DodatnaUsluga
             {
-                TipNamestaja.Remove(tmp);
+                TipNamestaja.Remove((TipNamestaja)dgTipNamestaja.SelectedItem);
                 view.Refresh();
             }
         }

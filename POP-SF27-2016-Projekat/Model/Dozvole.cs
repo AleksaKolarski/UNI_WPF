@@ -83,6 +83,7 @@ namespace POP_SF27_2016_Projekat.Model
                     Akcija = akcija & ~Dozvola.Read;
                 }
                 OnPropertyChanged("AkcijaRead");
+                OnPropertyChanged("AkcijaReadVisibility");
             }
         }
         [XmlIgnore]
@@ -193,6 +194,7 @@ namespace POP_SF27_2016_Projekat.Model
                     DodatnaUsluga = dodatnaUsluga & ~Dozvola.Read;
                 }
                 OnPropertyChanged("DodatnaUslugaRead");
+                OnPropertyChanged("DodatnaUslugaReadVisibility");
             }
         }
         [XmlIgnore]
@@ -303,6 +305,7 @@ namespace POP_SF27_2016_Projekat.Model
                     Korisnik = korisnik & ~Dozvola.Read;
                 }
                 OnPropertyChanged("KorisnikRead");
+                OnPropertyChanged("KorisnikReadVisibility");
             }
         }
         [XmlIgnore]
@@ -413,6 +416,7 @@ namespace POP_SF27_2016_Projekat.Model
                     Namestaj = namestaj & ~Dozvola.Read;
                 }
                 OnPropertyChanged("NamestajRead");
+                OnPropertyChanged("NamestajReadVisibility");
             }
         }
         [XmlIgnore]
@@ -523,6 +527,7 @@ namespace POP_SF27_2016_Projekat.Model
                     ProdajaNamestaja = prodajaNamestaja & ~Dozvola.Read;
                 }
                 OnPropertyChanged("ProdajaNamestajaRead");
+                OnPropertyChanged("ProdajaNamestajaReadVisibility");
             }
         }
         [XmlIgnore]
@@ -593,6 +598,7 @@ namespace POP_SF27_2016_Projekat.Model
                     Salon = salon & ~Dozvola.Read;
                 }
                 OnPropertyChanged("SalonRead");
+                OnPropertyChanged("SalonReadVisibility");
             }
         }
         [XmlIgnore]
@@ -613,6 +619,7 @@ namespace POP_SF27_2016_Projekat.Model
                     Salon = salon & ~Dozvola.Edit;
                 }
                 OnPropertyChanged("SalonEdit");
+                OnPropertyChanged("SalonEditInverse");
             }
         }
         [XmlIgnore]
@@ -666,12 +673,10 @@ namespace POP_SF27_2016_Projekat.Model
                 if (value)
                 {
                     TipKorisnika = tipKorisnika | Dozvola.Read;
-                    //TipKorisnikaReadVisibility = Visibility.Visible;
                 }
                 else
                 {
                     TipKorisnika = tipKorisnika & ~Dozvola.Read;
-                    //TipKorisnikaReadVisibility = Visibility.Hidden;
                 }
                 OnPropertyChanged("TipKorisnikaRead");
                 OnPropertyChanged("TipKorisnikaReadVisibility");
@@ -786,6 +791,7 @@ namespace POP_SF27_2016_Projekat.Model
                     TipNamestaja = tipNamestaja & ~Dozvola.Read;
                 }
                 OnPropertyChanged("TipNamestajaRead");
+                OnPropertyChanged("TipNamestajaReadVisibility");
             }
         }
         [XmlIgnore]

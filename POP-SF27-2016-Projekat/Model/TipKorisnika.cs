@@ -121,7 +121,7 @@ namespace POP_SF27_2016_Projekat.Model
 
         public static void Edit(TipKorisnika tipKorisnikaToEdit, string naziv, Dozvole dozvole)
         {
-            if(tipKorisnikaToEdit == null)
+            if(tipKorisnikaToEdit == null || dozvole == null)
             {
                 return;
             }
@@ -140,8 +140,10 @@ namespace POP_SF27_2016_Projekat.Model
 
         public void Copy(TipKorisnika source)
         {
-            this.Naziv = source.Naziv;
+            this.Id = source.Id;
+            this.Naziv = String.Copy(source.Naziv);
             this.Dozvole.Copy(source.Dozvole);
+            this.Obrisan = source.Obrisan;
         }
 
         public override string ToString()

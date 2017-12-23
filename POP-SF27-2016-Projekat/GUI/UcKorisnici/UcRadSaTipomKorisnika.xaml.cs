@@ -29,6 +29,7 @@ namespace POP_SF27_2016_Projekat.GUI.UcKorisnici
             view = CollectionViewSource.GetDefaultView(TipKorisnika.tipKorisnikaCollection);
             view.Filter = HideDeletedFilter;
             dgTipKorisnika.ItemsSource = view;
+
             btnAdd.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
             btnEdit.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
             btnDelete.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;

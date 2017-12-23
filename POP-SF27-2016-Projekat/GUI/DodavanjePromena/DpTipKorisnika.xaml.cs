@@ -24,43 +24,36 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
         }
         private Operacija operacija;
 
-        TipKorisnika tipKorisnikaCopy;
-        TipKorisnika tipKorisnikaReal;
+        private TipKorisnika tipKorisnikaCopy;
+        private TipKorisnika tipKorisnikaReal;
 
         public DpTipKorisnika()
         {
             InitializeComponent();
             tblock.Text = "Nov tip korisnika:";
+            operacija = Operacija.DODAVANJE;
 
-            tipKorisnikaCopy = new TipKorisnika();
+            tipKorisnikaCopy = new TipKorisnika("", new Dozvole());
 
             InitFields();
-
-            operacija = Operacija.DODAVANJE;
         }
 
         public DpTipKorisnika(TipKorisnika tipKorisnika)
         {
             InitializeComponent();
-            if (tipKorisnika == null)
-            {
-                Close();
-                return;
-            }
             tblock.Text = "Izmena dodatne usluge:";
+            operacija = Operacija.IZMENA;
 
             tipKorisnikaReal = tipKorisnika;
             tipKorisnikaCopy = new TipKorisnika();
             tipKorisnikaCopy.Copy(tipKorisnika);
 
             InitFields();
-
-            operacija = Operacija.IZMENA;
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            if (tbNaziv.Text != "")
+            if (tipKorisnikaCopy.Naziv != "")
             {
                 if (operacija == Operacija.DODAVANJE)
                 {
@@ -68,7 +61,6 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
                 }
                 else if (operacija == Operacija.IZMENA)
                 {
-                    //TipKorisnika.Edit(tmp, tbNaziv.Text, GetDozvoleField());
                     tipKorisnikaReal.Copy(tipKorisnikaCopy);
                 }
                 Close();

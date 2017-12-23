@@ -29,7 +29,10 @@ namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
             view = CollectionViewSource.GetDefaultView(Namestaj.namestajCollection);
             view.Filter = HideDeletedFilter;
             dgNamestaj.ItemsSource = view;
-            dgNamestaj.IsSynchronizedWithCurrentItem = true;
+
+            btnAdd.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
+            btnEdit.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
+            btnDelete.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
         }
 
         private bool HideDeletedFilter(object obj)
@@ -45,15 +48,18 @@ namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            DpNamestaj dpNamestaj = new DpNamestaj((Namestaj)view.CurrentItem);
-            dpNamestaj.ShowDialog(); // Cekamo da se zatvori prozor za menjanje
+            if (dgNamestaj.SelectedItem != null)
+            {
+                DpNamestaj dpNamestaj = new DpNamestaj((Namestaj)dgNamestaj.SelectedItem);
+                dpNamestaj.ShowDialog(); // Cekamo da se zatvori prozor za menjanje
+            }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (view.CurrentItem is Namestaj tmp)    // kastujemo obj u DodatnaUsluga
+            if (dgNamestaj.SelectedItem != null)
             {
-                Namestaj.Remove(tmp);
+                Namestaj.Remove((Namestaj)dgNamestaj.SelectedItem);
                 view.Refresh();
             }
         }

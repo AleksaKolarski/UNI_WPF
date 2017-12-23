@@ -79,7 +79,7 @@ namespace POP_SF27_2016_Projekat.Model
         public DodatnaUsluga() { }
         public DodatnaUsluga(string naziv, double cena)
         {
-            this.Id = DodatnaUslugaCollectionProperty.Count();
+            this.Id = dodatnaUslugaCollection.Count();
             this.Naziv = naziv;
             this.Cena = cena;
             this.Obrisan = false;
@@ -94,14 +94,11 @@ namespace POP_SF27_2016_Projekat.Model
 
         public static DodatnaUsluga GetById(int id)
         {
-            if (id >= 0)
+            foreach (DodatnaUsluga dodatnaUsluga in dodatnaUslugaCollection)
             {
-                foreach (DodatnaUsluga dodatnaUsluga in dodatnaUslugaCollection)
+                if (dodatnaUsluga.Id == id)
                 {
-                    if (dodatnaUsluga.Id == id)
-                    {
-                        return dodatnaUsluga;
-                    }
+                    return dodatnaUsluga;
                 }
             }
             return null;
@@ -116,7 +113,6 @@ namespace POP_SF27_2016_Projekat.Model
                 return;
             }
             dodatnaUslugaCollection.Add(dodatnaUslugaToAdd);
-            //DodatnaUslugaCollection = dodatnaUslugaCollection;
         }
 
         public static void Edit(DodatnaUsluga dodatnaUslugaToEdit, string naziv, double cena)
@@ -127,7 +123,6 @@ namespace POP_SF27_2016_Projekat.Model
             }
             dodatnaUslugaToEdit.Naziv = naziv;
             dodatnaUslugaToEdit.Cena = cena;
-            //DodatnaUslugaCollection = dodatnaUslugaCollection;
         }
 
         public static void Remove(DodatnaUsluga dodatnaUslugaToRemove)
@@ -137,7 +132,14 @@ namespace POP_SF27_2016_Projekat.Model
                 return;
             }
             dodatnaUslugaToRemove.Obrisan = true;
-            //DodatnaUslugaCollection = dodatnaUslugaCollection;
+        }
+
+        public void Copy(DodatnaUsluga source)
+        {
+            this.Id = source.Id;
+            this.Naziv = source.Naziv;
+            this.Cena = source.Cena;
+            this.Obrisan = source.Obrisan;
         }
 
         public override string ToString()

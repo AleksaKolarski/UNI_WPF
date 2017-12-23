@@ -23,46 +23,51 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             DODAVANJE,
             IZMENA
         }
-
         private Operacija operacija;
+
+        DodatnaUsluga dodatnaUslugaCopy;
+        DodatnaUsluga dodatnaUslugaReal;
 
         public DpDodatnaUsluga()
         {
             InitializeComponent();
             tblock.Text = "Nova dodatna usluga:";
             operacija = Operacija.DODAVANJE;
+
+            dodatnaUslugaCopy = new DodatnaUsluga("", 0);
+
+            tbNaziv.DataContext = dodatnaUslugaCopy;
+            tbCena.DataContext = dodatnaUslugaCopy;
         }
 
-        DodatnaUsluga tmp;
         public DpDodatnaUsluga(DodatnaUsluga dodatnaUsluga)
         {
             InitializeComponent();
-            if(dodatnaUsluga == null)
-            {
-                Close();
-            }
-            tmp = dodatnaUsluga;
             tblock.Text = "Izmena dodatne usluge:";
-            tbNaziv.Text = tmp.Naziv;
-            tbCena.Text = tmp.Cena.ToString();
-
             operacija = Operacija.IZMENA;
+
+            dodatnaUslugaReal = dodatnaUsluga;
+            dodatnaUslugaCopy = new DodatnaUsluga();
+            dodatnaUslugaCopy.Copy(dodatnaUsluga);
+
+            tbNaziv.DataContext = dodatnaUslugaCopy;
+            tbCena.DataContext = dodatnaUslugaCopy;
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            if(tbNaziv.Text != "")
+            if(dodatnaUslugaCopy.Naziv != "")
             {
                 double cena;
                 if (double.TryParse(tbCena.Text, out cena))
                 {
                     if (operacija == Operacija.DODAVANJE)
                     {
-                        DodatnaUsluga.Add(new DodatnaUsluga(tbNaziv.Text, double.Parse(tbCena.Text)));
+                        DodatnaUsluga.Add(dodatnaUslugaCopy);
                     }
                     else if (operacija == Operacija.IZMENA)
                     {
-                        DodatnaUsluga.Edit(tmp, tbNaziv.Text, double.Parse(tbCena.Text));
+                        dodatnaUslugaReal.Copy(dodatnaUslugaCopy);
                     }
                     Close();
                     return;

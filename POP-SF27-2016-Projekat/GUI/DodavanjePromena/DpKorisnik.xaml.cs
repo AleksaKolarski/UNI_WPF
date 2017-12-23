@@ -22,54 +22,62 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             DODAVANJE,
             IZMENA
         }
-
         private Operacija operacija;
+
+        Korisnik korisnikCopy;
+        Korisnik korisnikReal;
 
         public DpKorisnik()
         {
             InitializeComponent();
             tblock.Text = "Nov korisnik:";
             operacija = Operacija.DODAVANJE;
+
+            korisnikCopy = new Korisnik("","","","",new TipKorisnika());
+
+            tbIme.DataContext = korisnikCopy;
+            tbPrezime.DataContext = korisnikCopy;
+            tbKorisnickoIme.DataContext = korisnikCopy;
+            tbLozinka.DataContext = korisnikCopy;
+            cbTip.DataContext = korisnikCopy;
         }
 
-        Korisnik tmp;
         public DpKorisnik(Korisnik korisnik)
         {
             InitializeComponent();
-            if (korisnik == null)
-            {
-                Close();
-            }
-            tmp = korisnik;
             tblock.Text = "Izmena korisnika:";
-            tbIme.Text = tmp.Ime;
-            tbPrezime.Text = tmp.Prezime;
-            tbKorisnickoIme.Text = tmp.KorisnickoIme;
-            tbLozinka.Text = tmp.Lozinka;
-            cbTip.SelectedItem = tmp.TipKorisnika;
-
             operacija = Operacija.IZMENA;
+
+            korisnikCopy = new Korisnik();
+            korisnikCopy.Copy(korisnik);
+            korisnikReal = korisnik;
+
+            tbIme.DataContext = korisnikCopy;
+            tbPrezime.DataContext = korisnikCopy;
+            tbKorisnickoIme.DataContext = korisnikCopy;
+            tbLozinka.DataContext = korisnikCopy;
+            cbTip.DataContext = korisnikCopy;
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            if (tbIme.Text != "")
+            if (korisnikCopy.Ime != "")
             {
-                if(tbPrezime.Text != "")
+                if(korisnikCopy.Prezime != "")
                 {
-                    if(tbKorisnickoIme.Text != "")
+                    if(korisnikCopy.KorisnickoIme != "")
                     {
-                        if(tbLozinka.Text != "")
+                        if(korisnikCopy.Lozinka != "")
                         {
-                            if(cbTip.SelectedItem != null)
+                            if(korisnikCopy.TipKorisnika != null)
                             {
                                 if(operacija == Operacija.DODAVANJE)
                                 {
-                                    Korisnik.Add(new Korisnik(tbIme.Text, tbPrezime.Text, tbKorisnickoIme.Text, tbLozinka.Text, (TipKorisnika)cbTip.SelectedItem));
+                                    Korisnik.Add(korisnikCopy);
                                 }
                                 else if(operacija == Operacija.IZMENA)
                                 {
-                                    Korisnik.Edit(tmp, tbIme.Text, tbPrezime.Text, tbKorisnickoIme.Text, tbLozinka.Text, (TipKorisnika)cbTip.SelectedItem);
+                                    korisnikReal.Copy(korisnikCopy);
                                 }
                                 Close();
                                 return;

@@ -31,7 +31,10 @@ namespace POP_SF27_2016_Projekat.GUI
             view = CollectionViewSource.GetDefaultView(DodatnaUsluga.dodatnaUslugaCollection);
             view.Filter = HideDeletedFilter;
             dgDodatnaUsluga.ItemsSource = view;
-            dgDodatnaUsluga.IsSynchronizedWithCurrentItem = true;
+
+            btnAdd.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
+            btnEdit.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
+            btnDelete.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
         }
 
         private bool HideDeletedFilter(object obj)
@@ -47,15 +50,18 @@ namespace POP_SF27_2016_Projekat.GUI
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            DpDodatnaUsluga dpDodatnaUsluga = new DpDodatnaUsluga((DodatnaUsluga)view.CurrentItem);
-            dpDodatnaUsluga.ShowDialog(); // Cekamo da se zatvori prozor za menjanje
+            if (dgDodatnaUsluga.SelectedItem != null)
+            {
+                DpDodatnaUsluga dpDodatnaUsluga = new DpDodatnaUsluga((DodatnaUsluga)dgDodatnaUsluga.SelectedItem);
+                dpDodatnaUsluga.ShowDialog(); // Cekamo da se zatvori prozor za menjanje
+            }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            if(view.CurrentItem is DodatnaUsluga tmp)    // kastujemo obj u DodatnaUsluga
+            if (dgDodatnaUsluga.SelectedItem != null)
             {
-                DodatnaUsluga.Remove(tmp);
+                DodatnaUsluga.Remove((DodatnaUsluga)dgDodatnaUsluga.SelectedItem);
                 view.Refresh();
             }
         }

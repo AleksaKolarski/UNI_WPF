@@ -22,40 +22,48 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             DODAVANJE,
             IZMENA
         }
-
         private Operacija operacija;
+
+        Namestaj namestajCopy;
+        Namestaj namestajReal;
 
         public DpNamestaj()
         {
             InitializeComponent();
             tblock.Text = "Nov namestaj:";
             operacija = Operacija.DODAVANJE;
+
+            namestajCopy = new Namestaj("","",0,0,new TipNamestaja());
+
+            tbNaziv.DataContext = namestajCopy;
+            tbSifra.DataContext = namestajCopy;
+            tbJedinicnaCena.DataContext = namestajCopy;
+            tbKolicinaUMagacinu.DataContext = namestajCopy;
+            cbTip.DataContext = namestajCopy;
         }
 
-        Namestaj tmp;
         public DpNamestaj(Namestaj namestaj)
         {
             InitializeComponent();
-            if (namestaj == null)
-            {
-                Close();
-            }
-            tmp = namestaj;
             tblock.Text = "Izmena namestaja:";
-            tbNaziv.Text = tmp.Naziv;
-            tbSifra.Text = tmp.Sifra;
-            tbJedinicnaCena.Text = tmp.JedinicnaCena.ToString();
-            tbKolicinaUMagacinu.Text = tmp.KolicinaUMagacinu.ToString();
-            cbTip.SelectedItem = tmp.TipNamestaja;
-
             operacija = Operacija.IZMENA;
+
+            namestajCopy = new Namestaj();
+            namestajCopy.Copy(namestaj);
+            namestajReal = namestaj;
+
+            tbNaziv.DataContext = namestajCopy;
+            tbSifra.DataContext = namestajCopy;
+            tbJedinicnaCena.DataContext = namestajCopy;
+            tbKolicinaUMagacinu.DataContext = namestajCopy;
+            cbTip.DataContext = namestajCopy;
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            if (tbNaziv.Text != "")
+            if (namestajCopy.Naziv != "")
             {
-                if (tbSifra.Text != "")
+                if (namestajCopy.Sifra != "")
                 {
                     double jedinicnaCena;
                     if (double.TryParse(tbJedinicnaCena.Text, out jedinicnaCena))
@@ -63,15 +71,15 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
                         int kolicinaUMagacinu;
                         if (int.TryParse(tbKolicinaUMagacinu.Text, out kolicinaUMagacinu))
                         {
-                            if (cbTip.SelectedItem != null)
+                            if (namestajCopy.TipNamestaja != null)
                             {
                                 if (operacija == Operacija.DODAVANJE)
                                 {
-                                    Namestaj.Add(new Namestaj(tbNaziv.Text, tbSifra.Text, jedinicnaCena, kolicinaUMagacinu, (TipNamestaja)cbTip.SelectedItem));
+                                    Namestaj.Add(namestajCopy);
                                 }
                                 else if (operacija == Operacija.IZMENA)
                                 {
-                                    Namestaj.Edit(tmp, tbNaziv.Text, tbSifra.Text, jedinicnaCena, kolicinaUMagacinu, (TipNamestaja)cbTip.SelectedItem);
+                                    namestajReal.Copy(namestajCopy);
                                 }
                                 Close();
                                 return;

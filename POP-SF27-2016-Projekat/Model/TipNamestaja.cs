@@ -121,6 +121,13 @@ namespace POP_SF27_2016_Projekat.Model
             tipNamestajaToRemove.Obrisan = true;
         }
 
+        public void Copy(TipNamestaja source)
+        {
+            this.Id = source.Id;
+            this.Naziv = source.Naziv;
+            this.Obrisan = source.Obrisan;
+        }
+
         public override string ToString()
         {
             return $"{Naziv}";
