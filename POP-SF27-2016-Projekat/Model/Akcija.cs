@@ -128,14 +128,11 @@ namespace POP_SF27_2016_Projekat.Model
 
         public static Akcija GetById(int id)
         {
-            if (id >= 0)
+            foreach (Akcija akcija in akcijaCollection)
             {
-                foreach (Akcija akcija in akcijaCollection)
+                if (akcija.Id == id)
                 {
-                    if (akcija.Id == id)
-                    {
-                        return akcija;
-                    }
+                    return akcija;
                 }
             }
             return null;
@@ -145,11 +142,14 @@ namespace POP_SF27_2016_Projekat.Model
         {
             foreach(Akcija akcija in akcijaCollection)
             {
-                foreach(UredjeniPar uredjeniPar in akcija.Lista)
+                if (akcija.Obrisan == false)
                 {
-                    if(uredjeniPar.Namestaj.Id == namestaj.Id)
+                    foreach (UredjeniPar uredjeniPar in akcija.Lista)
                     {
-                        return akcija;
+                        if (uredjeniPar.Namestaj.Id == namestaj.Id)
+                        {
+                            return akcija;
+                        }
                     }
                 }
             }
@@ -160,11 +160,14 @@ namespace POP_SF27_2016_Projekat.Model
         {
             foreach (Akcija akcija in akcijaCollection)
             {
-                foreach (UredjeniPar uredjeniPar in akcija.Lista)
+                if (akcija.Obrisan == false)
                 {
-                    if (uredjeniPar.Namestaj.Id == namestaj.Id)
+                    foreach (UredjeniPar uredjeniPar in akcija.Lista)
                     {
-                        return uredjeniPar.Popust;
+                        if (uredjeniPar.Namestaj.Id == namestaj.Id)
+                        {
+                            return uredjeniPar.Popust;
+                        }
                     }
                 }
             }
@@ -175,13 +178,11 @@ namespace POP_SF27_2016_Projekat.Model
         {
             /* Kada predjemo na rad sa bazom podataka ovde se nece ucitavati 
              * cela lista vec ce se samo slati komanda za dodavanje novog. */
-            //ObservableCollection<Akcija> tempList = AkcijaCollection;
             if(akcijaCollection == null)
             {
                 return;
             }
             akcijaCollection.Add(akcijaToAdd);
-            //AkcijaCollection = tempList;
         }
 
         public static void Edit(Akcija akcijaToEdit, string naziv, DateTime? datumPocetka, DateTime? datumKraja, ObservableCollection<UredjeniPar> lista)
@@ -205,6 +206,22 @@ namespace POP_SF27_2016_Projekat.Model
             akcijaToRemove.Obrisan = true;
         }
 
+        public void Copy(Akcija source)
+        {
+            this.Id = source.Id;
+            this.Naziv = source.Naziv;
+            this.DatumPocetka = source.DatumPocetka;
+            this.DatumKraja = source.DatumKraja;
+            this.Lista = new ObservableCollection<UredjeniPar>();
+            foreach(UredjeniPar par in source.Lista)
+            {
+                UredjeniPar tmp = new UredjeniPar();
+                tmp.Copy(par);
+                this.Lista.Add(tmp);
+            }
+            this.Obrisan = source.Obrisan;
+        }
+
         public override string ToString()
         {
             return $"{Id}, {DatumPocetka}, {DatumKraja}";
@@ -225,7 +242,6 @@ namespace POP_SF27_2016_Projekat.Model
     {
         #region Fields
         private int namestajId;
-        private Namestaj namestaj;
         private double popust;
         #endregion
 
@@ -251,8 +267,7 @@ namespace POP_SF27_2016_Projekat.Model
             }
             set
             {
-                namestaj = value;
-                namestajId = namestaj.Id;
+                NamestajId = value.Id;
                 OnPropertyChanged("Namestaj");
             }
         }
@@ -274,13 +289,18 @@ namespace POP_SF27_2016_Projekat.Model
         public UredjeniPar(){}
         public UredjeniPar(Namestaj namestaj, double popust)
         {
-            this.NamestajId = namestaj.Id;
             this.Namestaj = namestaj;
             this.Popust = popust;
         }
         #endregion
 
         #region Methods
+        public void Copy(UredjeniPar source)
+        {
+            this.Namestaj = source.Namestaj;
+            this.Popust = source.Popust;
+        }
+
         public override string ToString()
         {
             return $"{NamestajId}, {Popust}";

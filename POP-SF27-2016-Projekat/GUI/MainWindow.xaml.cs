@@ -147,6 +147,11 @@ namespace POP_SF27_2016_Projekat.GUI
             btnRadSaKorisnicima.Visibility = Visibility.Hidden;
             btnRadSaTipomKorisnika.Visibility = Visibility.Hidden;
         }
+        
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            HideAllTempButtons();
+        }
         #endregion
     }
 }

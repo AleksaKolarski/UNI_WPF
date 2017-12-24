@@ -33,9 +33,9 @@
         <DatePicker Name="dpStart" Margin="-30, 0, 0, 0" Grid.Column="2" Grid.Row="1" FirstDayOfWeek="Monday" SelectedDate="{Binding DatumPocetka, StringFormat=dd/MM/yyyy}"/>
         <DatePicker Name="dpEnd" Margin="0, 0, -30, 0" Grid.Column="3" Grid.Row="1" FirstDayOfWeek="Monday" SelectedDate="{Binding DatumKraja, StringFormat=dd/MM/yyyy}"/>
         
-        <Button Name="btnAddNamestaj" Content="Add" Width="40" Height="20" Grid.Column="4" Grid.Row="3" Click="btnAdd_Click"/>
-        <Button Name="btnEditNamestaj" Content="Edit" Width="40" Height="20" Grid.Column="4" Grid.Row="4" Click="btnEdit_Click"/>
-        <Button Name="btnDeleteNamestaj" Content="Delete" Width="40" Height="20" Grid.Column="4" Grid.Row="5" Click="btnDelete_Click"/>
+        <Button Name="btnAdd" Content="Add" Width="40" Height="20" Grid.Column="4" Grid.Row="3" Click="btnAdd_Click"/>
+        <Button Name="btnEdit" Content="Edit" Width="40" Height="20" Grid.Column="4" Grid.Row="4" Click="btnEdit_Click"/>
+        <Button Name="btnDelete" Content="Delete" Width="40" Height="20" Grid.Column="4" Grid.Row="5" Click="btnDelete_Click"/>
 
         <DataGrid Name="dgNamestaj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="5" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" SelectionMode="Single" IsReadOnly="True" HeadersVisibility="Column">
             <DataGrid.Columns>

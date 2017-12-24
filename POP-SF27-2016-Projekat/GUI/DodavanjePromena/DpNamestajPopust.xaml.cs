@@ -27,28 +27,37 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
         private Operacija operacija;
 
         Akcija akcija;
+        UredjeniPar uredjeniParCopy;
+        UredjeniPar uredjeniParReal;
+
         public DpNamestajPopust(Akcija akcijaT)
         {
             InitializeComponent();
             tblock.Text = "Nov popust za namestaj:";
             operacija = Operacija.DODAVANJE;
+
             akcija = akcijaT;
+
+            uredjeniParCopy = new UredjeniPar();
+
+            cbNamestaj.DataContext = uredjeniParCopy;
+            tbPopust.DataContext = uredjeniParCopy;
         }
 
-        UredjeniPar tmp;
         public DpNamestajPopust(UredjeniPar par, Akcija akcijaT)
         {
             InitializeComponent();
-            if (par == null)
-            {
-                return;
-            }
-            tmp = par;
             tblock.Text = "Izmena popusta za namestaj:";
-            tbPopust.DataContext = par;
             operacija = Operacija.IZMENA;
+
             akcija = akcijaT;
-            cbNamestaj.SelectedItem = par.Namestaj;
+
+            uredjeniParReal = par;
+            uredjeniParCopy = new UredjeniPar();
+            uredjeniParCopy.Copy(par);
+
+            cbNamestaj.DataContext = uredjeniParCopy;
+            tbPopust.DataContext = uredjeniParCopy;
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
@@ -60,12 +69,11 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
                 {
                     if (operacija == Operacija.DODAVANJE)
                     {
-                        akcija.Lista.Add(new UredjeniPar((Namestaj)cbNamestaj.SelectedItem, double.Parse(tbPopust.Text)));
+                        akcija.Lista.Add(uredjeniParCopy);
                     }
                     else if (operacija == Operacija.IZMENA)
                     {
-                        tmp.Namestaj = (Namestaj)cbNamestaj.SelectedItem;
-                        tmp.Popust = double.Parse(tbPopust.Text);
+                        uredjeniParReal.Copy(uredjeniParCopy);
                     }
                     Close();
                     return;

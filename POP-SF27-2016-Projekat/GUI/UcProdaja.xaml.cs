@@ -49,5 +49,10 @@ namespace POP_SF27_2016_Projekat.GUI
             DpProdaja dpProdaja = new DpProdaja();
             dpProdaja.ShowDialog();
         }
+
+        private void dgProdaja_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

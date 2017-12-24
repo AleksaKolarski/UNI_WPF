@@ -26,50 +26,45 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 
         private Operacija operacija;
 
-        Akcija tmp;
+        Akcija akcijaCopy;
+        Akcija akcijaReal;
+
         public DpAkcija()
         {
             InitializeComponent();
-
             tblock.Text = "Nova akcija:";
             operacija = Operacija.DODAVANJE;
-            tmp = new Akcija
-            {
-                DatumPocetka = DateTime.Now,
-                DatumKraja = DateTime.Now.AddDays(1)
-            };
+
+            akcijaCopy = new Akcija("", DateTime.Now, DateTime.Now.AddDays(1), new ObservableCollection<UredjeniPar>());
+
             InitTabela();
         }
-
         
         public DpAkcija(Akcija akcija)
         {
             InitializeComponent();
-            if (akcija == null)
-            {
-                Close();
-            }
-            tmp = akcija;
             tblock.Text = "Izmena akcije:";
+            operacija = Operacija.IZMENA;
+
+            akcijaReal = akcija;
+            akcijaCopy = new Akcija();
+            akcijaCopy.Copy(akcija);
 
             InitTabela();
-
-            operacija = Operacija.IZMENA;
         }
 
         void InitTabela()
         {
-            dgNamestaj.ItemsSource = tmp.lista;
-            dgNamestaj.IsSynchronizedWithCurrentItem = true;
+            dgNamestaj.ItemsSource = akcijaCopy.lista;
 
-            dpStart.DataContext = tmp;
-            dpEnd.DataContext = tmp;
-            tbNaziv.DataContext = tmp;
+            dpStart.DataContext = akcijaCopy;
+            dpEnd.DataContext = akcijaCopy;
+            tbNaziv.DataContext = akcijaCopy;
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            if (tbNaziv.Text != "")
+            if (akcijaCopy.Naziv != "")
             {
                 if (dgNamestaj.Items.Count != 0)
                 {
@@ -77,14 +72,13 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
                     {
                         if (operacija == Operacija.DODAVANJE)
                         {
-                            Akcija.Add(new Akcija(tbNaziv.Text, dpStart.SelectedDate, dpEnd.SelectedDate, tmp.Lista));
+                            Akcija.Add(akcijaCopy);
                         }
                         else if (operacija == Operacija.IZMENA)
                         {
-                            Akcija.Edit(tmp, tbNaziv.Text, dpStart.SelectedDate, dpEnd.SelectedDate, tmp.Lista);
+                            akcijaReal.Copy(akcijaCopy);
                         }
                         Close();
-                        return;
                     }
                     else
                     {
@@ -93,7 +87,7 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
                 }
                 else
                 {
-                    btnAddNamestaj.Focus();
+                    btnAdd.Focus();
                 }
             }
             else
@@ -109,19 +103,19 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            DpNamestajPopust dpNamestajPopust = new DpNamestajPopust(tmp);
+            DpNamestajPopust dpNamestajPopust = new DpNamestajPopust(akcijaCopy);
             dpNamestajPopust.ShowDialog(); // Cekamo da se zatvori prozor za menjanje
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            DpNamestajPopust dpNamestajPopust = new DpNamestajPopust((UredjeniPar)dgNamestaj.SelectedItem, tmp);
+            DpNamestajPopust dpNamestajPopust = new DpNamestajPopust((UredjeniPar)dgNamestaj.SelectedItem, akcijaCopy);
             dpNamestajPopust.ShowDialog(); // Cekamo da se zatvori prozor za menjanje
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            tmp.Lista.Remove((UredjeniPar)dgNamestaj.SelectedItem);
+            akcijaCopy.Lista.Remove((UredjeniPar)dgNamestaj.SelectedItem);
         }
     }
 }

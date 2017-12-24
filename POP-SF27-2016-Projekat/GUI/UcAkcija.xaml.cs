@@ -16,13 +16,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Threading;
+using System.Diagnostics;
+using System.Collections.ObjectModel;
 
 namespace POP_SF27_2016_Projekat.GUI
 {
     public partial class UcAkcija : UserControl
     {
         ICollectionView view;
-        ICollectionView viewNamestaj;
 
         public UcAkcija()
         {
@@ -31,9 +32,11 @@ namespace POP_SF27_2016_Projekat.GUI
             view = CollectionViewSource.GetDefaultView(Akcija.akcijaCollection);
             view.Filter = HideDeletedFilter;
             dgAkcija.ItemsSource = view;
-            dgAkcija.IsSynchronizedWithCurrentItem = true;
-        }
 
+            btnAdd.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
+            btnEdit.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
+            btnDelete.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
+        }
 
         private bool HideDeletedFilter(object obj)
         {
@@ -43,27 +46,35 @@ namespace POP_SF27_2016_Projekat.GUI
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             DpAkcija dpAkcija = new DpAkcija();
-            dpAkcija.ShowDialog(); // Cekamo da se zatvori prozor za dodavanje
+            dpAkcija.ShowDialog();
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            DpAkcija dpAkcija = new DpAkcija((Akcija)view.CurrentItem);
-            dpAkcija.ShowDialog(); // Cekamo da se zatvori prozor za menjanje
+            if (dgAkcija.SelectedItem != null)
+            {
+                DpAkcija dpAkcija = new DpAkcija((Akcija)dgAkcija.SelectedItem);
+                dpAkcija.ShowDialog();
+                dgNamestaj.ItemsSource = ((Akcija)dgAkcija.SelectedItem).lista;
+            }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (view.CurrentItem is Akcija tmp)    // kastujemo obj u DodatnaUsluga
+            if (dgAkcija.SelectedItem != null)
             {
-                Akcija.Remove(tmp);
+                Akcija.Remove((Akcija)dgAkcija.SelectedItem);
                 view.Refresh();
+                dgNamestaj.ItemsSource = new ObservableCollection<UredjeniPar>();
             }
         }
-        private void dgAkcija_GotFocus(object sender, RoutedEventArgs e)
+
+        private void dgAkcija_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            viewNamestaj = CollectionViewSource.GetDefaultView(((Akcija)dgAkcija.CurrentItem).lista);
-            dgNamestaj.ItemsSource = viewNamestaj;
+            if (dgAkcija.SelectedItem != null)
+            {
+                dgNamestaj.ItemsSource = ((Akcija)dgAkcija.SelectedItem).lista;
+            }
         }
     }
 }
