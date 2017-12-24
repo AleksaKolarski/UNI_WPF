@@ -209,7 +209,7 @@ namespace POP_SF27_2016_Projekat.Model
         public void Copy(Akcija source)
         {
             this.Id = source.Id;
-            this.Naziv = source.Naziv;
+            this.Naziv = String.Copy(source.Naziv);
             this.DatumPocetka = source.DatumPocetka;
             this.DatumKraja = source.DatumKraja;
             this.Lista = new ObservableCollection<UredjeniPar>();

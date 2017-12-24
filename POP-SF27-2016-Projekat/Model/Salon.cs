@@ -144,7 +144,7 @@ namespace POP_SF27_2016_Projekat.Model
         }
         #endregion
 
-        #region methods
+        #region Methods
         public static void Init()
         {
             salon = SalonProperty;

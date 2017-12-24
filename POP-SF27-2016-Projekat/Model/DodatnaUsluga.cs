@@ -137,7 +137,7 @@ namespace POP_SF27_2016_Projekat.Model
         public void Copy(DodatnaUsluga source)
         {
             this.Id = source.Id;
-            this.Naziv = source.Naziv;
+            this.Naziv = String.Copy(source.Naziv);
             this.Cena = source.Cena;
             this.Obrisan = source.Obrisan;
         }

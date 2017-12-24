@@ -55,7 +55,6 @@ namespace POP_SF27_2016_Projekat.GUI
             {
                 DpAkcija dpAkcija = new DpAkcija((Akcija)dgAkcija.SelectedItem);
                 dpAkcija.ShowDialog();
-                dgNamestaj.ItemsSource = ((Akcija)dgAkcija.SelectedItem).lista;
             }
         }
 

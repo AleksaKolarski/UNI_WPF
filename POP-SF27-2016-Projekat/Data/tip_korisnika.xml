@@ -8,7 +8,7 @@
       <DodatnaUsluga>Read Add Edit Delete</DodatnaUsluga>
       <Korisnik>Read Add Edit Delete</Korisnik>
       <Namestaj>Read Add Edit Delete</Namestaj>
-      <ProdajaNamestaja>Read</ProdajaNamestaja>
+      <ProdajaNamestaja>Read Add</ProdajaNamestaja>
       <Salon>Read Edit</Salon>
       <TipKorisnika>Read Add Edit Delete</TipKorisnika>
       <TipNamestaja>Read Add Edit Delete</TipNamestaja>

@@ -21,8 +21,6 @@ namespace POP_SF27_2016_Projekat.GUI
     public partial class UcProdaja : UserControl
     {
         ICollectionView view;
-        ICollectionView viewNamestaj;
-        ICollectionView viewDodatnaUsluga;
 
         public UcProdaja()
         {
@@ -30,18 +28,8 @@ namespace POP_SF27_2016_Projekat.GUI
 
             view = CollectionViewSource.GetDefaultView(ProdajaNamestaja.prodajaNamestajaCollection);
             dgProdaja.ItemsSource = view;
-            dgProdaja.IsSynchronizedWithCurrentItem = true;
-        }
 
-
-        private void dgProdaja_GotFocus(object sender, RoutedEventArgs e)
-        {
-            viewNamestaj = CollectionViewSource.GetDefaultView(((ProdajaNamestaja)dgProdaja.CurrentItem).listUredjeniPar);
-            dgNamestaj.ItemsSource = viewNamestaj;
-            viewDodatnaUsluga = CollectionViewSource.GetDefaultView(((ProdajaNamestaja)dgProdaja.CurrentItem).ListDodatnaUsluga);
-            dgDodatneUsluge.ItemsSource = viewDodatnaUsluga;
-            tbPDV.DataContext = (ProdajaNamestaja)dgProdaja.CurrentItem;
-            tbUkupnaCena.DataContext = (ProdajaNamestaja)dgProdaja.CurrentItem;
+            btnAddAkcija.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
         }
 
         private void btnAddAkcija_Click(object sender, RoutedEventArgs e)
@@ -52,7 +40,13 @@ namespace POP_SF27_2016_Projekat.GUI
 
         private void dgProdaja_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (dgProdaja.SelectedItem != null)
+            {
+                dgNamestaj.ItemsSource = ((ProdajaNamestaja)dgProdaja.SelectedItem).ListUredjeniPar;
+                dgDodatneUsluge.ItemsSource = ((ProdajaNamestaja)dgProdaja.SelectedItem).ListDodatnaUsluga;
+                tbPDV.DataContext = (ProdajaNamestaja)dgProdaja.SelectedItem;
+                tbUkupnaCena.DataContext = (ProdajaNamestaja)dgProdaja.SelectedItem;
+            }
         }
     }
 }

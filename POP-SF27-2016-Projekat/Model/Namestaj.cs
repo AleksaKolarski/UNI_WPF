@@ -198,8 +198,8 @@ namespace POP_SF27_2016_Projekat.Model
         public void Copy(Namestaj source)
         {
             this.Id = source.Id;
-            this.Naziv = source.Naziv;
-            this.Sifra = source.Sifra;
+            this.Naziv = String.Copy(source.Naziv);
+            this.Sifra = String.Copy(source.Sifra);
             this.JedinicnaCena = source.JedinicnaCena;
             this.KolicinaUMagacinu = source.KolicinaUMagacinu;
             this.TipNamestaja = source.TipNamestaja;

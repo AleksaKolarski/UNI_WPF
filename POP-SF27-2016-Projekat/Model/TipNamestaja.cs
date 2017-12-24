@@ -124,7 +124,7 @@ namespace POP_SF27_2016_Projekat.Model
         public void Copy(TipNamestaja source)
         {
             this.Id = source.Id;
-            this.Naziv = source.Naziv;
+            this.Naziv = String.Copy(source.Naziv);
             this.Obrisan = source.Obrisan;
         }
 
