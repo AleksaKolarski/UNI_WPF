@@ -10,21 +10,17 @@ using System.Xml.Serialization;
 
 namespace POP_SF27_2016_Projekat.Model
 {
+    #region Storage
     public class ProdajaNamestaja : INotifyPropertyChanged
     {
         #region Fields
         private int id;
-        [XmlIgnore]
-        public ObservableCollection<UredjeniParRacun> listUredjeniPar;
+        private ObservableCollection<UredjeniParRacunNamestaj> listProdatiNamestaji;
+        private ObservableCollection<UredjeniParRacunDodatnaUsluga> listProdateDodatneUsluge;
         private DateTime? datumProdaje;
         private string kupac;
         private string brojRacuna;
-        [XmlIgnore]
-        public ObservableCollection<int> listDodatnaUslugaId;
-        [XmlIgnore]
-        public ObservableCollection<DodatnaUsluga> listDodatnaUsluga;
-        [XmlIgnore]
-        public double pdv = 20.0;
+        private double pdv;
         public static ObservableCollection<ProdajaNamestaja> prodajaNamestajaCollection;
         #endregion
 
@@ -41,16 +37,28 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("Id");
             }
         }
-        public ObservableCollection<UredjeniParRacun> ListUredjeniPar
+        public ObservableCollection<UredjeniParRacunNamestaj> ListProdatiNamestaji
         {
             get
             {
-                return listUredjeniPar;
+                return listProdatiNamestaji;
             }
             set
             {
-                listUredjeniPar = value;
-                OnPropertyChanged("ListUredjeniPar");
+                listProdatiNamestaji = value;
+                OnPropertyChanged("ListProdatiNamestaji");
+            }
+        }
+        public ObservableCollection<UredjeniParRacunDodatnaUsluga> ListProdateDodatneUsluge
+        {
+            get
+            {
+                return listProdateDodatneUsluge;
+            }
+            set
+            {
+                listProdateDodatneUsluge = value;
+                OnPropertyChanged("ListProdateDodatneUsluge");
             }
         }
         public DateTime? DatumProdaje
@@ -89,32 +97,6 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("BrojRacuna");
             }
         }
-        public ObservableCollection<int> ListDodatnaUslugaId
-        {
-            get
-            {
-                return listDodatnaUslugaId;
-            }
-            set
-            {
-                listDodatnaUslugaId = value;
-                OnPropertyChanged("ListDodatnaUslugaId");
-            }
-        }
-        [XmlIgnore]
-        public ObservableCollection<DodatnaUsluga> ListDodatnaUsluga
-        {
-            get
-            {
-                ObservableCollection<DodatnaUsluga> collection = new ObservableCollection<DodatnaUsluga>();
-                foreach(int id in listDodatnaUslugaId)
-                {
-                    collection.Add(DodatnaUsluga.GetById(id));
-                }
-                return collection;
-            }
-        }
-        [XmlIgnore]
         public double PDV
         {
             get
@@ -133,15 +115,17 @@ namespace POP_SF27_2016_Projekat.Model
             get
             {
                 double cena = 0;
-                foreach(DodatnaUsluga dodatnaUsluga in ListDodatnaUsluga)
+                foreach(UredjeniParRacunNamestaj par in ListProdatiNamestaji)
                 {
-                    cena += dodatnaUsluga.Cena;
+                    cena += par.UkupnaCena;
                 }
-                foreach(UredjeniParRacun uredjeniPar in ListUredjeniPar)
+
+                foreach(UredjeniParRacunDodatnaUsluga par in ListProdateDodatneUsluge)
                 {
-                    cena += uredjeniPar.UkupnaCena;
+                    cena += par.Cena;
                 }
-                return cena * (100 + PDV)/100;
+
+                return cena * (1 + PDV / 100);
             }
         }
 
@@ -155,17 +139,18 @@ namespace POP_SF27_2016_Projekat.Model
         #region Constructors
         public ProdajaNamestaja()
         {
-            ListUredjeniPar = new ObservableCollection<UredjeniParRacun>();
-            listDodatnaUslugaId = new ObservableCollection<int>();
+            ListProdatiNamestaji = new ObservableCollection<UredjeniParRacunNamestaj>();
+            ListProdateDodatneUsluge = new ObservableCollection<UredjeniParRacunDodatnaUsluga>();
         }
-        public ProdajaNamestaja(ObservableCollection<UredjeniParRacun> listUredjeniPar, DateTime? datumProdaje, string kupac, string brojRacuna, ObservableCollection<int> listDodatnaUslugaId)
+        public ProdajaNamestaja(ObservableCollection<UredjeniParRacunNamestaj> listProdatiNamestaji, ObservableCollection<UredjeniParRacunDodatnaUsluga> listProdateDodatneUsluge, DateTime? datumProdaje, string kupac, string brojRacuna, double pdv)
         {
             this.Id = prodajaNamestajaCollection.Count;
-            this.ListUredjeniPar = listUredjeniPar;
+            this.ListProdatiNamestaji = listProdatiNamestaji;
+            this.ListProdateDodatneUsluge = listProdateDodatneUsluge;
             this.DatumProdaje = datumProdaje;
-            this.Kupac = kupac;
             this.BrojRacuna = brojRacuna;
-            this.ListDodatnaUslugaId = listDodatnaUslugaId;
+            this.Kupac = kupac;
+            this.PDV = pdv;
         }
         #endregion
 
@@ -191,53 +176,375 @@ namespace POP_SF27_2016_Projekat.Model
         {
             /* Kada predjemo na rad sa bazom podataka ovde se nece ucitavati 
              * cela lista vec ce se samo slati komanda za dodavanje novog. */
-            //List<ProdajaNamestaja> tempList = ProdajaNamestajaList;
             if(prodajaNamestajaToAdd == null)
             {
                 return;
             }
             prodajaNamestajaCollection.Add(prodajaNamestajaToAdd);
-            //ProdajaNamestajaList = tempList;
         }
 
-        /*
-        public double GetPrice()
-        {
-            double cena = 0;
-            for (int i = 0; i < ProdatNamestajIDList.Count; ++i)
-            {
-                int tmpNamestajId = ProdatNamestajIDList[i];
-                cena += Namestaj.GetById(ProdatNamestajIDList[i]).JedinicnaCena * BrojNamestajaList[i];
-                foreach(Akcija akcija in Akcija.akcijaCollection)
-                {
-                    if (akcija.Obrisan == false)
-                    {
-                        DateTime tempDateTime = new DateTime();
-                        if (tempDateTime > akcija.DatumPocetka && tempDateTime < akcija.DatumKraja)
-                        {
-                            
-                            for (int j = 0; j < akcija.NamestajIdList.Count; ++j)
-                            {
-                                if (akcija.NamestajIdList[j] == tmpNamestajId)
-                                {
-                                    cena -= akcija.PopustList[j];
-                                }
-                            }
-                            
-                        }
-                    }
-                }
-            }
-            for (int i = 0; i < DodatnaUslugaIDList.Count; ++i)
-            {
-                cena += DodatnaUsluga.GetById(DodatnaUslugaIDList[i]).Cena;
-            }
-            cena = cena + cena * PDV/100;
-            return cena;
-        }
-        */
         public override string ToString()
         { 
+            return $"{Id}, {DatumProdaje}, {Kupac}, {BrojRacuna}";
+        }
+        #endregion
+
+        #region Data binding
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        #endregion
+    }
+
+    public class UredjeniParRacunNamestaj : INotifyPropertyChanged
+    {
+        #region Fields
+        private string nazivNamestaja;
+        private double jedinicnaCena;
+        private int brojNamestaja;
+        private double popust;
+        #endregion
+
+        #region Property
+        public string NazivNamestaja
+        {
+            get
+            {
+                return nazivNamestaja;
+            }
+            set
+            {
+                this.nazivNamestaja = value;
+                OnPropertyChanged("NazivNamestaja");
+            }
+        }
+        public double JedinicnaCena
+        {
+            get
+            {
+                return jedinicnaCena;
+            }
+            set
+            {
+                this.jedinicnaCena = value;
+                OnPropertyChanged("JedinicnaCena");
+            }
+        }
+        public int BrojNamestaja
+        {
+            get
+            {
+                return brojNamestaja;
+            }
+            set
+            {
+                brojNamestaja = value;
+                OnPropertyChanged("BrojNamestaja");
+            }
+        }
+        public double Popust
+        {
+            get
+            {
+                return popust;
+            }
+            set
+            {
+                this.popust = value;
+                OnPropertyChanged("Popust");
+            }
+        }
+        public double UkupnaCena
+        {
+            get
+            {
+                return JedinicnaCena * BrojNamestaja * (1 - Popust/100);
+            }
+        }
+        #endregion
+
+        #region Constructors
+        public UredjeniParRacunNamestaj()
+        {
+            //brojNamestaja = 0;
+        }
+        public UredjeniParRacunNamestaj(string nazivNamestaja, double jedinicnaCena, int brojNamestaja, double popust)
+        {
+            this.NazivNamestaja = nazivNamestaja;
+            this.JedinicnaCena = jedinicnaCena;
+            this.BrojNamestaja = brojNamestaja;
+            this.Popust = popust;
+        }
+        #endregion
+
+        #region Methods
+        public void Copy(UredjeniParRacunNamestaj source)
+        {
+            this.NazivNamestaja = source.NazivNamestaja;
+            this.JedinicnaCena = source.JedinicnaCena;
+            this.BrojNamestaja = source.BrojNamestaja;
+            this.Popust = source.Popust;
+        }
+
+        public override string ToString()
+        {
+            return $"{NazivNamestaja}, {BrojNamestaja}";
+        }
+        #endregion
+
+        #region Data binding
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        #endregion
+    }
+
+    public class UredjeniParRacunDodatnaUsluga : INotifyPropertyChanged
+    {
+        #region Fields
+        private string nazivUsluge;
+        private double cena;
+        #endregion
+
+        #region Property
+        public string NazivUsluge
+        {
+            get
+            {
+                return nazivUsluge;
+            }
+            set
+            {
+                this.nazivUsluge = value;
+                OnPropertyChanged("NazivUsluge");
+            }
+        }
+        public double Cena
+        {
+            get
+            {
+                return cena;
+            }
+            set
+            {
+                this.cena = value;
+                OnPropertyChanged("Cena");
+            }
+        }
+        #endregion
+
+        #region Constructors
+        public UredjeniParRacunDodatnaUsluga()
+        {
+
+        }
+        public UredjeniParRacunDodatnaUsluga(string nazivUsluge, double cena)
+        {
+            this.NazivUsluge = nazivUsluge;
+            this.Cena = cena;
+        }
+        #endregion
+
+        #region Methods
+        public void Copy(UredjeniParRacunDodatnaUsluga source)
+        {
+            this.NazivUsluge = source.NazivUsluge;
+            this.Cena = source.Cena;
+        }
+        #endregion
+
+        #region Data binding
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        #endregion
+    }
+    #endregion
+
+    #region Runtime
+    public class ProdajaNamestajaRuntime : INotifyPropertyChanged
+    {
+        #region Fields
+        private int id;
+        public ObservableCollection<UredjeniParRacun> listUredjeniPar;
+        private DateTime? datumProdaje;
+        private string kupac;
+        private string brojRacuna;
+        public ObservableCollection<DodatnaUsluga> listDodatnaUsluga;
+        public double pdv = 20.0;
+        #endregion
+
+        #region Properties
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+                OnPropertyChanged("Id");
+            }
+        }
+        public ObservableCollection<UredjeniParRacun> ListUredjeniPar
+        {
+            get
+            {
+                return listUredjeniPar;
+            }
+            set
+            {
+                listUredjeniPar = value;
+                OnPropertyChanged("ListUredjeniPar");
+                OnPropertyChanged("UkupnaCena");
+            }
+        }
+        public DateTime? DatumProdaje
+        {
+            get
+            {
+                return datumProdaje;
+            }
+            set
+            {
+                datumProdaje = value;
+                OnPropertyChanged("DatumProdaje");
+            }
+        }
+        public string Kupac
+        {
+            get
+            {
+                return kupac;
+            }
+            set
+            {
+                kupac = value;
+                OnPropertyChanged("Kupac");
+            }
+        }
+        public string BrojRacuna
+        {
+            get
+            {
+                return brojRacuna;
+            }
+            set
+            {
+                brojRacuna = value;
+                OnPropertyChanged("BrojRacuna");
+            }
+        }
+        public ObservableCollection<DodatnaUsluga> ListDodatnaUsluga
+        {
+            get
+            {
+                return listDodatnaUsluga;
+            }
+            set
+            {
+                this.listDodatnaUsluga = value;
+                OnPropertyChanged("ListDodatnaUsluga");
+                OnPropertyChanged("UkupnaCena");
+            }
+        }
+        public double PDV
+        {
+            get
+            {
+                return pdv;
+            }
+            set
+            {
+                pdv = value;
+                OnPropertyChanged("PDV");
+            }
+        }
+        public double UkupnaCena
+        {
+            get
+            {
+                double cena = 0;
+                foreach (DodatnaUsluga dodatnaUsluga in ListDodatnaUsluga)
+                {
+                    cena += dodatnaUsluga.Cena;
+                }
+                foreach (UredjeniParRacun uredjeniPar in ListUredjeniPar)
+                {
+                    cena += uredjeniPar.UkupnaCena;
+                }
+                return cena * (100 + PDV) / 100;
+            }
+        }
+        #endregion
+
+        #region Constructors
+        public ProdajaNamestajaRuntime()
+        {
+            ListUredjeniPar = new ObservableCollection<UredjeniParRacun>();
+            ListDodatnaUsluga = new ObservableCollection<DodatnaUsluga>();
+        }
+        public ProdajaNamestajaRuntime(ObservableCollection<UredjeniParRacun> listUredjeniPar, DateTime? datumProdaje, string kupac, string brojRacuna, ObservableCollection<DodatnaUsluga> listDodatnaUsluga)
+        {
+            this.ListUredjeniPar = listUredjeniPar;
+            this.DatumProdaje = datumProdaje;
+            this.Kupac = kupac;
+            this.BrojRacuna = brojRacuna;
+            this.ListDodatnaUsluga = listDodatnaUsluga;
+        }
+        #endregion
+
+        #region Methods
+        public void AddNamestajPar(UredjeniParRacun par)
+        {
+            if(par != null)
+            {
+                ListUredjeniPar.Add(par);
+                OnPropertyChanged("UkupnaCena");
+            }
+        }
+        public void EditNamestajPar(UredjeniParRacun source, UredjeniParRacun target)
+        {
+            if(source != null && target != null)
+            {
+                target.Copy(source);
+                OnPropertyChanged("UkupnaCena");
+            }
+        }
+        public void DeleteNamestajPar(UredjeniParRacun par)
+        {
+            if(par != null)
+            {
+                ListUredjeniPar.Remove(par);
+                OnPropertyChanged("UkupnaCena");
+            }
+        }
+        public void AddDodatnaUsluga(DodatnaUsluga usluga)
+        {
+            if(usluga != null)
+            {
+                ListDodatnaUsluga.Add(usluga);
+                OnPropertyChanged("UkupnaCena");
+            }
+        }
+        public void DeleteDodatnaUsluga(DodatnaUsluga usluga)
+        {
+            if(usluga != null)
+            {
+                ListDodatnaUsluga.Remove(usluga);
+                OnPropertyChanged("UkupnaCena");
+            }
+        }
+
+        public override string ToString()
+        {
             return $"{Id}, {DatumProdaje}, {Kupac}, {BrojRacuna}";
         }
         #endregion
@@ -318,7 +625,7 @@ namespace POP_SF27_2016_Projekat.Model
         {
             get
             {
-                return Namestaj.JedinicnaCena * BrojNamestaja * (1.0 - (Akcija.GetPopustByNamestaj(Namestaj))/100);
+                return Namestaj.JedinicnaCena * BrojNamestaja * (1.0 - (Akcija.GetPopustByNamestaj(Namestaj)) / 100);
             }
         }
         [XmlIgnore]
@@ -335,7 +642,6 @@ namespace POP_SF27_2016_Projekat.Model
         #region Constructors
         public UredjeniParRacun()
         {
-            //brojNamestaja = 0;
         }
         public UredjeniParRacun(int namestajId, int brojNamestaja)
         {
@@ -365,4 +671,5 @@ namespace POP_SF27_2016_Projekat.Model
         }
         #endregion
     }
+    #endregion
 }

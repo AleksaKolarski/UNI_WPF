@@ -265,6 +265,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Data\prodaja.xml" />
     <Content Include="dbScripts\crebas.sql" />
     <Content Include="dbScripts\seed.sql" />
   </ItemGroup>

@@ -29,10 +29,10 @@ namespace POP_SF27_2016_Projekat.GUI
             view = CollectionViewSource.GetDefaultView(ProdajaNamestaja.prodajaNamestajaCollection);
             dgProdaja.ItemsSource = view;
 
-            btnAddAkcija.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
+            btnAdd.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
         }
 
-        private void btnAddAkcija_Click(object sender, RoutedEventArgs e)
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             DpProdaja dpProdaja = new DpProdaja();
             dpProdaja.ShowDialog();
@@ -42,8 +42,8 @@ namespace POP_SF27_2016_Projekat.GUI
         {
             if (dgProdaja.SelectedItem != null)
             {
-                dgNamestaj.ItemsSource = ((ProdajaNamestaja)dgProdaja.SelectedItem).ListUredjeniPar;
-                dgDodatneUsluge.ItemsSource = ((ProdajaNamestaja)dgProdaja.SelectedItem).ListDodatnaUsluga;
+                dgNamestaj.ItemsSource = ((ProdajaNamestaja)dgProdaja.SelectedItem).ListProdatiNamestaji;
+                dgDodatneUsluge.ItemsSource = ((ProdajaNamestaja)dgProdaja.SelectedItem).ListProdateDodatneUsluge;
                 tbPDV.DataContext = (ProdajaNamestaja)dgProdaja.SelectedItem;
                 tbUkupnaCena.DataContext = (ProdajaNamestaja)dgProdaja.SelectedItem;
             }

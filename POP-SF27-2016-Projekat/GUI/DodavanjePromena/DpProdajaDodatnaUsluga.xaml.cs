@@ -18,8 +18,8 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
     public partial class DpProdajaDodatnaUsluga : Window
     {
         DodatnaUsluga dodatnaUsluga;
-        ProdajaNamestaja prodaja;
-        public DpProdajaDodatnaUsluga(ProdajaNamestaja prodaja)
+        ProdajaNamestajaRuntime prodaja;
+        public DpProdajaDodatnaUsluga(ProdajaNamestajaRuntime prodaja)
         {
             InitializeComponent();
             tblock.Text = "Dodatna usluga:";
@@ -32,7 +32,8 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
         {
             if(cbDodatnaUsluga.SelectedItem != null)
             {
-                prodaja.ListDodatnaUsluga.Add(dodatnaUsluga);
+                dodatnaUsluga.Copy((DodatnaUsluga)cbDodatnaUsluga.SelectedItem);
+                prodaja.AddDodatnaUsluga(dodatnaUsluga);
                 Close();
             }
         }

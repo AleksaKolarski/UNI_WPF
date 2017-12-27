@@ -1,6 +1,7 @@
 ﻿using POP_SF27_2016_Projekat.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,13 +18,13 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 {
     public partial class DpProdaja : Window
     {
-        ProdajaNamestaja prodaja;
+        ProdajaNamestajaRuntime prodaja;
 
         public DpProdaja()
         {
             InitializeComponent();
 
-            prodaja = new ProdajaNamestaja();
+            prodaja = new ProdajaNamestajaRuntime();
             dgNamestaj.ItemsSource = prodaja.ListUredjeniPar;
             dgDodatneUsluge.ItemsSource = prodaja.ListDodatnaUsluga;
             tbPDV.DataContext = prodaja;
@@ -51,7 +52,7 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
         {
             if (dgNamestaj.SelectedItem != null)
             {
-                prodaja.ListUredjeniPar.Remove((UredjeniParRacun)dgNamestaj.SelectedItem);
+                prodaja.DeleteNamestajPar((UredjeniParRacun)dgNamestaj.SelectedItem);
             }
         }
 
@@ -65,7 +66,7 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
         {
             if (dgDodatneUsluge.SelectedItem != null)
             {
-                prodaja.ListDodatnaUsluga.Remove((DodatnaUsluga)dgDodatneUsluge.SelectedItem);
+                prodaja.DeleteDodatnaUsluga((DodatnaUsluga)dgDodatneUsluge.SelectedItem);
             }
         }
 
@@ -76,7 +77,23 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
                 if (prodaja.ListUredjeniPar.Count > 0)
                 {
                     prodaja.DatumProdaje = DateTime.Now;
-                    ProdajaNamestaja.prodajaNamestajaCollection.Add(prodaja);
+                    //ProdajaNamestajaRuntime.prodajaNamestajaCollection.Add(prodaja);
+                    // prodaja runtime -> prodaja storage
+                    ObservableCollection<UredjeniParRacunNamestaj> listaNamestaja = new ObservableCollection<UredjeniParRacunNamestaj>();
+                    foreach(UredjeniParRacun par in prodaja.ListUredjeniPar)
+                    {
+                        listaNamestaja.Add(new UredjeniParRacunNamestaj(par.Namestaj.Naziv, par.Namestaj.JedinicnaCena, par.BrojNamestaja, par.Popust));
+                    }
+
+                    ObservableCollection<UredjeniParRacunDodatnaUsluga> listaUsluga = new ObservableCollection<UredjeniParRacunDodatnaUsluga>();
+                    foreach(DodatnaUsluga usluga in prodaja.ListDodatnaUsluga)
+                    {
+                        listaUsluga.Add(new UredjeniParRacunDodatnaUsluga(usluga.Naziv, usluga.Cena));
+                    }
+
+                    ProdajaNamestaja prodajaStorage = new ProdajaNamestaja(listaNamestaja, listaUsluga, prodaja.DatumProdaje, prodaja.Kupac, prodaja.BrojRacuna, prodaja.PDV);
+
+                    ProdajaNamestaja.Add(prodajaStorage);
                     Close();
                 }
             }

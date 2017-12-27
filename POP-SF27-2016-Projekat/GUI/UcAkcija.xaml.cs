@@ -55,6 +55,7 @@ namespace POP_SF27_2016_Projekat.GUI
             {
                 DpAkcija dpAkcija = new DpAkcija((Akcija)dgAkcija.SelectedItem);
                 dpAkcija.ShowDialog();
+                dgAkcija_SelectionChanged(this, null);
             }
         }
 
@@ -72,7 +73,7 @@ namespace POP_SF27_2016_Projekat.GUI
         {
             if (dgAkcija.SelectedItem != null)
             {
-                dgNamestaj.ItemsSource = ((Akcija)dgAkcija.SelectedItem).lista;
+                dgNamestaj.ItemsSource = ((Akcija)dgAkcija.SelectedItem).Lista;
             }
         }
     }
