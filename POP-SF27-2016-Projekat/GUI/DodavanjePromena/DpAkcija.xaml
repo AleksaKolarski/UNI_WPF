@@ -37,7 +37,7 @@
         <Button Name="btnEdit" Content="Edit" Width="40" Height="20" Grid.Column="4" Grid.Row="4" Click="btnEdit_Click"/>
         <Button Name="btnDelete" Content="Delete" Width="40" Height="20" Grid.Column="4" Grid.Row="5" Click="btnDelete_Click"/>
 
-        <DataGrid Name="dgNamestaj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="5" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" SelectionMode="Single" IsReadOnly="True" HeadersVisibility="Column">
+        <DataGrid Name="dgNamestaj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="5">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Namestaj" Binding="{Binding Namestaj.Naziv}" Width="*"/>
                 <DataGridTextColumn Header="Popust" Binding="{Binding Popust}" Width="*"/>

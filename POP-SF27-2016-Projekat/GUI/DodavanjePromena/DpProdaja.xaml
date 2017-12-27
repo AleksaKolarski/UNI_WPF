@@ -46,7 +46,7 @@
         </Grid>
 
 
-        <DataGrid Name="dgNamestaj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="5" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" SelectionMode="Single" IsReadOnly="True" HeadersVisibility="Column">
+        <DataGrid Name="dgNamestaj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="5">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Namestaj" Binding="{Binding Namestaj.Naziv}" Width="2*"/>
                 <DataGridTextColumn Header="Cena" Binding="{Binding Namestaj.JedinicnaCena}" Width="1*"/>
@@ -60,7 +60,7 @@
         <Button Name="btnDeleteNamestaj" Content="Delete" Width="40" Height="20" Grid.Column="4" Grid.Row="4" Click="btnDeleteNamestaj_Click"/>
 
 
-        <DataGrid Name="dgDodatneUsluge" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="4" Grid.RowSpan="4" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" SelectionMode="Single" IsReadOnly="True" HeadersVisibility="Column">
+        <DataGrid Name="dgDodatneUsluge" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="4" Grid.RowSpan="4">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Usluga" Binding="{Binding Naziv}" Width="3*"/>
                 <DataGridTextColumn Header="Cena" Binding="{Binding Cena}" Width="2*"/>
