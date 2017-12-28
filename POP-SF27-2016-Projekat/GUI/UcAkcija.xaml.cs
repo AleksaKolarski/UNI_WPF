@@ -43,6 +43,13 @@ namespace POP_SF27_2016_Projekat.GUI
         {
             if (((Akcija)obj).Obrisan == false)
             {
+                if (cbAktivne.IsChecked == true)
+                {
+                    if (((Akcija)obj).DatumPocetka > DateTime.Now || ((Akcija)obj).DatumKraja < DateTime.Now)
+                    {
+                        return false;
+                    }
+                }
                 var text = ((ComboBoxItem)cbPretraga.SelectedItem).Content.ToString();
                 if (text.Equals("Id"))
                 {
@@ -98,6 +105,11 @@ namespace POP_SF27_2016_Projekat.GUI
         }
 
         private void cbPretraga_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            view.Refresh();
+        }
+
+        private void cbAktivne_Changed(object sender, RoutedEventArgs e)
         {
             view.Refresh();
         }
