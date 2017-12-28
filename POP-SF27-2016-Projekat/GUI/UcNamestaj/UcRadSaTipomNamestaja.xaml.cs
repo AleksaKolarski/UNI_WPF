@@ -25,10 +25,10 @@ namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
 
         public UcRadSaTipomNamestaja()
         {
+            view = CollectionViewSource.GetDefaultView(TipNamestaja.tipNamestajaCollection);
             InitializeComponent();
 
-            view = CollectionViewSource.GetDefaultView(TipNamestaja.tipNamestajaCollection);
-            view.Filter = HideDeletedFilter;
+            view.Filter = Filter;
             dgTipNamestaja.ItemsSource = view;
 
             btnAdd.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
@@ -36,10 +36,25 @@ namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
             btnDelete.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
         }
 
-        private bool HideDeletedFilter(object obj)
+        #region Filters
+        private bool Filter(object obj)
         {
-            return !((TipNamestaja)obj).Obrisan;   // nemoj prikazati ako je obrisan
+            if (((TipNamestaja)obj).Obrisan == false)
+            {
+                var text = ((ComboBoxItem)cbPretraga.SelectedItem).Content.ToString();
+                if (text.Equals("Id"))
+                {
+                    return ((TipNamestaja)obj).Id.ToString().IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+                }
+                else if (text.Equals("Naziv"))
+                {
+                    return ((TipNamestaja)obj).Naziv.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+                }
+                return false;
+            }
+            return false;
         }
+        #endregion
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -63,6 +78,16 @@ namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
                 TipNamestaja.Remove((TipNamestaja)dgTipNamestaja.SelectedItem);
                 view.Refresh();
             }
+        }
+
+        private void tbPretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            view.Refresh();
+        }
+
+        private void cbPretraga_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            view.Refresh();
         }
     }
 }
