@@ -34,9 +34,9 @@
             </Grid.ColumnDefinitions>
             
             <Label Content="Pretrazi:" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <TextBox Name="tbPretraga" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Width="100"/>
+            <TextBox Name="tbPretraga" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Width="100" TextChanged="tbPretraga_TextChanged"/>
             <Label Content="po:" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <ComboBox Name="cbPretraga" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" SelectedIndex="0">
+            <ComboBox Name="cbPretraga" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" SelectedIndex="0" SelectionChanged="cbPretraga_SelectionChanged">
                 <ComboBoxItem>Id</ComboBoxItem>
                 <ComboBoxItem>Naziv</ComboBoxItem>
             </ComboBox>
@@ -44,9 +44,9 @@
         
         <DataGrid Name="dgDodatnaUsluga" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="5">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"/>
-                <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
-                <DataGridTextColumn Header="Cena" Binding="{Binding Cena}" Width="*"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="40"/>
+                <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="1*"/>
+                <DataGridTextColumn Header="Cena" Binding="{Binding Cena}" Width="1*"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Name="btnAdd" Content="Add" IsEnabled="{Binding DodatnaUslugaAdd}" Width="40" Height="20" Grid.Column="1" Grid.Row="2" Click="btnAdd_Click"/>
