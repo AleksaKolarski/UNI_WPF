@@ -39,6 +39,7 @@
             <ComboBox Name="cbPretraga" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" SelectedIndex="0" SelectionChanged="cbPretraga_SelectionChanged">
                 <ComboBoxItem>Id</ComboBoxItem>
                 <ComboBoxItem>Naziv</ComboBoxItem>
+                <ComboBoxItem>Sifra</ComboBoxItem>
                 <ComboBoxItem>Tip namestaja</ComboBoxItem>
             </ComboBox>
         </Grid>
@@ -47,6 +48,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="40"/>
                 <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
+                <DataGridTextColumn Header="Sifra" Binding="{Binding Sifra}" Width="*"/>
                 <DataGridTextColumn Header="Jedinicna cena" Binding="{Binding JedinicnaCena}" Width="*"/>
                 <DataGridTextColumn Header="Kolicina u magacinu" Binding="{Binding KolicinaUMagacinu}" Width="*"/>
                 <DataGridTextColumn Header="Tip namestaja" Binding="{Binding Path=TipNamestaja.Naziv}" Width="*"/>

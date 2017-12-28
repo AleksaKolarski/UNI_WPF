@@ -49,6 +49,10 @@ namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
                 {
                     return ((Namestaj)obj).Naziv.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0;
                 }
+                else if (text.Equals("Sifra"))
+                {
+                    return ((Namestaj)obj).Sifra.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+                }
                 else if (text.Equals("Tip namestaja"))
                 {
                     return ((Namestaj)obj).TipNamestaja.Naziv.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0;
