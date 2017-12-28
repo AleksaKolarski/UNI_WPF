@@ -24,10 +24,11 @@ namespace POP_SF27_2016_Projekat.GUI.UcKorisnici
 
         public UcRadSaKorisnikom()
         {
+            view = CollectionViewSource.GetDefaultView(Korisnik.korisnikCollection);
             InitializeComponent();
 
-            view = CollectionViewSource.GetDefaultView(Korisnik.korisnikCollection);
-            view.Filter = HideDeletedFilter;
+            
+            view.Filter = Filter;
             dgKorisnik.ItemsSource = view;
 
             btnAdd.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
@@ -35,10 +36,37 @@ namespace POP_SF27_2016_Projekat.GUI.UcKorisnici
             btnDelete.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
         }
 
-        private bool HideDeletedFilter(object obj)
+        #region Filters
+        private bool Filter(object obj)
         {
-            return !((Korisnik)obj).Obrisan;   // nemoj prikazati ako je obrisan
+            if (((Korisnik)obj).Obrisan == false)
+            {
+                var text = ((ComboBoxItem)cbPretraga.SelectedItem).Content.ToString();
+                if (text.Equals("Id"))
+                {
+                    return ((Korisnik)obj).Id.ToString().IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+                }
+                else if (text.Equals("Ime"))
+                {
+                    return ((Korisnik)obj).Ime.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+                }
+                else if (text.Equals("Prezime"))
+                {
+                    return ((Korisnik)obj).Prezime.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+                }
+                else if (text.Equals("Korisnicko ime"))
+                {
+                    return ((Korisnik)obj).KorisnickoIme.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+                }
+                else if (text.Equals("Tip korisnika"))
+                {
+                    return ((Korisnik)obj).TipKorisnika.Naziv.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+                }
+                return false;
+            }
+            return false;
         }
+        #endregion
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -62,6 +90,16 @@ namespace POP_SF27_2016_Projekat.GUI.UcKorisnici
                 Korisnik.Remove((Korisnik)dgKorisnik.SelectedItem);
                 view.Refresh();
             }
+        }
+
+        private void tbPretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            view.Refresh();
+        }
+
+        private void cbPretraga_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            view.Refresh();
         }
     }
 }
