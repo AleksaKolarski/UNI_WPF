@@ -45,7 +45,7 @@
 
         <DataGrid Name="dgNamestaj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="5">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="40"/>
                 <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
                 <DataGridTextColumn Header="Jedinicna cena" Binding="{Binding JedinicnaCena}" Width="*"/>
                 <DataGridTextColumn Header="Kolicina u magacinu" Binding="{Binding KolicinaUMagacinu}" Width="*"/>

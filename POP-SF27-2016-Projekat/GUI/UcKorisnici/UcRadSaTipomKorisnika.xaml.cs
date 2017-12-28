@@ -24,10 +24,10 @@ namespace POP_SF27_2016_Projekat.GUI.UcKorisnici
 
         public UcRadSaTipomKorisnika()
         {
-            InitializeComponent();
-
             view = CollectionViewSource.GetDefaultView(TipKorisnika.tipKorisnikaCollection);
-            view.Filter = HideDeletedFilter;
+            InitializeComponent();
+            
+            view.Filter = Filter;
             dgTipKorisnika.ItemsSource = view;
 
             btnAdd.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
@@ -35,10 +35,25 @@ namespace POP_SF27_2016_Projekat.GUI.UcKorisnici
             btnDelete.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
         }
 
-        private bool HideDeletedFilter(object obj)
+        #region Filters
+        private bool Filter(object obj)
         {
-            return !((TipKorisnika)obj).Obrisan;   // nemoj prikazati ako je obrisan
+            if (((TipKorisnika)obj).Obrisan == false)
+            {
+                var text = ((ComboBoxItem)cbPretraga.SelectedItem).Content.ToString();
+                if (text.Equals("Id"))
+                {
+                    return ((TipKorisnika)obj).Id.ToString().IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+                }
+                else if (text.Equals("Naziv"))
+                {
+                    return ((TipKorisnika)obj).Naziv.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+                }
+                return false;
+            }
+            return false;
         }
+        #endregion
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -62,6 +77,16 @@ namespace POP_SF27_2016_Projekat.GUI.UcKorisnici
                 TipKorisnika.Remove((TipKorisnika)dgTipKorisnika.SelectedItem);
                 view.Refresh();
             }
+        }
+
+        private void tbPretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            view.Refresh();
+        }
+
+        private void cbPretraga_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            view.Refresh();
         }
     }
 }
