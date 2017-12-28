@@ -27,10 +27,10 @@ namespace POP_SF27_2016_Projekat.GUI
 
         public UcAkcija()
         {
-            InitializeComponent();
-
             view = CollectionViewSource.GetDefaultView(Akcija.akcijaCollection);
-            view.Filter = HideDeletedFilter;
+            InitializeComponent();
+            
+            view.Filter = Filter;
             dgAkcija.ItemsSource = view;
 
             btnAdd.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
@@ -38,10 +38,25 @@ namespace POP_SF27_2016_Projekat.GUI
             btnDelete.DataContext = Korisnik.Trenutni.TipKorisnika.Dozvole;
         }
 
-        private bool HideDeletedFilter(object obj)
+        #region Filters
+        private bool Filter(object obj)
         {
-            return !((Akcija)obj).Obrisan;   // nemoj prikazati ako je obrisan
+            if (((Akcija)obj).Obrisan == false)
+            {
+                var text = ((ComboBoxItem)cbPretraga.SelectedItem).Content.ToString();
+                if (text.Equals("Id"))
+                {
+                    return ((Akcija)obj).Id.ToString().IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+                }
+                else if (text.Equals("Naziv"))
+                {
+                    return ((Akcija)obj).Naziv.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+                }
+                return false;
+            }
+            return false;
         }
+        #endregion
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -75,6 +90,16 @@ namespace POP_SF27_2016_Projekat.GUI
             {
                 dgNamestaj.ItemsSource = ((Akcija)dgAkcija.SelectedItem).Lista;
             }
+        }
+
+        private void tbPretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            view.Refresh();
+        }
+
+        private void cbPretraga_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            view.Refresh();
         }
     }
 }
