@@ -10,6 +10,7 @@
              Background="White">
     <Grid Visibility="{Binding Source={x:Static s:Korisnik.Trenutni}, Path=TipKorisnika.Dozvole.NamestajReadVisibility}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="25"/>
             <RowDefinition Height="25"/>
@@ -22,7 +23,27 @@
             <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
 
-        <DataGrid Name="dgNamestaj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="5">
+        <!-- Pretraga -->
+        <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="Pretrazi:" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBox Name="tbPretraga" Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" Width="100" TextChanged="tbPretraga_TextChanged"/>
+            <Label Content="po:" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <ComboBox Name="cbPretraga" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" SelectedIndex="0" SelectionChanged="cbPretraga_SelectionChanged">
+                <ComboBoxItem>Id</ComboBoxItem>
+                <ComboBoxItem>Naziv</ComboBoxItem>
+                <ComboBoxItem>Tip namestaja</ComboBoxItem>
+            </ComboBox>
+        </Grid>
+
+        <DataGrid Name="dgNamestaj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="5">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"/>
                 <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
@@ -31,11 +52,11 @@
                 <DataGridTextColumn Header="Tip namestaja" Binding="{Binding Path=TipNamestaja.Naziv}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Name="btnAdd" Content="Add" IsEnabled="{Binding NamestajAdd}" Width="40" Height="20" Grid.Column="1" Grid.Row="1" Click="btnAdd_Click"/>
-        <Button Name="btnEdit" Content="Edit" IsEnabled="{Binding NamestajEdit}" Width="40" Height="20" Grid.Column="1" Grid.Row="2" Click="btnEdit_Click"/>
-        <Button Name="btnDelete" Content="Delete" IsEnabled="{Binding NamestajDelete}" Width="40" Height="20" Grid.Column="1" Grid.Row="3" Click="btnDelete_Click"/>
+        <Button Name="btnAdd" Content="Add" IsEnabled="{Binding NamestajAdd}" Width="40" Height="20" Grid.Column="1" Grid.Row="2" Click="btnAdd_Click"/>
+        <Button Name="btnEdit" Content="Edit" IsEnabled="{Binding NamestajEdit}" Width="40" Height="20" Grid.Column="1" Grid.Row="3" Click="btnEdit_Click"/>
+        <Button Name="btnDelete" Content="Delete" IsEnabled="{Binding NamestajDelete}" Width="40" Height="20" Grid.Column="1" Grid.Row="4" Click="btnDelete_Click"/>
 
-        <GroupBox Name="gbDetails" Header="Details" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="1" Grid.RowSpan="1">
+        <GroupBox Name="gbDetails" Header="Details" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10"/>
