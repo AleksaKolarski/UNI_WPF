@@ -50,8 +50,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="40"/>
                 <DataGridTextColumn Header="Naziv" Binding="{Binding Naziv}" Width="*"/>
-                <DataGridTextColumn Header="Datum pocetka" Binding="{Binding DatumPocetka}" Width="*"/>
-                <DataGridTextColumn Header="Datum kraja" Binding="{Binding DatumKraja}" Width="*"/>
+                <DataGridTextColumn Header="Datum pocetka" Binding="{Binding DatumPocetka, StringFormat=\{0:dd.MM.yyyy.\}}" Width="*"/>
+                <DataGridTextColumn Header="Datum kraja" Binding="{Binding DatumKraja, StringFormat=\{0:dd.MM.yyyy.\}}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Name="btnAdd" Content="Add" IsEnabled="{Binding AkcijaAdd}" Width="40" Height="20" Grid.Column="1" Grid.Row="2" Click="btnAdd_Click"/>

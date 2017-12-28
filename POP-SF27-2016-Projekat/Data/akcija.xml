@@ -3,8 +3,8 @@
   <Akcija>
     <Id>0</Id>
 	<Naziv>Akcija1</Naziv>
-    <DatumPocetka>2017-01-12T00:00:00</DatumPocetka>
-    <DatumKraja>2018-01-02T00:00:00</DatumKraja>
+    <DatumPocetka>2017-12-01T00:00:00</DatumPocetka>
+    <DatumKraja>2018-02-01T00:00:00</DatumKraja>
     <Lista>
       <UredjeniPar>
         <NamestajId>0</NamestajId>

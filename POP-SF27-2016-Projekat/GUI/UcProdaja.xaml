@@ -38,13 +38,15 @@
                 <ComboBoxItem>Id</ComboBoxItem>
                 <ComboBoxItem>Kupac</ComboBoxItem>
                 <ComboBoxItem>Broj racuna</ComboBoxItem>
+                <ComboBoxItem>Namestaj</ComboBoxItem>
+                <ComboBoxItem>Datum</ComboBoxItem>
             </ComboBox>
         </Grid>
 
         <DataGrid Name="dgProdaja" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="3" SelectionChanged="dgProdaja_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="40"/>
-                <DataGridTextColumn Header="Datum" Binding="{Binding DatumProdaje}" Width="*"/>
+                <DataGridTextColumn Header="Datum" Binding="{Binding DatumProdaje, StringFormat=\{0:dd.MM.yyyy. HH:mm:ss\}}" Width="*"/>
                 <DataGridTextColumn Header="Kupac" Binding="{Binding Kupac}" Width="*"/>
                 <DataGridTextColumn Header="Broj racuna" Binding="{Binding BrojRacuna}" Width="*"/>
                 <DataGridTextColumn Header="Cena" Binding="{Binding UkupnaCena}" Width="*"/>

@@ -49,6 +49,21 @@ namespace POP_SF27_2016_Projekat.GUI
             {
                 return ((ProdajaNamestaja)obj).BrojRacuna.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0;
             }
+            else if (text.Equals("Namestaj"))
+            {
+                foreach(UredjeniParRacunNamestaj par in ((ProdajaNamestaja)obj).ListProdatiNamestaji)
+                {
+                    if(par.NazivNamestaja.IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            else if (text.Equals("Datum"))
+            {
+                return ((ProdajaNamestaja)obj).DatumProdaje.Value.ToString("dd.MM.yyyy. HH:mm:ss").IndexOf(tbPretraga.Text, StringComparison.OrdinalIgnoreCase) >= 0;
+            }
             return false;
         }
         #endregion
