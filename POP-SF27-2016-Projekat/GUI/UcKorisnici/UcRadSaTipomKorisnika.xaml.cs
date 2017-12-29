@@ -75,6 +75,7 @@ namespace POP_SF27_2016_Projekat.GUI.UcKorisnici
             if (dgTipKorisnika.SelectedItem != null)
             {
                 TipKorisnika.Remove((TipKorisnika)dgTipKorisnika.SelectedItem);
+                TipKorisnika.Delete((TipKorisnika)dgTipKorisnika.SelectedItem);
                 view.Refresh();
             }
         }

@@ -15,10 +15,10 @@ namespace POP_SF27_2016_Projekat.Model
     public enum Dozvola : byte
     {
         None = 0,
-        Read = 1,
-        Add = 1 << 1,
-        Edit = 1 << 2,
-        Delete = 1 << 3
+        Delete = 1,
+        Edit = 1 << 1,
+        Add = 1 << 2,
+        Read = 1 << 3
     }
     #endregion
 

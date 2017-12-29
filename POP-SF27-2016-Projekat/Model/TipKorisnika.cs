@@ -6,6 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Data;
+using System.Resources;
 
 namespace POP_SF27_2016_Projekat.Model
 {
@@ -93,7 +97,8 @@ namespace POP_SF27_2016_Projekat.Model
         #region Methods
         public static void Init()
         {
-            tipKorisnikaCollection = TipKorisnikaCollectionProperty;
+            //tipKorisnikaCollection = TipKorisnikaCollectionProperty;
+            tipKorisnikaCollection = GetAll();
         }
 
         public static TipKorisnika GetById(int id)
@@ -157,6 +162,124 @@ namespace POP_SF27_2016_Projekat.Model
         protected void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        #endregion
+
+        #region DAO
+        public static ObservableCollection<TipKorisnika> GetAll()
+        {
+            ObservableCollection<TipKorisnika> tipoviKorisnika = new ObservableCollection<TipKorisnika>();
+
+            using (SqlConnection con = new SqlConnection(Properties.Resources.connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataSet ds = new DataSet();
+
+                cmd.CommandText = "SELECT * FROM TipKorisnika;";
+                da.SelectCommand = cmd;
+                da.Fill(ds, "TipKorisnika");
+
+                foreach (DataRow row in ds.Tables["TipKorisnika"].Rows)
+                {
+                    TipKorisnika tk = new TipKorisnika()
+                    {
+                        Id = Convert.ToInt32(row["Id"]),
+                        Naziv = row["Naziv"].ToString(),
+                        Dozvole = new Dozvole(),
+                        Obrisan = bool.Parse(row["Obrisan"].ToString())
+                    };
+                    tk.Dozvole.Akcija = (Dozvola)Convert.ToByte(row["DozvolaAkcija"]);
+                    tk.Dozvole.DodatnaUsluga = (Dozvola)Convert.ToByte(row["DozvolaDodatnaUsluga"]);
+                    tk.Dozvole.Korisnik = (Dozvola)Convert.ToByte(row["DozvolaKorisnik"]);
+                    tk.Dozvole.Namestaj = (Dozvola)Convert.ToByte(row["DozvolaNamestaj"]);
+                    tk.Dozvole.ProdajaNamestaja = (Dozvola)Convert.ToByte(row["DozvolaProdajaNamestaja"]);
+                    tk.Dozvole.Salon = (Dozvola)Convert.ToByte(row["DozvolaSalon"]);
+                    tk.Dozvole.TipKorisnika = (Dozvola)Convert.ToByte(row["DozvolaTipKorisnika"]);
+                    tk.Dozvole.TipNamestaja = (Dozvola)Convert.ToByte(row["DozvolaTipNamestaja"]);
+                    tipoviKorisnika.Add(tk);
+                }
+            }
+            return tipoviKorisnika;
+        }
+
+        public static TipKorisnika Create(TipKorisnika tk)
+        {
+            using (var con = new SqlConnection(Properties.Resources.connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+
+                cmd.CommandText = "INSERT INTO TipKorisnika (Naziv, DozvolaAkcija, DozvolaDodatnaUsluga, DozvolaKorisnik, DozvolaNamestaj, DozvolaProdajaNamestaja, DozvolaSalon, DozvolaTipKorisnika, DozvolaTipNamestaja, Obrisan) VALUES (@Naziv, @DozvolaAkcija, @DozvolaDodatnaUsluga, @DozvolaKorisnik, @DozvolaNamestaj, @DozvolaProdajaNamestaja, @DozvolaSalon, @DozvolaTipKorisnika, @DozvolaTipNamestaja, @Obrisan);";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                cmd.Parameters.AddWithValue("Naziv", tk.Naziv);
+                cmd.Parameters.AddWithValue("DozvolaAkcija", tk.Dozvole.Akcija);
+                cmd.Parameters.AddWithValue("DozvolaDodatnaUsluga", tk.Dozvole.DodatnaUsluga);
+                cmd.Parameters.AddWithValue("DozvolaKorisnik", tk.Dozvole.Korisnik);
+                cmd.Parameters.AddWithValue("DozvolaNamestaj", tk.Dozvole.Namestaj);
+                cmd.Parameters.AddWithValue("DozvolaProdajaNamestaja", tk.Dozvole.ProdajaNamestaja);
+                cmd.Parameters.AddWithValue("DozvolaSalon", tk.Dozvole.Salon);
+                cmd.Parameters.AddWithValue("DozvolaTipKorisnika", tk.Dozvole.TipKorisnika);
+                cmd.Parameters.AddWithValue("DozvolaTipNamestaja", tk.Dozvole.TipNamestaja);
+                cmd.Parameters.AddWithValue("Obrisan", tk.Obrisan);
+
+                tk.Id = int.Parse(cmd.ExecuteScalar().ToString());
+            }
+
+            //TipKorisnika.Add(tk);
+
+            return tk;
+        }
+
+        public static void Update(TipKorisnika tk)
+        {
+            // Update db
+            using (var con = new SqlConnection(Properties.Resources.connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+
+                cmd.CommandText = "UPDATE TipKorisnika SET Naziv=@Naziv, DozvolaAkcija=@DozvolaAkcija, DozvolaDodatnaUsluga=@DozvolaDodatnaUsluga, DozvolaKorisnik=@DozvolaKorisnik, DozvolaNamestaj=@DozvolaNamestaj, DozvolaProdajaNamestaja=@DozvolaProdajaNamestaja, DozvolaSalon=@DozvolaSalon, DozvolaTipKorisnika=@DozvolaTipKorisnika, DozvolaTipNamestaja=@DozvolaTipNamestaja, Obrisan=@Obrisan WHERE Id=@Id;";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+
+                cmd.Parameters.AddWithValue("Id", tk.Id);
+                cmd.Parameters.AddWithValue("Naziv", tk.Naziv);
+                cmd.Parameters.AddWithValue("DozvolaAkcija", tk.Dozvole.Akcija);
+                cmd.Parameters.AddWithValue("DozvolaDodatnaUsluga", tk.Dozvole.DodatnaUsluga);
+                cmd.Parameters.AddWithValue("DozvolaKorisnik", tk.Dozvole.Korisnik);
+                cmd.Parameters.AddWithValue("DozvolaNamestaj", tk.Dozvole.Namestaj);
+                cmd.Parameters.AddWithValue("DozvolaProdajaNamestaja", tk.Dozvole.ProdajaNamestaja);
+                cmd.Parameters.AddWithValue("DozvolaSalon", tk.Dozvole.Salon);
+                cmd.Parameters.AddWithValue("DozvolaTipKorisnika", tk.Dozvole.TipKorisnika);
+                cmd.Parameters.AddWithValue("DozvolaTipNamestaja", tk.Dozvole.TipNamestaja);
+                cmd.Parameters.AddWithValue("Obrisan", tk.Obrisan);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            // Update model
+            /*
+            foreach (TipKorisnika tipKorisnika in tipKorisnikaCollection)
+            {
+                if (tk.Id == tipKorisnika.Id)
+                {
+                    tipKorisnika.Naziv = tk.Naziv;
+                    tipKorisnika.Dozvole.Copy(tk.Dozvole);
+                    tipKorisnika.Obrisan = tk.Obrisan;
+                    return;
+                }
+            }
+            */
+        }
+
+        public static void Delete(TipKorisnika tk)
+        {
+            tk.Obrisan = true;
+            Update(tk);
         }
         #endregion
     }

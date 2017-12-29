@@ -6,7 +6,7 @@
     <Prezime>prezime1</Prezime>
     <KorisnickoIme>username1</KorisnickoIme>
     <Lozinka>password1</Lozinka>
-    <TipKorisnikaId>0</TipKorisnikaId>
+    <TipKorisnikaId>1</TipKorisnikaId>
     <Obrisan>false</Obrisan>
   </Korisnik>
   <Korisnik>
@@ -15,7 +15,7 @@
     <Prezime>prezime2</Prezime>
     <KorisnickoIme>username2</KorisnickoIme>
     <Lozinka>password2</Lozinka>
-    <TipKorisnikaId>1</TipKorisnikaId>
+    <TipKorisnikaId>2</TipKorisnikaId>
     <Obrisan>false</Obrisan>
   </Korisnik>
 </ArrayOfKorisnik>

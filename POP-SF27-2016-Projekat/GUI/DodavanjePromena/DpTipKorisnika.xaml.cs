@@ -58,10 +58,12 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
                 if (operacija == Operacija.DODAVANJE)
                 {
                     TipKorisnika.Add(tipKorisnikaCopy);
+                    TipKorisnika.Create(tipKorisnikaCopy);
                 }
                 else if (operacija == Operacija.IZMENA)
                 {
                     tipKorisnikaReal.Copy(tipKorisnikaCopy);
+                    TipKorisnika.Update(tipKorisnikaReal);
                 }
                 Close();
             }
