@@ -1,3 +1,0 @@
-predji na propfull ( full propertiji )
-sve treba da bude observable collection, sve klase moraju da implementiraju INotifyPropertyChanged
-gui
