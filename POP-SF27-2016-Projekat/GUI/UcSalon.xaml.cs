@@ -18,18 +18,43 @@ namespace POP_SF27_2016_Projekat.GUI
 {
     public partial class UcSalon : UserControl
     {
+        Salon salon;
+
         public UcSalon()
         {
             InitializeComponent();
 
-            tbNaziv.DataContext = Salon.salon;
-            tbAdresa.DataContext = Salon.salon;
-            tbTelefon.DataContext = Salon.salon;
-            tbEmail.DataContext = Salon.salon;
-            tbAdresaSajta.DataContext = Salon.salon;
-            tbPIB.DataContext = Salon.salon;
-            tbMaticniBroj.DataContext = Salon.salon;
-            tbZiroRacun.DataContext = Salon.salon;
+            salon = new Salon();
+            salon.Copy(Salon.salon);
+
+            tbNaziv.DataContext = salon;
+            tbAdresa.DataContext = salon;
+            tbTelefon.DataContext = salon;
+            tbEmail.DataContext = salon;
+            tbAdresaSajta.DataContext = salon;
+            tbPIB.DataContext = salon;
+            tbMaticniBroj.DataContext = salon;
+            tbZiroRacun.DataContext = salon;
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            if(salon.Naziv != "")
+            {
+                if (salon.Adresa != "")
+                {
+                    if(salon.Telefon != "")
+                    {
+                        if(salon.Email != "")
+                        {
+                            if(salon.AdresaSajta != "")
+                            {
+                                Salon.Update(salon);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

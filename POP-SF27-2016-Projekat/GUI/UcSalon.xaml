@@ -6,24 +6,24 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:POP_SF27_2016_Projekat.GUI"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" HorizontalAlignment="Left" VerticalAlignment="Center"
+             d:DesignHeight="360" d:DesignWidth="360" HorizontalAlignment="Left" VerticalAlignment="Top"
              Background="White">
     <Grid Visibility="{Binding Source={x:Static s:Korisnik.Trenutni}, Path=TipKorisnika.Dozvole.SalonReadVisibility}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
         <Label Name="lbNaziv" Content="Naziv:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 0, 0" Grid.Column="0" Grid.Row="1"/>
@@ -43,5 +43,7 @@
         <TextBox Name="tbPIB" Text="{Binding PIB}" IsReadOnly="{Binding Source={x:Static s:Korisnik.Trenutni}, Path=TipKorisnika.Dozvole.SalonEditInverse}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="6" MinWidth="130"/>
         <TextBox Name="tbMaticniBroj" Text="{Binding MaticniBroj}" IsReadOnly="{Binding Source={x:Static s:Korisnik.Trenutni}, Path=TipKorisnika.Dozvole.SalonEditInverse}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="7" MinWidth="130"/>
         <TextBox Name="tbZiroRacun" Text="{Binding ZiroRacun}" IsReadOnly="{Binding Source={x:Static s:Korisnik.Trenutni}, Path=TipKorisnika.Dozvole.SalonEditInverse}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 10, 0" Grid.Column="1" Grid.Row="8" MinWidth="130"/>
+        <Button Name="btnSave" Content="Save" IsEnabled="{Binding Source={x:Static s:Korisnik.Trenutni}, Path=TipKorisnika.Dozvole.SalonEdit}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,10,10,10" Grid.Column="1" Grid.Row="9" Width="75" Click="btnSave_Click"/>
+
     </Grid>
 </UserControl>

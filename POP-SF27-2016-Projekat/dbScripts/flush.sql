@@ -3,6 +3,20 @@ CREATE DATABASE POP;
 GO
 USE POP;
 
+CREATE TABLE Salon (
+	Naziv VARCHAR(120),
+	Adresa VARCHAR(120),
+	Telefon VARCHAR(80),
+	Email VARCHAR(80),
+	AdresaSajta VARCHAR(80),
+	PIB INT,
+	MaticniBroj INT,
+	ZiroRacun VARCHAR(80)
+);
+
+INSERT INTO Salon (Naziv, Adresa, Telefon, Email, AdresaSajta, PIB, MaticniBroj, ZiroRacun) 
+VALUES('Forma FTNale', 'Trg FTN-a', '021/123123', 'kontakt@ftn.uns.ac.rs', 'www.ftn.com', 123, 231231, '840-00073555082-13');
+
 CREATE TABLE TipKorisnika (
 	Id INT PRIMARY KEY IDENTITY(0, 1),
 	Naziv VARCHAR(80),
@@ -92,3 +106,12 @@ CREATE TABLE DodatnaUsluga (
 	Cena NUMERIC(9,2),
 	Obrisan BIT
 );
+
+INSERT INTO DodatnaUsluga (Naziv, Cena, Obrisan) 
+VALUES('DodatnaUsluga1', 150, 0);
+
+INSERT INTO DodatnaUsluga (Naziv, Cena, Obrisan) 
+VALUES('DodatnaUsluga2', 200, 0);
+
+INSERT INTO DodatnaUsluga (Naziv, Cena, Obrisan) 
+VALUES('DodatnaUsluga3', 350, 0);
