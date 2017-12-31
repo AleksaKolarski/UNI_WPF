@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace POP_SF27_2016_Projekat.Model
 {
@@ -79,7 +81,7 @@ namespace POP_SF27_2016_Projekat.Model
         public DodatnaUsluga() { }
         public DodatnaUsluga(string naziv, double cena)
         {
-            this.Id = dodatnaUslugaCollection.Count();
+            this.Id = -1;
             this.Naziv = naziv;
             this.Cena = cena;
             this.Obrisan = false;
@@ -89,7 +91,7 @@ namespace POP_SF27_2016_Projekat.Model
         #region Methods
         public static void Init()
         {
-            dodatnaUslugaCollection = DodatnaUslugaCollectionProperty;
+            dodatnaUslugaCollection = GetAll();
         }
 
         public static DodatnaUsluga GetById(int id)
@@ -115,25 +117,6 @@ namespace POP_SF27_2016_Projekat.Model
             dodatnaUslugaCollection.Add(dodatnaUslugaToAdd);
         }
 
-        public static void Edit(DodatnaUsluga dodatnaUslugaToEdit, string naziv, double cena)
-        {
-            if(dodatnaUslugaToEdit == null)
-            {
-                return;
-            }
-            dodatnaUslugaToEdit.Naziv = naziv;
-            dodatnaUslugaToEdit.Cena = cena;
-        }
-
-        public static void Remove(DodatnaUsluga dodatnaUslugaToRemove)
-        {
-            if(dodatnaUslugaToRemove == null)
-            {
-                return;
-            }
-            dodatnaUslugaToRemove.Obrisan = true;
-        }
-
         public void Copy(DodatnaUsluga source)
         {
             this.Id = source.Id;
@@ -153,6 +136,90 @@ namespace POP_SF27_2016_Projekat.Model
         protected void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        #endregion
+
+        #region DAO
+        public static ObservableCollection<DodatnaUsluga> GetAll()
+        {
+            ObservableCollection<DodatnaUsluga> dodatneUsluge = new ObservableCollection<DodatnaUsluga>();
+
+            using (SqlConnection con = new SqlConnection(Properties.Resources.connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataSet ds = new DataSet();
+
+                cmd.CommandText = "SELECT * FROM DodatnaUsluga;";
+                da.SelectCommand = cmd;
+                da.Fill(ds, "DodatnaUsluga");
+
+                foreach (DataRow row in ds.Tables["DodatnaUsluga"].Rows)
+                {
+                    DodatnaUsluga du = new DodatnaUsluga()
+                    {
+                        Id = Convert.ToInt32(row["Id"]),
+                        Naziv = row["Naziv"].ToString(),
+                        Cena = Convert.ToDouble(row["Cena"]),
+                        Obrisan = bool.Parse(row["Obrisan"].ToString())
+                    };
+                    dodatneUsluge.Add(du);
+                }
+            }
+            return dodatneUsluge;
+        }
+
+        public static DodatnaUsluga Create(DodatnaUsluga du)
+        {
+            using (var con = new SqlConnection(Properties.Resources.connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+
+                cmd.CommandText = "INSERT INTO DodatnaUsluga (Naziv, Cena, Obrisan) VALUES (@Naziv, @Cena, @Obrisan);";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                cmd.Parameters.AddWithValue("Naziv", du.Naziv);
+                cmd.Parameters.AddWithValue("Cena", du.Cena);
+                cmd.Parameters.AddWithValue("Obrisan", du.Obrisan);
+
+                du.Id = int.Parse(cmd.ExecuteScalar().ToString());
+            }
+
+            DodatnaUsluga.Add(du);
+
+            return du;
+        }
+
+        public static void Update(DodatnaUsluga du)
+        {
+            using (var con = new SqlConnection(Properties.Resources.connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+
+                cmd.CommandText = "UPDATE DodatnaUsluga SET Naziv=@Naziv, Cena=@Cena, Obrisan=@Obrisan WHERE Id=@Id;";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+
+                cmd.Parameters.AddWithValue("Id", du.Id);
+                cmd.Parameters.AddWithValue("Naziv", du.Naziv);
+                cmd.Parameters.AddWithValue("Cena", du.Cena);
+                cmd.Parameters.AddWithValue("Obrisan", du.Obrisan);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            // Update model
+            DodatnaUsluga.GetById(du.Id).Copy(du);
+        }
+
+        public static void Delete(DodatnaUsluga du)
+        {
+            du.Obrisan = true;
+            Update(du);
         }
         #endregion
     }

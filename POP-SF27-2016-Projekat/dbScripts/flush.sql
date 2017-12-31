@@ -71,7 +71,7 @@ CREATE TABLE Namestaj (
 	TipNamestajaId INT FOREIGN KEY REFERENCES TipNamestaja(Id),
 	Naziv VARCHAR(80),
 	Sifra VARCHAR(80),
-	JedinicnaCena MONEY,
+	JedinicnaCena NUMERIC(9,2),
 	KolicinaUMagacinu INT,
 	Obrisan BIT
 );
@@ -84,3 +84,11 @@ VALUES(1, 'Sofa2', 'sifra2', 22, 222, 0);
 
 INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) 
 VALUES(2, 'Sofa5', 'sifra5', 55, 555, 0);
+
+
+CREATE TABLE DodatnaUsluga (
+	Id INT PRIMARY KEY IDENTITY(0, 1),
+	Naziv VARCHAR(80),
+	Cena NUMERIC(9,2),
+	Obrisan BIT
+);

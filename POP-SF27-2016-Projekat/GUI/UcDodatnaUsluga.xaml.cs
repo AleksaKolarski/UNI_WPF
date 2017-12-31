@@ -76,7 +76,7 @@ namespace POP_SF27_2016_Projekat.GUI
         {
             if (dgDodatnaUsluga.SelectedItem != null)
             {
-                DodatnaUsluga.Remove((DodatnaUsluga)dgDodatnaUsluga.SelectedItem);
+                DodatnaUsluga.Delete((DodatnaUsluga)dgDodatnaUsluga.SelectedItem);
                 view.Refresh();
             }
         }

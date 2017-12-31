@@ -25,8 +25,7 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
         }
         private Operacija operacija;
 
-        DodatnaUsluga dodatnaUslugaCopy;
-        DodatnaUsluga dodatnaUslugaReal;
+        DodatnaUsluga dodatnaUsluga;
 
         public DpDodatnaUsluga()
         {
@@ -34,40 +33,37 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             tblock.Text = "Nova dodatna usluga:";
             operacija = Operacija.DODAVANJE;
 
-            dodatnaUslugaCopy = new DodatnaUsluga("", 0);
+            dodatnaUsluga = new DodatnaUsluga();
 
-            tbNaziv.DataContext = dodatnaUslugaCopy;
-            tbCena.DataContext = dodatnaUslugaCopy;
+            InitFields();
         }
 
-        public DpDodatnaUsluga(DodatnaUsluga dodatnaUsluga)
+        public DpDodatnaUsluga(DodatnaUsluga dodatnaUslugaParam)
         {
             InitializeComponent();
             tblock.Text = "Izmena dodatne usluge:";
             operacija = Operacija.IZMENA;
 
-            dodatnaUslugaReal = dodatnaUsluga;
-            dodatnaUslugaCopy = new DodatnaUsluga();
-            dodatnaUslugaCopy.Copy(dodatnaUsluga);
+            dodatnaUsluga = new DodatnaUsluga();
+            dodatnaUsluga.Copy(dodatnaUslugaParam);
 
-            tbNaziv.DataContext = dodatnaUslugaCopy;
-            tbCena.DataContext = dodatnaUslugaCopy;
+            InitFields();
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            if(dodatnaUslugaCopy.Naziv != "")
+            if(dodatnaUsluga.Naziv != "")
             {
                 double cena;
                 if (double.TryParse(tbCena.Text, out cena))
                 {
                     if (operacija == Operacija.DODAVANJE)
                     {
-                        DodatnaUsluga.Add(dodatnaUslugaCopy);
+                        DodatnaUsluga.Create(dodatnaUsluga);
                     }
                     else if (operacija == Operacija.IZMENA)
                     {
-                        dodatnaUslugaReal.Copy(dodatnaUslugaCopy);
+                        DodatnaUsluga.Update(dodatnaUsluga);
                     }
                     Close();
                     return;
@@ -86,6 +82,12 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void InitFields()
+        {
+            tbNaziv.DataContext = dodatnaUsluga;
+            tbCena.DataContext = dodatnaUsluga;
         }
     }
 }
