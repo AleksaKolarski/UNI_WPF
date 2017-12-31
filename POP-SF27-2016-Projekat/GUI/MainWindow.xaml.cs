@@ -70,6 +70,7 @@ namespace POP_SF27_2016_Projekat.GUI
         {
             gbMainArea.Header = "Rad sa namestajem";
             MainArea.Content = ucRadSaNamestajem;
+            ucRadSaNamestajem.view.Refresh();
             HideAllTempButtons();
         }
 

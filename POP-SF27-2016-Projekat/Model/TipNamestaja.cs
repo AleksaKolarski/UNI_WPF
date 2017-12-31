@@ -202,6 +202,13 @@ namespace POP_SF27_2016_Projekat.Model
         public static void Delete(TipNamestaja tn)
         {
             tn.Obrisan = true;
+            foreach (Namestaj namestaj in Namestaj.namestajCollection)
+            {
+                if (namestaj.TipNamestajaId == tn.Id)
+                {
+                    Namestaj.Delete(namestaj);
+                }
+            }
             Update(tn);
         }
         #endregion

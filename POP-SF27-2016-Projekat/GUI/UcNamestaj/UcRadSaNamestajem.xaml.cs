@@ -20,7 +20,7 @@ namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
 {
     public partial class UcRadSaNamestajem : UserControl
     {
-        ICollectionView view;
+        public ICollectionView view;
 
         public UcRadSaNamestajem()
         {
