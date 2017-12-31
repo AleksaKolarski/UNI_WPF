@@ -87,7 +87,7 @@ namespace POP_SF27_2016_Projekat.GUI.UcKorisnici
         {
             if (dgKorisnik.SelectedItem != null)
             {
-                Korisnik.Remove((Korisnik)dgKorisnik.SelectedItem);
+                Korisnik.Delete((Korisnik)dgKorisnik.SelectedItem);
                 view.Refresh();
             }
         }

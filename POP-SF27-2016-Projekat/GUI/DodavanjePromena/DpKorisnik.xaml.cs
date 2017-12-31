@@ -24,8 +24,7 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
         }
         private Operacija operacija;
 
-        Korisnik korisnikCopy;
-        Korisnik korisnikReal;
+        Korisnik korisnik;
 
         public DpKorisnik()
         {
@@ -33,51 +32,42 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             tblock.Text = "Nov korisnik:";
             operacija = Operacija.DODAVANJE;
 
-            korisnikCopy = new Korisnik("","","","",new TipKorisnika());
+            korisnik = new Korisnik();
 
-            tbIme.DataContext = korisnikCopy;
-            tbPrezime.DataContext = korisnikCopy;
-            tbKorisnickoIme.DataContext = korisnikCopy;
-            tbLozinka.DataContext = korisnikCopy;
-            cbTip.DataContext = korisnikCopy;
+            InitFields();
         }
 
-        public DpKorisnik(Korisnik korisnik)
+        public DpKorisnik(Korisnik korisnikParam)
         {
             InitializeComponent();
             tblock.Text = "Izmena korisnika:";
             operacija = Operacija.IZMENA;
 
-            korisnikCopy = new Korisnik();
-            korisnikCopy.Copy(korisnik);
-            korisnikReal = korisnik;
+            korisnik = new Korisnik();
+            korisnik.Copy(korisnikParam);
 
-            tbIme.DataContext = korisnikCopy;
-            tbPrezime.DataContext = korisnikCopy;
-            tbKorisnickoIme.DataContext = korisnikCopy;
-            tbLozinka.DataContext = korisnikCopy;
-            cbTip.DataContext = korisnikCopy;
+            InitFields();
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            if (korisnikCopy.Ime != "")
+            if (korisnik.Ime != "")
             {
-                if(korisnikCopy.Prezime != "")
+                if(korisnik.Prezime != "")
                 {
-                    if(korisnikCopy.KorisnickoIme != "")
+                    if(korisnik.KorisnickoIme != "")
                     {
-                        if(korisnikCopy.Lozinka != "")
+                        if(korisnik.Lozinka != "")
                         {
-                            if(korisnikCopy.TipKorisnika != null)
+                            if(korisnik.TipKorisnika != null)
                             {
                                 if(operacija == Operacija.DODAVANJE)
                                 {
-                                    Korisnik.Add(korisnikCopy);
+                                    Korisnik.Create(korisnik);
                                 }
                                 else if(operacija == Operacija.IZMENA)
                                 {
-                                    korisnikReal.Copy(korisnikCopy);
+                                    Korisnik.Update(korisnik);
                                 }
                                 Close();
                                 return;
@@ -111,6 +101,15 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void InitFields()
+        {
+            tbIme.DataContext = korisnik;
+            tbPrezime.DataContext = korisnik;
+            tbKorisnickoIme.DataContext = korisnik;
+            tbLozinka.DataContext = korisnik;
+            cbTip.DataContext = korisnik;
         }
     }
 }

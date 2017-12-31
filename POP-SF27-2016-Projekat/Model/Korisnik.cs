@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Xml.Serialization;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace POP_SF27_2016_Projekat.Model
 {
@@ -95,6 +97,7 @@ namespace POP_SF27_2016_Projekat.Model
             {
                 tipKorisnikaId = value;
                 OnPropertyChanged("TipKorisnikaId");
+                OnPropertyChanged("TipKorisnika");
             }
         }
         [XmlIgnore]
@@ -136,7 +139,7 @@ namespace POP_SF27_2016_Projekat.Model
         public Korisnik() {}
         public Korisnik(string ime, string prezime, string korisnickoIme, string lozinka, TipKorisnika tipKorisnika)
         {
-            this.Id = korisnikCollection.Count;
+            this.Id = -1;
             this.Ime = ime;
             this.Prezime = prezime;
             this.KorisnickoIme = korisnickoIme;
@@ -150,7 +153,7 @@ namespace POP_SF27_2016_Projekat.Model
         #region Methods
         public static void Init()
         {
-            korisnikCollection = KorisnikCollectionProperty;
+            korisnikCollection = GetAll();
         }
 
         public static Korisnik GetById(int id)
@@ -174,28 +177,6 @@ namespace POP_SF27_2016_Projekat.Model
                 return;
             }
             korisnikCollection.Add(korisnikToAdd);
-        }
-
-        public static void Edit(Korisnik korisnikToEdit, string ime, string prezime, string korisnickoIme, string lozinka, TipKorisnika tipKorisnika)
-        {
-            if (korisnikToEdit == null)
-            {
-                return;
-            }
-            korisnikToEdit.Ime = ime;
-            korisnikToEdit.Prezime = prezime;
-            korisnikToEdit.KorisnickoIme = korisnickoIme;
-            korisnikToEdit.Lozinka = lozinka;
-            korisnikToEdit.TipKorisnika = tipKorisnika;
-        }
-
-        public static void Remove(Korisnik korisnikToRemove)
-        {
-            if(korisnikToRemove == null)
-            {
-                return;
-            }
-            korisnikToRemove.Obrisan = true;
         }
 
         public void Copy(Korisnik source)
@@ -238,6 +219,99 @@ namespace POP_SF27_2016_Projekat.Model
         protected void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        #endregion
+
+        #region DAO
+        public static ObservableCollection<Korisnik> GetAll()
+        {
+            ObservableCollection<Korisnik> korisnici = new ObservableCollection<Korisnik>();
+
+            using (SqlConnection con = new SqlConnection(Properties.Resources.connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataSet ds = new DataSet();
+
+                cmd.CommandText = "SELECT * FROM Korisnik;";
+                da.SelectCommand = cmd;
+                da.Fill(ds, "Korisnik");
+
+                foreach (DataRow row in ds.Tables["Korisnik"].Rows)
+                {
+                    Korisnik k = new Korisnik()
+                    {
+                        Id = Convert.ToInt32(row["Id"]),
+                        TipKorisnikaId = Convert.ToInt32(row["TipKorisnikaId"]),
+                        Ime = row["Ime"].ToString(),
+                        Prezime = row["Prezime"].ToString(),
+                        KorisnickoIme = row["KorisnickoIme"].ToString(),
+                        Lozinka = row["Lozinka"].ToString(),
+                        Obrisan = bool.Parse(row["Obrisan"].ToString())
+                    };
+                    korisnici.Add(k);
+                }
+            }
+            return korisnici;
+        }
+
+        public static Korisnik Create(Korisnik k)
+        {
+            using (var con = new SqlConnection(Properties.Resources.connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+
+                cmd.CommandText = "INSERT INTO Korisnik (TipKorisnikaId, Ime, Prezime, KorisnickoIme, Lozinka, Obrisan) VALUES (@TipKorisnikaId, @Ime, @Prezime, @KorisnickoIme, @Lozinka, @Obrisan);";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                cmd.Parameters.AddWithValue("TipKorisnikaId", k.TipKorisnikaId);
+                cmd.Parameters.AddWithValue("Ime", k.Ime);
+                cmd.Parameters.AddWithValue("Prezime", k.Prezime);
+                cmd.Parameters.AddWithValue("KorisnickoIme", k.KorisnickoIme);
+                cmd.Parameters.AddWithValue("Lozinka", k.Lozinka);
+                cmd.Parameters.AddWithValue("Obrisan", k.Obrisan);
+
+                k.Id = int.Parse(cmd.ExecuteScalar().ToString());
+            }
+
+            Korisnik.Add(k);
+
+            return k;
+        }
+
+        public static void Update(Korisnik k)
+        {
+            using (var con = new SqlConnection(Properties.Resources.connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+
+                cmd.CommandText = "UPDATE Korisnik SET TipKorisnikaId=@TipKorisnikaId, Ime=@Ime, Prezime=@Prezime, KorisnickoIme=@KorisnickoIme, Lozinka=@Lozinka, Obrisan=@Obrisan WHERE Id=@Id;";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+
+                cmd.Parameters.AddWithValue("Id", k.Id);
+                cmd.Parameters.AddWithValue("TipKorisnikaId", k.TipKorisnikaId);
+                cmd.Parameters.AddWithValue("Ime", k.Ime);
+                cmd.Parameters.AddWithValue("Prezime", k.Prezime);
+                cmd.Parameters.AddWithValue("KorisnickoIme", k.KorisnickoIme);
+                cmd.Parameters.AddWithValue("Lozinka", k.Lozinka);
+                cmd.Parameters.AddWithValue("Obrisan", k.Obrisan);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            // Update model
+            Korisnik.GetById(k.Id).Copy(k);
+        }
+
+        public static void Delete(Korisnik k)
+        {
+            k.Obrisan = true;
+            Update(k);
         }
         #endregion
     }

@@ -87,7 +87,7 @@ namespace POP_SF27_2016_Projekat.Model
         }
         public TipKorisnika(string naziv, Dozvole dozvole)
         {
-            this.Id = tipKorisnikaCollection.Count;
+            this.Id = -1;
             this.Naziv = naziv;
             this.Dozvole = dozvole;
             this.Obrisan = false;
@@ -122,25 +122,6 @@ namespace POP_SF27_2016_Projekat.Model
                 return;
             }
             tipKorisnikaCollection.Add(tipKorisnikaToAdd);
-        }
-
-        public static void Edit(TipKorisnika tipKorisnikaToEdit, string naziv, Dozvole dozvole)
-        {
-            if(tipKorisnikaToEdit == null || dozvole == null)
-            {
-                return;
-            }
-            tipKorisnikaToEdit.Naziv = naziv;
-            tipKorisnikaToEdit.Dozvole = dozvole;
-        }
-
-        public static void Remove(TipKorisnika tipKorisnikaToRemove)
-        {
-            if(tipKorisnikaToRemove == null)
-            {
-                return;
-            }
-            tipKorisnikaToRemove.Obrisan = true;
         }
 
         public void Copy(TipKorisnika source)
@@ -229,14 +210,13 @@ namespace POP_SF27_2016_Projekat.Model
                 tk.Id = int.Parse(cmd.ExecuteScalar().ToString());
             }
 
-            //TipKorisnika.Add(tk);
+            TipKorisnika.Add(tk);
 
             return tk;
         }
 
         public static void Update(TipKorisnika tk)
         {
-            // Update db
             using (var con = new SqlConnection(Properties.Resources.connectionString))
             {
                 con.Open();
@@ -262,18 +242,7 @@ namespace POP_SF27_2016_Projekat.Model
             }
 
             // Update model
-            /*
-            foreach (TipKorisnika tipKorisnika in tipKorisnikaCollection)
-            {
-                if (tk.Id == tipKorisnika.Id)
-                {
-                    tipKorisnika.Naziv = tk.Naziv;
-                    tipKorisnika.Dozvole.Copy(tk.Dozvole);
-                    tipKorisnika.Obrisan = tk.Obrisan;
-                    return;
-                }
-            }
-            */
+            TipKorisnika.GetById(tk.Id).Copy(tk);
         }
 
         public static void Delete(TipKorisnika tk)

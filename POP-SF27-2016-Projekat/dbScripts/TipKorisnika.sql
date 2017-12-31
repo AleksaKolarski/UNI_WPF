@@ -1,7 +1,3 @@
-USE master;
-
-CREATE DATABASE POP;
-
 USE POP;
 
 DROP TABLE TipKorisnika;

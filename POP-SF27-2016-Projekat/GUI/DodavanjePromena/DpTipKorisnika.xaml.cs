@@ -24,8 +24,7 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
         }
         private Operacija operacija;
 
-        private TipKorisnika tipKorisnikaCopy;
-        private TipKorisnika tipKorisnikaReal;
+        private TipKorisnika tipKorisnika;
 
         public DpTipKorisnika()
         {
@@ -33,37 +32,34 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             tblock.Text = "Nov tip korisnika:";
             operacija = Operacija.DODAVANJE;
 
-            tipKorisnikaCopy = new TipKorisnika("", new Dozvole());
+            tipKorisnika = new TipKorisnika();
 
             InitFields();
         }
 
-        public DpTipKorisnika(TipKorisnika tipKorisnika)
+        public DpTipKorisnika(TipKorisnika tipKorisnikaParam)
         {
             InitializeComponent();
             tblock.Text = "Izmena dodatne usluge:";
             operacija = Operacija.IZMENA;
 
-            tipKorisnikaReal = tipKorisnika;
-            tipKorisnikaCopy = new TipKorisnika();
-            tipKorisnikaCopy.Copy(tipKorisnika);
+            tipKorisnika = new TipKorisnika();
+            tipKorisnika.Copy(tipKorisnikaParam);
 
             InitFields();
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            if (tipKorisnikaCopy.Naziv != "")
+            if (tipKorisnika.Naziv != "")
             {
                 if (operacija == Operacija.DODAVANJE)
                 {
-                    TipKorisnika.Add(tipKorisnikaCopy);
-                    TipKorisnika.Create(tipKorisnikaCopy);
+                    TipKorisnika.Create(tipKorisnika);
                 }
                 else if (operacija == Operacija.IZMENA)
                 {
-                    tipKorisnikaReal.Copy(tipKorisnikaCopy);
-                    TipKorisnika.Update(tipKorisnikaReal);
+                    TipKorisnika.Update(tipKorisnika);
                 }
                 Close();
             }
@@ -80,47 +76,47 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 
         private void InitFields()
         {
-            tbNaziv.DataContext = tipKorisnikaCopy;
+            tbNaziv.DataContext = tipKorisnika;
 
-            cbAkcijaRead.DataContext = tipKorisnikaCopy.Dozvole;
-            cbAkcijaAdd.DataContext = tipKorisnikaCopy.Dozvole;
-            cbAkcijaEdit.DataContext = tipKorisnikaCopy.Dozvole;
-            cbAkcijaDelete.DataContext = tipKorisnikaCopy.Dozvole;
+            cbAkcijaRead.DataContext = tipKorisnika.Dozvole;
+            cbAkcijaAdd.DataContext = tipKorisnika.Dozvole;
+            cbAkcijaEdit.DataContext = tipKorisnika.Dozvole;
+            cbAkcijaDelete.DataContext = tipKorisnika.Dozvole;
 
-            cbDodatnaUslugaRead.DataContext = tipKorisnikaCopy.Dozvole;
-            cbDodatnaUslugaAdd.DataContext = tipKorisnikaCopy.Dozvole;
-            cbDodatnaUslugaEdit.DataContext = tipKorisnikaCopy.Dozvole;
-            cbDodatnaUslugaDelete.DataContext = tipKorisnikaCopy.Dozvole;
+            cbDodatnaUslugaRead.DataContext = tipKorisnika.Dozvole;
+            cbDodatnaUslugaAdd.DataContext = tipKorisnika.Dozvole;
+            cbDodatnaUslugaEdit.DataContext = tipKorisnika.Dozvole;
+            cbDodatnaUslugaDelete.DataContext = tipKorisnika.Dozvole;
 
-            cbKorisnikRead.DataContext = tipKorisnikaCopy.Dozvole;
-            cbKorisnikAdd.DataContext = tipKorisnikaCopy.Dozvole;
-            cbKorisnikEdit.DataContext = tipKorisnikaCopy.Dozvole;
-            cbKorisnikDelete.DataContext = tipKorisnikaCopy.Dozvole;
+            cbKorisnikRead.DataContext = tipKorisnika.Dozvole;
+            cbKorisnikAdd.DataContext = tipKorisnika.Dozvole;
+            cbKorisnikEdit.DataContext = tipKorisnika.Dozvole;
+            cbKorisnikDelete.DataContext = tipKorisnika.Dozvole;
 
-            cbNamestajRead.DataContext = tipKorisnikaCopy.Dozvole;
-            cbNamestajAdd.DataContext = tipKorisnikaCopy.Dozvole;
-            cbNamestajEdit.DataContext = tipKorisnikaCopy.Dozvole;
-            cbNamestajDelete.DataContext = tipKorisnikaCopy.Dozvole;
+            cbNamestajRead.DataContext = tipKorisnika.Dozvole;
+            cbNamestajAdd.DataContext = tipKorisnika.Dozvole;
+            cbNamestajEdit.DataContext = tipKorisnika.Dozvole;
+            cbNamestajDelete.DataContext = tipKorisnika.Dozvole;
 
-            cbProdajaRead.DataContext = tipKorisnikaCopy.Dozvole;
-            cbProdajaAdd.DataContext = tipKorisnikaCopy.Dozvole;
-            cbProdajaEdit.DataContext = tipKorisnikaCopy.Dozvole;
-            cbProdajaDelete.DataContext = tipKorisnikaCopy.Dozvole;
+            cbProdajaRead.DataContext = tipKorisnika.Dozvole;
+            cbProdajaAdd.DataContext = tipKorisnika.Dozvole;
+            cbProdajaEdit.DataContext = tipKorisnika.Dozvole;
+            cbProdajaDelete.DataContext = tipKorisnika.Dozvole;
 
-            cbSalonRead.DataContext = tipKorisnikaCopy.Dozvole;
-            cbSalonAdd.DataContext = tipKorisnikaCopy.Dozvole;
-            cbSalonEdit.DataContext = tipKorisnikaCopy.Dozvole;
-            cbSalonDelete.DataContext = tipKorisnikaCopy.Dozvole;
+            cbSalonRead.DataContext = tipKorisnika.Dozvole;
+            cbSalonAdd.DataContext = tipKorisnika.Dozvole;
+            cbSalonEdit.DataContext = tipKorisnika.Dozvole;
+            cbSalonDelete.DataContext = tipKorisnika.Dozvole;
 
-            cbTipKorisnikaRead.DataContext = tipKorisnikaCopy.Dozvole;
-            cbTipKorisnikaAdd.DataContext = tipKorisnikaCopy.Dozvole;
-            cbTipKorisnikaEdit.DataContext = tipKorisnikaCopy.Dozvole;
-            cbTipKorisnikaDelete.DataContext = tipKorisnikaCopy.Dozvole;
+            cbTipKorisnikaRead.DataContext = tipKorisnika.Dozvole;
+            cbTipKorisnikaAdd.DataContext = tipKorisnika.Dozvole;
+            cbTipKorisnikaEdit.DataContext = tipKorisnika.Dozvole;
+            cbTipKorisnikaDelete.DataContext = tipKorisnika.Dozvole;
 
-            cbTipNamestajaRead.DataContext = tipKorisnikaCopy.Dozvole;
-            cbTipNamestajaAdd.DataContext = tipKorisnikaCopy.Dozvole;
-            cbTipNamestajaEdit.DataContext = tipKorisnikaCopy.Dozvole;
-            cbTipNamestajaDelete.DataContext = tipKorisnikaCopy.Dozvole;
+            cbTipNamestajaRead.DataContext = tipKorisnika.Dozvole;
+            cbTipNamestajaAdd.DataContext = tipKorisnika.Dozvole;
+            cbTipNamestajaEdit.DataContext = tipKorisnika.Dozvole;
+            cbTipNamestajaDelete.DataContext = tipKorisnika.Dozvole;
         }
     }
 }

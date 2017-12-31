@@ -58,7 +58,7 @@ namespace POP_SF27_2016_Projekat.GUI.UcKorisnici
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             DpTipKorisnika dpTipKorisnika = new DpTipKorisnika();
-            dpTipKorisnika.ShowDialog(); // Cekamo da se zatvori prozor za dodavanje
+            dpTipKorisnika.ShowDialog();
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
@@ -66,7 +66,7 @@ namespace POP_SF27_2016_Projekat.GUI.UcKorisnici
             if (dgTipKorisnika.SelectedItem != null)
             {
                 DpTipKorisnika dpTipKorisnika = new DpTipKorisnika((TipKorisnika)dgTipKorisnika.SelectedItem);
-                dpTipKorisnika.ShowDialog(); // Cekamo da se zatvori prozor za menjanje
+                dpTipKorisnika.ShowDialog();
             }
         }
 
@@ -74,7 +74,6 @@ namespace POP_SF27_2016_Projekat.GUI.UcKorisnici
         {
             if (dgTipKorisnika.SelectedItem != null)
             {
-                TipKorisnika.Remove((TipKorisnika)dgTipKorisnika.SelectedItem);
                 TipKorisnika.Delete((TipKorisnika)dgTipKorisnika.SelectedItem);
                 view.Refresh();
             }
