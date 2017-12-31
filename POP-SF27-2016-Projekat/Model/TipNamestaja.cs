@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace POP_SF27_2016_Projekat.Model
 { 
@@ -68,7 +69,7 @@ namespace POP_SF27_2016_Projekat.Model
         public TipNamestaja() { }
         public TipNamestaja(string naziv)
         {
-            this.Id = tipNamestajaCollection.Count;
+            this.Id = -1;
             this.Naziv = naziv;
             this.Obrisan = false;
         }
@@ -77,7 +78,7 @@ namespace POP_SF27_2016_Projekat.Model
         #region Methods
         public static void Init()
         {
-            tipNamestajaCollection = TipNamestajaCollectionProperty;
+            tipNamestajaCollection = GetAll();
         }
 
         public static TipNamestaja GetById(int id)
@@ -103,24 +104,6 @@ namespace POP_SF27_2016_Projekat.Model
             tipNamestajaCollection.Add(tipNamestajaToAdd);
         }
 
-        public static void Edit(TipNamestaja tipNamestajaToEdit, string naziv)
-        {
-            if (tipNamestajaToEdit == null)
-            {
-                return;
-            }
-            tipNamestajaToEdit.Naziv = naziv;
-        }
-
-        public static void Remove(TipNamestaja tipNamestajaToRemove)
-        {
-            if (tipNamestajaToRemove == null)
-            {
-                return;
-            }
-            tipNamestajaToRemove.Obrisan = true;
-        }
-
         public void Copy(TipNamestaja source)
         {
             this.Id = source.Id;
@@ -142,18 +125,85 @@ namespace POP_SF27_2016_Projekat.Model
         }
         #endregion
 
-        #region Baze podataka
-        /*
+        #region DAO
         public static ObservableCollection<TipNamestaja> GetAll()
         {
-            var tipoviNamestaja = new ObservableCollection<TipNamestaja>();
+            ObservableCollection<TipNamestaja> tipoviNamestaja = new ObservableCollection<TipNamestaja>();
 
-            using (var sc = new SqlConnection())
+            using (SqlConnection con = new SqlConnection(Properties.Resources.connectionString))
             {
+                con.Open();
 
+                SqlCommand cmd = con.CreateCommand();
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataSet ds = new DataSet();
+
+                cmd.CommandText = "SELECT * FROM TipNamestaja;";
+                da.SelectCommand = cmd;
+                da.Fill(ds, "TipNamestaja");
+
+                foreach (DataRow row in ds.Tables["TipNamestaja"].Rows)
+                {
+                    TipNamestaja tn = new TipNamestaja()
+                    {
+                        Id = Convert.ToInt32(row["Id"]),
+                        Naziv = row["Naziv"].ToString(),
+                        Obrisan = bool.Parse(row["Obrisan"].ToString())
+                    };
+                    tipoviNamestaja.Add(tn);
+                }
             }
+            return tipoviNamestaja;
         }
-        */
+
+        public static TipNamestaja Create(TipNamestaja tn)
+        {
+            using (var con = new SqlConnection(Properties.Resources.connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+
+                cmd.CommandText = "INSERT INTO TipNamestaja (Naziv, Obrisan) VALUES (@Naziv, @Obrisan);";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                cmd.Parameters.AddWithValue("Naziv", tn.Naziv);
+                cmd.Parameters.AddWithValue("Obrisan", tn.Obrisan);
+
+                tn.Id = int.Parse(cmd.ExecuteScalar().ToString());
+            }
+
+            TipNamestaja.Add(tn);
+
+            return tn;
+        }
+
+        public static void Update(TipNamestaja tn)
+        {
+            using (var con = new SqlConnection(Properties.Resources.connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+
+                cmd.CommandText = "UPDATE TipNamestaja SET Naziv=@Naziv, Obrisan=@Obrisan WHERE Id=@Id;";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+
+                cmd.Parameters.AddWithValue("Id", tn.Id);
+                cmd.Parameters.AddWithValue("Naziv", tn.Naziv);
+                cmd.Parameters.AddWithValue("Obrisan", tn.Obrisan);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            // Update model
+            TipNamestaja.GetById(tn.Id).Copy(tn);
+        }
+
+        public static void Delete(TipNamestaja tn)
+        {
+            tn.Obrisan = true;
+            Update(tn);
+        }
         #endregion
     }
 }

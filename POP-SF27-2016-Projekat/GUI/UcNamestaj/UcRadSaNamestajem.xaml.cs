@@ -82,7 +82,7 @@ namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
         {
             if (dgNamestaj.SelectedItem != null)
             {
-                Namestaj.Remove((Namestaj)dgNamestaj.SelectedItem);
+                Namestaj.Delete((Namestaj)dgNamestaj.SelectedItem);
                 view.Refresh();
             }
         }

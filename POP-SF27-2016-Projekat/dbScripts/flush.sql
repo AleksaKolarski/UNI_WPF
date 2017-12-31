@@ -48,3 +48,39 @@ VALUES(2, 'Pera', 'Peric', 'username2', 'password2', 0);
 
 INSERT INTO Korisnik (TipKorisnikaId, Ime, Prezime, KorisnickoIme, Lozinka, Obrisan) 
 VALUES(2, 'Mile', 'Kitic', 'mile', 'kitic123', 0);
+
+
+CREATE TABLE TipNamestaja (
+	Id INT PRIMARY KEY IDENTITY(0, 1),
+	Naziv VARCHAR(80),
+	Obrisan BIT
+);
+
+INSERT INTO TipNamestaja (Naziv, Obrisan) 
+VALUES('Regal', 0);
+
+INSERT INTO TipNamestaja (Naziv, Obrisan) 
+VALUES('Polica', 0);
+
+INSERT INTO TipNamestaja (Naziv, Obrisan) 
+VALUES('Sofa', 0);
+
+
+CREATE TABLE Namestaj (
+	Id INT PRIMARY KEY IDENTITY(0, 1),
+	TipNamestajaId INT FOREIGN KEY REFERENCES TipNamestaja(Id),
+	Naziv VARCHAR(80),
+	Sifra VARCHAR(80),
+	JedinicnaCena MONEY,
+	KolicinaUMagacinu INT,
+	Obrisan BIT
+);
+
+INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) 
+VALUES(0, 'Sofa1', 'sifra1', 11, 111, 0);
+
+INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) 
+VALUES(1, 'Sofa2', 'sifra2', 22, 222, 0);
+
+INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) 
+VALUES(2, 'Sofa5', 'sifra5', 55, 555, 0);

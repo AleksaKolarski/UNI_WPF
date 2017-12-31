@@ -24,8 +24,7 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
         }
         private Operacija operacija;
 
-        private TipNamestaja tipNamestajaCopy;
-        private TipNamestaja tipNamestajaReal;
+        private TipNamestaja tipNamestaja;
 
         public DpTipNamestaja()
         {
@@ -33,35 +32,34 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             tblock.Text = "Nov tip namestaja:";
             operacija = Operacija.DODAVANJE;
 
-            tipNamestajaCopy = new TipNamestaja("");
+            tipNamestaja = new TipNamestaja();
 
-            tbNaziv.DataContext = tipNamestajaCopy;
+            tbNaziv.DataContext = tipNamestaja;
         }
 
-        public DpTipNamestaja(TipNamestaja tipNamestaja)
+        public DpTipNamestaja(TipNamestaja tipNamestajaParam)
         {
             InitializeComponent();
             tblock.Text = "Izmena namestaja:";
             operacija = Operacija.IZMENA;
 
-            tipNamestajaReal = tipNamestaja;
-            tipNamestajaCopy = new TipNamestaja();
-            tipNamestajaCopy.Copy(tipNamestaja);
+            tipNamestaja = new TipNamestaja();
+            tipNamestaja.Copy(tipNamestajaParam);
 
-            tbNaziv.DataContext = tipNamestajaCopy;
+            tbNaziv.DataContext = tipNamestaja;
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            if (tipNamestajaCopy.Naziv != "")
+            if (tipNamestaja.Naziv != "")
             {
                 if (operacija == Operacija.DODAVANJE)
                 {
-                    TipNamestaja.Add(tipNamestajaCopy);
+                    TipNamestaja.Create(tipNamestaja);
                 }
                 else if (operacija == Operacija.IZMENA)
                 {
-                    tipNamestajaReal.Copy(tipNamestajaCopy);
+                    TipNamestaja.Update(tipNamestaja);
                 }
                 Close();
             }

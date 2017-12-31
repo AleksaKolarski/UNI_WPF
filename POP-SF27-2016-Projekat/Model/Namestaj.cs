@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace POP_SF27_2016_Projekat.Model
 {
@@ -133,7 +135,7 @@ namespace POP_SF27_2016_Projekat.Model
         public Namestaj() {}
         public Namestaj(string naziv, string sifra, double jedinicnaCena, int kolicinaUMagacinu, TipNamestaja tipNamestaja)
         {
-            this.Id = namestajCollection.Count;
+            this.Id = -1;
             this.Naziv = naziv;
             this.Sifra = sifra;
             this.JedinicnaCena = jedinicnaCena;
@@ -147,7 +149,7 @@ namespace POP_SF27_2016_Projekat.Model
         #region Methods
         public static void Init()
         {
-            namestajCollection = NamestajCollectionProperty;
+            namestajCollection = GetAll();
         }
 
         public static Namestaj GetById(int id)
@@ -173,28 +175,6 @@ namespace POP_SF27_2016_Projekat.Model
             namestajCollection.Add(namestajToAdd);
         }
 
-        public static void Edit(Namestaj namestajToEdit, string naziv, string sifra, double jedinicnaCena, int kolicinaUMagacinu, TipNamestaja tipNamestaja)
-        {
-            if (namestajToEdit == null)
-            {
-                return;
-            }
-            namestajToEdit.Naziv = naziv;
-            namestajToEdit.Sifra = sifra;
-            namestajToEdit.JedinicnaCena = jedinicnaCena;
-            namestajToEdit.KolicinaUMagacinu = kolicinaUMagacinu;
-            namestajToEdit.TipNamestaja = tipNamestaja;
-        }
-
-        public static void Remove(Namestaj namestajToRemove)
-        {
-            if(namestajToRemove == null)
-            {
-                return;
-            }
-            namestajToRemove.Obrisan = true;
-        }
-
         public void Copy(Namestaj source)
         {
             this.Id = source.Id;
@@ -217,6 +197,99 @@ namespace POP_SF27_2016_Projekat.Model
         protected void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        #endregion
+
+        #region DAO
+        public static ObservableCollection<Namestaj> GetAll()
+        {
+            ObservableCollection<Namestaj> namestaj = new ObservableCollection<Namestaj>();
+
+            using (SqlConnection con = new SqlConnection(Properties.Resources.connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataSet ds = new DataSet();
+
+                cmd.CommandText = "SELECT * FROM Namestaj;";
+                da.SelectCommand = cmd;
+                da.Fill(ds, "Namestaj");
+
+                foreach (DataRow row in ds.Tables["Namestaj"].Rows)
+                {
+                    Namestaj n = new Namestaj()
+                    {
+                        Id = Convert.ToInt32(row["Id"]),
+                        Naziv = row["Naziv"].ToString(),
+                        Sifra = row["Sifra"].ToString(),
+                        JedinicnaCena = Convert.ToDouble(row["JedinicnaCena"]),
+                        KolicinaUMagacinu = Convert.ToInt32(row["KolicinaUMagacinu"]),
+                        TipNamestajaId = Convert.ToInt32(row["TipNamestajaId"]), 
+                        Obrisan = bool.Parse(row["Obrisan"].ToString())
+                    };
+                    namestaj.Add(n);
+                }
+            }
+            return namestaj;
+        }
+
+        public static Namestaj Create(Namestaj n)
+        {
+            using (var con = new SqlConnection(Properties.Resources.connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+
+                cmd.CommandText = "INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) VALUES (@TipNamestajaId, @Naziv, @Sifra, @JedinicnaCena, @KolicinaUMagacinu, @Obrisan);";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
+                cmd.Parameters.AddWithValue("Naziv", n.Naziv);
+                cmd.Parameters.AddWithValue("Sifra", n.Sifra);
+                cmd.Parameters.AddWithValue("JedinicnaCena", n.JedinicnaCena);
+                cmd.Parameters.AddWithValue("KolicinaUMagacinu", n.KolicinaUMagacinu);
+                cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
+
+                n.Id = int.Parse(cmd.ExecuteScalar().ToString());
+            }
+
+            Namestaj.Add(n);
+
+            return n;
+        }
+
+        public static void Update(Namestaj n)
+        {
+            using (var con = new SqlConnection(Properties.Resources.connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+
+                cmd.CommandText = "UPDATE Namestaj SET TipNamestajaId=@TipNamestajaId, Naziv=@Naziv, Sifra=@Sifra, JedinicnaCena=@JedinicnaCena, KolicinaUMagacinu=@KolicinaUMagacinu, Obrisan=@Obrisan WHERE Id=@Id;";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+
+                cmd.Parameters.AddWithValue("Id", n.Id);
+                cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
+                cmd.Parameters.AddWithValue("Naziv", n.Naziv);
+                cmd.Parameters.AddWithValue("Sifra", n.Sifra);
+                cmd.Parameters.AddWithValue("JedinicnaCena", n.JedinicnaCena);
+                cmd.Parameters.AddWithValue("KolicinaUMagacinu", n.KolicinaUMagacinu);
+                cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            // Update model
+            Namestaj.GetById(n.Id).Copy(n);
+        }
+
+        public static void Delete(Namestaj n)
+        {
+            n.Obrisan = true;
+            Update(n);
         }
         #endregion
     }
