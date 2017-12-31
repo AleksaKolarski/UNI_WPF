@@ -4,6 +4,7 @@ GO
 USE POP;
 
 CREATE TABLE Salon (
+	Id INT PRIMARY KEY IDENTITY(0, 1),
 	Naziv VARCHAR(120),
 	Adresa VARCHAR(120),
 	Telefon VARCHAR(80),
@@ -115,3 +116,4 @@ VALUES('DodatnaUsluga2', 200, 0);
 
 INSERT INTO DodatnaUsluga (Naziv, Cena, Obrisan) 
 VALUES('DodatnaUsluga3', 350, 0);
+
