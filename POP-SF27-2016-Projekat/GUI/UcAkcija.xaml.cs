@@ -77,6 +77,7 @@ namespace POP_SF27_2016_Projekat.GUI
             {
                 DpAkcija dpAkcija = new DpAkcija((Akcija)dgAkcija.SelectedItem);
                 dpAkcija.ShowDialog();
+                view.Refresh();
                 dgAkcija_SelectionChanged(this, null);
             }
         }
@@ -85,7 +86,7 @@ namespace POP_SF27_2016_Projekat.GUI
         {
             if (dgAkcija.SelectedItem != null)
             {
-                Akcija.Remove((Akcija)dgAkcija.SelectedItem);
+                Akcija.Delete((Akcija)dgAkcija.SelectedItem);
                 view.Refresh();
                 dgNamestaj.ItemsSource = new ObservableCollection<UredjeniPar>();
             }

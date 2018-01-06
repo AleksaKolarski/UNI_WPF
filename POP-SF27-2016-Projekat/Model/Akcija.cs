@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace POP_SF27_2016_Projekat.Model
 {
@@ -108,6 +110,8 @@ namespace POP_SF27_2016_Projekat.Model
         public Akcija()
         {
             this.Lista = new ObservableCollection<UredjeniPar>();
+            this.datumPocetka = DateTime.Now;
+            this.DatumKraja = DateTime.Now.AddDays(1);
         }
         public Akcija(string naziv, DateTime? datumPocetka, DateTime? datumKraja, ObservableCollection<UredjeniPar> lista)
         {
@@ -123,7 +127,7 @@ namespace POP_SF27_2016_Projekat.Model
         #region Methods
         public static void Init()
         {
-            akcijaCollection = AkcijaCollectionProperty;
+            akcijaCollection = GetAll();
         }
 
         public static Akcija GetById(int id)
@@ -233,6 +237,108 @@ namespace POP_SF27_2016_Projekat.Model
         protected void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        #endregion
+
+        #region DAO
+        public static ObservableCollection<Akcija> GetAll()
+        {
+            ObservableCollection<Akcija> akcije = new ObservableCollection<Akcija>();
+
+            using (SqlConnection con = new SqlConnection(Properties.Resources.connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataSet ds = new DataSet();
+
+                cmd.CommandText = "SELECT * FROM Akcija;";
+                da.SelectCommand = cmd;
+                da.Fill(ds, "Akcija");
+
+                foreach (DataRow row in ds.Tables["Akcija"].Rows)
+                {
+                    Akcija akcija = new Akcija()
+                    {
+                        Id = Convert.ToInt32(row["Id"]),
+                        Naziv = row["Naziv"].ToString(),
+                        DatumPocetka = Convert.ToDateTime(row["DatumPocetka"].ToString()),
+                        DatumKraja = Convert.ToDateTime(row["DatumKraja"].ToString()),
+                        Obrisan = bool.Parse(row["Obrisan"].ToString())
+                    };
+
+                    SqlCommand cmd2 = con.CreateCommand();
+                    cmd2.CommandText = "SELECT * FROM NaAkciji WHERE IdAkcije=" + akcija.Id +";";
+                    da.SelectCommand = cmd2;
+                    da.Fill(ds, "NaAkciji");
+
+                    foreach (DataRow row2 in ds.Tables["NaAkciji"].Rows)
+                    {
+                        UredjeniPar par = new UredjeniPar()
+                        {
+                            NamestajId = Convert.ToInt32(row2["IdNamestaja"]),
+                            Popust = Convert.ToDouble(row2["Popust"])
+                        };
+                        akcija.lista.Add(par);
+                    }
+                    ds.Tables["NaAkciji"].Clear();
+
+                    akcije.Add(akcija);
+                }
+            }
+            return akcije;
+        }
+        
+        public static void Create(Akcija akcijaParam)
+        {
+            using (var con = new SqlConnection(Properties.Resources.connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+
+                cmd.CommandText = "INSERT INTO Akcija (Naziv, DatumPocetka, DatumKraja, Obrisan) VALUES (@Naziv, @DatumPocetka, @DatumKraja, 0);";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                cmd.Parameters.AddWithValue("Naziv", akcijaParam.Naziv);
+                cmd.Parameters.AddWithValue("DatumPocetka", akcijaParam.DatumPocetka);
+                cmd.Parameters.AddWithValue("DatumKraja", akcijaParam.DatumKraja);
+
+                akcijaParam.Id = int.Parse(cmd.ExecuteScalar().ToString());
+
+                foreach(UredjeniPar par in akcijaParam.lista)
+                {
+                    cmd.CommandText = "INSERT INTO NaAkciji (IdAkcije, IdNamestaja, Popust) VALUES (" + akcijaParam.Id + ", " + par.NamestajId + ", " + par.Popust + ");";
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            Akcija akcijaNew = new Akcija();
+            akcijaNew.Copy(akcijaParam);
+            akcijaNew.Obrisan = false;
+
+            Akcija.Add(akcijaNew);
+        }
+        
+        public static void Update(Akcija akcija)
+        {
+            Delete(akcija);
+            Create(akcija);
+        }
+        
+        public static void Delete(Akcija akcija)
+        {
+            Akcija.GetById(akcija.Id).Obrisan = true;
+            using (var con = new SqlConnection(Properties.Resources.connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+
+                cmd.CommandText = "UPDATE Akcija SET Obrisan=1 WHERE Id=" + akcija.Id + ";";
+
+                cmd.ExecuteNonQuery();
+            }
         }
         #endregion
     }
