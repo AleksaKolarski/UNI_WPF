@@ -1,5 +1,4 @@
-﻿using POP_SF27_2016_Projekat.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -120,12 +119,6 @@ namespace POP_SF27_2016_Projekat.Model
                 ziroRacun = value;
                 OnPropertyChanged("ZiroRacun");
             }
-        }
-
-        public static Salon SalonProperty
-        {
-            get => GenericSerializer.DeSerializeObject <Salon>("salon.xml");
-            set => GenericSerializer.SerializeObject<Salon>("salon.xml", value);
         }
         #endregion
 

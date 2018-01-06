@@ -1,5 +1,4 @@
-﻿using static POP_SF27_2016_Projekat.Utils.GenericSerializer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -19,7 +18,7 @@ namespace POP_SF27_2016_Projekat.Model
         private string naziv;
         private DateTime? datumPocetka;
         private DateTime? datumKraja;
-        [XmlIgnore]
+        
         public ObservableCollection<UredjeniPar> lista;
         private bool obrisan;
         public static ObservableCollection<Akcija> akcijaCollection;
@@ -97,12 +96,6 @@ namespace POP_SF27_2016_Projekat.Model
                 obrisan = value;
                 OnPropertyChanged("Obrisan");
             }
-        }
-
-        public static ObservableCollection<Akcija> AkcijaCollectionProperty
-        {
-            get => DeSerializeObservableCollection<Akcija>("akcija.xml");
-            set => SerializeObservableCollection<Akcija>("akcija.xml", value);
         }
         #endregion
 
@@ -364,7 +357,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("NamestajId");
             }
         }
-        [XmlIgnore]
+        
         public Namestaj Namestaj
         {
             get

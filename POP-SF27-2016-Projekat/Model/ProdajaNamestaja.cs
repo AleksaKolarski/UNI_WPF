@@ -1,5 +1,4 @@
-﻿using static POP_SF27_2016_Projekat.Utils.GenericSerializer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -111,7 +110,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("PDV");
             }
         }
-        [XmlIgnore]
+        
         public double UkupnaCena
         {
             get
@@ -129,12 +128,6 @@ namespace POP_SF27_2016_Projekat.Model
 
                 return cena * (1 + PDV / 100);
             }
-        }
-
-        public static ObservableCollection<ProdajaNamestaja> ProdajaNamestajaCollectionProperty
-        {
-            get => DeSerializeObservableCollection<ProdajaNamestaja>("prodaja.xml");
-            set => SerializeObservableCollection<ProdajaNamestaja>("prodaja.xml", value);
         }
         #endregion
 
@@ -688,7 +681,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("Popust");
             }
         }
-        [XmlIgnore]
+        
         public Namestaj Namestaj
         {
             get
@@ -720,7 +713,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("UkupnaCena");
             }
         }
-        [XmlIgnore]
+        
         public double Cena
         {
             get
@@ -728,7 +721,7 @@ namespace POP_SF27_2016_Projekat.Model
                 return Namestaj.JedinicnaCena * BrojNamestaja;
             }
         }
-        [XmlIgnore]
+        
         public double UkupnaCena
         {
             get
@@ -736,7 +729,7 @@ namespace POP_SF27_2016_Projekat.Model
                 return Namestaj.JedinicnaCena * BrojNamestaja * (1.0 - (Akcija.GetPopustByNamestaj(Namestaj)) / 100);
             }
         }
-        [XmlIgnore]
+        
         public double Popust
         {
             get

@@ -1,5 +1,4 @@
-﻿using static POP_SF27_2016_Projekat.Utils.GenericSerializer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -67,14 +66,7 @@ namespace POP_SF27_2016_Projekat.Model
                 obrisan = value;
                 OnPropertyChanged("Obrisan");
             }
-        }
-
-        public static ObservableCollection<DodatnaUsluga> DodatnaUslugaCollectionProperty
-        {
-            get => DeSerializeObservableCollection<DodatnaUsluga>("dodatna_usluga.xml");
-            set => SerializeObservableCollection<DodatnaUsluga>("dodatna_usluga.xml", value);
-        }
-        
+        } 
         #endregion
 
         #region Constructors

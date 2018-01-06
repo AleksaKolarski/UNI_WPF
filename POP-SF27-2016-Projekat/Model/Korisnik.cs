@@ -1,5 +1,4 @@
-﻿using static POP_SF27_2016_Projekat.Utils.GenericSerializer;
-using POP_SF27_2016_Projekat.Model;
+﻿using POP_SF27_2016_Projekat.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -100,7 +99,6 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("TipKorisnika");
             }
         }
-        [XmlIgnore]
         public TipKorisnika TipKorisnika
         {
             get
@@ -124,12 +122,6 @@ namespace POP_SF27_2016_Projekat.Model
                 obrisan = value;
                 OnPropertyChanged("Obrisan");
             }
-        }
-
-        public static ObservableCollection<Korisnik> KorisnikCollectionProperty
-        {
-            get => DeSerializeObservableCollection<Korisnik>("korisnik.xml");
-            set => SerializeObservableCollection<Korisnik>("korisnik.xml", value);
         }
         
         public static Korisnik Trenutni { get; private set; } = null;

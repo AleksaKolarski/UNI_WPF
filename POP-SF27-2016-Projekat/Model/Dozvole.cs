@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Xml.Serialization;
 
 namespace POP_SF27_2016_Projekat.Model
 {
@@ -50,7 +44,6 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("Dozvole");
             }
         }
-        [XmlIgnore]
         public Visibility AkcijaReadVisibility
         {
             get
@@ -65,7 +58,6 @@ namespace POP_SF27_2016_Projekat.Model
                 }
             }
         }
-        [XmlIgnore]
         public Boolean AkcijaRead
         {
             get
@@ -86,7 +78,6 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("AkcijaReadVisibility");
             }
         }
-        [XmlIgnore]
         public Boolean AkcijaAdd
         {
             get
@@ -106,7 +97,6 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("AkcijaAdd");
             }
         }
-        [XmlIgnore]
         public Boolean AkcijaEdit
         {
             get
@@ -126,7 +116,6 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("AkcijaEdit");
             }
         }
-        [XmlIgnore]
         public Boolean AkcijaDelete
         {
             get
@@ -161,7 +150,6 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("Dozvole");
             }
         }
-        [XmlIgnore]
         public Visibility DodatnaUslugaReadVisibility
         {
             get
@@ -176,7 +164,6 @@ namespace POP_SF27_2016_Projekat.Model
                 }
             }
         }
-        [XmlIgnore]
         public Boolean DodatnaUslugaRead
         {
             get
@@ -197,7 +184,6 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("DodatnaUslugaReadVisibility");
             }
         }
-        [XmlIgnore]
         public Boolean DodatnaUslugaAdd
         {
             get
@@ -217,7 +203,6 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("DodatnaUslugaAdd");
             }
         }
-        [XmlIgnore]
         public Boolean DodatnaUslugaEdit
         {
             get
@@ -237,7 +222,6 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("DodatnaUslugaEdit");
             }
         }
-        [XmlIgnore]
         public Boolean DodatnaUslugaDelete
         {
             get
@@ -272,7 +256,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("Dozvole");
             }
         }
-        [XmlIgnore]
+        
         public Visibility KorisnikReadVisibility
         {
             get
@@ -287,7 +271,7 @@ namespace POP_SF27_2016_Projekat.Model
                 }
             }
         }
-        [XmlIgnore]
+        
         public Boolean KorisnikRead
         {
             get
@@ -308,7 +292,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("KorisnikReadVisibility");
             }
         }
-        [XmlIgnore]
+        
         public Boolean KorisnikAdd
         {
             get
@@ -328,7 +312,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("KorisnikAdd");
             }
         }
-        [XmlIgnore]
+        
         public Boolean KorisnikEdit
         {
             get
@@ -348,7 +332,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("KorisnikEdit");
             }
         }
-        [XmlIgnore]
+        
         public Boolean KorisnikDelete
         {
             get
@@ -383,7 +367,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("Dozvole");
             }
         }
-        [XmlIgnore]
+        
         public Visibility NamestajReadVisibility
         {
             get
@@ -398,7 +382,7 @@ namespace POP_SF27_2016_Projekat.Model
                 }
             }
         }
-        [XmlIgnore]
+        
         public Boolean NamestajRead
         {
             get
@@ -419,7 +403,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("NamestajReadVisibility");
             }
         }
-        [XmlIgnore]
+        
         public Boolean NamestajAdd
         {
             get
@@ -439,7 +423,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("NamestajAdd");
             }
         }
-        [XmlIgnore]
+        
         public Boolean NamestajEdit
         {
             get
@@ -459,7 +443,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("NamestajEdit");
             }
         }
-        [XmlIgnore]
+        
         public Boolean NamestajDelete
         {
             get
@@ -494,7 +478,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("Dozvole");
             }
         }
-        [XmlIgnore]
+        
         public Visibility ProdajaNamestajaReadVisibility
         {
             get
@@ -509,7 +493,7 @@ namespace POP_SF27_2016_Projekat.Model
                 }
             }
         }
-        [XmlIgnore]
+        
         public Boolean ProdajaNamestajaRead
         {
             get
@@ -530,7 +514,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("ProdajaNamestajaReadVisibility");
             }
         }
-        [XmlIgnore]
+        
         public Boolean ProdajaNamestajaAdd
         {
             get
@@ -565,7 +549,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("Dozvole");
             }
         }
-        [XmlIgnore]
+        
         public Visibility SalonReadVisibility
         {
             get
@@ -580,7 +564,7 @@ namespace POP_SF27_2016_Projekat.Model
                 }
             }
         }
-        [XmlIgnore]
+        
         public Boolean SalonRead
         {
             get
@@ -601,7 +585,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("SalonReadVisibility");
             }
         }
-        [XmlIgnore]
+        
         public Boolean SalonEdit
         {
             get
@@ -622,7 +606,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("SalonEditInverse");
             }
         }
-        [XmlIgnore]
+        
         public Boolean SalonEditInverse
         {
             get
@@ -646,7 +630,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("Dozvole");
             }
         }
-        [XmlIgnore]
+        
         public Visibility TipKorisnikaReadVisibility
         {
             get
@@ -661,7 +645,7 @@ namespace POP_SF27_2016_Projekat.Model
                 }
             }
         }
-        [XmlIgnore]
+        
         public Boolean TipKorisnikaRead
         {
             get
@@ -683,7 +667,7 @@ namespace POP_SF27_2016_Projekat.Model
 
             }
         }
-        [XmlIgnore]
+        
         public Boolean TipKorisnikaAdd
         {
             get
@@ -703,7 +687,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("TipKorisnikaAdd");
             }
         }
-        [XmlIgnore]
+        
         public Boolean TipKorisnikaEdit
         {
             get
@@ -723,7 +707,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("TipKorisnikaEdit");
             }
         }
-        [XmlIgnore]
+        
         public Boolean TipKorisnikaDelete
         {
             get
@@ -758,7 +742,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("Dozvole");
             }
         }
-        [XmlIgnore]
+        
         public Visibility TipNamestajaReadVisibility
         {
             get
@@ -773,7 +757,7 @@ namespace POP_SF27_2016_Projekat.Model
                 }
             }
         }
-        [XmlIgnore]
+        
         public Boolean TipNamestajaRead
         {
             get
@@ -794,7 +778,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("TipNamestajaReadVisibility");
             }
         }
-        [XmlIgnore]
+        
         public Boolean TipNamestajaAdd
         {
             get
@@ -814,7 +798,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("TipNamestajaAdd");
             }
         }
-        [XmlIgnore]
+        
         public Boolean TipNamestajaEdit
         {
             get
@@ -834,7 +818,7 @@ namespace POP_SF27_2016_Projekat.Model
                 OnPropertyChanged("TipNamestajaEdit");
             }
         }
-        [XmlIgnore]
+        
         public Boolean TipNamestajaDelete
         {
             get

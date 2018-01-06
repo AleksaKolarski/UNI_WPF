@@ -59,7 +59,7 @@ namespace POP_SF27_2016_Projekat.GUI
             ProdajaNamestaja.Init();
             Salon.Init();
 
-            tbWelcome.Text = "Welcome to\n" + Salon.SalonProperty.Naziv;
+            tbWelcome.Text = "Welcome to\n" + Salon.salon.Naziv;
             tbUsername.Focus();
             tbUsername.Text = "username1";
             pbPassword.Password = "password1";

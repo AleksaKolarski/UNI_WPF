@@ -1,5 +1,4 @@
-﻿using static POP_SF27_2016_Projekat.Utils.GenericSerializer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -71,12 +70,6 @@ namespace POP_SF27_2016_Projekat.Model
                 obrisan = value;
                 OnPropertyChanged("Obrisan");
             }
-        }
-
-        public static ObservableCollection<TipKorisnika> TipKorisnikaCollectionProperty
-        {
-            get => DeSerializeObservableCollection<TipKorisnika>("tip_korisnika.xml");
-            set => SerializeObservableCollection<TipKorisnika>("tip_korisnika.xml", value);
         }
         #endregion
 

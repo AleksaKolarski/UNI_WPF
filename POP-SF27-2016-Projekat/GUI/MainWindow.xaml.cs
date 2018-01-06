@@ -32,7 +32,7 @@ namespace POP_SF27_2016_Projekat.GUI
         {
             InitializeComponent();
 
-            this.Title = $"Salon namestaja: {Salon.SalonProperty.Naziv} | Ulogovani ste kao: {Korisnik.Trenutni.Ime} {Korisnik.Trenutni.Prezime} | {Korisnik.Trenutni.TipKorisnika.Naziv}";
+            this.Title = $"Salon namestaja: {Salon.salon.Naziv} | Ulogovani ste kao: {Korisnik.Trenutni.Ime} {Korisnik.Trenutni.Prezime} | {Korisnik.Trenutni.TipKorisnika.Naziv}";
 
 
             /* Inicijalizacija prozora */

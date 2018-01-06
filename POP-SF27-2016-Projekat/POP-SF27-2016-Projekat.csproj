@@ -122,7 +122,6 @@
     </Compile>
     <Compile Include="Model\Dozvole.cs" />
     <Compile Include="Model\TipKorisnika.cs" />
-    <Compile Include="Utils\GenericSerializer.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -160,27 +159,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Data\namestaj.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Data\tip_namestaja.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Data\salon.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Data\akcija.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Data\dodatna_usluga.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Data\tip_korisnika.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Data\korisnik.xml" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="GUI\DodavanjePromena\DpAkcija.xaml">
@@ -265,7 +243,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Data\prodaja.xml" />
     <Content Include="dbScripts\crebas.sql" />
     <Content Include="dbScripts\seed.sql" />
   </ItemGroup>
