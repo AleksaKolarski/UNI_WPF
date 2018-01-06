@@ -8,6 +8,10 @@ DROP TABLE NaAkciji;
 DROP TABLE Akcija;
 DROP TABLE Namestaj;
 DROP TABLE TipNamestaja;
+DROP TABLE ProdajaUsluga;
+DROP TABLE ProdajaNamestaj;
+DROP TABLE Prodaja;
+
 
 CREATE TABLE Salon (
 	Id INT PRIMARY KEY IDENTITY(0, 1),
@@ -79,6 +83,26 @@ CREATE TABLE Akcija (
 CREATE TABLE NaAkciji (
 	IdAkcije INT FOREIGN KEY REFERENCES Akcija(Id),
 	IdNamestaja INT FOREIGN KEY REFERENCES Namestaj(Id),
+	Popust NUMERIC(9,2)
+);
+
+CREATE TABLE Prodaja (
+	Id INT PRIMARY KEY IDENTITY(0, 1), 
+	DatumProdaje DATETIME2, 
+	Kupac VARCHAR(80), 
+	BrojRacuna VARCHAR(80), 
+	PDV NUMERIC(9,2)
+);
+CREATE TABLE ProdajaUsluga (
+	IdProdaje INT FOREIGN KEY REFERENCES Prodaja(Id),
+	NazivUsluge VARCHAR(80), 
+	Cena NUMERIC(9,2)
+);
+CREATE TABLE ProdajaNamestaj (
+	IdProdaje INT FOREIGN KEY REFERENCES Prodaja(Id), 
+	NazivNamestaja VARCHAR(80), 
+	JedinicnaCena NUMERIC(9,2), 
+	BrojNamestaja INT,
 	Popust NUMERIC(9,2)
 );
 
@@ -159,3 +183,33 @@ VALUES(1, 1, 40);
 
 INSERT INTO NaAkciji (IdAkcije, IdNamestaja, Popust) 
 VALUES(1, 2, 50);
+
+
+INSERT INTO Prodaja (DatumProdaje, Kupac, BrojRacuna, PDV) 
+VALUES('0001-01-01T00:00:00', 'Neko Nekic', '123-123-123', 20.0);
+
+INSERT INTO Prodaja (DatumProdaje, Kupac, BrojRacuna, PDV) 
+VALUES('0001-01-01T00:00:00', 'Pera Peric', '321-321-321', 20.0);
+
+
+INSERT INTO ProdajaUsluga (IdProdaje, NazivUsluge, Cena) 
+VALUES(1, 'Usluga1', 150);
+
+INSERT INTO ProdajaUsluga (IdProdaje, NazivUsluge, Cena) 
+VALUES(1, 'Usluga2', 200);
+
+
+INSERT INTO ProdajaNamestaj (IdProdaje, NazivNamestaja, JedinicnaCena, BrojNamestaja, Popust) 
+VALUES(0, 'Namestaj1', 32, 3, 10);
+
+INSERT INTO ProdajaNamestaj (IdProdaje, NazivNamestaja, JedinicnaCena, BrojNamestaja, Popust) 
+VALUES(0, 'Namestaj2', 12, 7, 20);
+
+INSERT INTO ProdajaNamestaj (IdProdaje, NazivNamestaja, JedinicnaCena, BrojNamestaja, Popust) 
+VALUES(1, 'Namestaj3', 67, 2, 5);
+
+INSERT INTO ProdajaNamestaj (IdProdaje, NazivNamestaja, JedinicnaCena, BrojNamestaja, Popust) 
+VALUES(1, 'Namestaj4', 17, 5, 15);
+
+INSERT INTO ProdajaNamestaj (IdProdaje, NazivNamestaja, JedinicnaCena, BrojNamestaja, Popust) 
+VALUES(1, 'Namestaj1', 20, 3, 10);

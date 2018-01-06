@@ -93,7 +93,7 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 
                     ProdajaNamestaja prodajaStorage = new ProdajaNamestaja(listaNamestaja, listaUsluga, prodaja.DatumProdaje, prodaja.Kupac, prodaja.BrojRacuna, prodaja.PDV);
 
-                    ProdajaNamestaja.Add(prodajaStorage);
+                    ProdajaNamestaja.Create(prodajaStorage);
                     Close();
                 }
             }

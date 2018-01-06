@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace POP_SF27_2016_Projekat.Model
 {
@@ -157,7 +159,7 @@ namespace POP_SF27_2016_Projekat.Model
         #region Methods
         public static void Init()
         {
-            prodajaNamestajaCollection = ProdajaNamestajaCollectionProperty;
+            prodajaNamestajaCollection = GetAll();
         }
 
         public static ProdajaNamestaja GetById(int id)
@@ -194,6 +196,112 @@ namespace POP_SF27_2016_Projekat.Model
         protected void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        #endregion
+
+        #region DAO
+        public static ObservableCollection<ProdajaNamestaja> GetAll()
+        {
+            ObservableCollection<ProdajaNamestaja> prodaje = new ObservableCollection<ProdajaNamestaja>();
+
+            using (SqlConnection con = new SqlConnection(Properties.Resources.connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataSet ds = new DataSet();
+
+                cmd.CommandText = "SELECT * FROM Prodaja;";
+                da.SelectCommand = cmd;
+                da.Fill(ds, "Prodaja");
+
+                foreach (DataRow row in ds.Tables["Prodaja"].Rows)
+                {
+                    ProdajaNamestaja prodaja = new ProdajaNamestaja()
+                    {
+                        Id = Convert.ToInt32(row["Id"]),
+                        DatumProdaje = Convert.ToDateTime(row["DatumProdaje"].ToString()),
+                        Kupac = row["Kupac"].ToString(), 
+                        BrojRacuna = row["BrojRacuna"].ToString(),
+                        PDV = Convert.ToDouble(row["PDV"])
+                    };
+
+                    SqlCommand cmd2 = con.CreateCommand();
+                    cmd2.CommandText = "SELECT * FROM ProdajaNamestaj WHERE IdProdaje=" + prodaja.Id + ";";
+                    da.SelectCommand = cmd2;
+                    da.Fill(ds, "ProdajaNamestaj");
+
+                    foreach (DataRow row2 in ds.Tables["ProdajaNamestaj"].Rows)
+                    {
+                        UredjeniParRacunNamestaj par = new UredjeniParRacunNamestaj()
+                        {
+                            NazivNamestaja = row2["NazivNamestaja"].ToString(),
+                            JedinicnaCena = Convert.ToDouble(row2["JedinicnaCena"]),
+                            BrojNamestaja = Convert.ToInt32(row2["BrojNamestaja"]),
+                            Popust = Convert.ToDouble(row2["Popust"])
+                        };
+                        prodaja.listProdatiNamestaji.Add(par);
+                    }
+                    ds.Tables["ProdajaNamestaj"].Clear();
+
+
+                    cmd2.CommandText = "SELECT * FROM ProdajaUsluga WHERE IdProdaje=" + prodaja.Id + ";";
+                    da.SelectCommand = cmd2;
+                    da.Fill(ds, "ProdajaUsluga");
+
+                    foreach (DataRow row2 in ds.Tables["ProdajaUsluga"].Rows)
+                    {
+                        UredjeniParRacunDodatnaUsluga par = new UredjeniParRacunDodatnaUsluga()
+                        {
+                            NazivUsluge = row2["NazivUsluge"].ToString(),
+                            Cena = Convert.ToDouble(row2["Cena"])
+                        };
+                        prodaja.listProdateDodatneUsluge.Add(par);
+                    }
+                    ds.Tables["ProdajaUsluga"].Clear();
+
+                    prodaje.Add(prodaja);
+                }
+            }
+            return prodaje;
+        }
+        
+        public static void Create(ProdajaNamestaja prodaja)
+        {
+            using (var con = new SqlConnection(Properties.Resources.connectionString))
+            {
+                con.Open();
+
+                SqlCommand cmd = con.CreateCommand();
+
+                cmd.CommandText = "INSERT INTO Prodaja (DatumProdaje, Kupac, BrojRacuna, PDV) VALUES (@DatumProdaje, @Kupac, @BrojRacuna, @PDV);";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                cmd.Parameters.AddWithValue("DatumProdaje", prodaja.DatumProdaje);
+                cmd.Parameters.AddWithValue("Kupac", prodaja.Kupac);
+                cmd.Parameters.AddWithValue("BrojRacuna", prodaja.BrojRacuna);
+                cmd.Parameters.AddWithValue("PDV", prodaja.PDV);
+
+                prodaja.Id = int.Parse(cmd.ExecuteScalar().ToString());
+
+                foreach (UredjeniParRacunNamestaj par in prodaja.listProdatiNamestaji)
+                {
+                    cmd.Parameters.Clear();
+                    cmd.CommandText = "INSERT INTO ProdajaNamestaj (IdProdaje, NazivNamestaja, JedinicnaCena, BrojNamestaja, Popust) VALUES (" + prodaja.Id + ", @NazivNamestaja, " + par.JedinicnaCena + ", " + par.BrojNamestaja + ", " + par.Popust + ");";
+                    cmd.Parameters.AddWithValue("NazivNamestaja", par.NazivNamestaja);
+                    cmd.ExecuteNonQuery();
+                }
+
+                foreach (UredjeniParRacunDodatnaUsluga par in prodaja.listProdateDodatneUsluge)
+                {
+                    cmd.Parameters.Clear();
+                    cmd.CommandText = "INSERT INTO ProdajaUsluga (IdProdaje, NazivUsluge, Cena) VALUES (" + prodaja.Id + ", @NazivUsluge, " + par.Cena + ");";
+                    cmd.Parameters.AddWithValue("NazivUsluge", par.NazivUsluge);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            ProdajaNamestaja.Add(prodaja);
         }
         #endregion
     }
