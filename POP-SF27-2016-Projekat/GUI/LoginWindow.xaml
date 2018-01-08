@@ -19,7 +19,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Name="tbWelcome" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Margin="0" TextWrapping="Wrap" TextAlignment="Center" Grid.ColumnSpan="2" FontSize="14"/>
-        <Button Name="About" Content="?" HorizontalAlignment="Right" VerticalAlignment="Top" Width="20" Height="20" Margin="0,5,5,0" Grid.Column="1" Grid.Row="0" Padding="0"/>
+        <Button Name="About" Content="?" HorizontalAlignment="Right" VerticalAlignment="Top" Width="20" Height="20" Margin="0,5,5,0" Grid.Column="1" Grid.Row="0" Padding="0" Click="About_Click"/>
         <Label Name="lbUsername" Content="Username:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Grid.Column="0" Grid.Row="1"/>
         <Label Name="lbPassword" Content="Password:" HorizontalAlignment="Center"  VerticalAlignment="Center" Margin="0" Grid.Column="0" Grid.Row="2"/>
         <TextBox Name="tbUsername" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Height="22" Margin="0" Grid.Column="1" Grid.Row="1" VerticalContentAlignment="Center"/>

@@ -60,6 +60,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GUI\AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\DodavanjePromena\DpAkcija.xaml.cs">
       <DependentUpon>DpAkcija.xaml</DependentUpon>
     </Compile>
@@ -161,6 +164,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="GUI\AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\DodavanjePromena\DpAkcija.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

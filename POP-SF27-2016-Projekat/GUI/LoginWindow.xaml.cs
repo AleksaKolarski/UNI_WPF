@@ -95,5 +95,11 @@ namespace POP_SF27_2016_Projekat.GUI
                 tbUsername.Focus();
             }
         }
+
+        private void About_Click(object sender, RoutedEventArgs e)
+        {
+            AboutWindow aboutProzor = new AboutWindow();
+            aboutProzor.ShowDialog();
+        }
     }
 }
