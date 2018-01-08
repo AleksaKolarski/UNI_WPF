@@ -1,20 +1,10 @@
 ﻿using POP_SF27_2016_Projekat.GUI.DodavanjePromena;
 using POP_SF27_2016_Projekat.Model;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
 {
@@ -66,7 +56,7 @@ namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             DpNamestaj dpNamestaj = new DpNamestaj();
-            dpNamestaj.ShowDialog(); // Cekamo da se zatvori prozor za dodavanje
+            dpNamestaj.ShowDialog();
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
@@ -74,7 +64,7 @@ namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
             if (dgNamestaj.SelectedItem != null)
             {
                 DpNamestaj dpNamestaj = new DpNamestaj((Namestaj)dgNamestaj.SelectedItem);
-                dpNamestaj.ShowDialog(); // Cekamo da se zatvori prozor za menjanje
+                dpNamestaj.ShowDialog();
             }
         }
 

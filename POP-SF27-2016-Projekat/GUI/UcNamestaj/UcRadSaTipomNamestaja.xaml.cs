@@ -1,21 +1,10 @@
 ﻿using POP_SF27_2016_Projekat.GUI.DodavanjePromena;
 using POP_SF27_2016_Projekat.Model;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
 {
@@ -59,7 +48,7 @@ namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             DpTipNamestaja dpTipNamestaja = new DpTipNamestaja();
-            dpTipNamestaja.ShowDialog(); // Cekamo da se zatvori prozor za dodavanje
+            dpTipNamestaja.ShowDialog();
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
@@ -67,13 +56,13 @@ namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
             if (dgTipNamestaja.SelectedItem != null)
             {
                 DpTipNamestaja dpTipNamestaja = new DpTipNamestaja((TipNamestaja)dgTipNamestaja.SelectedItem);
-                dpTipNamestaja.ShowDialog(); // Cekamo da se zatvori prozor za menjanje
+                dpTipNamestaja.ShowDialog();
             }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (dgTipNamestaja.SelectedItem != null)    // kastujemo obj u DodatnaUsluga
+            if (dgTipNamestaja.SelectedItem != null)
             {
                 if (MessageBox.Show("Da li ste sigurni da hocete da obrisete tip namestaja?", "Brisanje tipa namestaja.", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {

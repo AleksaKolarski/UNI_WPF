@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF27_2016_Projekat.GUI.DodavanjePromena"
         mc:Ignorable="d"
-        Title="DpNamestaj" Height="300" Width="300">
+        Title="Namestaj" Height="300" Width="300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>

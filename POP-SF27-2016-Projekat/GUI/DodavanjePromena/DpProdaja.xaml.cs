@@ -1,18 +1,7 @@
 ﻿using POP_SF27_2016_Projekat.Model;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 {
@@ -25,6 +14,7 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             InitializeComponent();
 
             prodaja = new ProdajaNamestajaRuntime();
+
             dgNamestaj.ItemsSource = prodaja.ListUredjeniPar;
             dgDodatneUsluge.ItemsSource = prodaja.ListDodatnaUsluga;
             tbPDV.DataContext = prodaja;
@@ -36,7 +26,7 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
         private void btnAddNamestaj_Click(object sender, RoutedEventArgs e)
         {
             DpProdajaNamestaj dpProdajaNamestaj = new DpProdajaNamestaj(prodaja);
-            dpProdajaNamestaj.ShowDialog(); // Cekamo da se zatvori prozor za menjanje
+            dpProdajaNamestaj.ShowDialog();
         }
 
         private void btnEditNamestaj_Click(object sender, RoutedEventArgs e)
@@ -44,7 +34,7 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             if (dgNamestaj.SelectedItem != null)
             {
                 DpProdajaNamestaj dpProdajaNamestaj = new DpProdajaNamestaj((UredjeniParRacun)dgNamestaj.SelectedItem, prodaja);
-                dpProdajaNamestaj.ShowDialog(); // Cekamo da se zatvori prozor za menjanje
+                dpProdajaNamestaj.ShowDialog();
             }
         }
 
@@ -74,10 +64,10 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
         {
             if (!string.IsNullOrEmpty(prodaja.Kupac) && !string.IsNullOrEmpty(prodaja.BrojRacuna))
             {
-                if (prodaja.ListUredjeniPar.Count > 0)
+                if (prodaja.ListUredjeniPar.Count > 0 || prodaja.ListDodatnaUsluga.Count > 0)
                 {
                     prodaja.DatumProdaje = DateTime.Now;
-                    //ProdajaNamestajaRuntime.prodajaNamestajaCollection.Add(prodaja);
+
                     // prodaja runtime -> prodaja storage
                     ObservableCollection<UredjeniParRacunNamestaj> listaNamestaja = new ObservableCollection<UredjeniParRacunNamestaj>();
                     foreach(UredjeniParRacun par in prodaja.ListUredjeniPar)

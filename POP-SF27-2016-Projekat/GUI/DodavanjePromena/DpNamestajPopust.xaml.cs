@@ -1,18 +1,5 @@
 ﻿using POP_SF27_2016_Projekat.Model;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 {
@@ -30,13 +17,13 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
         UredjeniPar uredjeniParCopy;
         UredjeniPar uredjeniParReal;
 
-        public DpNamestajPopust(Akcija akcijaT)
+        public DpNamestajPopust(Akcija akcijaParam)
         {
             InitializeComponent();
             tblock.Text = "Nov popust za namestaj:";
             operacija = Operacija.DODAVANJE;
 
-            akcija = akcijaT;
+            akcija = akcijaParam;
 
             uredjeniParCopy = new UredjeniPar();
 
@@ -44,13 +31,13 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             tbPopust.DataContext = uredjeniParCopy;
         }
 
-        public DpNamestajPopust(UredjeniPar par, Akcija akcijaT)
+        public DpNamestajPopust(UredjeniPar par, Akcija akcijaParam)
         {
             InitializeComponent();
             tblock.Text = "Izmena popusta za namestaj:";
             operacija = Operacija.IZMENA;
 
-            akcija = akcijaT;
+            akcija = akcijaParam;
 
             uredjeniParReal = par;
             uredjeniParCopy = new UredjeniPar();

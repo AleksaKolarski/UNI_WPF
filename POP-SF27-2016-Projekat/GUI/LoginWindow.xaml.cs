@@ -1,7 +1,6 @@
 ﻿using POP_SF27_2016_Projekat.Model;
 using System.Windows;
 
-
 namespace POP_SF27_2016_Projekat.GUI
 {
     public partial class LoginWindow : Window

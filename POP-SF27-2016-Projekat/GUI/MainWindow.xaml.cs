@@ -1,19 +1,8 @@
 ﻿using POP_SF27_2016_Projekat.GUI.UcKorisnici;
 using POP_SF27_2016_Projekat.GUI.UcNamestaj;
 using POP_SF27_2016_Projekat.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace POP_SF27_2016_Projekat.GUI
 {
@@ -34,7 +23,6 @@ namespace POP_SF27_2016_Projekat.GUI
 
             this.Title = $"Salon namestaja: {Salon.salon.Naziv} | Ulogovani ste kao: {Korisnik.Trenutni.Ime} {Korisnik.Trenutni.Prezime} | {Korisnik.Trenutni.TipKorisnika.Naziv}";
 
-
             /* Inicijalizacija prozora */
             ucProdaja = new UcProdaja();
             ucRadSaNamestajem = new UcRadSaNamestajem();
@@ -44,7 +32,6 @@ namespace POP_SF27_2016_Projekat.GUI
             ucRadSaKorisnikom = new UcRadSaKorisnikom();
             ucRadSaTipomKorisnika = new UcRadSaTipomKorisnika();
             ucSalon = new UcSalon();
-
 
             btnSalon_Click(this, null); // Pri otvaranju prozora nek se prikazu informacije o salonu
         }

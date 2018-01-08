@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF27_2016_Projekat.GUI.DodavanjePromena"
         mc:Ignorable="d"
-        Title="DpProdaja" Height="470" Width="500">
+        Title="Nova prodaja" Height="470" Width="500">
     <Grid Margin="0, 0, 0, 0">
         <Grid.RowDefinitions>
             <RowDefinition Height="24"/>
