@@ -1,0 +1,33 @@
+﻿<Window x:Class="POP_SF27_2016_Projekat.GUI.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF27_2016_Projekat.GUI"
+        mc:Ignorable="d"
+        Title="About" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Name="tbHeader" Margin="5, 5, 5, 5" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" FontSize="18"/>
+
+        <Label Content="Autor:" Margin="5, 5, 5, 5" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="30" Grid.Row="1"/>
+        <TextBlock Name="tbAutor" Margin="5, 5, 5, 5" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"/>
+
+        <Label Content="Opis:" Margin="5, 5, 5, 5" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="30" Grid.Row="2"/>
+        <TextBlock Name="tbOpis" Margin="5, 5, 5, 5" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2"/>
+
+        <TextBlock Name="tbFooter" Margin="5, 5, 5, 5" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4"/>
+
+    </Grid>
+</Window>
