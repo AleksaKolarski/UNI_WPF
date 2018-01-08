@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF27_2016_Projekat.GUI.DodavanjePromena"
         mc:Ignorable="d"
-        Title="Akcija" Height="450" Width="450">
+        Title="Akcija" Height="450" Width="450" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>

@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF27_2016_Projekat.GUI.DodavanjePromena"
         mc:Ignorable="d"
-        Title="Popust namestaja" Height="150" Width="250">
+        Title="Popust namestaja" Height="150" Width="250" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
