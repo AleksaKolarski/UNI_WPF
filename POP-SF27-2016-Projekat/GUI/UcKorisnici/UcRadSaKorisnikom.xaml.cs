@@ -87,8 +87,11 @@ namespace POP_SF27_2016_Projekat.GUI.UcKorisnici
         {
             if (dgKorisnik.SelectedItem != null)
             {
-                Korisnik.Delete((Korisnik)dgKorisnik.SelectedItem);
-                view.Refresh();
+                if (MessageBox.Show("Da li ste sigurni da hocete da obrisete korisnika?", "Brisanje korisnika.", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    Korisnik.Delete((Korisnik)dgKorisnik.SelectedItem);
+                    view.Refresh();
+                }
             }
         }
 

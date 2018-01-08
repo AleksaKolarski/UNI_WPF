@@ -82,8 +82,11 @@ namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
         {
             if (dgNamestaj.SelectedItem != null)
             {
-                Namestaj.Delete((Namestaj)dgNamestaj.SelectedItem);
-                view.Refresh();
+                if (MessageBox.Show("Da li ste sigurni da hocete da obrisete namestaj?", "Brisanje namestaja.", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    Namestaj.Delete((Namestaj)dgNamestaj.SelectedItem);
+                    view.Refresh();
+                }
             }
         }
 

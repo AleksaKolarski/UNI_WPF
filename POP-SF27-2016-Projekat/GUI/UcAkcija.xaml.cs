@@ -86,9 +86,12 @@ namespace POP_SF27_2016_Projekat.GUI
         {
             if (dgAkcija.SelectedItem != null)
             {
-                Akcija.Delete((Akcija)dgAkcija.SelectedItem);
-                view.Refresh();
-                dgNamestaj.ItemsSource = new ObservableCollection<UredjeniPar>();
+                if (MessageBox.Show("Da li ste sigurni da hocete da obrisete akciju?", "Brisanje akcije.", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    Akcija.Delete((Akcija)dgAkcija.SelectedItem);
+                    view.Refresh();
+                    dgNamestaj.ItemsSource = new ObservableCollection<UredjeniPar>();
+                }
             }
         }
 

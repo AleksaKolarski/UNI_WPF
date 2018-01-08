@@ -75,8 +75,11 @@ namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
         {
             if (dgTipNamestaja.SelectedItem != null)    // kastujemo obj u DodatnaUsluga
             {
-                TipNamestaja.Delete((TipNamestaja)dgTipNamestaja.SelectedItem);
-                view.Refresh();
+                if (MessageBox.Show("Da li ste sigurni da hocete da obrisete tip namestaja?", "Brisanje tipa namestaja.", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    TipNamestaja.Delete((TipNamestaja)dgTipNamestaja.SelectedItem);
+                    view.Refresh();
+                }
             }
         }
 

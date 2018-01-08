@@ -1,7 +1,5 @@
 ﻿using POP_SF27_2016_Projekat.Model;
-using System.Collections.ObjectModel;
 using System.Windows;
-using System;
 
 
 namespace POP_SF27_2016_Projekat.GUI
@@ -12,6 +10,7 @@ namespace POP_SF27_2016_Projekat.GUI
         {
             InitializeComponent();
 
+            /* Ucitavanje iz baze */
             DodatnaUsluga.Init();
             TipKorisnika.Init();
             Korisnik.Init();
@@ -25,7 +24,7 @@ namespace POP_SF27_2016_Projekat.GUI
             tbUsername.Focus();
             tbUsername.Text = "username1";
             pbPassword.Password = "password1";
-            this.KeyDown += LoginEnterKeyDown; // Izvrsi metod na okidanje KeyDown eventa
+            this.KeyDown += LoginEnterKeyDown; // Izvrsi metodu na okidanje KeyDown eventa
         }
 
         /* Kada pritisnemo Enter na tastaturi simuliramo pritiskanje Login dugmeta */
@@ -48,13 +47,20 @@ namespace POP_SF27_2016_Projekat.GUI
                 this.Hide(); // Sakrijemo Login prozor dok je glavni otvoren
                 MainWindow mainProzor = new MainWindow();
                 mainProzor.ShowDialog(); // Cekamo da se zatvori mainProzor
-                Korisnik.Logout(); // Za svaki slucaj kad god se vratimo u ovaj prozor izlogovati korisnika
+                Korisnik.Logout(); // Kad god se vratimo u ovaj prozor izlogovati korisnika
                 this.Show(); // Prikazemo opet login prozor koji bi trebao da bude ociscen
-                this.Activate(); // Nekad prozor ode u pozadinu
-                this.Topmost = true;  // important
-                this.Topmost = false; // important
-                this.Focus(); // Nece vala
+
+                /* Nekad prozor ostane u pozadini, ovo mozda pomogne da se prikaze na vrhu, a mozda i ne pomogne */
+                this.Activate();
+                this.Topmost = true;
+                this.Topmost = false;
+                this.Focus();
+
                 tbUsername.Focus();
+            }
+            else
+            {
+                MessageBox.Show("Uneli ste pogresne kredencijale. Pokusajte ponovo.", "Greska pri loginu.");
             }
         }
 

@@ -76,8 +76,10 @@ namespace POP_SF27_2016_Projekat.GUI
         {
             if (dgDodatnaUsluga.SelectedItem != null)
             {
-                DodatnaUsluga.Delete((DodatnaUsluga)dgDodatnaUsluga.SelectedItem);
-                view.Refresh();
+                if (MessageBox.Show("Da li ste sigurni da hocete da obrisete dodatnu uslugu?", "Brisanje dodatne usluge.", MessageBoxButton.YesNo) == MessageBoxResult.Yes) {
+                    DodatnaUsluga.Delete((DodatnaUsluga)dgDodatnaUsluga.SelectedItem);
+                    view.Refresh();
+                }
             }
         }
 
