@@ -1,12 +1,6 @@
-﻿using POP_SF27_2016_Projekat.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Xml.Serialization;
 using System.Data.SqlClient;
 using System.Data;
 

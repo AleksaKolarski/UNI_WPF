@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Data.SqlClient;
-using System.Configuration;
 using System.Data;
-using System.Resources;
 
 namespace POP_SF27_2016_Projekat.Model
 {
@@ -241,6 +235,13 @@ namespace POP_SF27_2016_Projekat.Model
         public static void Delete(TipKorisnika tk)
         {
             tk.Obrisan = true;
+            foreach (Korisnik korisnik in Korisnik.korisnikCollection)
+            {
+                if (korisnik.TipKorisnikaId == tk.Id)
+                {
+                    Korisnik.Delete(korisnik);
+                }
+            }
             Update(tk);
         }
         #endregion
