@@ -64,7 +64,7 @@ namespace POP_SF27_2016_Projekat.GUI.UcKorisnici
         {
             if (dgTipKorisnika.SelectedItem != null)
             {
-                if (MessageBox.Show("Da li ste sigurni da hocete da obrisete tip korisnika?", "Brisanje tipa korisnika.", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Da li ste sigurni da hocete da obrisete tip korisnika? Ovo ce obrisati i sve korisnike ovog tipa!", "Brisanje tipa korisnika.", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     TipKorisnika.Delete((TipKorisnika)dgTipKorisnika.SelectedItem);
                     view.Refresh();

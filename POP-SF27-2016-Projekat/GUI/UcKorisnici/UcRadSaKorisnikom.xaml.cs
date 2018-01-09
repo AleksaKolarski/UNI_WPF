@@ -10,7 +10,7 @@ namespace POP_SF27_2016_Projekat.GUI.UcKorisnici
 {
     public partial class UcRadSaKorisnikom : UserControl
     {
-        ICollectionView view;
+        public ICollectionView view;
 
         public UcRadSaKorisnikom()
         {

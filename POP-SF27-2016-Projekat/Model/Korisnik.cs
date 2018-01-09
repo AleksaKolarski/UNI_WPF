@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows;
 
 namespace POP_SF27_2016_Projekat.Model
 {
@@ -296,8 +297,15 @@ namespace POP_SF27_2016_Projekat.Model
 
         public static void Delete(Korisnik k)
         {
-            k.Obrisan = true;
-            Update(k);
+            if (k.Id != Trenutni.Id)
+            {
+                k.Obrisan = true;
+                Update(k);
+            }
+            else
+            {
+                MessageBox.Show("Ne mozete obrisati trenutno ulogovanog korisnika!", "Greska pri brisanju korisnika.");
+            }
         }
         #endregion
     }

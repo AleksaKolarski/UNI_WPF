@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows;
 
 namespace POP_SF27_2016_Projekat.Model
 {
@@ -234,15 +235,22 @@ namespace POP_SF27_2016_Projekat.Model
 
         public static void Delete(TipKorisnika tk)
         {
-            tk.Obrisan = true;
-            foreach (Korisnik korisnik in Korisnik.korisnikCollection)
+            if (tk.Id != Korisnik.Trenutni.Id)
             {
-                if (korisnik.TipKorisnikaId == tk.Id)
+                tk.Obrisan = true;
+                foreach (Korisnik korisnik in Korisnik.korisnikCollection)
                 {
-                    Korisnik.Delete(korisnik);
+                    if (korisnik.TipKorisnikaId == tk.Id)
+                    {
+                        Korisnik.Delete(korisnik);
+                    }
                 }
+                Update(tk);
             }
-            Update(tk);
+            else
+            {
+                MessageBox.Show("Ne mozete obrisati tip ulogovanog korisnika!", "Greska pri brisanju tipa korisnika.");
+            }
         }
         #endregion
     }

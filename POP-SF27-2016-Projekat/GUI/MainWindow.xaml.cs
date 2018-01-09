@@ -57,7 +57,7 @@ namespace POP_SF27_2016_Projekat.GUI
         {
             gbMainArea.Header = "Rad sa namestajem";
             MainArea.Content = ucRadSaNamestajem;
-            ucRadSaNamestajem.view.Refresh();
+            ucRadSaNamestajem.view.Refresh();   // kada obrisemo tip namestaja brisu se svi namestaji tog tipa i onda treba da refresujemo tabelu pri ulasku u prozor
             HideAllTempButtons();
         }
 
@@ -99,6 +99,7 @@ namespace POP_SF27_2016_Projekat.GUI
         {
             gbMainArea.Header = "Rad sa korisnicima";
             MainArea.Content = ucRadSaKorisnikom;
+            ucRadSaKorisnikom.view.Refresh();   // kada obrisemo tip korisnika brisu se svi korisnici tog tipa i onda treba da refresujemo tabelu pri ulasku u prozor
             HideAllTempButtons();
         }
 

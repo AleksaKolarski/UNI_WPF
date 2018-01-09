@@ -64,7 +64,7 @@ namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
         {
             if (dgTipNamestaja.SelectedItem != null)
             {
-                if (MessageBox.Show("Da li ste sigurni da hocete da obrisete tip namestaja?", "Brisanje tipa namestaja.", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Da li ste sigurni da hocete da obrisete tip namestaja? Ovo ce obrisati i sve namestaje ovog tipa!", "Brisanje tipa namestaja.", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     TipNamestaja.Delete((TipNamestaja)dgTipNamestaja.SelectedItem);
                     view.Refresh();
