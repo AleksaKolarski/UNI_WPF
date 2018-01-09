@@ -1,16 +1,19 @@
+USE master;
+IF NOT EXISTS(SELECT * FROM sys.databases where name = 'POP') CREATE DATABASE POP;
+GO
 USE POP;
 
-DROP TABLE Salon;
-DROP TABLE Korisnik;
-DROP TABLE TipKorisnika;
-DROP TABLE DodatnaUsluga;
-DROP TABLE NaAkciji;
-DROP TABLE Akcija;
-DROP TABLE Namestaj;
-DROP TABLE TipNamestaja;
-DROP TABLE ProdajaUsluga;
-DROP TABLE ProdajaNamestaj;
-DROP TABLE Prodaja;
+DROP TABLE IF EXISTS Salon;
+DROP TABLE IF EXISTS Korisnik;
+DROP TABLE IF EXISTS TipKorisnika;
+DROP TABLE IF EXISTS DodatnaUsluga;
+DROP TABLE IF EXISTS NaAkciji;
+DROP TABLE IF EXISTS Akcija;
+DROP TABLE IF EXISTS Namestaj;
+DROP TABLE IF EXISTS TipNamestaja;
+DROP TABLE IF EXISTS ProdajaUsluga;
+DROP TABLE IF EXISTS ProdajaNamestaj;
+DROP TABLE IF EXISTS Prodaja;
 
 
 CREATE TABLE Salon (
