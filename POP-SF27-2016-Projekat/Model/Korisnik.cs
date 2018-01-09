@@ -123,16 +123,13 @@ namespace POP_SF27_2016_Projekat.Model
         #endregion
 
         #region Constructors
-        public Korisnik() {}
-        public Korisnik(string ime, string prezime, string korisnickoIme, string lozinka, TipKorisnika tipKorisnika)
+        public Korisnik()
         {
-            this.Id = -1;
-            this.Ime = ime;
-            this.Prezime = prezime;
-            this.KorisnickoIme = korisnickoIme;
-            this.Lozinka = lozinka;
-            this.TipKorisnikaId = tipKorisnika.Id;
-            this.TipKorisnika = tipKorisnika;
+            this.Ime = "";
+            this.Prezime = "";
+            this.KorisnickoIme = "";
+            this.Lozinka = "";
+            this.TipKorisnikaId = -1;
             this.Obrisan = false;
         }
         #endregion

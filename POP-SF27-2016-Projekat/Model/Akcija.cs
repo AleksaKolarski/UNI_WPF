@@ -13,7 +13,6 @@ namespace POP_SF27_2016_Projekat.Model
         private string naziv;
         private DateTime? datumPocetka;
         private DateTime? datumKraja;
-        
         public ObservableCollection<UredjeniPar> lista;
         private bool obrisan;
         public static ObservableCollection<Akcija> akcijaCollection;
@@ -97,17 +96,10 @@ namespace POP_SF27_2016_Projekat.Model
         #region Constructors
         public Akcija()
         {
-            this.Lista = new ObservableCollection<UredjeniPar>();
+            this.Naziv = "";
             this.datumPocetka = DateTime.Now;
             this.DatumKraja = DateTime.Now.AddDays(1);
-        }
-        public Akcija(string naziv, DateTime? datumPocetka, DateTime? datumKraja, ObservableCollection<UredjeniPar> lista)
-        {
-            this.Id = akcijaCollection.Count;
-            this.Naziv = naziv;
-            this.DatumPocetka = datumPocetka;
-            this.DatumKraja = datumKraja;
-            this.Lista = lista;
+            this.Lista = new ObservableCollection<UredjeniPar>();
             this.Obrisan = false;
         }
         #endregion

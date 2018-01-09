@@ -119,16 +119,13 @@ namespace POP_SF27_2016_Projekat.Model
         #endregion
 
         #region Constructors
-        public Namestaj() {}
-        public Namestaj(string naziv, string sifra, double jedinicnaCena, int kolicinaUMagacinu, TipNamestaja tipNamestaja)
+        public Namestaj()
         {
-            this.Id = -1;
-            this.Naziv = naziv;
-            this.Sifra = sifra;
-            this.JedinicnaCena = jedinicnaCena;
-            this.KolicinaUMagacinu = kolicinaUMagacinu;
-            this.TipNamestajaId = tipNamestaja.Id;
-            this.TipNamestaja = tipNamestaja;
+            this.Naziv = "";
+            this.Sifra = "";
+            this.JedinicnaCena = 0;
+            this.KolicinaUMagacinu = 0;
+            this.TipNamestajaId = -1;
             this.Obrisan = false;
         }
         #endregion

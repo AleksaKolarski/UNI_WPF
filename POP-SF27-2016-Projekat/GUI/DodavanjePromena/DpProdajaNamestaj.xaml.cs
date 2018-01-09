@@ -49,15 +49,26 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            if(operacija == Operacija.DODAVANJE)
+            if (int.TryParse(tbKolicina.Text, out var popust))
             {
-                prodaja.AddNamestajPar(uredjeniParCopy);
+                if (cbNamestaj.SelectedItem != null)
+                {
+                    if (operacija == Operacija.DODAVANJE)
+                    {
+                        prodaja.AddNamestajPar(uredjeniParCopy);
+                    }
+                    else if (operacija == Operacija.IZMENA)
+                    {
+                        prodaja.EditNamestajPar(uredjeniParCopy, uredjeniParReal);
+                    }
+                    Close();
+                }
+                cbNamestaj.Focus();
             }
-            else if(operacija == Operacija.IZMENA)
+            else
             {
-                prodaja.EditNamestajPar(uredjeniParCopy, uredjeniParReal);
+                tbKolicina.Focus();
             }
-            Close();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)

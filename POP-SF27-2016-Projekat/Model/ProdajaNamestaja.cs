@@ -129,8 +129,12 @@ namespace POP_SF27_2016_Projekat.Model
         #region Constructors
         public ProdajaNamestaja()
         {
-            ListProdatiNamestaji = new ObservableCollection<UredjeniParRacunNamestaj>();
-            ListProdateDodatneUsluge = new ObservableCollection<UredjeniParRacunDodatnaUsluga>();
+            this.ListProdatiNamestaji = new ObservableCollection<UredjeniParRacunNamestaj>();
+            this.ListProdateDodatneUsluge = new ObservableCollection<UredjeniParRacunDodatnaUsluga>();
+            this.DatumProdaje = DateTime.Now;
+            this.Kupac = "";
+            this.BrojRacuna = "";
+            this.PDV = 20;
         }
         public ProdajaNamestaja(ObservableCollection<UredjeniParRacunNamestaj> listProdatiNamestaji, ObservableCollection<UredjeniParRacunDodatnaUsluga> listProdateDodatneUsluge, DateTime? datumProdaje, string kupac, string brojRacuna, double pdv)
         {
@@ -584,17 +588,14 @@ namespace POP_SF27_2016_Projekat.Model
         #region Constructors
         public ProdajaNamestajaRuntime()
         {
-            ListUredjeniPar = new ObservableCollection<UredjeniParRacun>();
-            ListDodatnaUsluga = new ObservableCollection<DodatnaUsluga>();
+            this.ListUredjeniPar = new ObservableCollection<UredjeniParRacun>();
+            this.ListDodatnaUsluga = new ObservableCollection<DodatnaUsluga>();
+            this.DatumProdaje = DateTime.Now;
+            this.Kupac = "";
+            this.BrojRacuna = "";
+            this.PDV = 20;
         }
-        public ProdajaNamestajaRuntime(ObservableCollection<UredjeniParRacun> listUredjeniPar, DateTime? datumProdaje, string kupac, string brojRacuna, ObservableCollection<DodatnaUsluga> listDodatnaUsluga)
-        {
-            this.ListUredjeniPar = listUredjeniPar;
-            this.DatumProdaje = datumProdaje;
-            this.Kupac = kupac;
-            this.BrojRacuna = brojRacuna;
-            this.ListDodatnaUsluga = listDodatnaUsluga;
-        }
+
         #endregion
 
         #region Methods

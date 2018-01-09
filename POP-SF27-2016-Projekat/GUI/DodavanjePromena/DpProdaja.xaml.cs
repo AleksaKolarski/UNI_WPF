@@ -62,30 +62,41 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 
         private void btnPotvrda_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(prodaja.Kupac) && !string.IsNullOrEmpty(prodaja.BrojRacuna))
+            if (prodaja.Kupac != "")
             {
-                if (prodaja.ListUredjeniPar.Count > 0 || prodaja.ListDodatnaUsluga.Count > 0)
+                if (prodaja.BrojRacuna != "")
                 {
-                    prodaja.DatumProdaje = DateTime.Now;
-
-                    // prodaja runtime -> prodaja storage
-                    ObservableCollection<UredjeniParRacunNamestaj> listaNamestaja = new ObservableCollection<UredjeniParRacunNamestaj>();
-                    foreach(UredjeniParRacun par in prodaja.ListUredjeniPar)
+                    if (prodaja.ListUredjeniPar.Count > 0 || prodaja.ListDodatnaUsluga.Count > 0)
                     {
-                        listaNamestaja.Add(new UredjeniParRacunNamestaj(par.Namestaj.Naziv, par.Namestaj.JedinicnaCena, par.BrojNamestaja, par.Popust));
+                        prodaja.DatumProdaje = DateTime.Now;
+
+                        // prodaja runtime -> prodaja storage
+                        ObservableCollection<UredjeniParRacunNamestaj> listaNamestaja = new ObservableCollection<UredjeniParRacunNamestaj>();
+                        foreach (UredjeniParRacun par in prodaja.ListUredjeniPar)
+                        {
+                            listaNamestaja.Add(new UredjeniParRacunNamestaj(par.Namestaj.Naziv, par.Namestaj.JedinicnaCena, par.BrojNamestaja, par.Popust));
+                        }
+
+                        ObservableCollection<UredjeniParRacunDodatnaUsluga> listaUsluga = new ObservableCollection<UredjeniParRacunDodatnaUsluga>();
+                        foreach (DodatnaUsluga usluga in prodaja.ListDodatnaUsluga)
+                        {
+                            listaUsluga.Add(new UredjeniParRacunDodatnaUsluga(usluga.Naziv, usluga.Cena));
+                        }
+
+                        ProdajaNamestaja prodajaStorage = new ProdajaNamestaja(listaNamestaja, listaUsluga, prodaja.DatumProdaje, prodaja.Kupac, prodaja.BrojRacuna, prodaja.PDV);
+
+                        ProdajaNamestaja.Create(prodajaStorage);
+                        Close();
                     }
-
-                    ObservableCollection<UredjeniParRacunDodatnaUsluga> listaUsluga = new ObservableCollection<UredjeniParRacunDodatnaUsluga>();
-                    foreach(DodatnaUsluga usluga in prodaja.ListDodatnaUsluga)
-                    {
-                        listaUsluga.Add(new UredjeniParRacunDodatnaUsluga(usluga.Naziv, usluga.Cena));
-                    }
-
-                    ProdajaNamestaja prodajaStorage = new ProdajaNamestaja(listaNamestaja, listaUsluga, prodaja.DatumProdaje, prodaja.Kupac, prodaja.BrojRacuna, prodaja.PDV);
-
-                    ProdajaNamestaja.Create(prodajaStorage);
-                    Close();
                 }
+                else
+                {
+                    tbRacun.Focus();
+                }
+            }
+            else
+            {
+                tbKupac.Focus();
             }
         }
     }

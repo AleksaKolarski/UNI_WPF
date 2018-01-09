@@ -37,12 +37,23 @@ namespace POP_SF27_2016_Projekat.GUI
                         {
                             if(salon.AdresaSajta != "")
                             {
-                                Salon.Update(salon);
+                                if (int.TryParse(tbPIB.Text, out var x))
+                                {
+                                    if (int.TryParse(tbMaticniBroj.Text, out var y))
+                                    {
+                                        if (salon.ZiroRacun != "")
+                                        {
+                                            Salon.Update(salon);
+                                            return;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }
+            MessageBox.Show("Neispravno popunjena polja za salon!", "Greska.");
         }
     }
 }

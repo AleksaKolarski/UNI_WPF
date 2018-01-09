@@ -65,12 +65,10 @@ namespace POP_SF27_2016_Projekat.Model
         #endregion
 
         #region Constructors
-        public DodatnaUsluga() { }
-        public DodatnaUsluga(string naziv, double cena)
+        public DodatnaUsluga()
         {
-            this.Id = -1;
-            this.Naziv = naziv;
-            this.Cena = cena;
+            this.Naziv = "";
+            this.Cena = 0;
             this.Obrisan = false;
         }
         #endregion

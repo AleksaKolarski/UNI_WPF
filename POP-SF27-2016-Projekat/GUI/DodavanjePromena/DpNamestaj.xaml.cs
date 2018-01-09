@@ -43,11 +43,9 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             {
                 if (namestaj.Sifra != "")
                 {
-                    double jedinicnaCena;
-                    if (double.TryParse(tbJedinicnaCena.Text, out jedinicnaCena))
+                    if (double.TryParse(tbJedinicnaCena.Text, out var jedinicnaCena))
                     {
-                        int kolicinaUMagacinu;
-                        if (int.TryParse(tbKolicinaUMagacinu.Text, out kolicinaUMagacinu))
+                        if (int.TryParse(tbKolicinaUMagacinu.Text, out var kolicinaUMagacinu))
                         {
                             if (namestaj.TipNamestaja != null)
                             {

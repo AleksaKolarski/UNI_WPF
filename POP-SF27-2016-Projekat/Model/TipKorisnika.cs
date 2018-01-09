@@ -71,13 +71,8 @@ namespace POP_SF27_2016_Projekat.Model
         #region Constructors
         public TipKorisnika()
         {
+            this.Naziv = "";
             this.Dozvole = new Dozvole();
-        }
-        public TipKorisnika(string naziv, Dozvole dozvole)
-        {
-            this.Id = -1;
-            this.Naziv = naziv;
-            this.Dozvole = dozvole;
             this.Obrisan = false;
         }
         #endregion

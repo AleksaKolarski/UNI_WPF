@@ -49,8 +49,7 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            double popust;
-            if (double.TryParse(tbPopust.Text, out popust))
+            if (double.TryParse(tbPopust.Text, out var popust))
             {
                 if (cbNamestaj.SelectedItem != null)
                 {

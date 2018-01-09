@@ -55,11 +55,9 @@ namespace POP_SF27_2016_Projekat.Model
         #endregion
 
         #region Constructors
-        public TipNamestaja() { }
-        public TipNamestaja(string naziv)
+        public TipNamestaja()
         {
-            this.Id = -1;
-            this.Naziv = naziv;
+            this.Naziv = "";
             this.Obrisan = false;
         }
         #endregion

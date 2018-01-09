@@ -62,13 +62,11 @@
         <GroupBox Name="gbDetails" Header="Details" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="10"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -77,19 +75,19 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Content="Id:" Grid.Column="1" Grid.Row="1"/>
-                <Label Content="Ime:" Grid.Column="1" Grid.Row="2"/>
-                <Label Content="Prezime:" Grid.Column="1" Grid.Row="3"/>
-                <Label Content="Korisnicko ime:" Grid.Column="1" Grid.Row="4"/>
-                <Label Content="Lozinka:" Grid.Column="1" Grid.Row="5"/>
-                <Label Content="Tip:" Grid.Column="1" Grid.Row="6"/>
+                <Label Content="Id:" Grid.Column="1" Grid.Row="0"/>
+                <Label Content="Ime:" Grid.Column="1" Grid.Row="1"/>
+                <Label Content="Prezime:" Grid.Column="1" Grid.Row="2"/>
+                <Label Content="Korisnicko ime:" Grid.Column="1" Grid.Row="3"/>
+                <Label Content="Lozinka:" Grid.Column="1" Grid.Row="4"/>
+                <Label Content="Tip:" Grid.Column="1" Grid.Row="5"/>
 
-                <Label Name="lbId" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" Content="{Binding ElementName=dgKorisnik, Path=SelectedItem.Id}"/>
-                <Label Name="lbIme" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" Content="{Binding ElementName=dgKorisnik, Path=SelectedItem.Ime}"/>
-                <Label Name="lbPrezime" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Left" Content="{Binding ElementName=dgKorisnik, Path=SelectedItem.Prezime}"/>
-                <Label Name="lbKorisnickoIme" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Left" Content="{Binding ElementName=dgKorisnik, Path=SelectedItem.KorisnickoIme}"/>
-                <Label Name="lbLozinka" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Left" Content="{Binding ElementName=dgKorisnik, Path=SelectedItem.Lozinka}"/>
-                <Label Name="lbTipKorisnika" Grid.Column="2" Grid.Row="6" HorizontalAlignment="Left" Content="{Binding ElementName=dgKorisnik, Path=SelectedItem.TipKorisnika.Naziv}"/>
+                <Label Name="lbId" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left" Content="{Binding ElementName=dgKorisnik, Path=SelectedItem.Id}"/>
+                <Label Name="lbIme" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" Content="{Binding ElementName=dgKorisnik, Path=SelectedItem.Ime}"/>
+                <Label Name="lbPrezime" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" Content="{Binding ElementName=dgKorisnik, Path=SelectedItem.Prezime}"/>
+                <Label Name="lbKorisnickoIme" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Left" Content="{Binding ElementName=dgKorisnik, Path=SelectedItem.KorisnickoIme}"/>
+                <Label Name="lbLozinka" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Left" Content="{Binding ElementName=dgKorisnik, Path=SelectedItem.Lozinka}"/>
+                <Label Name="lbTipKorisnika" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Left" Content="{Binding ElementName=dgKorisnik, Path=SelectedItem.TipKorisnika.Naziv}"/>
             </Grid>
         </GroupBox>
     </Grid>
