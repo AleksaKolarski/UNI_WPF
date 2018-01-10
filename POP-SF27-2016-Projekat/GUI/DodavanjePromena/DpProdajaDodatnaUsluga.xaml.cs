@@ -1,5 +1,7 @@
 ﻿using POP_SF27_2016_Projekat.Model;
+using System.ComponentModel;
 using System.Windows;
+using System.Windows.Data;
 
 namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 {
@@ -7,6 +9,8 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
     {
         DodatnaUsluga dodatnaUsluga;
         ProdajaNamestajaRuntime prodaja;
+
+        ICollectionView view;
 
         public DpProdajaDodatnaUsluga(ProdajaNamestajaRuntime prodaja)
         {
@@ -16,8 +20,19 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             this.prodaja = prodaja;
             this.dodatnaUsluga = new DodatnaUsluga();
 
+            view = new CollectionViewSource { Source = DodatnaUsluga.dodatnaUslugaCollection }.View;
+            view.Filter = Filter;
+            cbDodatnaUsluga.ItemsSource = view;
+
             cbDodatnaUsluga.DataContext = dodatnaUsluga;
         }
+
+        #region Filters
+        private bool Filter(object obj)
+        {
+            return !(((DodatnaUsluga)obj).Obrisan);
+        }
+        #endregion
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {

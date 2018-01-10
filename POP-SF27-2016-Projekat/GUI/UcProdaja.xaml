@@ -6,7 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:POP_SF27_2016_Projekat.GUI"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="500"
+             d:DesignHeight="400" d:DesignWidth="580"
              Background="White">
     <Grid Visibility="{Binding Source={x:Static s:Korisnik.Trenutni}, Path=TipKorisnika.Dozvole.ProdajaNamestajaReadVisibility}">
         <Grid.RowDefinitions>
@@ -36,10 +36,10 @@
             <Label Content="po:" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <ComboBox Name="cbPretraga" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" SelectedIndex="0" SelectionChanged="cbPretraga_SelectionChanged">
                 <ComboBoxItem>Id</ComboBoxItem>
+                <ComboBoxItem>Datum</ComboBoxItem>
                 <ComboBoxItem>Kupac</ComboBoxItem>
                 <ComboBoxItem>Broj racuna</ComboBoxItem>
                 <ComboBoxItem>Namestaj</ComboBoxItem>
-                <ComboBoxItem>Datum</ComboBoxItem>
             </ComboBox>
         </Grid>
 

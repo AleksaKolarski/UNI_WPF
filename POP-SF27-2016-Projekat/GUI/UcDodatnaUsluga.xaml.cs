@@ -14,7 +14,7 @@ namespace POP_SF27_2016_Projekat.GUI
 
         public UcDodatnaUsluga()
         {
-            view = CollectionViewSource.GetDefaultView(DodatnaUsluga.dodatnaUslugaCollection);
+            view = new CollectionViewSource { Source = DodatnaUsluga.dodatnaUslugaCollection }.View;
             InitializeComponent();
 
             view.Filter = Filter;
