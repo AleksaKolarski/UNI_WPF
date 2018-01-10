@@ -41,7 +41,7 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
         {
             if(dodatnaUsluga.Naziv != "")
             {
-                if (double.TryParse(tbCena.Text, out var cena))
+                if (double.TryParse(tbCena.Text, out var cena) && cena > 0)
                 {
                     if (operacija == Operacija.DODAVANJE)
                     {
