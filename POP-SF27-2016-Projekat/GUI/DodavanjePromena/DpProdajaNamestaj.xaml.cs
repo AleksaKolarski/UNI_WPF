@@ -49,21 +49,33 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            if (int.TryParse(tbKolicina.Text, out var popust))
+            if (int.TryParse(tbKolicina.Text, out var kolicina) && kolicina > 0)
             {
                 if (cbNamestaj.SelectedItem != null)
                 {
-                    if (operacija == Operacija.DODAVANJE)
+                    if (kolicina <= ((Namestaj)cbNamestaj.SelectedItem).KolicinaUMagacinu)
                     {
-                        prodaja.AddNamestajPar(uredjeniParCopy);
+                        if (operacija == Operacija.DODAVANJE)
+                        {
+                            prodaja.AddNamestajPar(uredjeniParCopy);
+                        }
+                        else if (operacija == Operacija.IZMENA)
+                        {
+                            prodaja.EditNamestajPar(uredjeniParCopy, uredjeniParReal);
+                        }
+                        Close();
                     }
-                    else if (operacija == Operacija.IZMENA)
+                    else
                     {
-                        prodaja.EditNamestajPar(uredjeniParCopy, uredjeniParReal);
+                        tbKolicina.Focus();
+                        int kolicinaUMagacinu = ((Namestaj)cbNamestaj.SelectedItem).KolicinaUMagacinu;
+                        MessageBox.Show("Nema dovoljno namestaja na stanju. \nNa stanju " + kolicinaUMagacinu + ((kolicinaUMagacinu == 1)? " komad" : " komada") + ".", "Greska!");
                     }
-                    Close();
                 }
-                cbNamestaj.Focus();
+                else
+                {
+                    cbNamestaj.Focus();
+                }
             }
             else
             {

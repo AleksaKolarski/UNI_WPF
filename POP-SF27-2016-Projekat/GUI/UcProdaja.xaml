@@ -71,7 +71,7 @@
                 <DataGrid Name="dgNamestaj" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5, 5, 5, 5" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" Grid.RowSpan="1"> 
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Namestaj" Binding="{Binding NazivNamestaja}" Width="2*"/>
-                        <DataGridTextColumn Header="JedinicnaCena" Binding="{Binding JedinicnaCena}" Width="1*"/>
+                        <DataGridTextColumn Header="Jedinicna cena" Binding="{Binding JedinicnaCena}" Width="1*"/>
                         <DataGridTextColumn Header="Kolicina" Binding="{Binding BrojNamestaja}" Width="1*"/>
                         <DataGridTextColumn Header="Popust" Binding="{Binding Popust}" Width="1*"/>
                         <DataGridTextColumn Header="Ukupna cena" Binding="{Binding UkupnaCena}" Width="2*"/>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF27_2016_Projekat.GUI.DodavanjePromena"
         mc:Ignorable="d"
-        Title="Nova prodaja" Height="470" Width="500" ResizeMode="NoResize">
+        Title="Nova prodaja" Height="470" Width="500">
     <Grid Margin="0, 0, 0, 0">
         <Grid.RowDefinitions>
             <RowDefinition Height="24"/>
@@ -33,15 +33,16 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="45"/>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="45"/>
+                <ColumnDefinition Width="140"/>
                 <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="4*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="4*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Content="Kupac:" Margin="0, 0, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="1"/>
+            <Label Content="Kupac:" Margin="0, 0, 0, 0" Padding="5, 0, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="1"/>
             <TextBox Name="tbKupac" Text="{Binding Kupac}"  Width="120" Margin="10,0,-45,0" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="1"/>
-            <Label Content="Racun:" Margin="0, 0, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="1"/>
+            <Label Content="Racun:" Margin="0, 0, 0, 0" Padding="5, 0, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="1"/>
             <TextBox Name="tbRacun" Text="{Binding BrojRacuna}"  Width="120" Margin="10,0,-45,0" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Grid.Column="3" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="1"/>
         </Grid>
 

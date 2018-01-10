@@ -74,7 +74,11 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
                         ObservableCollection<UredjeniParRacunNamestaj> listaNamestaja = new ObservableCollection<UredjeniParRacunNamestaj>();
                         foreach (UredjeniParRacun par in prodaja.ListUredjeniPar)
                         {
+                            // dodajemo u storage listu
                             listaNamestaja.Add(new UredjeniParRacunNamestaj(par.Namestaj.Naziv, par.Namestaj.JedinicnaCena, par.BrojNamestaja, par.Popust));
+
+                            // namestaju smanjujemo kolicinu u magacinu
+                            par.Namestaj.KolicinaUMagacinu -= par.BrojNamestaja;
                         }
 
                         ObservableCollection<UredjeniParRacunDodatnaUsluga> listaUsluga = new ObservableCollection<UredjeniParRacunDodatnaUsluga>();
@@ -83,10 +87,14 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
                             listaUsluga.Add(new UredjeniParRacunDodatnaUsluga(usluga.Naziv, usluga.Cena));
                         }
 
-                        ProdajaNamestaja prodajaStorage = new ProdajaNamestaja(listaNamestaja, listaUsluga, prodaja.DatumProdaje, prodaja.Kupac, prodaja.BrojRacuna, prodaja.PDV);
+                        // pravimonovu storage verziju prodaje i ubacujemo je u bazu i storage listu prodaja
+                        ProdajaNamestaja.Create(new ProdajaNamestaja(listaNamestaja, listaUsluga, prodaja.DatumProdaje, prodaja.Kupac, prodaja.BrojRacuna, prodaja.PDV));
 
-                        ProdajaNamestaja.Create(prodajaStorage);
                         Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Niste uneli nijednu stavku prodaje.", "Greska!");
                     }
                 }
                 else
