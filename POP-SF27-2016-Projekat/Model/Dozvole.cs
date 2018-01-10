@@ -897,10 +897,14 @@ namespace POP_SF27_2016_Projekat.Model
 
         public override string ToString()
         {
-            return Akcija.ToString() + DodatnaUsluga.ToString()
-                + Korisnik.ToString() + Namestaj.ToString()
-                + TipNamestaja.ToString() + Salon.ToString()
-                + TipKorisnika.ToString() + TipNamestaja.ToString();
+            return " Akcija: " + Akcija.ToString()
+                + " Dodatna usluga: " + DodatnaUsluga.ToString()
+                + " Korisnik: " + Korisnik.ToString()
+                + " Namestaj: " + Namestaj.ToString()
+                + " Prodaja namestaja: " + ProdajaNamestaja.ToString()
+                + " Salon: " + Salon.ToString()
+                + " Tip korisnika: " + TipKorisnika.ToString()
+                + " Tip namestaja: " + TipNamestaja.ToString();
         }
         #endregion
 

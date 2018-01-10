@@ -43,7 +43,7 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             {
                 if (namestaj.Sifra != "")
                 {
-                    if (double.TryParse(tbJedinicnaCena.Text, out var jedinicnaCena))
+                    if (double.TryParse(tbJedinicnaCena.Text, out var jedinicnaCena) && jedinicnaCena > 0)
                     {
                         if (int.TryParse(tbKolicinaUMagacinu.Text, out var kolicinaUMagacinu))
                         {

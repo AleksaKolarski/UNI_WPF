@@ -49,16 +49,39 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
                         {
                             if(korisnik.TipKorisnika != null)
                             {
-                                if(operacija == Operacija.DODAVANJE)
+                                if (operacija == Operacija.DODAVANJE)
                                 {
-                                    Korisnik.Create(korisnik);
+                                    // proveravamo da li postoji vec korisnik sa istim korisnickim imenom
+                                    if (Korisnik.GetByUsername(korisnik.KorisnickoIme) == null)
+                                    {
+                                        Korisnik.Create(korisnik);
+                                        Close();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Vec postoji korisnik sa istim korisnickim imenom!\nUnesite drugacije korisnicko ime.", "Greska!");
+                                    }
                                 }
                                 else if(operacija == Operacija.IZMENA)
                                 {
-                                    Korisnik.Update(korisnik);
+                                    // proveravamo da li postoji vec korisnik sa istim korisnickim imenom
+                                    if (Korisnik.GetByUsername(korisnik.KorisnickoIme) == null)
+                                    {
+                                        Korisnik.Update(korisnik);
+                                        Close();
+                                    }
+                                    // ako vec postoji korisnik sa tim korisnickim imenom onda proveravamo da li je to zapravo isti ovaj korisnik (moze da se desi pri editu) 
+                                    // i tada prihvatamo promenu
+                                    else if((Korisnik.GetByUsername(korisnik.KorisnickoIme)).Id == korisnik.Id)
+                                    {
+                                        Korisnik.Update(korisnik);
+                                        Close();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Vec postoji korisnik sa istim korisnickim imenom!\nUnesite drugacije korisnicko ime.", "Greska!");
+                                    }
                                 }
-                                Close();
-                                return;
                             }
                             else
                             {

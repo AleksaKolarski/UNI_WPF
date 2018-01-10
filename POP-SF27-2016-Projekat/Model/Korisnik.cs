@@ -152,6 +152,18 @@ namespace POP_SF27_2016_Projekat.Model
             return null;
         }
 
+        public static Korisnik GetByUsername(string username)
+        {
+            foreach(Korisnik korisnik in korisnikCollection)
+            {
+                if(korisnik.KorisnickoIme == username)
+                {
+                    return korisnik;
+                }
+            }
+            return null;
+        }
+
         public static void Add(Korisnik korisnikToAdd)
         {
             /* Kada predjemo na rad sa bazom podataka ovde se nece ucitavati 
