@@ -53,21 +53,64 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             {
                 if (dgNamestaj.Items.Count != 0)
                 {
-                    if (dpStart != null && dpEnd != null)
+                    // provera dobro unetog datuma
+                    if ((dpStart != null && dpEnd != null) && (akcija.DatumPocetka < akcija.DatumKraja))
                     {
-                        if (operacija == Operacija.DODAVANJE)
+                        bool namestajVecNaAkciji = false;
+                        foreach (Akcija ak in Akcija.akcijaCollection)
                         {
-                            Akcija.Create(akcija);
+                            if (ak.Obrisan == false && ak.Id != akcija.Id)
+                            {
+                                // proveravamo da li se preklapaju datumi
+                                if (ak.DatumPocetka < akcija.DatumKraja && ak.DatumKraja > akcija.DatumPocetka) {
+
+                                    // uporedjujemo da li se preklapaju neki namestaji
+                                    foreach (UredjeniPar parAk in ak.Lista)
+                                    {
+                                        foreach (UredjeniPar parAkcija in akcija.Lista)
+                                        {
+                                            if (parAk.NamestajId == parAkcija.NamestajId)
+                                            {
+                                                namestajVecNaAkciji = true;
+                                                break;
+                                            }
+                                        }
+                                        if (namestajVecNaAkciji == true)
+                                        {
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            if (namestajVecNaAkciji == true)
+                            {
+                                break;
+                            }
                         }
-                        else if (operacija == Operacija.IZMENA)
+
+
+                        if (namestajVecNaAkciji == false)
                         {
-                            Akcija.Update(akcija);
+                            if (operacija == Operacija.DODAVANJE)
+                            {
+                                Akcija.Create(akcija);
+                            }
+                            else if (operacija == Operacija.IZMENA)
+                            {
+                                Akcija.Update(akcija);
+                            }
+                            Close();
                         }
-                        Close();
+                        else
+                        {
+                            // neki od namestaja je vec na akciji u isto vreme
+                            MessageBox.Show("Neki od namestaja u ovoj akciji su u istom periodu vec na nekoj akciji.", "Greska!");
+                        }
                     }
                     else
                     {
                         dpStart.Focus();
+                        MessageBox.Show("Greska pri unosu datuma pocetka i kraja akcije.\nPocetak mora biti pre kraja.", "Greska.");
                     }
                 }
                 else

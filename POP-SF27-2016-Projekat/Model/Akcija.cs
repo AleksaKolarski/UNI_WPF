@@ -96,6 +96,7 @@ namespace POP_SF27_2016_Projekat.Model
         #region Constructors
         public Akcija()
         {
+            this.Id = -1;
             this.Naziv = "";
             this.datumPocetka = DateTime.Now;
             this.DatumKraja = DateTime.Now.AddDays(1);
