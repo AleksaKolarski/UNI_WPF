@@ -87,9 +87,17 @@ namespace POP_SF27_2016_Projekat.GUI
         {
             if (dgAkcija.SelectedItem != null)
             {
-                dgNamestaj.ItemsSource = ((Akcija)dgAkcija.SelectedItem).Lista;
+                ICollectionView view = new CollectionViewSource { Source = ((Akcija)dgAkcija.SelectedItem).Lista }.View;
+                view.Filter = FilterNamestaja;
+                dgNamestaj.ItemsSource = view;
             }
         }
+        #region Filters2
+        private bool FilterNamestaja(object obj)
+        {
+            return !(((UredjeniPar)obj).Namestaj.Obrisan);
+        }
+        #endregion
 
         private void tbPretraga_TextChanged(object sender, TextChangedEventArgs e)
         {

@@ -1,5 +1,7 @@
 ﻿using POP_SF27_2016_Projekat.Model;
+using System.ComponentModel;
 using System.Windows;
+using System.Windows.Data;
 
 namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 {
@@ -40,12 +42,21 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 
         void InitTabela()
         {
-            dgNamestaj.ItemsSource = akcija.lista;
+            ICollectionView view = new CollectionViewSource { Source = akcija.lista }.View;
+            view.Filter = FilterNamestaja;
+            dgNamestaj.ItemsSource = view;
 
             dpStart.DataContext = akcija;
             dpEnd.DataContext = akcija;
             tbNaziv.DataContext = akcija;
         }
+
+        #region Filters2
+        private bool FilterNamestaja(object obj)
+        {
+            return !(((UredjeniPar)obj).Namestaj.Obrisan);
+        }
+        #endregion
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
