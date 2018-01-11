@@ -147,11 +147,14 @@ namespace POP_SF27_2016_Projekat.Model
             {
                 if (akcija.Obrisan == false)
                 {
-                    foreach (UredjeniPar uredjeniPar in akcija.Lista)
+                    if (akcija.DatumPocetka <= DateTime.Now && akcija.DatumKraja >= DateTime.Now)
                     {
-                        if (uredjeniPar.Namestaj.Id == namestaj.Id)
+                        foreach (UredjeniPar uredjeniPar in akcija.Lista)
                         {
-                            return uredjeniPar.Popust;
+                            if (uredjeniPar.Namestaj.Id == namestaj.Id)
+                            {
+                                return uredjeniPar.Popust;
+                            }
                         }
                     }
                 }
