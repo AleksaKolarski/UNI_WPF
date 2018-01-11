@@ -14,7 +14,7 @@ namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
 
         public UcRadSaNamestajem()
         {
-            view = CollectionViewSource.GetDefaultView(Namestaj.namestajCollection);
+            view = new CollectionViewSource { Source = Namestaj.namestajCollection }.View;
             InitializeComponent();
 
             view.Filter = Filter;

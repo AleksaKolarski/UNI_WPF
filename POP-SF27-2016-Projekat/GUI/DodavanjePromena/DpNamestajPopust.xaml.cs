@@ -1,5 +1,7 @@
 ﻿using POP_SF27_2016_Projekat.Model;
+using System.ComponentModel;
 using System.Windows;
+using System.Windows.Data;
 
 namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 {
@@ -17,6 +19,8 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
         UredjeniPar uredjeniParCopy;
         UredjeniPar uredjeniParReal;
 
+        ICollectionView view;
+
         public DpNamestajPopust(Akcija akcijaParam)
         {
             InitializeComponent();
@@ -27,8 +31,7 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 
             uredjeniParCopy = new UredjeniPar();
 
-            cbNamestaj.DataContext = uredjeniParCopy;
-            tbPopust.DataContext = uredjeniParCopy;
+            InitFields();
         }
 
         public DpNamestajPopust(UredjeniPar par, Akcija akcijaParam)
@@ -43,8 +46,7 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             uredjeniParCopy = new UredjeniPar();
             uredjeniParCopy.Copy(par);
 
-            cbNamestaj.DataContext = uredjeniParCopy;
-            tbPopust.DataContext = uredjeniParCopy;
+            InitFields();
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
@@ -76,5 +78,22 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
         {
             Close();
         }
+
+        void InitFields()
+        {
+            cbNamestaj.DataContext = uredjeniParCopy;
+            tbPopust.DataContext = uredjeniParCopy;
+
+            view = new CollectionViewSource { Source = Namestaj.namestajCollection }.View;
+            view.Filter = Filter;
+            cbNamestaj.ItemsSource = view;
+        }
+
+        #region Filters
+        private bool Filter(object obj)
+        {
+            return !(((Namestaj)obj).Obrisan);
+        }
+        #endregion
     }
 }
