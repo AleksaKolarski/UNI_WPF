@@ -116,17 +116,17 @@ VALUES('Forma FTNale', 'Trg FTN-a', '021/123123', 'kontakt@ftn.uns.ac.rs', 'www.
 
 
 INSERT INTO TipKorisnika (Naziv, DozvolaAkcija, DozvolaDodatnaUsluga, DozvolaKorisnik, DozvolaNamestaj, DozvolaProdajaNamestaja, DozvolaSalon, DozvolaTipKorisnika, DozvolaTipNamestaja, Obrisan) 
-VALUES('Jadnik', 0, 0, 0, 0, 0, 0, 0, 0, 0);
+VALUES('Magacioner', 0, 0, 0, 15, 0, 8, 0, 15, 0);
 
 INSERT INTO TipKorisnika (Naziv, DozvolaAkcija, DozvolaDodatnaUsluga, DozvolaKorisnik, DozvolaNamestaj, DozvolaProdajaNamestaja, DozvolaSalon, DozvolaTipKorisnika, DozvolaTipNamestaja, Obrisan) 
 VALUES('Administrator', 15, 15, 15, 15, 12, 10, 15, 15, 0);
 
 INSERT INTO TipKorisnika (Naziv, DozvolaAkcija, DozvolaDodatnaUsluga, DozvolaKorisnik, DozvolaNamestaj, DozvolaProdajaNamestaja, DozvolaSalon, DozvolaTipKorisnika, DozvolaTipNamestaja, Obrisan) 
-VALUES('Prodavac', 8, 8, 8, 8, 12, 8, 8, 8, 0);
+VALUES('Prodavac', 8, 8, 0, 8, 12, 8, 0, 8, 0);
 
 
 INSERT INTO Korisnik (TipKorisnikaId, Ime, Prezime, KorisnickoIme, Lozinka, Obrisan) 
-VALUES(0, 'Jadnik', 'BezDozvola', 'jadnik', 'jadnik', 0);
+VALUES(0, 'Magacionerko', 'Magacionerkic', 'srbenda', 'srbenda123', 0);
 
 INSERT INTO Korisnik (TipKorisnikaId, Ime, Prezime, KorisnickoIme, Lozinka, Obrisan) 
 VALUES(1, 'Neko', 'Nekic', 'username1', 'password1', 0);
@@ -149,70 +149,93 @@ VALUES('Sofa', 0);
 
 
 INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) 
-VALUES(0, 'Sofa1', 'sifra1', 11, 111, 0);
+VALUES(0, 'Beli regal', 'BE0RE', 35, 43, 0);
+INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) 
+VALUES(0, 'Crveni regal', 'CR0RE', 37, 27, 0);
 
 INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) 
-VALUES(1, 'Sofa2', 'sifra2', 22, 222, 0);
+VALUES(1, 'Mala polica', 'MA1PO', 11, 56, 0);
+INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) 
+VALUES(1, 'Velika polica', 'VE1PO', 15, 10, 0);
+INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) 
+VALUES(1, 'Ugaona polica', 'UG1PO', 13, 3, 0);
+INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) 
+VALUES(1, 'Dupla polica', 'DU1PO', 14, 43, 0);
 
 INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) 
-VALUES(2, 'Sofa5', 'sifra5', 55, 555, 0);
-
-
-INSERT INTO DodatnaUsluga (Naziv, Cena, Obrisan) 
-VALUES('DodatnaUsluga1', 150, 0);
-
-INSERT INTO DodatnaUsluga (Naziv, Cena, Obrisan) 
-VALUES('DodatnaUsluga2', 200, 0);
+VALUES(2, 'Ugaona sofa', 'UG2SO', 45, 14, 0);
+INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) 
+VALUES(2, 'Mala sofa', 'MA2SO', 38, 26, 0);
+INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) 
+VALUES(2, 'Velika sofa', 'VE2SO', 50, 24, 0);
 
 INSERT INTO DodatnaUsluga (Naziv, Cena, Obrisan) 
-VALUES('DodatnaUsluga3', 350, 0);
+VALUES('Sklapanje', 15, 0);
+
+INSERT INTO DodatnaUsluga (Naziv, Cena, Obrisan) 
+VALUES('Dostava', 20, 0);
+
+INSERT INTO DodatnaUsluga (Naziv, Cena, Obrisan) 
+VALUES('Servis', 25, 0);
 
 
 INSERT INTO Akcija (Naziv, DatumPocetka, DatumKraja, Obrisan) 
-VALUES('Akcija1', '2017-12-01T00:00:00', '2018-02-01T00:00:00', 0);
+VALUES('Novogodisnja akcija', '2017-12-21 00:00:00', '2018-01-10 00:00:00', 0);
 
 INSERT INTO Akcija (Naziv, DatumPocetka, DatumKraja, Obrisan) 
-VALUES('Akcija2', '2018-01-01T00:00:00', '2018-03-01T00:00:00', 0);
+VALUES('Letnja akcija', '2018-05-31 00:00:00', '2018-08-16 00:00:00', 0);
 
 
 INSERT INTO NaAkciji (IdAkcije, IdNamestaja, Popust) 
 VALUES(0, 0, 20);
 
 INSERT INTO NaAkciji (IdAkcije, IdNamestaja, Popust) 
-VALUES(0, 1, 30);
+VALUES(0, 2, 30);
 
 INSERT INTO NaAkciji (IdAkcije, IdNamestaja, Popust) 
-VALUES(1, 1, 40);
+VALUES(1, 4, 25);
 
 INSERT INTO NaAkciji (IdAkcije, IdNamestaja, Popust) 
-VALUES(1, 2, 50);
+VALUES(1, 6, 15);
+
+INSERT INTO NaAkciji (IdAkcije, IdNamestaja, Popust) 
+VALUES(1, 8, 25);
 
 
 INSERT INTO Prodaja (DatumProdaje, Kupac, BrojRacuna, PDV) 
-VALUES('0001-01-01T00:00:00', 'Neko Nekic', '123-123-123', 20.0);
+VALUES('2017-09-21 12:04:01', 'Kupac1', '123-123-123', 20.0);
 
 INSERT INTO Prodaja (DatumProdaje, Kupac, BrojRacuna, PDV) 
-VALUES('0001-01-01T00:00:00', 'Pera Peric', '321-321-321', 20.0);
+VALUES('2018-01-05 16:30:20', 'Kupac2', '341-341-441', 20.0);
+
+INSERT INTO Prodaja (DatumProdaje, Kupac, BrojRacuna, PDV) 
+VALUES('2018-01-11 10:30:20', 'Bane Bojanic', '321-321-321', 20.0);
 
 
 INSERT INTO ProdajaUsluga (IdProdaje, NazivUsluge, Cena) 
-VALUES(1, 'Usluga1', 150);
+VALUES(1, 'Dostava', 25);
 
 INSERT INTO ProdajaUsluga (IdProdaje, NazivUsluge, Cena) 
-VALUES(1, 'Usluga2', 200);
+VALUES(1, 'Sklapanje', 30);
+
+INSERT INTO ProdajaUsluga (IdProdaje, NazivUsluge, Cena) 
+VALUES(2, 'Dostava', 40);
 
 
 INSERT INTO ProdajaNamestaj (IdProdaje, NazivNamestaja, JedinicnaCena, BrojNamestaja, Popust) 
-VALUES(0, 'Namestaj1', 32, 3, 10);
+VALUES(0, 'Mala polica', 12, 3, 10);
 
 INSERT INTO ProdajaNamestaj (IdProdaje, NazivNamestaja, JedinicnaCena, BrojNamestaja, Popust) 
-VALUES(0, 'Namestaj2', 12, 7, 20);
+VALUES(0, 'Mala sofa', 40, 7, 20);
 
 INSERT INTO ProdajaNamestaj (IdProdaje, NazivNamestaja, JedinicnaCena, BrojNamestaja, Popust) 
-VALUES(1, 'Namestaj3', 67, 2, 5);
+VALUES(1, 'Ugaona polica', 15, 2, 5);
 
 INSERT INTO ProdajaNamestaj (IdProdaje, NazivNamestaja, JedinicnaCena, BrojNamestaja, Popust) 
-VALUES(1, 'Namestaj4', 17, 5, 15);
+VALUES(1, 'Crveni regal', 28, 5, 0);
 
 INSERT INTO ProdajaNamestaj (IdProdaje, NazivNamestaja, JedinicnaCena, BrojNamestaja, Popust) 
-VALUES(1, 'Namestaj1', 20, 3, 10);
+VALUES(1, 'Ugaona sofa', 25, 3, 10);
+
+INSERT INTO ProdajaNamestaj (IdProdaje, NazivNamestaja, JedinicnaCena, BrojNamestaja, Popust) 
+VALUES(2, 'Kraljevska sofa', 10000, 2, 3);
