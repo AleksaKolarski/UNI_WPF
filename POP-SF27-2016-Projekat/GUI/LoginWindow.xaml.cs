@@ -21,8 +21,8 @@ namespace POP_SF27_2016_Projekat.GUI
 
             tbWelcome.Text = "Welcome to\n" + Salon.salon.Naziv;
             tbUsername.Focus();
-            tbUsername.Text = "username1";
-            pbPassword.Password = "password1";
+            //tbUsername.Text = "username1";
+            //pbPassword.Password = "password1";
             this.KeyDown += LoginEnterKeyDown; // Izvrsi metodu na okidanje KeyDown eventa
         }
 
