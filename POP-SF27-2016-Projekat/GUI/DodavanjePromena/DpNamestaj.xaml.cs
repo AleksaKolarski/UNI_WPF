@@ -1,5 +1,7 @@
 ﻿using POP_SF27_2016_Projekat.Model;
+using System.ComponentModel;
 using System.Windows;
+using System.Windows.Data;
 
 namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 {
@@ -13,6 +15,8 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
         private Operacija operacija;
 
         Namestaj namestaj;
+
+        ICollectionView view;
 
         public DpNamestaj()
         {
@@ -98,6 +102,17 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             tbJedinicnaCena.DataContext = namestaj;
             tbKolicinaUMagacinu.DataContext = namestaj;
             cbTip.DataContext = namestaj;
+
+            view = new CollectionViewSource { Source = TipNamestaja.tipNamestajaCollection }.View;
+            view.Filter = Filter;
+            cbTip.ItemsSource = view;
         }
+
+        #region Filters
+        private bool Filter(object obj)
+        {
+            return !(((TipNamestaja)obj).Obrisan);
+        }
+        #endregion
     }
 }

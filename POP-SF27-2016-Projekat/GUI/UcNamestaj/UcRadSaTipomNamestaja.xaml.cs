@@ -14,7 +14,7 @@ namespace POP_SF27_2016_Projekat.GUI.UcNamestaj
 
         public UcRadSaTipomNamestaja()
         {
-            view = CollectionViewSource.GetDefaultView(TipNamestaja.tipNamestajaCollection);
+            view = new CollectionViewSource { Source = TipNamestaja.tipNamestajaCollection }.View;
             InitializeComponent();
 
             view.Filter = Filter;
