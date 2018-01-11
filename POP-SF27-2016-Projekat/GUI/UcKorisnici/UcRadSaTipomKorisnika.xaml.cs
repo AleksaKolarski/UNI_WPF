@@ -14,7 +14,7 @@ namespace POP_SF27_2016_Projekat.GUI.UcKorisnici
 
         public UcRadSaTipomKorisnika()
         {
-            view = CollectionViewSource.GetDefaultView(TipKorisnika.tipKorisnikaCollection);
+            view = new CollectionViewSource { Source = TipKorisnika.tipKorisnikaCollection }.View;
             InitializeComponent();
             
             view.Filter = Filter;

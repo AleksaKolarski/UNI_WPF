@@ -1,5 +1,7 @@
 ﻿using POP_SF27_2016_Projekat.Model;
+using System.ComponentModel;
 using System.Windows;
+using System.Windows.Data;
 
 namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
 {
@@ -13,6 +15,8 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
         private Operacija operacija;
 
         Korisnik korisnik;
+
+        ICollectionView view;
 
         public DpKorisnik()
         {
@@ -121,6 +125,17 @@ namespace POP_SF27_2016_Projekat.GUI.DodavanjePromena
             tbKorisnickoIme.DataContext = korisnik;
             tbLozinka.DataContext = korisnik;
             cbTip.DataContext = korisnik;
+
+            view = new CollectionViewSource { Source = TipKorisnika.tipKorisnikaCollection }.View;
+            view.Filter = Filter;
+            cbTip.ItemsSource = view;
         }
+
+        #region Filters
+        private bool Filter(object obj)
+        {
+            return !(((TipKorisnika)obj).Obrisan);
+        }
+        #endregion
     }
 }
