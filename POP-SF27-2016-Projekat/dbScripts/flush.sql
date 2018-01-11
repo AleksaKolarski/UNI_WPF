@@ -150,22 +150,28 @@ VALUES('Sofa', 0);
 
 INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) 
 VALUES(0, 'Beli regal', 'BE0RE', 35, 43, 0);
+
 INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) 
 VALUES(0, 'Crveni regal', 'CR0RE', 37, 27, 0);
 
 INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) 
 VALUES(1, 'Mala polica', 'MA1PO', 11, 56, 0);
+
 INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) 
 VALUES(1, 'Velika polica', 'VE1PO', 15, 10, 0);
+
 INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) 
 VALUES(1, 'Ugaona polica', 'UG1PO', 13, 3, 0);
+
 INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) 
 VALUES(1, 'Dupla polica', 'DU1PO', 14, 43, 0);
 
 INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) 
 VALUES(2, 'Ugaona sofa', 'UG2SO', 45, 14, 0);
+
 INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) 
 VALUES(2, 'Mala sofa', 'MA2SO', 38, 26, 0);
+
 INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, JedinicnaCena, KolicinaUMagacinu, Obrisan) 
 VALUES(2, 'Velika sofa', 'VE2SO', 50, 24, 0);
 
